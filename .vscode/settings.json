@@ -1,0 +1,5 @@
+{
+    "css.lint.unknownAtRules": "ignore",
+    "css.lint.unknownProperties": "ignore",
+    "javascript.suggest.enabled": false
+}

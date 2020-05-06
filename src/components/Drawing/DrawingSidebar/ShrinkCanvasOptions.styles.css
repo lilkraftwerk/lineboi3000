@@ -1,0 +1,6 @@
+.finalOutputTitle {
+    height: 30px;
+    grid-column: span 4;
+    text-align: center;
+    font-size: 2em;
+}

@@ -1,0 +1,54 @@
+.controls {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 10px;
+}
+
+label {
+    display: block; 
+    grid-column: span 2;
+    line-height: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+button {
+    grid-column: span 4;
+}
+
+.plotterStatusBox {
+    grid-column: span 4;
+    height: 30px;
+    line-height: 30px;
+    outline: 3px solid black;
+    text-align: center;
+}
+
+.plotterHeightBox {
+    grid-column: span 1;
+    height: 30px;
+    line-height: 30px;
+    outline: 3px solid black;
+    text-align: center;
+}
+
+.plotterHeightDisplay {
+    grid-column: span 2;
+    height: 30px;
+    line-height: 30px;
+    outline: 3px solid black;
+    text-align: center;
+}
+
+.checking {
+    background-color: lightyellow;
+}
+
+.connected {
+    background-color: lightgreen;
+}
+
+.disconnected {
+    background-color: lightcoral;
+}

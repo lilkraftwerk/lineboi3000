@@ -1,0 +1,29 @@
+.numberInput {
+    display: block;
+    font-size: 1.1em;
+    grid-column: 2;
+    height: 20px;
+    outline: 1px solid black;
+    text-align: right;
+    width: 95%;
+}
+
+.suffix {
+    align-self: center;
+    justify-self: center;
+    text-align: left;
+}
+
+.label {
+    align-self: center;
+    grid-column: 1;
+    justify-self: center;
+    text-align: right;
+}
+
+.numberWrapper {
+    display: grid;
+    grid-column: span 2;
+    grid-template-columns: .75fr 0.8fr 0.2fr;
+    padding: 2px;
+}

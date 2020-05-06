@@ -1,0 +1,59 @@
+.svg {
+    background-color: transparent;
+    outline: 1px dashed black;
+}
+
+.container {
+    background: url('~assets/clean-gray-paper-bg.png');
+    background-color: #b3b3b3;
+    box-shadow: black 2px 2px 1px;
+    cursor: crosshair; 
+    position: relative;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.drawingDiv {
+    background: transparent;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 50;
+}
+
+.input {
+    display: inline-block;
+    width: 30px;
+}
+
+
+.whole {
+    border: 1px solid black;
+    position: relative;
+}
+
+.raw {
+    background-color: transparent;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.svgDrawing {
+    background-color: rgb(232, 232, 232);
+    cursor: crosshair;
+    outline: 1px dashed black;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.input {
+    display: inline-block;
+    width: 30px;
+}

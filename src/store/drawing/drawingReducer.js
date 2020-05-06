@@ -1,0 +1,112 @@
+import {
+    SELECT_MAIN_MODE,
+    SELECT_DRAW_MODE,
+    SET_TEXT_CONTENT,
+    SET_TEXT_SIZE,
+    SET_FONT_NAME,
+    SET_MULTIPLY_CANVAS_OPTIONS,
+    SET_SELECT_COORDS,
+    SET_SELECT_OPTION_BY_KEY,
+    SET_FILL_LINES,
+    SET_OPTION_BY_KEY
+} from './drawingActions';
+
+const initState = {
+    mainMode: 'draw',
+    mode: 'text',
+    textContent: 'L',
+    textSize: 150,
+    textFill: true,
+    textOutline: true,
+    textFillDensity: 5,
+    textDistanceBetweenLines: 5,
+    textDistanceBetweenPoints: 1,
+    textDistanceBetweenLetters: 10,
+    textDistanceBetweenWords: 50,
+    textFillIsHorizontal: true,
+    fontName: 'VCR_OSD_MONO.ttf',
+    pointsOnEachLine: 5,
+    multiplyCanvasOptions: {
+        x: 2,
+        y: 2
+    },
+    selectCoords: [],
+    hullCoords: [],
+    fillLines: [],
+    distanceBetweenPoints: 5,
+    selectOptions: {
+        angle: 90,
+        distanceBetweenLines: 5,
+        distanceBetweenPoints: 1,
+        lineMode: 'vertical',
+        showPreviewLines: false,
+        randomLineDensity: 5
+    },
+    pointsOnCircle: 50
+};
+
+const drawingReducer = (state = initState, action) => {
+    switch (action.type) {
+        case SELECT_MAIN_MODE:
+            return {
+                ...state,
+                mainMode: action.value
+            };
+        case SELECT_DRAW_MODE:
+            return {
+                ...state,
+                mode: action.value
+            };
+        case SET_TEXT_CONTENT:
+            return {
+                ...state,
+                textContent: action.value
+            };
+        case SET_FONT_NAME:
+            return {
+                ...state,
+                fontName: action.value
+            };
+        case SET_TEXT_SIZE:
+            return {
+                ...state,
+                textSize: action.value
+            };
+        case SET_MULTIPLY_CANVAS_OPTIONS:
+            return {
+                ...state,
+                multiplyCanvasOptions: {
+                    ...state.multiplyCanvasOptions,
+                    [action.value.axis]: action.value.multiplyFactor
+                }
+            };
+        case SET_SELECT_COORDS:
+            return {
+                ...state,
+                selectCoords: action.value.selectCoords,
+                hullCoords: action.value.hullCoords
+            };
+        case SET_SELECT_OPTION_BY_KEY:
+            return {
+                ...state,
+                selectOptions: {
+                    ...state.selectOptions,
+                    [action.value.key]: action.value.value
+                }
+            };
+        case SET_OPTION_BY_KEY:
+            return {
+                ...state,
+                [action.value.key]: action.value.value
+            };
+        case SET_FILL_LINES:
+            return {
+                ...state,
+                fillLines: action.value.fillLines
+            };
+        default:
+            return state;
+    }
+};
+
+export default drawingReducer;

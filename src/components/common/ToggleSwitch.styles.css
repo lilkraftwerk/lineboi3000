@@ -1,0 +1,16 @@
+.toggleSwitch {
+    align-content: center;
+    align-items: center;    
+    display: grid;
+    font-size: 1.1em;
+    grid-column: span 2;
+    height: 20px;
+    justify-content: center;
+    justify-items: center;
+    outline: 1px solid black;
+    width: 100%;
+}
+
+.input {
+  padding: 10px;
+}

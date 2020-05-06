@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'VCR';
+    src: url('./assets/fonts/VCR_OSD_MONO.ttf');
+}
+
+
+/* global styles go here */
+
+html, body {
+    font-family: VCR;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+ }
+ 
+
+input {
+    font-family: VCR;
+}
+
+button:focus {
+    outline: none;
+}

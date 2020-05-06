@@ -1,0 +1,40 @@
+.optionsContainer {
+    padding: 10px;
+}
+
+.loadingMessage {;
+    grid-column: span 2;
+    line-height: 20px;
+    text-align: center;
+}
+
+.loadingEmoji {
+    grid-column: span 1;
+    height: 20px;
+    margin: 0 auto;
+    width: 20px;
+}
+
+.emoji {
+    -webkit-animation-duration: 1000ms;
+    animation-duration: 1000ms;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: spin;
+    animation-name: spin;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+}
+
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}

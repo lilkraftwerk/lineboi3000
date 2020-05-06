@@ -1,0 +1,14 @@
+node_modules
+/dist
+coverage
+
+# misc
+.DS_Store
+npm-debug.log*
+
+# user-generated files
+./userfiles/drawings/*
+./userfiles/presets/*
+
+#yarn error
+yarn-error.log

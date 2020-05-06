@@ -1,0 +1,38 @@
+.sidebar, .body {
+    box-sizing: border-box;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: minmax(min-content, auto);
+    justify-content: start;
+    padding: 5px;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100%;
+}
+
+.sidebarItem {
+    font-size: .8em;
+    outline: 2px solid black;
+    padding-bottom: 3px;
+}
+
+.openToggleButton {
+    cursor: pointer;
+    float: right;
+    outline: 1px solid black;
+    overflow: visible;
+    padding: 0px 7px;
+}
+
+.title {
+    align-self: center;
+    border-bottom: 2px solid black;
+    font-weight: bold;
+    grid-column: 1;
+    justify-self: center;
+    line-height: 15px;
+    text-align: center;
+    width: 100%;
+}
+

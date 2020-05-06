@@ -1,0 +1,7 @@
+.gridControlsContainer {
+    display: grid;
+    grid-column: span 5;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 5px;
+    outline: 2px solid black;
+}

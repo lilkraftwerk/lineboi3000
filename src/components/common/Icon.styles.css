@@ -1,0 +1,47 @@
+@value colors: "./colorVariables.css";
+@value color-blackish, color-gray, color-cream, color-teal-light from colors;
+
+.iconWrapper {
+    background-color: color-cream;
+    border: 2px solid color-blackish;
+    border-radius: 25%;
+    cursor: pointer;
+    display: inline-block;
+    justify-self: center;
+    margin: 2px;
+    padding: 1px;
+}
+
+.iconWrapper:hover {
+    background-color: color-teal-light;
+    border: 2px dashed color-blackish;
+}
+
+.iconWrapper:active {
+    filter: saturate(150%);
+    transform: translateY(1px);
+}
+
+.iconWrapperDisabled {
+    background-color: color-gray;
+    composes: iconWrapper;
+    cursor: default; 
+}
+
+.iconWrapperDisabled:hover {
+    background-color: color-gray;
+    border: 2px solid color-blackish;
+}
+
+.iconWrapperDisabled:active {
+    background-color: color-gray;
+    border: 2px solid color-blackish;
+    filter: none;
+    transform: none;
+}
+
+.img {
+    height: 95%;
+    margin: 2.5%;
+    width: 95%;
+}

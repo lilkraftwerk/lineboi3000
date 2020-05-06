@@ -1,0 +1,22 @@
+.label {
+    display: block;
+}
+
+.singleFilter {
+    margin: 5px 0;
+    outline: 1px solid black;
+    padding: 3px 5px;
+    position: relative;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin: 0;
+    margin-bottom: 2px;
+    padding: 0
+}
+
+.enabled {
+    cursor: pointer;
+    outline: 1px solid black; 
+}

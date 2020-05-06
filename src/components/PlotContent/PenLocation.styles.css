@@ -1,0 +1,7 @@
+.paperCanvas {
+    background: transparent;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 20;
+}

@@ -1,0 +1,73 @@
+.sidebarButton {
+    align-self: center;
+    border: 1px solid black;
+    font-size: 1.1em;
+    grid-column: span 1;
+    justify-self: center;
+    outline: 0;
+    text-transform: uppercase;
+    -webkit-user-select: none;
+    user-select: none;  /* Chrome all / Safari all */
+    width: 90%;
+}
+
+.sidebarButton:active {
+    filter: saturate(150%);
+    outline: 0;
+    transform: translateY(1px);
+}
+
+.sidebarButton:hover {
+    background-color: lightpink;
+    outline: 0;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+}
+
+.enabledToggleButton {
+    align-self: center;
+    border: 1px solid black;
+    font-size: 1.1em;
+    grid-column: span 1;
+    justify-self: center;
+    outline: 0;
+    text-transform: uppercase;
+    -webkit-user-select: none;
+    user-select: none;  /* Chrome all / Safari all */
+    width: 100%;
+}
+
+.active {
+    background-color: lightgreen;
+}
+
+.active:hover {
+    background-color: rgb(110, 230, 110);
+}
+
+.inactive {
+    background-color: lightcoral;
+}
+
+.inactive:hover {
+    background-color: rgb(227, 83, 83);
+}
+
+.half {
+    grid-column: span 2;
+}
+
+.full {
+    grid-column: span 4;
+}
+
+
+.enabledToggleButton:active {
+    filter: saturate(150%);
+    outline: 0;
+    transform: translateY(1px);
+}
+
+.enabledToggleButton:hover {
+    outline: 0;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+}

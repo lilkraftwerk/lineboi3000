@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+  }
+  .itemSelector {
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: 30px 1fr 30px 30px;;
+      height: 30px;
+  }
+
+  .leftArrow {
+      grid-column: 1;
+      height: 100%;
+      outline: 1px solid black;
+      width: 100%;
+  }
+
+  .rightArrow {
+    grid-column: 3;
+    height: 100%;
+    outline: 1px solid black;
+    width: 100%;
+}
+
+.textBox {
+    align-self: center;
+    grid-column: 2;
+    justify-self: center;
+}
+
+.confirm {
+    grid-column: 4;
+}

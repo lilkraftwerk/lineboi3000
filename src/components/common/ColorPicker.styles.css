@@ -1,0 +1,92 @@
+@value colors: "./colorVariables.css";
+@value color-cream, color-blackish from colors;
+
+.page {
+    background-color: gray;
+    height: 100vh;
+    width: 100vw;
+}
+
+.visibleIcon {
+    height: 30px;
+    width: 30px;
+}
+
+.wrapper {
+    border: 2px dashed black;
+    box-shadow: #000 5px 5px 1px;
+    box-shadow: 1px 1px 1px;
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: 20% 80%;
+    height: auto;
+    justify-items: center;
+    padding: 10px;
+    width: 250px;
+}
+
+.oneColor {
+    border-radius: 50%;
+    cursor: pointer;
+    grid-column: span 1;
+    height: 30px;
+    margin: 2px;
+    width: 30px;
+}
+
+.oneColor:active {
+    filter: saturate(150%);
+    transform: translateY(1px);
+}
+
+.colorContainer {
+    display: grid;
+    grid-column: 2;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.toggle {
+    border: 3px solid color-blackish;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+
+.toggle:hover {
+    border: 3px dotted white;
+}
+
+.toggle:active {
+    filter: saturate(150%);
+    transform: translateY(1px);
+}
+
+.backgroundToggle {
+    composes: toggle;
+}
+
+.borderToggle {
+    background-color: color-blackish;
+    border-radius: 50%;
+    composes: toggle;
+}
+
+.sidebar {
+    display: grid;
+    grid-column: 1;
+    grid-row-gap: 10px;
+    grid-template-rows: 45px 40px 40px 1fr;
+    justify-items: center;
+}
+
+.colorDisplay {
+    height: 100%;
+    width: 100%;
+}
+
+.click {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+}

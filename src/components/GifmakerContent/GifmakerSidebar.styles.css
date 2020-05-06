@@ -1,0 +1,24 @@
+.singleFrame {
+    grid-column: span 4;
+    outline: 2px solid black;
+}
+
+.framePic {
+    grid-column: span 4;
+    margin: 0% 5%;
+    width: 90%;
+}
+
+.button {
+    grid-column: span 2;
+}
+
+.noFrames {
+    background-color: pink;
+    border: 5px solid red;
+    border-radius: 10px;
+    grid-column: span 4;
+    justify-self: center;
+    margin: 10px;
+    padding: 20px;
+}
