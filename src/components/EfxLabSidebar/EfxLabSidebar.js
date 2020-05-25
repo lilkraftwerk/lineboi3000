@@ -239,7 +239,7 @@ class EfxLabSidebar extends React.Component {
         } = this.props;
 
         const { savingPreset, savePresetName, presets } = this.state;
-        
+
         return (
             <SidebarContainer>
                 <SidebarItem>

@@ -1,4 +1,4 @@
-import { addMultipleLinesToLayerByID } from 'store/line/lineActions';
+import { addMultipleLinesToLayerByID } from '../../../store/line/lineActions';
 import { allPointsBetweenTwoCoords } from '../../../utils/coordUtils';
 import { getStartCoordsFromFirstTempLines } from '../../../utils/drawingUtils';
 
@@ -11,17 +11,24 @@ const onMove = (coords, tempLines) => {
     return [[firstCoords, coords]];
 };
 
-const onEnd = (coords, tempLines, options, dispatch) => {
-    const { pointsOnEachLine, currentLayerID } = options;
+const onEndProcessor = (coords, tempLines, options) => {
+    const { pointsOnEachLine } = options;
     const firstCoords = getStartCoordsFromFirstTempLines(tempLines);
     const allPoints = allPointsBetweenTwoCoords(firstCoords, coords, {
         maxPointCount: pointsOnEachLine
     });
-    dispatch(addMultipleLinesToLayerByID(currentLayerID, [allPoints]));
+    return [allPoints];
+};
+
+const onEnd = (coords, tempLines, options, dispatch) => {
+    const { currentLayerID } = options;
+    const allPoints = onEndProcessor(coords, tempLines, options);
+    dispatch(addMultipleLinesToLayerByID(currentLayerID, allPoints));
 };
 
 export default {
     onStart,
     onMove,
-    onEnd
+    onEnd,
+    onEndProcessor
 };

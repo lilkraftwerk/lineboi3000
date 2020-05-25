@@ -105,7 +105,7 @@ class DrawingSidebar extends React.Component {
         return (
             <SidebarContainer>
                 <SidebarItem title="drawing type" height={2}>
-                    {['draw', 'select', 'scale'].map(modeKey => {
+                    {['draw', 'select', 'scale', 'template'].map(modeKey => {
                         return (
                             <button
                                 style={{ gridColumn: 'span 1' }}

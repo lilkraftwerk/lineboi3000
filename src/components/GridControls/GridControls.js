@@ -5,6 +5,7 @@ import Icon from 'components/common/Icon';
 
 import {
     toggleGridVisibility,
+    togglePointVisibility,
     setGridOptions
 } from 'store/global/globalActions';
 
@@ -12,7 +13,7 @@ import { getCurrentOptions } from 'store/onions/onionsSelectors';
 
 import styles from './GridControls.styles.css';
 
-const GridControls = ({ gridState, globalHeight, globalWidth, dispatch }) => {
+const GridControls = ({ globalHeight, globalWidth, dispatch }) => {
     const LINE_COUNTS = [2, 4, 8, 16, 32, 64];
     const [gridLineCountIndex, setGridLineCountIndex] = useState(1);
 
@@ -31,6 +32,13 @@ const GridControls = ({ gridState, globalHeight, globalWidth, dispatch }) => {
 
     return (
         <div className={styles.gridControlsContainer}>
+            <Icon
+                onClick={() => {
+                    dispatch(togglePointVisibility());
+                }}
+                fileName="showpoint"
+            />
+
             <Icon
                 onClick={() => {
                     dispatch(toggleGridVisibility());

@@ -5,34 +5,28 @@ import { getVisibleEfxLines } from 'store/line/lineSelectors';
 import { getCurrentOptions } from 'store/onions/onionsSelectors';
 import { setTempBlob } from 'store/gifmaker/gifmakerActions';
 import { CombinedLayer } from 'components/common/SvgLayer';
+import { getShowPoints } from 'store/global/globalSelectors';
 
 import styles from './EfxContent.styles.css';
 
 class EfxContainer extends React.Component {
     shouldComponentUpdate(nextProps) {
-        const { height, width, visibleEfxLines } = this.props;
+        const { height, width, visibleEfxLines, showPoints } = this.props;
         const areNotEqual = (a, b) => {
             return !_.isEqual(a, b);
         };
 
-        if (areNotEqual(height, nextProps.height)) {
-            return true;
-        }
-
-        if (areNotEqual(width, nextProps.width)) {
-            return true;
-        }
-
-        if (areNotEqual(visibleEfxLines, nextProps.visibleEfxLines)) {
-            return true;
-        }
-
-        return false;
+        const shouldUpdate = _.some([
+            areNotEqual(height, nextProps.height),
+            areNotEqual(width, nextProps.width),
+            areNotEqual(visibleEfxLines, nextProps.visibleEfxLines),
+            areNotEqual(showPoints, nextProps.showPoints)
+        ]);
+        return shouldUpdate;
     }
 
     render() {
-        const { height, width, visibleEfxLines, dispatch } = this.props;
-
+        const { height, width, visibleEfxLines, showPoints, dispatch } = this.props;
         return (
             <div style={{ height, width }} className={styles.container}>
                 <CombinedLayer
@@ -40,6 +34,7 @@ class EfxContainer extends React.Component {
                     height={height}
                     width={width}
                     shouldSaveFrame
+                    showPoints={showPoints}
                     blobCallback={blob => {
                         dispatch(setTempBlob(blob));
                     }}
@@ -52,10 +47,12 @@ class EfxContainer extends React.Component {
 const mapStateToProps = state => {
     const visibleEfxLines = getVisibleEfxLines(state);
     const options = getCurrentOptions(state);
+    const showPoints = getShowPoints(state);
 
     return {
         ...options,
-        visibleEfxLines
+        visibleEfxLines,
+        showPoints
     };
 };
 

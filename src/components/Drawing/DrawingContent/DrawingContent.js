@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import hull from 'hull.js';
 import { LayerType, LineType } from 'customPropTypes';
-import { addMultipleLinesToLayerByID } from 'store/line/lineActions';
+import { getShowPoints } from 'store/global/globalSelectors';
 import { getVisibleOriginalLines } from 'store/line/lineSelectors';
 import { getCurrentOptions } from 'store/onions/onionsSelectors';
 import { setSelectCoords, setFillLines } from 'store/drawing/drawingActions';
@@ -275,7 +275,8 @@ export class DrawingContent extends React.Component {
             visibleOriginalLines,
             visibleLayers,
             fillLines,
-            mainMode
+            mainMode,
+            showPoints
         } = this.props;
 
         return (
@@ -316,6 +317,7 @@ export class DrawingContent extends React.Component {
                                 lines={layerLines}
                                 color={color}
                                 strokeWidth={3}
+                                showPoints={showPoints}
                             />
                         );
                     }
@@ -331,6 +333,7 @@ const mapStateToProps = state => {
     const visibleLayers = getVisibleLayers(state);
     const currentLayerID = getCurrentLayerID(state);
     const options = getCurrentOptions(state);
+    const showPoints = getShowPoints(state);
 
     return {
         ...options,
@@ -340,7 +343,8 @@ const mapStateToProps = state => {
         visibleOriginalLines,
         ...state.drawingReducer,
         ...state.drawingReducer.selectOptions,
-        drawingMode: state.drawingReducer.mode
+        drawingMode: state.drawingReducer.mode,
+        showPoints
     };
 };
 

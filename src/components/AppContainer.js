@@ -18,9 +18,6 @@ import GridContent from './GridContent/GridContent';
 import EfxContent from './EfxContent/EfxContent';
 import EfxSidebar from './EfxSidebar/EfxSidebar';
 
-import EfxLabContent from './EfxLabContent/EfxLabContent';
-import EfxLabSidebar from './EfxLabSidebar/EfxLabSidebar';
-
 import PointCounter from './PointCounter/PointCounter';
 import GridControls from './GridControls/GridControls';
 import GifmakerHeader from './GifmakerContent/GifmakerHeader';
@@ -28,7 +25,7 @@ import Listener from './Listener';
 
 import styles from './AppContainer.styles.css';
 
-const MODES = ['draw', 'efx', 'efxLab', 'plot', 'onions', 'gifmaker'];
+const MODES = ['draw', 'efx', 'plot', 'onions', 'gifmaker'];
 
 class AppContainer extends React.Component {
     componentDidMount() {
@@ -79,7 +76,6 @@ class AppContainer extends React.Component {
                         {showGrid && <GridControls />}
                     </div>
                     {mode === 'efx' && <EfxSidebar />}
-                    {mode === 'efxLab' && <EfxLabSidebar />}
                     {mode === 'draw' && <DrawingSidebar />}
                     {mode === 'plot' && <PlotSidebar />}
                     {mode === 'gifmaker' && <GifmakerSidebar />}
@@ -88,8 +84,6 @@ class AppContainer extends React.Component {
                     {showGrid && <GridContent />}
                     {mode === 'draw' && <DrawingContent />}
                     {mode === 'efx' && <EfxContent />}
-                    {mode === 'efx' && <EfxContent />}
-                    {mode === 'efxLab' && <EfxLabContent />}
                     {mode === 'plot' && <PlotContent />}
                     {mode === 'onions' && <OnionContent />}
                     {mode === 'gifmaker' && <GifmakerContent />}

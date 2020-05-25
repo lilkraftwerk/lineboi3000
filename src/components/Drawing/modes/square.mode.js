@@ -1,7 +1,7 @@
 import _ from 'lodash';
-import { addMultipleLinesToLayerByID } from 'store/line/lineActions';
-import { setSelectCoords } from 'store/drawing/drawingActions';
 import hull from 'hull.js';
+import { addMultipleLinesToLayerByID } from '../../../store/line/lineActions';
+import { setSelectCoords } from '../../../store/drawing/drawingActions';
 import { allPointsBetweenTwoCoords } from '../../../utils/coordUtils';
 import { getStartCoordsFromFirstTempLines } from '../../../utils/drawingUtils';
 
@@ -22,8 +22,8 @@ const onMove = ([endX, endY], tempLines) => {
     return [fourCorners];
 };
 
-const onEnd = ([endX, endY], tempLines, options, dispatch) => {
-    const { pointsOnEachLine, currentLayerID, mainMode } = options;
+const onEndProcessor = ([endX, endY], tempLines, options) => {
+    const { pointsOnEachLine } = options;
     const [startX, startY] = getStartCoordsFromFirstTempLines(tempLines);
 
     const topLeft = [startX, startY];
@@ -44,16 +44,24 @@ const onEnd = ([endX, endY], tempLines, options, dispatch) => {
             maxPointCount: pointsOnEachLine
         })
     ];
+    return [squareLines];
+};
+
+const onEnd = ([endX, endY], tempLines, options, dispatch) => {
+    const { currentLayerID, mainMode } = options;
+    const squareLines = onEndProcessor([endX, endY], tempLines, options);
+
     if (mainMode === 'select') {
         const hullCoords = hull(squareLines, 20);
         dispatch(setSelectCoords({ selectCoords: squareLines, hullCoords }));
     } else {
-        dispatch(addMultipleLinesToLayerByID(currentLayerID, [squareLines]));
+        dispatch(addMultipleLinesToLayerByID(currentLayerID, squareLines));
     }
 };
 
 export default {
     onStart,
     onMove,
+    onEndProcessor,
     onEnd
 };

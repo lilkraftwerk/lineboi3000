@@ -1,6 +1,6 @@
-import { addMultipleLinesToLayerByID } from 'store/line/lineActions';
-import { setSelectCoords } from 'store/drawing/drawingActions';
 import hull from 'hull.js';
+import { addMultipleLinesToLayerByID } from '../../../store/line/lineActions';
+import { setSelectCoords } from '../../../store/drawing/drawingActions';
 import { getFirstLineFromTempLines } from '../../../utils/drawingUtils';
 
 const onStart = coords => {
@@ -13,10 +13,16 @@ const onMove = (coords, tempLines) => {
     return [lineWithNewCoords];
 };
 
-const onEnd = (coords, tempLines, options, dispatch) => {
-    const { currentLayerID, mainMode } = options;
+const onEndProcessor = (coords, tempLines) => {
     const firstLine = getFirstLineFromTempLines(tempLines);
     const lineWithNewCoords = [...firstLine, coords];
+    return [lineWithNewCoords];
+};
+
+const onEnd = (coords, tempLines, options, dispatch) => {
+    const { currentLayerID, mainMode } = options;
+    const lineWithNewCoords = onEndProcessor(coords, tempLines);
+
     if (mainMode === 'select') {
         const hullCoords = hull(lineWithNewCoords, 20);
         dispatch(
@@ -24,7 +30,7 @@ const onEnd = (coords, tempLines, options, dispatch) => {
         );
     } else {
         dispatch(
-            addMultipleLinesToLayerByID(currentLayerID, [lineWithNewCoords])
+            addMultipleLinesToLayerByID(currentLayerID, lineWithNewCoords)
         );
     }
 };
@@ -32,5 +38,6 @@ const onEnd = (coords, tempLines, options, dispatch) => {
 export default {
     onStart,
     onMove,
+    onEndProcessor,
     onEnd
 };

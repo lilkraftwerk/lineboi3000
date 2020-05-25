@@ -1,3 +1,4 @@
+/* eslint-disable */
 // gif.js 0.2.0 - https://github.com/jnordberg/gif.js
 (function(f) {
     if (typeof exports === 'object' && typeof module !== 'undefined') {

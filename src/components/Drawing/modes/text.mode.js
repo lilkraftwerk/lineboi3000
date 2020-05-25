@@ -1,7 +1,7 @@
-import { addMultipleLinesToLayerByID } from 'store/line/lineActions';
 import _ from 'lodash';
 import TextToSVG from 'text-to-svg';
 import { pathDataToPolys } from 'svg-path-to-polygons';
+import { addMultipleLinesToLayerByID } from '../../../store/line/lineActions';
 import {
     generateHorizontalLines,
     generateVerticalLines,
@@ -107,14 +107,20 @@ const generateTextCoords = (coords, _templines, options) => {
     return _.flatten(letterCoords);
 };
 
+const onEndProcessor = (coords, _templines, options) => {
+    const generatedCoords = generateTextCoords(coords, _templines, options);
+    return generatedCoords;
+};
+
 const onEnd = (coords, _templines, options, dispatch) => {
     const { currentLayerID } = options;
-    const generatedCoords = generateTextCoords(coords, _templines, options);
+    const generatedCoords = onEndProcessor(coords, _templines, options);
     dispatch(addMultipleLinesToLayerByID(currentLayerID, generatedCoords));
 };
 
 export default {
     onStart: generateTextCoords,
     onMove: generateTextCoords,
-    onEnd
+    onEnd,
+    onEndProcessor
 };

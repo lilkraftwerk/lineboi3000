@@ -25,7 +25,7 @@ const { showSaveDialog } = require('./src/mainProcess/SaveAndLoad');
 
 function createWindow() {
     win = new BrowserWindow({
-        width: 1600,
+        width: 1500,
         height: 800,
         webPreferences: {
             nodeIntegration: true,

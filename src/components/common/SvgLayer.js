@@ -10,7 +10,8 @@ export const CanvasLayer = ({
     width = 800,
     height = 600,
     strokeWidth,
-    position = 'absolute'
+    position = 'absolute',
+    showPoints = false
 }) => {
     const pixelRatio = window.devicePixelRatio;
 
@@ -55,6 +56,23 @@ export const CanvasLayer = ({
                 offScreenContext.stroke();
             });
 
+            // show points
+            if (showPoints) {
+                offScreenContext.strokeStyle = 'black';
+                const flatPoints = _.flatten(pointArraysWithoutZeroLength);
+                flatPoints.forEach(([pointX, pointY]) => {
+                    offScreenContext.beginPath();
+                    offScreenContext.arc(
+                        pointX,
+                        pointY,
+                        1, //radius
+                        0,
+                        Math.PI + Math.PI * 360
+                    );
+                    offScreenContext.stroke();
+                });
+            }
+
             offScreenContext.restore();
             const offscreenBitmap = offScreenCanvas.transferToImageBitmap();
             context.transferFromImageBitmap(offscreenBitmap);
@@ -63,7 +81,7 @@ export const CanvasLayer = ({
             console.error(lines);
             console.error('***** line error *****');
         }
-    }, [lines]);
+    }, [lines, showPoints, color]);
 
     const dw = Math.floor(pixelRatio * width);
     const dh = Math.floor(pixelRatio * height);
@@ -156,7 +174,8 @@ export const CombinedLayer = ({
     height = 600,
     blobCallback = () => {},
     position = 'absolute',
-    shouldSaveFrame = false
+    // shouldSaveFrame = false,
+    showPoints = false
 }) => {
     const pixelRatio = window.devicePixelRatio;
     const canvas = useRef(null);
@@ -208,6 +227,24 @@ export const CombinedLayer = ({
 
                         offScreenContext.stroke();
                     });
+
+                    if (showPoints) {
+                        offScreenContext.strokeStyle = 'black';
+                        const flatPoints = _.flatten(
+                            pointArraysWithoutZeroLength
+                        );
+                        flatPoints.forEach(([pointX, pointY]) => {
+                            offScreenContext.beginPath();
+                            offScreenContext.arc(
+                                pointX,
+                                pointY,
+                                3,
+                                0,
+                                Math.PI + Math.PI * 360
+                            );
+                            offScreenContext.stroke();
+                        });
+                    }
                 });
             }
 
@@ -219,7 +256,7 @@ export const CombinedLayer = ({
             console.error(layers);
             console.error('***** layer error *****');
         }
-    }, [layers]);
+    }, [layers, showPoints]);
 
     if (canvas && canvas.current) {
         canvas.current.toBlob(blob => {

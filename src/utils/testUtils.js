@@ -141,12 +141,17 @@ export const testOnMove = (drawObj, modeString) => {
 };
 
 export const testOnEnd = (drawObj, modeString) => {
-    const { onEnd } = drawObj;
+    const { onEnd, onEndProcessor } = drawObj;
     if (!onEnd) return false;
 
+    const testFunc = onEndProcessor != null ? onEndProcessor : onEnd;
     const tempLines = createFakePointArrayContainer(5);
     const fakeCoords = createFakePoint();
-    const result = onEnd(fakeCoords, tempLines, getDrawingOptions(modeString));
+    const result = testFunc(
+        fakeCoords,
+        tempLines,
+        getDrawingOptions(modeString)
+    );
     const isValid = isPointArrayContainerValid(result);
     return isValid;
 };

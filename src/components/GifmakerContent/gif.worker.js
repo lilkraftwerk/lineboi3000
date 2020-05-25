@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // gif.worker.js 0.2.0 - https://github.com/jnordberg/gif.js
 (function e(t, n, r) {
     function s(o, u) {
