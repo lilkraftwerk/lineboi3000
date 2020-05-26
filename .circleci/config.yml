@@ -1,11 +1,11 @@
-version: 2
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
 jobs:
-  build:
-    working_directory: ~/redux-async
-    docker:
-      - image: circleci/node:10
+  build-and-test:
+    executor:
+      name: node/default
     steps:
-      - checkout
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
@@ -21,3 +21,7 @@ jobs:
       - run:
           name: Run Tests
           command: yarn test
+workflows:
+    build-and-test:
+      jobs:
+        - build-and-test
