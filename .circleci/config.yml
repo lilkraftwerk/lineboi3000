@@ -1,10 +1,8 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1.6
+  yarn: itinerisltd/yarn@1.0.2
 jobs:
   build-and-test:
-    executor:
-      name: node/default
     steps:
       - restore_cache:
           name: Restore Yarn Package Cache
