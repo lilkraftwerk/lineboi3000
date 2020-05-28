@@ -11,7 +11,7 @@ const DistortComponent = ({ filterSettings, updateOptions }) => {
     return (
         <Fragment>
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ percentToAffect: value });
                 }}
                 float={false}
@@ -23,7 +23,7 @@ const DistortComponent = ({ filterSettings, updateOptions }) => {
                 currentValue={percentToAffect}
             />
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ distortionAmount: value });
                 }}
                 float={false}
@@ -48,7 +48,7 @@ export const DistortFilter = ({ filterSettings, pointArrays }) => {
     // height goes here
     // doesn't work for fractions, should loop probably
     // or floor values
-    pointArrays.forEach(pointArray =>
+    pointArrays.forEach((pointArray) =>
         pointArray.forEach(([_x, y]) => {
             const flooredY = Math.floor(y);
             if (yValueMap[flooredY.toString()] == null) {
@@ -60,7 +60,7 @@ export const DistortFilter = ({ filterSettings, pointArrays }) => {
         })
     );
 
-    const distortLine = pointArray => {
+    const distortLine = (pointArray) => {
         return pointArray.map(([x, y]) => {
             let newX = x;
 
@@ -72,7 +72,7 @@ export const DistortFilter = ({ filterSettings, pointArrays }) => {
         });
     };
 
-    return pointArrays.map(line => distortLine(line));
+    return pointArrays.map((line) => distortLine(line));
 };
 
 const initSettings = () => ({

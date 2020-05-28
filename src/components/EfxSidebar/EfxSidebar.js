@@ -80,21 +80,21 @@ class EfxSidebar extends React.Component {
         });
     }
 
-    onReceiveWorkerResults = results => {
+    onReceiveWorkerResults = (results) => {
         const { dispatch } = this.props;
         const [layerID, pointArrays] = results;
-        const linesWithId = pointArrays.map(pointArray =>
+        const linesWithId = pointArrays.map((pointArray) =>
             createLineFromPointArray(pointArray)
         );
         dispatch(setLayerEfxLines(layerID, linesWithId));
         dispatch(updateLayerSetting(layerID, 'loading', false));
     };
 
-    addFilterToCurrentLayer = filterName => {
+    addFilterToCurrentLayer = (filterName) => {
         const { dispatch, currentLayerID, globalSettings } = this.props;
 
         const { initSettings } = CONSTANT_FILTERS.find(
-            filter => filter.name === filterName
+            (filter) => filter.name === filterName
         );
 
         if (!initSettings) {
@@ -137,7 +137,7 @@ class EfxSidebar extends React.Component {
         const { allOriginalLines } = this.props;
         const allLayerIds = Object.keys(allOriginalLines);
         // this might not work, make sure to remove deleted ones
-        allLayerIds.forEach(layerID => {
+        allLayerIds.forEach((layerID) => {
             this.processEfxLinesForLayer(layerID);
         });
     };
@@ -148,7 +148,7 @@ class EfxSidebar extends React.Component {
         dispatch(setFiltersForAllLayers(filters));
     };
 
-    processEfxLinesForLayer = layerID => {
+    processEfxLinesForLayer = (layerID) => {
         const {
             allOriginalLines,
             globalSettings,
@@ -157,9 +157,9 @@ class EfxSidebar extends React.Component {
         } = this.props;
         dispatch(updateLayerSetting(layerID, 'loading', true));
 
-        const { filters } = allLayers.find(l => l.id === layerID);
+        const { filters } = allLayers.find((l) => l.id === layerID);
         const linesForThisLayer = allOriginalLines[layerID];
-        const pointArrays = linesForThisLayer.map(line =>
+        const pointArrays = linesForThisLayer.map((line) =>
             getPointArraysFromLine(line)
         );
 
@@ -181,13 +181,13 @@ class EfxSidebar extends React.Component {
         this.setState(INIT_STATE);
     };
 
-    updatePresetName = savePresetName => {
+    updatePresetName = (savePresetName) => {
         this.setState({
             savePresetName
         });
     };
 
-    setSelectedPreset = selectedPresetName => {
+    setSelectedPreset = (selectedPresetName) => {
         this.setState({ selectedPresetName });
     };
 
@@ -196,7 +196,7 @@ class EfxSidebar extends React.Component {
         const { selectedPresetName, presets } = this.state;
 
         const foundPreset = presets.find(
-            preset => preset.name === selectedPresetName
+            (preset) => preset.name === selectedPresetName
         );
 
         if (!foundPreset) {
@@ -294,10 +294,10 @@ class EfxSidebar extends React.Component {
                     {!savingPreset && (
                         <ItemSelector
                             spanCount={4}
-                            onChange={selectedPresetName => {
+                            onChange={(selectedPresetName) => {
                                 this.setSelectedPreset(selectedPresetName);
                             }}
-                            items={presets.map(preset => ({
+                            items={presets.map((preset) => ({
                                 key: preset.name,
                                 title: preset.name
                             }))}
@@ -311,7 +311,7 @@ class EfxSidebar extends React.Component {
                                 style={{ width: '100%' }}
                                 value={savePresetName}
                                 type="text"
-                                onChange={e => {
+                                onChange={(e) => {
                                     this.updatePresetName(e.target.value);
                                 }}
                             />
@@ -364,11 +364,11 @@ class EfxSidebar extends React.Component {
                 </SidebarItem>
                 <SidebarItem title="add filter" height={1} half>
                     <ItemSelector
-                        onSelect={filterName => {
+                        onSelect={(filterName) => {
                             this.addFilterToCurrentLayer(filterName);
                         }}
                         title="add filter"
-                        items={CONSTANT_FILTERS.map(filter => ({
+                        items={CONSTANT_FILTERS.map((filter) => ({
                             key: filter.name,
                             title: filter.name
                         }))}
@@ -377,7 +377,7 @@ class EfxSidebar extends React.Component {
                 {filters.map((filterSetting, index) => {
                     const { filterName, id } = filterSetting;
                     const foundFilter = CONSTANT_FILTERS.find(
-                        mainFilter => mainFilter.name === filterName
+                        (mainFilter) => mainFilter.name === filterName
                     );
 
                     if (!foundFilter) {
@@ -385,7 +385,7 @@ class EfxSidebar extends React.Component {
                     }
                     const { Component, displayName } = foundFilter;
 
-                    const updateOptions = valueObj => {
+                    const updateOptions = (valueObj) => {
                         this.updateSettingForCurrentLayerFilterById(
                             id,
                             valueObj
@@ -426,12 +426,12 @@ class EfxSidebar extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     const { id, filters } = getCurrentLayer(state);
     const allOriginalLines = getOriginalLines(state);
     const allLayers = getLayers(state);
     const options = getCurrentOptions(state);
-    const isLoading = allLayers.map(layer => layer.loading).includes(true);
+    const isLoading = allLayers.map((layer) => layer.loading).includes(true);
 
     return {
         globalSettings: options,

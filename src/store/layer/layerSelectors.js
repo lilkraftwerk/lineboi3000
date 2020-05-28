@@ -1,30 +1,30 @@
 import _ from 'lodash';
 import { createSelector } from 'reselect';
 
-export const getLayers = state => {
+export const getLayers = (state) => {
     return state.layerReducer.layers;
 };
 
-export const getCurrentLayerID = state => state.layerReducer.currentLayerID;
+export const getCurrentLayerID = (state) => state.layerReducer.currentLayerID;
 
 export const getCurrentLayer = createSelector(
     [getLayers, getCurrentLayerID],
     (layers, currentLayerId) => {
-        return layers.find(layer => layer.id === currentLayerId);
+        return layers.find((layer) => layer.id === currentLayerId);
     }
 );
 
-export const getRenderLines = createSelector([getLayers], layers => {
-    const visibleLayers = layers.filter(layer => layer.visible === true);
+export const getRenderLines = createSelector([getLayers], (layers) => {
+    const visibleLayers = layers.filter((layer) => layer.visible === true);
     return _.flatten(visibleLayers.map(({ lines }) => lines));
 });
 
 export const getVisibleAndInvisibleLayers = createSelector(
     [getLayers],
-    layers => {
+    (layers) => {
         const [visibleLayers, invisibleLayers] = _.partition(
             layers,
-            layer => layer.visible
+            (layer) => layer.visible
         );
         return { visibleLayers, invisibleLayers };
     }
@@ -33,7 +33,7 @@ export const getVisibleAndInvisibleLayers = createSelector(
 export const getVisibleEfxLayers = createSelector(
     [getVisibleAndInvisibleLayers],
     ({ visibleLayers }) => {
-        const mapped = visibleLayers.map(layer => {
+        const mapped = visibleLayers.map((layer) => {
             return {
                 id: layer.id,
                 color: layer.color
@@ -43,12 +43,12 @@ export const getVisibleEfxLayers = createSelector(
     }
 );
 
-export const getVisibleLayers = createSelector([getLayers], layers => {
-    const visibleLayers = layers.filter(layer => layer.visible === true);
+export const getVisibleLayers = createSelector([getLayers], (layers) => {
+    const visibleLayers = layers.filter((layer) => layer.visible === true);
     return visibleLayers;
 });
 
-export const getVisibleLayerIDs = createSelector([getLayers], layers => {
-    const visibleLayers = layers.filter(layer => layer.visible === true);
-    return visibleLayers.map(layer => layer.id);
+export const getVisibleLayerIDs = createSelector([getLayers], (layers) => {
+    const visibleLayers = layers.filter((layer) => layer.visible === true);
+    return visibleLayers.map((layer) => layer.id);
 });

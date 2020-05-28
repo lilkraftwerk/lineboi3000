@@ -5,8 +5,6 @@ import styles from './NumberInput.styles.css';
 const NumberInput = ({
     value,
     suffix,
-    minValue,
-    maxValue,
     label,
     onChange = () => {},
     disabled = false

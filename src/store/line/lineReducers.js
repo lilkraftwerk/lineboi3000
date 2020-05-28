@@ -32,14 +32,16 @@ const addLinesToLayerByIdHelper = (state, { layerID, lines }) => {
 const deleteFillLinesHelper = (state, { layerID, fillLines, inside }) => {
     const layerLines = state[layerID] || [];
 
-    const justPoints = layerLines.map(x => x.pointArrayContainer);
+    const justPoints = layerLines.map((x) => x.pointArrayContainer);
     const pointArrays = deletePointsViaSelection({
         lines: justPoints,
         selectedPolygon: fillLines,
         inside
     });
 
-    return pointArrays.map(pointArray => createLineFromPointArray(pointArray));
+    return pointArrays.map((pointArray) =>
+        createLineFromPointArray(pointArray)
+    );
 };
 
 const multiplyCanvasHelper = (
@@ -51,12 +53,12 @@ const multiplyCanvasHelper = (
     const layers = Object.entries(_.clone(state));
     const multiplyLayer = ([layerID, lines]) => {
         const originalPointArrayContainers = [
-            ...lines.map(line => line.pointArrayContainer)
+            ...lines.map((line) => line.pointArrayContainer)
         ];
         const newPointArrayContainers = [];
-        _.times(timesX, xIndex => {
-            _.times(timesY, yIndex => {
-                originalPointArrayContainers.forEach(pAC => {
+        _.times(timesX, (xIndex) => {
+            _.times(timesY, (yIndex) => {
+                originalPointArrayContainers.forEach((pAC) => {
                     const mapped = pAC.map(([x, y]) => {
                         return [
                             x + currentWidth * xIndex,
@@ -68,7 +70,7 @@ const multiplyCanvasHelper = (
             });
         });
 
-        const withId = newPointArrayContainers.map(x => {
+        const withId = newPointArrayContainers.map((x) => {
             return {
                 id: idGenerator(),
                 pointArrayContainer: x
@@ -78,7 +80,7 @@ const multiplyCanvasHelper = (
         return { [layerID]: withId };
     };
 
-    const result = layers.map(layer => {
+    const result = layers.map((layer) => {
         return multiplyLayer(layer);
     });
     const newState = Object.assign({}, ...result);
@@ -104,13 +106,13 @@ const shrinkCanvasHelper = (state, { factor }) => {
     };
 
     const scaleLayer = ([layerID, lines]) => {
-        const mappedLines = lines.map(line => {
+        const mappedLines = lines.map((line) => {
             return scaleLine(line, factor);
         });
         return { [layerID]: mappedLines };
     };
 
-    const result = layers.map(layer => {
+    const result = layers.map((layer) => {
         return scaleLayer(layer);
     });
     const newState = Object.assign({}, ...result);

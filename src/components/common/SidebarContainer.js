@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 import styles from './SidebarContainer.styles.css';
 
-export const SidebarContainer = props => {
+export const SidebarContainer = (props) => {
     const { children } = props;
     return <div className={styles.sidebar}>{children}</div>;
 };
 
-export const SidebarItem = props => {
+export const SidebarItem = (props) => {
     const { children, title, cols, rows, startOpen = true } = props;
     const [open, toggleOpen] = useState(startOpen);
 

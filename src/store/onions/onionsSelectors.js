@@ -1,1 +1,1 @@
-export const getCurrentOptions = state => state.onionsReducer.present;
+export const getCurrentOptions = (state) => state.onionsReducer.present;

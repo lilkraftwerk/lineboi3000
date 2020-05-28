@@ -1,11 +1,11 @@
 import isPointInPolygon from 'point-in-polygon';
 import id from './id';
 
-export const getPointArraysFromLine = line => {
+export const getPointArraysFromLine = (line) => {
     return line.pointArrayContainer;
 };
 
-export const createLineFromPointArray = pointArrays => {
+export const createLineFromPointArray = (pointArrays) => {
     return {
         id: id(),
         pointArrayContainer: pointArrays
@@ -62,12 +62,12 @@ export const generateHorizontalLines = ({
 
 export const removePointsOutsidePolygons = ({ allLines, polygons }) => {
     const splitLines = [];
-    allLines.forEach(line => {
+    allLines.forEach((line) => {
         let currentLine = [];
-        line.forEach(currentPoints => {
+        line.forEach((currentPoints) => {
             let intersections = 0;
 
-            polygons.forEach(polygon => {
+            polygons.forEach((polygon) => {
                 const isInside = isPointInPolygon(currentPoints, polygon);
 
                 if (isInside) {
@@ -94,8 +94,8 @@ export const deletePointsViaSelection = ({
     selectedPolygon,
     inside
 }) => {
-    return lines.map(line => {
-        return line.filter(coords => {
+    return lines.map((line) => {
+        return line.filter((coords) => {
             const pointIsInside = isPointInPolygon(coords, selectedPolygon);
             if (inside && pointIsInside) {
                 return true;

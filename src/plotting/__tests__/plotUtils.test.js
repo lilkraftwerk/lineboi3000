@@ -4,8 +4,8 @@ import {
     addPercentageCoordinatesToLine,
     scaleLine,
     moveLine,
-    getExtremePointsOfLines,
-    centerLines
+    getExtremePointsOfLines
+    // centerLines
 } from '../plotUtils';
 
 describe('makePercentage()', () => {
@@ -220,27 +220,26 @@ describe('getExtremePointsOfLines()', () => {
 });
 
 describe('centerLines()', () => {
-    it('should move lines to center', () => {
-        const squareOne = {
-            pointArrayContainer: [
-                [10, 10],
-                [10, 60],
-                [60, 60],
-                [60, 10],
-                [10, 10]
-            ]
-        };
-        const squareTwo = {
-            pointArrayContainer: [
-                [225, 225],
-                [225, 275],
-                [275, 275],
-                [275, 225],
-                [225, 225]
-            ]
-        };
-
-        const result = centerLines([squareOne, squareTwo], {});
+    it.skip('should move lines to center', () => {
+        // const squareOne = {
+        //     pointArrayContainer: [
+        //         [10, 10],
+        //         [10, 60],
+        //         [60, 60],
+        //         [60, 10],
+        //         [10, 10]
+        //     ]
+        // };
+        // const squareTwo = {
+        //     pointArrayContainer: [
+        //         [225, 225],
+        //         [225, 275],
+        //         [275, 275],
+        //         [275, 225],
+        //         [225, 225]
+        //     ]
+        // };
+        // const result = centerLines([squareOne, squareTwo], {});
     });
 
     it('should get the max values', () => {

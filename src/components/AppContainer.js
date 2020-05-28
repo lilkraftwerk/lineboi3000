@@ -35,7 +35,7 @@ class AppContainer extends React.Component {
         });
     }
 
-    updateMode = mode => {
+    updateMode = (mode) => {
         const { dispatch } = this.props;
         if (mode === 'gifmaker') {
             dispatch(setGifmakerLoading(true));
@@ -57,7 +57,7 @@ class AppContainer extends React.Component {
                 </div>
                 <div className={styles.sidebar}>
                     <div className={styles.permanentOptions}>
-                        {MODES.map(modeName => {
+                        {MODES.map((modeName) => {
                             return (
                                 <button
                                     key={modeName}
@@ -93,7 +93,7 @@ class AppContainer extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         mode: state.globalReducer.mode
     };

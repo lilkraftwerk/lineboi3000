@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { SimplifyFilter } from '../Simplify';
 import {
     isPointArrayContainerValid,

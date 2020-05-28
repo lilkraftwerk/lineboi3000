@@ -54,7 +54,7 @@ describe('Dots filter', () => {
         // 11 because original point + 10 additional dots
         const allHaveCorrectLength = _.every(
             filteredPointArrays,
-            container => container.length === 11
+            (container) => container.length === 11
         );
 
         // 4 because original is 2 containers with 2 point arrays in each

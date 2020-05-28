@@ -1,7 +1,7 @@
 import bresenham from 'bresenham-js';
 import _ from 'lodash';
 
-export const roundDecimalToFourDigits = decimal => {
+export const roundDecimalToFourDigits = (decimal) => {
     return +`${Math.round(`${decimal}e+4`)}e-4`;
 };
 
@@ -34,7 +34,7 @@ export const allPointsBetweenTwoCoords = (
         includeEndCoords = true
     } = {}
 ) => {
-    const withStartAndEnd = coordsToReturn => {
+    const withStartAndEnd = (coordsToReturn) => {
         const startIndex = includeStartCoords ? 0 : 1;
         const endIndex = includeEndCoords
             ? coordsToReturn.length
@@ -66,7 +66,7 @@ export const allPointsBetweenTwoCoords = (
 
     const points = [];
 
-    _.times(maxPointCount, index => {
+    _.times(maxPointCount, (index) => {
         const newX = _.round(startX + index * xInterval, 4);
         const newY = _.round(startY + index * yInterval, 4);
         points.push([newX, newY]);

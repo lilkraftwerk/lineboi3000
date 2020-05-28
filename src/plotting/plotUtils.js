@@ -11,7 +11,7 @@ export const coordsToPercent = ([x, y], height, width) => [
 ];
 
 export const addPercentageCoordinatesToLine = (line, width, height) => {
-    const percentageCoordinates = line.pointArrayContainer.map(coords => {
+    const percentageCoordinates = line.pointArrayContainer.map((coords) => {
         return coordsToPercent(coords, height, width);
     });
 
@@ -54,16 +54,16 @@ export const moveLine = (line, { xOffset = 0, yOffset = 0 } = {}) => {
     };
 };
 
-export const getExtremePointsOfLines = lines => {
+export const getExtremePointsOfLines = (lines) => {
     const flatLines = _.flatten(lines);
     const flatScaledPointArrayContainers = flatLines.map(
-        line => line.pointArrayContainer
+        (line) => line.pointArrayContainer
     );
 
     const trulyFlattened = _.flatten(flatScaledPointArrayContainers);
 
-    const allXValues = trulyFlattened.map(pointArray => pointArray[0]);
-    const allYValues = trulyFlattened.map(pointArray => pointArray[1]);
+    const allXValues = trulyFlattened.map((pointArray) => pointArray[0]);
+    const allYValues = trulyFlattened.map((pointArray) => pointArray[1]);
 
     const minX = _.min(allXValues);
     const maxX = _.max(allXValues);
@@ -110,7 +110,7 @@ export const centerLines = (
     const xOffset = centerX - widthForCenteringPurposes / 2 - minX;
     const yOffset = centerY - heightForCenteringPurposes / 2 - minY;
 
-    const centeredLines = lines.map(line =>
+    const centeredLines = lines.map((line) =>
         moveLine(line, { xOffset, yOffset })
     );
 
@@ -130,8 +130,8 @@ export const formatLayersForPlotDisplayTwo = ({
 }) => {
     const floatScale = scale * 0.01;
 
-    const layersWithScaledLines = layers.map(layer => {
-        const scaledLines = layer.efxLines.map(line =>
+    const layersWithScaledLines = layers.map((layer) => {
+        const scaledLines = layer.efxLines.map((line) =>
             scaleLine(line, floatScale)
         );
         return {
@@ -140,14 +140,14 @@ export const formatLayersForPlotDisplayTwo = ({
         };
     });
 
-    const justLines = layersWithScaledLines.map(layer => layer.lines);
+    const justLines = layersWithScaledLines.map((layer) => layer.lines);
     const extremeResults = getExtremePointsOfLines(justLines);
 
     const onlyVisibleLayers = layersWithScaledLines.filter(
-        layer => layer.visible === true
+        (layer) => layer.visible === true
     );
 
-    return onlyVisibleLayers.map(layer => {
+    return onlyVisibleLayers.map((layer) => {
         const centeredLines = centerLines(layer.lines, {
             ...extremeResults,
             heightInPixels: paperHeightInPixels,

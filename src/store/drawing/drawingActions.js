@@ -10,35 +10,35 @@ export const SET_SELECT_OPTION_BY_KEY = 'SET_SELECT_OPTION_BY_KEY';
 export const SET_OPTION_BY_KEY = 'SET_OPTION_BY_KEY';
 
 // action creators
-export const selectMainMode = mode => {
+export const selectMainMode = (mode) => {
     return {
         type: SELECT_MAIN_MODE,
         value: mode
     };
 };
 
-export const selectDrawMode = mode => {
+export const selectDrawMode = (mode) => {
     return {
         type: SELECT_DRAW_MODE,
         value: mode
     };
 };
 
-export const setTextContent = string => {
+export const setTextContent = (string) => {
     return {
         type: SET_TEXT_CONTENT,
         value: string
     };
 };
 
-export const setTextSize = size => {
+export const setTextSize = (size) => {
     return {
         type: SET_TEXT_SIZE,
         value: size
     };
 };
 
-export const setFontName = fontName => {
+export const setFontName = (fontName) => {
     return {
         type: SET_FONT_NAME,
         value: fontName

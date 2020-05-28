@@ -2,7 +2,7 @@ const { showOpenDialog } = require('./SaveAndLoad');
 const { undo } = require('./Undo');
 
 const isMac = process.platform === 'darwin';
-const appMenu = window => {
+const appMenu = (window) => {
     return [
         ...(isMac
             ? [

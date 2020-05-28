@@ -1,7 +1,5 @@
-import _ from 'lodash';
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { setHeight, setWidth } from 'store/onions/onionsActions';
 import { getCurrentOptions } from 'store/onions/onionsSelectors';
 import Icon from 'components/common/Icon';
@@ -37,7 +35,7 @@ const HeightAndWidth = ({ height, width, onSaveOnion }) => {
                         max="1150"
                         value={stateHeight}
                         disabled={!editing}
-                        onChange={e =>
+                        onChange={(e) =>
                             setHeightState(Number.parseFloat(e.target.value))
                         }
                     />
@@ -51,7 +49,7 @@ const HeightAndWidth = ({ height, width, onSaveOnion }) => {
                         max="1150"
                         value={stateWidth}
                         disabled={!editing}
-                        onChange={e =>
+                        onChange={(e) =>
                             setWidthState(Number.parseFloat(e.target.value))
                         }
                     />
@@ -132,7 +130,7 @@ export class OnionContent extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     const options = getCurrentOptions(state);
     return {
         options

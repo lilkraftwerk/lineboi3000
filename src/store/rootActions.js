@@ -8,7 +8,7 @@ export const newProject = () => {
     };
 };
 
-export const loadProject = projectState => {
+export const loadProject = (projectState) => {
     return {
         type: LOAD_PROJECT,
         value: projectState

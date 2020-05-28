@@ -12,7 +12,7 @@ import AppContainer from './components/AppContainer';
 
 import './globalStyles.css';
 
-const sendToMainProcessMiddleware = store => next => action => {
+const sendToMainProcessMiddleware = (store) => (next) => (action) => {
     if (action.type === 'SEND_TO_MAIN_PROCESS') {
         ipcRenderer.send('main:sendReduxStore', store.getState());
     }

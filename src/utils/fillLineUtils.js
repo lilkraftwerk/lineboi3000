@@ -95,9 +95,9 @@ const generateFillLines = ({
     // if next point is within polygon, add to current line
     // if not, push current line (if >= 2 length) to splitLines
     // start next line at next
-    fillLines.forEach(line => {
+    fillLines.forEach((line) => {
         let currentLine = [];
-        line.forEach(coords => {
+        line.forEach((coords) => {
             if (isPointInPolygon(coords, hullCoords)) {
                 currentLine.push(coords);
             } else {

@@ -1,4 +1,4 @@
-const undo = mainWindow => {
+const undo = (mainWindow) => {
     mainWindow.webContents.send('keystroke:undo');
 };
 

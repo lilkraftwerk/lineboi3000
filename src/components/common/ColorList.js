@@ -31,10 +31,10 @@ const ColorList = [
     '#DEA681',
     '#BB3385',
     '#FDD5B1'
-].map(hex => {
+].map((hex) => {
     return hex.replace('#', '');
 });
 
 const sorted = ColorList.sort();
-const mapped = sorted.map(x => `#${x}`);
+const mapped = sorted.map((x) => `#${x}`);
 export default mapped;

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React from 'react';
 import Icon from 'components/common/Icon';
 
 import styles from './FrameHeader.styles.css';

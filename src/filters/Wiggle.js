@@ -11,7 +11,7 @@ const WiggleLinesComponent = ({ filterSettings, updateOptions }) => {
     return (
         <Fragment>
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ percentAffect: Number(value) });
                 }}
                 float
@@ -23,7 +23,7 @@ const WiggleLinesComponent = ({ filterSettings, updateOptions }) => {
                 currentValue={percentAffect}
             />
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ pixelOffset: Number(value) });
                 }}
                 title="pixel offset"
@@ -41,7 +41,7 @@ export const WiggleFilter = ({ filterSettings, pointArrays }) => {
     if (!filterSettings || !filterSettings.enabled) return pointArrays;
     const { percentAffect, pixelOffset } = filterSettings;
 
-    const wiggleLine = pointArray =>
+    const wiggleLine = (pointArray) =>
         pointArray.map(([x, y]) => {
             let xOffset = 0;
             let yOffset = 0;
@@ -56,7 +56,7 @@ export const WiggleFilter = ({ filterSettings, pointArrays }) => {
             return [x + xOffset, y + yOffset];
         });
 
-    return pointArrays.map(line => wiggleLine(line));
+    return pointArrays.map((line) => wiggleLine(line));
 };
 
 const initSettings = () => ({

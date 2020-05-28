@@ -23,7 +23,7 @@ export const addLineToLayerByID = (layerID, pointArray) => {
 };
 
 export const addMultipleLinesToLayerByID = (layerID, pointArrays) => {
-    const lines = pointArrays.map(pointArray =>
+    const lines = pointArrays.map((pointArray) =>
         createLineFromPointArray(pointArray)
     );
 
@@ -47,14 +47,14 @@ export const setLayerEfxLines = (layerID, efxLines) => {
     };
 };
 
-export const deleteLayerEfxLines = layerID => {
+export const deleteLayerEfxLines = (layerID) => {
     return {
         type: DELETE_ALL_EFX_LINES_FOR_LAYER,
         value: layerID
     };
 };
 
-export const deleteLayerOriginalLines = layerID => {
+export const deleteLayerOriginalLines = (layerID) => {
     return {
         type: DELETE_ALL_ORIGINAL_LINES_FOR_LAYER,
         value: layerID

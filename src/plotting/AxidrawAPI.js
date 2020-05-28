@@ -80,7 +80,7 @@ class AxidrawAPI {
     }
 }
 
-export default async function() {
+export default async function () {
     const axidraw = new AxidrawAPI();
     return axidraw;
 }

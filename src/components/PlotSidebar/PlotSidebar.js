@@ -71,9 +71,7 @@ class PlotSidebar extends React.Component {
 
             this.setState({
                 isConnected,
-                penState: state,
-                penX,
-                penY
+                penState: state
             });
         } catch {
             this.setState({
@@ -124,8 +122,8 @@ class PlotSidebar extends React.Component {
             dispatch
         } = this.props;
         this.parkPen();
-        const justLines = _.flatten(formattedLayers.map(x => x.lines));
-        const mappedRelativeLines = justLines.map(line =>
+        const justLines = _.flatten(formattedLayers.map((x) => x.lines));
+        const mappedRelativeLines = justLines.map((line) =>
             addPercentageCoordinatesToLine(
                 line,
                 paperWidthInPixels,
@@ -135,7 +133,7 @@ class PlotSidebar extends React.Component {
 
         // to do make linecallback work
         this.plotter.setLines(mappedRelativeLines);
-        this.plotter.print(currentLineId => {
+        this.plotter.print((currentLineId) => {
             dispatch(setCurrentLineId(currentLineId));
         });
     };
@@ -302,7 +300,7 @@ class PlotSidebar extends React.Component {
                 </SidebarItem>
                 <SidebarItem title="controls" cols={4}>
                     <PercentClicker
-                        setValue={value => {
+                        setValue={(value) => {
                             dispatch(
                                 setPlotSettingByKey(
                                     'penUpHeight',
@@ -319,7 +317,7 @@ class PlotSidebar extends React.Component {
                         currentValue={penUpHeight}
                     />
                     <PercentClicker
-                        setValue={value => {
+                        setValue={(value) => {
                             dispatch(
                                 setPlotSettingByKey(
                                     'penDownHeight',
@@ -336,7 +334,7 @@ class PlotSidebar extends React.Component {
                         currentValue={penDownHeight}
                     />
                     <PercentClicker
-                        setValue={value => {
+                        setValue={(value) => {
                             const num = Number(value);
                             if (num >= 0 && num <= 100) {
                                 dispatch(setPlotSettingByKey('scale', num));
@@ -355,7 +353,7 @@ class PlotSidebar extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     const PIXELS_PER_INCH = 75;
 
     const {

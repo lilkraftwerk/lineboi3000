@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
-import PropTypes, { LayerType } from 'customPropTypes';
+import React from 'react';
 import { connect } from 'react-redux';
-import idGenerator from 'utils/id';
-import _ from 'lodash';
 import {
     moveFrameUp,
     moveFrameDown,
@@ -14,19 +11,19 @@ import SingleHeaderFrame from './SingleHeaderFrame';
 import styles from './FrameHeader.styles.css';
 
 export const FrameHeader = ({ activeFrames, dispatch }) => {
-    const onDeleteFrame = id => {
+    const onDeleteFrame = (id) => {
         dispatch(deleteFrameFromGif(id));
     };
 
-    const onMoveFrameUp = id => {
+    const onMoveFrameUp = (id) => {
         dispatch(moveFrameUp(id));
     };
 
-    const onMoveFrameDown = id => {
+    const onMoveFrameDown = (id) => {
         dispatch(moveFrameDown(id));
     };
 
-    const mappedFrames = activeFrames.map(frame => {
+    const mappedFrames = activeFrames.map((frame) => {
         return (
             <SingleHeaderFrame
                 key={frame.id}
@@ -42,7 +39,7 @@ export const FrameHeader = ({ activeFrames, dispatch }) => {
     return <div className={styles.layerContainer}>{mappedFrames}</div>;
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         activeFrames: state.gifmakerReducer.activeFrames
     };

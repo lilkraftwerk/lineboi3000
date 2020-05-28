@@ -17,7 +17,7 @@ const initialState = {
     masterGif: null
 };
 
-const saveTempAsFrameHelper = state => {
+const saveTempAsFrameHelper = (state) => {
     if (!state.tempBlob) {
         return state;
     }

@@ -11,7 +11,7 @@ const ExesComponent = ({ filterSettings, updateOptions }) => {
     return (
         <Fragment>
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ length: Number(value) });
                 }}
                 float
@@ -23,7 +23,7 @@ const ExesComponent = ({ filterSettings, updateOptions }) => {
                 currentValue={length}
             />
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ percentToAffect: Number(value) });
                 }}
                 float
@@ -74,7 +74,7 @@ export const ExesFilter = ({ filterSettings, pointArrays }) => {
         return [rotatedX, rotatedY];
     };
 
-    const makeCircles = centerCoords => {
+    const makeCircles = (centerCoords) => {
         const [centerX, centerY] = centerCoords;
         const r = length;
         const pointsOnCircle = 100;
@@ -92,7 +92,7 @@ export const ExesFilter = ({ filterSettings, pointArrays }) => {
         return [...points];
     };
 
-    const makeX = centerCoords => {
+    const makeX = (centerCoords) => {
         const [x, y] = centerCoords;
         const topLeft = [x - halfLength, y + halfLength];
         const topRight = [x + halfLength, y + halfLength];
@@ -104,11 +104,11 @@ export const ExesFilter = ({ filterSettings, pointArrays }) => {
 
         const rotation = _.random(0, 360);
 
-        const rotatedFirst = first.map(coords => {
+        const rotatedFirst = first.map((coords) => {
             return rotateCoords(coords, centerCoords, rotation);
         });
 
-        const rotatedSecond = second.map(coords => {
+        const rotatedSecond = second.map((coords) => {
             return rotateCoords(coords, centerCoords, rotation);
         });
 
@@ -117,7 +117,7 @@ export const ExesFilter = ({ filterSettings, pointArrays }) => {
 
     const flatPoints = _.flatten(pointArrays);
     const exes = [];
-    flatPoints.forEach(coords => {
+    flatPoints.forEach((coords) => {
         if (_.random(0, 100) < percentToAffect) {
             if (shape === 'circle') {
                 const circle = makeCircles(coords);

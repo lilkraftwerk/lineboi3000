@@ -14,7 +14,7 @@ const SmoothComponent = ({ filterSettings, updateOptions }) => {
     return (
         <Fragment>
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ algo: Number(value) });
                 }}
                 float={false}
@@ -26,7 +26,7 @@ const SmoothComponent = ({ filterSettings, updateOptions }) => {
                 currentValue={algo}
             />
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ passes: Number(value) });
                 }}
                 float={false}
@@ -46,7 +46,7 @@ export const SmoothFilter = ({ filterSettings, pointArrays }) => {
     const { algo, passes } = filterSettings;
 
     let tempPointArrays = [...pointArrays];
-    const smoothPointArray = pointArray => {
+    const smoothPointArray = (pointArray) => {
         let result;
 
         if (algo === 1) {
@@ -58,7 +58,7 @@ export const SmoothFilter = ({ filterSettings, pointArrays }) => {
     };
 
     _.times(passes, () => {
-        tempPointArrays = tempPointArrays.map(pointArray =>
+        tempPointArrays = tempPointArrays.map((pointArray) =>
             smoothPointArray(pointArray)
         );
     });

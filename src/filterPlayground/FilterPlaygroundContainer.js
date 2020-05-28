@@ -25,7 +25,7 @@ class FilterPlaygroundContainer extends React.Component {
         efxLines: []
     };
 
-    createRandomLines = count => {
+    createRandomLines = (count) => {
         const lines = [];
         _.times(count, () => {
             const startX = _.random(500);
@@ -46,12 +46,12 @@ class FilterPlaygroundContainer extends React.Component {
         this.setState({ origLines: lines });
     };
 
-    createSquares = count => {
+    createSquares = (count) => {
         const squares = [];
         const start = 5;
         const interval = 10;
 
-        const makeSquare = distanceFromSide => {
+        const makeSquare = (distanceFromSide) => {
             const topLeft = [distanceFromSide, distanceFromSide];
             const topRight = [500 - distanceFromSide, distanceFromSide];
             const bottomRight = [
@@ -99,8 +99,8 @@ class FilterPlaygroundContainer extends React.Component {
         };
     };
 
-    affectLines = lines => {
-        const pointArrays = lines.map(x => x.pointArrayContainer);
+    affectLines = (lines) => {
+        const pointArrays = lines.map((x) => x.pointArrayContainer);
         const settings = this.updateSettings(
             ACTIVE_FILTER.initSettings(),
             pointArrays
@@ -111,7 +111,7 @@ class FilterPlaygroundContainer extends React.Component {
             filterSettings: exesSettings,
             pointArrays: affected
         });
-        return affectedTwo.map(pointArrayContainer => {
+        return affectedTwo.map((pointArrayContainer) => {
             return {
                 pointArrayContainer
             };

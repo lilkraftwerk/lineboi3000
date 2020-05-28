@@ -46,7 +46,7 @@ const ColorPicker = ({ colorList, onColorSelect }) => {
                 />
             </div>
             <div className={styles.colorContainer}>
-                {shuffledColors.map(hexString => {
+                {shuffledColors.map((hexString) => {
                     return (
                         <div
                             key={hexString}
@@ -80,7 +80,7 @@ ColorPicker.propTypes = {
 const ColorPickerWrapper = ({ onColorSelect, selectedColor = '#364B44' }) => {
     const [visible, toggleVisible] = useState(false);
 
-    const selectAndClose = hexColor => {
+    const selectAndClose = (hexColor) => {
         toggleVisible(false);
         onColorSelect(hexColor);
     };
