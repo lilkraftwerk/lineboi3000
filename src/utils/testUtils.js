@@ -42,7 +42,7 @@ export const createFakeLineArray = (count = 10) => {
     return lines;
 };
 
-export const isPointArrayValid = pointArray => {
+export const isPointArrayValid = (pointArray) => {
     const invalidReasons = [];
 
     if (!_.isArray(pointArray)) {
@@ -50,7 +50,7 @@ export const isPointArrayValid = pointArray => {
         return invalidReasons;
     }
 
-    pointArray.forEach(points => {
+    pointArray.forEach((points) => {
         if (points.length !== 2) {
             invalidReasons.push('length wrong');
         }
@@ -74,18 +74,18 @@ export const isPointArrayValid = pointArray => {
     return _.uniq(invalidReasons);
 };
 
-export const isPointArrayContainerValid = pointArrayContainer => {
+export const isPointArrayContainerValid = (pointArrayContainer) => {
     if (!_.isArray(pointArrayContainer)) {
         return false;
     }
-    const allAreValid = _.every(pointArrayContainer, pointArray => {
+    const allAreValid = _.every(pointArrayContainer, (pointArray) => {
         return isPointArrayValid(pointArray) === true;
     });
 
     return allAreValid;
 };
 
-export const isLineValid = line => {
+export const isLineValid = (line) => {
     const invalidReasons = [];
     if (!line) {
         invalidReasons.push('no line supplied');

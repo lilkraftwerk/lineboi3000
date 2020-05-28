@@ -41,7 +41,7 @@ class EfxContainer extends React.Component {
                     width={width}
                     shouldSaveFrame
                     showPoints={showPoints}
-                    blobCallback={blob => {
+                    blobCallback={(blob) => {
                         dispatch(setTempBlob(blob));
                     }}
                 />
@@ -50,7 +50,7 @@ class EfxContainer extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     const visibleEfxLines = getVisibleEfxLines(state);
     const options = getCurrentOptions(state);
     const showPoints = getShowPoints(state);

@@ -1,9 +1,8 @@
-import _ from 'lodash';
 import React from 'react';
 
 import styles from './PenLocation.styles.css';
 
-const PenLocation = ({ width, height, penX, penY }) => {
+const PenLocation = ({ width, height }) => {
     return (
         <div
             className={styles.PenLocation}

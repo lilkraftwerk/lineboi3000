@@ -12,14 +12,14 @@ export const setPlotSettingByKey = (key, value) => {
     };
 };
 
-export const setPenLocation = coords => {
+export const setPenLocation = (coords) => {
     return {
         type: SET_PEN_LOCATION,
         value: coords
     };
 };
 
-export const setCurrentLineId = lineId => {
+export const setCurrentLineId = (lineId) => {
     return {
         type: SET_CURRENT_LINE_ID,
         value: lineId

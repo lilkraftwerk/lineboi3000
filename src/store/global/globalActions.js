@@ -5,7 +5,7 @@ export const SET_GRID_OPTIONS = 'SET_GRID_OPTIONS';
 
 // action creators
 
-export const switchMode = mode => {
+export const switchMode = (mode) => {
     return { type: SWITCH_MODE, value: mode };
 };
 
@@ -17,6 +17,6 @@ export const togglePointVisibility = () => {
     return { type: TOGGLE_POINT_VISIBILITY };
 };
 
-export const setGridOptions = options => {
+export const setGridOptions = (options) => {
     return { type: SET_GRID_OPTIONS, value: options };
 };

@@ -47,7 +47,7 @@ const FilterWrapper = ({
 
         <EnabledToggleButton
             style={{ height: '100%' }}
-            onClick={newValue => {
+            onClick={(newValue) => {
                 updateOptions({ enabled: newValue });
             }}
             active={enabled}

@@ -10,7 +10,7 @@ const ExperimentalComponent = ({ filterSettings, updateOptions }) => {
     return (
         <Fragment>
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ chunkMin: Number(value) });
                 }}
                 float
@@ -22,7 +22,7 @@ const ExperimentalComponent = ({ filterSettings, updateOptions }) => {
                 currentValue={chunkMin}
             />
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ chunkMax: Number(value) });
                 }}
                 float
@@ -46,7 +46,7 @@ export const ExperimentalFilter = ({
 
     const { chunkMin, chunkMax } = filterSettings;
 
-    const chunkedLines = pointArrays.map(line => {
+    const chunkedLines = pointArrays.map((line) => {
         const toChunkBy = _.random(chunkMin, chunkMax);
         return _.chunk(line, toChunkBy);
     });

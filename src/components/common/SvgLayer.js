@@ -1,7 +1,10 @@
-import _ from 'lodash';
 import React, { useRef, useEffect } from 'react';
 import PropTypes, { LineType } from '../../customPropTypes';
-import { prepareLines, drawLines, drawPointCircles } from './DrawingLayerUtils';
+import {
+    prepareLines,
+    drawLines,
+    drawPointCircles
+} from './DrawingUtils/DrawingUtils';
 
 import styles from './SvgLayer.styles.css';
 
@@ -112,7 +115,7 @@ export const CombinedLayer = ({
     }, [layers, showPoints]);
 
     if (canvas && canvas.current) {
-        canvas.current.toBlob(blob => {
+        canvas.current.toBlob((blob) => {
             const reader = new FileReader();
             reader.readAsDataURL(blob);
             reader.onloadend = () => {
@@ -141,7 +144,7 @@ export const SelectLayer = ({
     selectCoords = [],
     hullCoords = [],
     fillLines = [],
-    color = 'black',
+    // color = 'black',
     width = 800,
     height = 600,
     position = 'absolute'

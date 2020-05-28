@@ -1,18 +1,19 @@
+/* global GIF */
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import './gif';
 import './gif.worker';
 import {
-    setFrames,
-    setGifmakerLoading,
+    // setFrames,
+    // setGifmakerLoading,
     setMasterGif
 } from 'store/gifmaker/gifmakerActions';
 
 class GifmakerContent extends React.Component {
     componentDidUpdate(prevProps) {
         const { activeFrames } = this.props;
-        const justIds = frames => frames.map(frame => frame.id);
+        const justIds = (frames) => frames.map((frame) => frame.id);
 
         const prevIds = justIds(prevProps.activeFrames);
         const currentIds = justIds(activeFrames);
@@ -24,7 +25,7 @@ class GifmakerContent extends React.Component {
 
     updateGif = async () => {
         const { activeFrames, dispatch } = this.props;
-        const images = activeFrames.map(frame => frame.objectUrl);
+        const images = activeFrames.map((frame) => frame.objectUrl);
         const gif = new GIF({
             //eslint-disable-line
             workers: 2,
@@ -34,12 +35,12 @@ class GifmakerContent extends React.Component {
             repeat: 0,
             workerScript: './gif.worker.js'
         });
-        images.forEach(async img => {
+        images.forEach(async (img) => {
             const elem = document.createElement('img');
             elem.setAttribute('src', img);
             gif.addFrame(elem, { delay: 100 });
         });
-        gif.on('finished', function(blob) {
+        gif.on('finished', (blob) => {
             const url = URL.createObjectURL(blob);
             dispatch(setMasterGif(url));
         });
@@ -62,7 +63,7 @@ class GifmakerContent extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         loading: state.gifmakerReducer.loading,
         activeFrames: state.gifmakerReducer.activeFrames,

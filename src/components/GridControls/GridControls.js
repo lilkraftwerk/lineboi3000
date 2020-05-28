@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Icon from 'components/common/Icon';
@@ -65,7 +64,7 @@ const GridControls = ({ globalHeight, globalWidth, dispatch }) => {
     );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     const options = getCurrentOptions(state);
     return {
         gridState: state.globalReducer.grid,

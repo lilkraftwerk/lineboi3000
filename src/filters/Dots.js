@@ -11,7 +11,7 @@ const DotsComponent = ({ filterSettings, updateOptions }) => {
     return (
         <Fragment>
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ additionalDots: value });
                 }}
                 float
@@ -23,7 +23,7 @@ const DotsComponent = ({ filterSettings, updateOptions }) => {
                 currentValue={additionalDots}
             />
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ distance: value });
                 }}
                 float

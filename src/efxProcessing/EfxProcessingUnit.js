@@ -26,14 +26,14 @@ const EfxProcessingUnit = ({
     filters,
     globalSettings
 }) => {
-    const enabledFilters = filters.filter(f => f.enabled === true);
+    const enabledFilters = filters.filter((f) => f.enabled === true);
 
     let filteredPointArrays = pointArrays;
     // loop over every filter, pass in settings, process lines
-    enabledFilters.forEach(filterSettings => {
+    enabledFilters.forEach((filterSettings) => {
         const { filterName } = filterSettings;
         const { filter } = FILTERS.find(
-            constantFilter => constantFilter.name === filterName
+            (constantFilter) => constantFilter.name === filterName
         );
 
         if (filter) {

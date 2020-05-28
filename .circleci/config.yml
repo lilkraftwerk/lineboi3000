@@ -20,3 +20,12 @@ jobs:
       - run:
           name: Run Tests
           command: yarn test
+      - run:
+          name: ESLint
+          command: yarn eslint:check
+      - run:
+          name: CSS Files Lint
+          command: yarn style:check
+      - run:
+          name: Prettier
+          command: yarn prettier:check

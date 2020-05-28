@@ -33,7 +33,7 @@ const MultiplyComponent = ({ filterSettings, updateOptions }) => {
                     min="1"
                     max="500"
                     value={rectHeight}
-                    onChange={e => {
+                    onChange={(e) => {
                         updateOptions({ rectHeight: e.target.value });
                     }}
                 />
@@ -45,7 +45,7 @@ const MultiplyComponent = ({ filterSettings, updateOptions }) => {
                     min="1"
                     max="500"
                     value={rectWidth}
-                    onChange={e => {
+                    onChange={(e) => {
                         updateOptions({ rectWidth: e.target.value });
                     }}
                 />
@@ -79,7 +79,7 @@ export const MultiplyFilter = ({
     const { rectHeight, rectWidth } = filterSettings;
 
     const multipliedPointArrays = [];
-    const translatedPointArrays = pointArrays.map(line =>
+    const translatedPointArrays = pointArrays.map((line) =>
         translateLineToPercentages(
             line,
             globalSettings.height,
@@ -99,7 +99,7 @@ export const MultiplyFilter = ({
         ) {
             const endX = currentX + rectWidth;
             const endY = currentY + rectHeight;
-            translatedPointArrays.forEach(line => {
+            translatedPointArrays.forEach((line) => {
                 const translatedLine = mapLineToAbsPercentages({
                     currentX,
                     currentY,
@@ -115,7 +115,7 @@ export const MultiplyFilter = ({
     return multipliedPointArrays;
 };
 
-const initSettings = globalSettings => ({
+const initSettings = (globalSettings) => ({
     filterName,
     enabled: true,
     rectWidth: globalSettings.width / 4,

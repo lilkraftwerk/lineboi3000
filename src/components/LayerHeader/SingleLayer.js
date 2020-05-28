@@ -40,7 +40,7 @@ const SingleLayer = ({
                 maxLength="20"
                 className={styles.nameInput}
                 value={layer.name}
-                onChange={e => {
+                onChange={(e) => {
                     onUpdateLayerSetting(layer.id, 'name', e.target.value);
                 }}
             />
@@ -124,7 +124,7 @@ const SingleLayer = ({
                 />
                 <ColorPicker
                     selectedColor={layer.color}
-                    onColorSelect={newColor => {
+                    onColorSelect={(newColor) => {
                         onUpdateLayerSetting(layer.id, 'color', newColor);
                     }}
                 />

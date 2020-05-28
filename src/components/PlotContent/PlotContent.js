@@ -1,8 +1,5 @@
-import _ from 'lodash';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { LineType } from 'customPropTypes';
-import PropTypes from 'prop-types';
 import { getAllEfxLines } from 'store/line/lineSelectors';
 import { getCurrentOptions } from 'store/onions/onionsSelectors';
 import { CanvasLayer } from 'components/common/SvgLayer';
@@ -64,7 +61,7 @@ class PlotContent extends React.Component {
 
                 <div style={{ paperWidth }} className={styles.container}>
                     {isPlotBoundaryVisible && this.renderPlotBoundary()}
-                    {formattedLayers.map(layer => {
+                    {formattedLayers.map((layer) => {
                         return (
                             <CanvasLayer
                                 key={layer.layerID}
@@ -83,7 +80,7 @@ class PlotContent extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     const {
         paperWidth,
         paperHeight,

@@ -33,7 +33,7 @@ const GridContent = ({
         lines.push(line);
     }
 
-    const withContainers = lines.map(lineLines => {
+    const withContainers = lines.map((lineLines) => {
         return { pointArrayContainer: lineLines };
     });
 
@@ -50,7 +50,7 @@ const GridContent = ({
     );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     const options = getCurrentOptions(state);
 
     return {

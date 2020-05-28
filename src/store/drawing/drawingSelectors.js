@@ -1,1 +1,1 @@
-export const getCurrentDrawingReducer = state => state.drawingReducer.present;
+export const getCurrentDrawingReducer = (state) => state.drawingReducer.present;

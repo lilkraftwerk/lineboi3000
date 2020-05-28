@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import {
     setFrames,
@@ -21,11 +20,11 @@ class GifmakerSidebar extends React.Component {
         });
 
         const fetchPromises = await Promise.all(promises);
-        const responsePromises = await fetchPromises.map(response =>
+        const responsePromises = await fetchPromises.map((response) =>
             response.blob()
         );
         const results = await Promise.all(responsePromises);
-        const urls = results.map(blob => {
+        const urls = results.map((blob) => {
             return URL.createObjectURL(blob);
         });
 
@@ -48,7 +47,7 @@ class GifmakerSidebar extends React.Component {
             return <SidebarContainer> LOADING </SidebarContainer>;
         }
 
-        const makeFrame = frame => {
+        const makeFrame = (frame) => {
             const { id, objectUrl } = frame;
             return (
                 <div className={styles.singleFrame}>
@@ -83,7 +82,7 @@ class GifmakerSidebar extends React.Component {
                             add frames in efx mode
                         </div>
                     )}
-                    {frames.map(frame => {
+                    {frames.map((frame) => {
                         return makeFrame(frame);
                     })}
                 </SidebarItem>
@@ -92,7 +91,7 @@ class GifmakerSidebar extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         frames: state.gifmakerReducer.frames,
         loading: state.gifmakerReducer.loading

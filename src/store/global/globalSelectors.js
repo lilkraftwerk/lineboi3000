@@ -1,1 +1,1 @@
-export const getShowPoints = state => state.globalReducer.showPoints;
+export const getShowPoints = (state) => state.globalReducer.showPoints;

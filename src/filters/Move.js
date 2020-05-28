@@ -10,7 +10,7 @@ const MoveLinesComponent = ({ filterSettings, updateOptions }) => {
     return (
         <Fragment>
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ xMove: Number(value) });
                 }}
                 float
@@ -22,7 +22,7 @@ const MoveLinesComponent = ({ filterSettings, updateOptions }) => {
                 currentValue={xMove}
             />
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ yMove: Number(value) });
                 }}
                 title="y move"
@@ -40,12 +40,12 @@ export const MoveFilter = ({ filterSettings, pointArrays }) => {
     if (!filterSettings || !filterSettings.enabled) return pointArrays;
     const { xMove, yMove } = filterSettings;
 
-    const moveLine = line =>
+    const moveLine = (line) =>
         line.map(([x, y]) => {
             return [x + xMove, y + yMove];
         });
 
-    const mappedLines = pointArrays.map(line => moveLine(line));
+    const mappedLines = pointArrays.map((line) => moveLine(line));
     return mappedLines;
 };
 

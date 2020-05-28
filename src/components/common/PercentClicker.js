@@ -17,7 +17,7 @@ const PercentClicker = ({
     const valueToPercentOfRange =
         ((currentValue - minValue) * 100) / (maxValue - minValue);
 
-    const percentToValueWithinRange = absPercent => {
+    const percentToValueWithinRange = (absPercent) => {
         return (absPercent * (maxValue - minValue)) / 100 + minValue;
     };
 
@@ -34,7 +34,7 @@ const PercentClicker = ({
 
     const innerRangeClass = styles.rangeWithoutLabels;
 
-    const handleChange = e => {
+    const handleChange = (e) => {
         const clickValueInPercent = Number(e.target.value);
 
         const valueWithinRange = percentToValueWithinRange(clickValueInPercent);
@@ -73,7 +73,7 @@ const PercentClicker = ({
                 <div className={`${innerRangeClass} ${styles.innerRange}`}>
                     <input
                         className={styles.rangeInput}
-                        onChange={e => {
+                        onChange={(e) => {
                             handleChange(e);
                         }}
                         min={0}

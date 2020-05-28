@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export const getStartCoordsFromFirstTempLines = tempLines => {
+export const getStartCoordsFromFirstTempLines = (tempLines) => {
     if (tempLines[0] == null) {
         return false;
     }
@@ -18,7 +18,7 @@ export const getStartCoordsFromFirstTempLines = tempLines => {
     return _.clone([tempLines[0][0][0], tempLines[0][0][1]]);
 };
 
-export const getFirstLineFromTempLines = tempLines => {
+export const getFirstLineFromTempLines = (tempLines) => {
     if (tempLines[0] == null) {
         return false;
     }

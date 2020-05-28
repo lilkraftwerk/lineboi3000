@@ -27,15 +27,15 @@ export const addLayer = () => {
     return { type: ADD_LAYER };
 };
 
-export const removeLayer = layerId => {
+export const removeLayer = (layerId) => {
     return { type: REMOVE_LAYER, value: layerId };
 };
 
-export const selectCurrentLayer = layerId => {
+export const selectCurrentLayer = (layerId) => {
     return { type: SELECT_CURRENT_LAYER, value: layerId };
 };
 
-export const setVisibilityForAllLayers = visible => {
+export const setVisibilityForAllLayers = (visible) => {
     return { type: SET_VISIBILITY_FOR_ALL_LAYERS, value: visible };
 };
 
@@ -46,21 +46,21 @@ export const updateLayerSetting = (layerID, settingKey, settingValue) => {
     };
 };
 
-export const moveLayerUp = layerID => {
+export const moveLayerUp = (layerID) => {
     return {
         type: MOVE_LAYER_UP,
         value: layerID
     };
 };
 
-export const moveLayerDown = layerID => {
+export const moveLayerDown = (layerID) => {
     return {
         type: MOVE_LAYER_DOWN,
         value: layerID
     };
 };
 
-export const deleteLayer = layerID => {
+export const deleteLayer = (layerID) => {
     return {
         type: DELETE_LAYER,
         value: layerID
@@ -90,7 +90,7 @@ export const setFiltersForLayerByID = (layerID, filters) => {
     };
 };
 
-export const setFiltersForAllLayers = filters => {
+export const setFiltersForAllLayers = (filters) => {
     return {
         type: SET_FILTERS_FOR_ALL_LAYERS,
         value: { filters }

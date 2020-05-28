@@ -11,7 +11,7 @@ const SimplifyComponent = ({ filterSettings, updateOptions }) => {
     return (
         <Fragment>
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     updateOptions({ tolerance: Number(value) });
                 }}
                 float
@@ -41,7 +41,7 @@ export const SimplifyFilter = ({ filterSettings, pointArrays }) => {
 
     const { tolerance, highQuality } = filterSettings;
 
-    const simplifyPointArray = pointArray => {
+    const simplifyPointArray = (pointArray) => {
         const pointsAsCoordObjects = pointArray.map(([x, y]) => {
             return {
                 x,
@@ -58,7 +58,7 @@ export const SimplifyFilter = ({ filterSettings, pointArrays }) => {
         return simplifiedCoordObjs.map(({ x, y }) => [x, y]);
     };
 
-    const simplifiedPointArrays = pointArrays.map(pointArray =>
+    const simplifiedPointArrays = pointArrays.map((pointArray) =>
         simplifyPointArray(pointArray)
     );
 

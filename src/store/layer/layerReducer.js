@@ -38,9 +38,7 @@ const getNewLayerState = () => ({
         'white',
         'pink'
     ]),
-    name: `layer-${Math.random()
-        .toString(36)
-        .substring(3, 6)}`,
+    name: `layer-${Math.random().toString(36).substring(3, 6)}`,
     visible: true,
     loading: false
 });
@@ -61,7 +59,7 @@ const getInitialState = () => {
 
 // to do make this flat, not a nested object
 const updateLayerSetting = (layers, { layerID, settingKey, settingValue }) => {
-    return layers.map(layer => {
+    return layers.map((layer) => {
         if (layer.id === layerID) {
             return {
                 ...layer,
@@ -76,7 +74,7 @@ const updateLayerSetting = (layers, { layerID, settingKey, settingValue }) => {
 const moveLayer = (layers, layerID, up = true) => {
     const down = !up;
 
-    const currentIndex = _.findIndex(layers, layer => layer.id === layerID);
+    const currentIndex = _.findIndex(layers, (layer) => layer.id === layerID);
     const atBeginning = Boolean(currentIndex === 0);
     const atEnd = Boolean(currentIndex === layers.length - 1);
 
@@ -93,7 +91,9 @@ const moveLayer = (layers, layerID, up = true) => {
 };
 
 const deleteLayer = ({ layers, currentLayerID }, layerToDeleteId) => {
-    const filteredLayers = layers.filter(layer => layer.id !== layerToDeleteId);
+    const filteredLayers = layers.filter(
+        (layer) => layer.id !== layerToDeleteId
+    );
 
     if (currentLayerID === layerToDeleteId) {
         return {
@@ -108,7 +108,7 @@ const deleteLayer = ({ layers, currentLayerID }, layerToDeleteId) => {
 };
 
 const duplicateLayer = (layers, { originalLayerID, newLayerID }) => {
-    const originalLayer = layers.find(layer => layer.id === originalLayerID);
+    const originalLayer = layers.find((layer) => layer.id === originalLayerID);
 
     const duplicatedLayer = {
         ...originalLayer,
@@ -120,7 +120,7 @@ const duplicateLayer = (layers, { originalLayerID, newLayerID }) => {
 };
 
 const addFilterToLayer = (layers, { layerID, filterSettings }) => {
-    return layers.map(layer => {
+    return layers.map((layer) => {
         if (layer.id !== layerID) {
             return layer;
         }
@@ -133,12 +133,14 @@ const addFilterToLayer = (layers, { layerID, filterSettings }) => {
 };
 
 const deleteFilterFromLayer = (layers, { layerID, filterID }) => {
-    return layers.map(layer => {
+    return layers.map((layer) => {
         if (layer.id !== layerID) {
             return layer;
         }
 
-        const filtered = layer.filters.filter(filter => filter.id !== filterID);
+        const filtered = layer.filters.filter(
+            (filter) => filter.id !== filterID
+        );
 
         return {
             ...layer,
@@ -150,7 +152,7 @@ const deleteFilterFromLayer = (layers, { layerID, filterID }) => {
 const moveFilter = (layers, { layerID, filterID }, up = true) => {
     const down = !up;
 
-    return layers.map(layer => {
+    return layers.map((layer) => {
         if (layer.id !== layerID) {
             return layer;
         }
@@ -159,7 +161,7 @@ const moveFilter = (layers, { layerID, filterID }, up = true) => {
 
         const currentIndex = _.findIndex(
             filters,
-            filter => filter.id === filterID
+            (filter) => filter.id === filterID
         );
 
         const atBeginning = Boolean(currentIndex === 0);
@@ -180,7 +182,7 @@ const moveFilter = (layers, { layerID, filterID }, up = true) => {
 };
 
 const setFiltersForLayerHelper = (layers, { layerID, filters }) => {
-    return layers.map(layer => {
+    return layers.map((layer) => {
         if (layer.id !== layerID) {
             return layer;
         }
@@ -193,7 +195,7 @@ const setFiltersForLayerHelper = (layers, { layerID, filters }) => {
 };
 
 const setFiltersAllForLayersHelper = (layers, { filters }) => {
-    return layers.map(layer => {
+    return layers.map((layer) => {
         return {
             ...layer,
             filters
@@ -205,12 +207,12 @@ const updateFilterSettings = (
     layers,
     { layerID, filterID, filterSettings }
 ) => {
-    return layers.map(layer => {
+    return layers.map((layer) => {
         if (layer.id !== layerID) {
             return layer;
         }
 
-        const mappedFilters = layer.filters.map(filter => {
+        const mappedFilters = layer.filters.map((filter) => {
             if (filter.id !== filterID) {
                 return filter;
             }
@@ -270,7 +272,7 @@ const layerReducer = (state = getInitialState(), action) => {
         case SET_VISIBILITY_FOR_ALL_LAYERS:
             return {
                 ...state,
-                layers: state.layers.map(layer => {
+                layers: state.layers.map((layer) => {
                     return {
                         ...layer,
                         visible: action.value

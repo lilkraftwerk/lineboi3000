@@ -1,6 +1,4 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import Plotter from 'plotting/plot-coords';
 
 const { ipcRenderer } = window.require('electron');
 
@@ -19,7 +17,7 @@ export default class PresetManager extends React.Component {
         });
     }
 
-    handleChange = e => {
+    handleChange = (e) => {
         const { id, value } = e.target;
         this.setState({ [id]: value }, () => {});
     };
@@ -31,7 +29,7 @@ export default class PresetManager extends React.Component {
     onLoadPreset = () => {
         const { loadPreset } = this.props;
         const { selectedPresetName, presets } = this.state;
-        const { preset } = presets.find(p => p.name === selectedPresetName);
+        const { preset } = presets.find((p) => p.name === selectedPresetName);
         loadPreset(preset);
     };
 
@@ -44,7 +42,7 @@ export default class PresetManager extends React.Component {
         });
     };
 
-    selectPreset = event => {
+    selectPreset = (event) => {
         this.setState({ selectedPresetName: event.target.value });
     };
 
@@ -63,7 +61,7 @@ export default class PresetManager extends React.Component {
 
         return (
             <select id="selectedPresetName" onChange={this.selectPreset}>
-                {presets.map(currentPreset => createPreset(currentPreset))}
+                {presets.map((currentPreset) => createPreset(currentPreset))}
             </select>
         );
     };

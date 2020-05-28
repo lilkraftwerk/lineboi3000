@@ -15,14 +15,14 @@ const PointCounter = ({ visibleEfxLines, visibleOriginalLines, mode }) => {
         linesToCount = visibleOriginalLines;
     } else {
         linesToCount = visibleEfxLines.map(
-            efxLineContainer => efxLineContainer.efxLines
+            (efxLineContainer) => efxLineContainer.efxLines
         );
     }
 
     const lineCount = _.flatten(Object.values(linesToCount)).length;
     const pointCount = _.sum(
         _.flatten(Object.values(linesToCount)).map(
-            x => x.pointArrayContainer.length
+            (x) => x.pointArrayContainer.length
         )
     );
 
@@ -34,7 +34,7 @@ const PointCounter = ({ visibleEfxLines, visibleOriginalLines, mode }) => {
     );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     const visibleOriginalLines = getVisibleOriginalLines(state);
     const visibleEfxLines = getVisibleEfxLines(state);
 

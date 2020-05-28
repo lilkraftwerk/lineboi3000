@@ -25,7 +25,7 @@ export const LayerControls = ({ layers, currentLayerID, dispatch }) => {
 
     const [showAll, toggleShowAll] = useState(true);
 
-    const onSelectLayer = id => {
+    const onSelectLayer = (id) => {
         dispatch(selectCurrentLayer(id));
     };
 
@@ -33,25 +33,25 @@ export const LayerControls = ({ layers, currentLayerID, dispatch }) => {
         dispatch(updateLayerSetting(id, settingKey, settingValue));
     };
 
-    const onMoveLayerUp = id => {
+    const onMoveLayerUp = (id) => {
         dispatch(moveLayerUp(id));
     };
 
-    const onMoveLayerDown = id => {
+    const onMoveLayerDown = (id) => {
         dispatch(moveLayerDown(id));
     };
 
-    const onDeleteLayer = id => {
+    const onDeleteLayer = (id) => {
         dispatch(deleteLayer(id));
     };
 
-    const onDuplicateLayer = id => {
+    const onDuplicateLayer = (id) => {
         const newID = idGenerator();
         dispatch(duplicateLayer(id, newID));
     };
 
     const canDelete = layers.length > 1;
-    const mappedLayers = layers.map(layer => {
+    const mappedLayers = layers.map((layer) => {
         const isSelected = layer.id === currentLayerID;
         const canMoveUp = layer.id !== finalLayerId;
         const canMoveDown = layer.id !== firstLayerId;
@@ -100,7 +100,7 @@ export const LayerControls = ({ layers, currentLayerID, dispatch }) => {
     );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         layers: state.layerReducer.layers,
         currentLayerID: state.layerReducer.currentLayerID

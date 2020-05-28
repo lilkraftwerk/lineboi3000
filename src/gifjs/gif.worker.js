@@ -14,7 +14,7 @@
             const l = (n[o] = { exports: {} });
             t[o][0].call(
                 l.exports,
-                function(e) {
+                function (e) {
                     const n = t[o][1][e];
                     return s(n || e);
                 },
@@ -34,7 +34,7 @@
 })(
     {
         1: [
-            function(require, module, exports) {
+            function (require, module, exports) {
                 const NeuQuant = require('./TypedNeuQuant.js');
                 const LZWEncoder = require('./LZWEncoder.js');
                 function ByteArray() {
@@ -46,13 +46,13 @@
                 ByteArray.charMap = {};
                 for (let i = 0; i < 256; i++)
                     ByteArray.charMap[i] = String.fromCharCode(i);
-                ByteArray.prototype.newPage = function() {
+                ByteArray.prototype.newPage = function () {
                     this.pages[++this.page] = new Uint8Array(
                         ByteArray.pageSize
                     );
                     this.cursor = 0;
                 };
-                ByteArray.prototype.getData = function() {
+                ByteArray.prototype.getData = function () {
                     let rv = '';
                     for (let p = 0; p < this.pages.length; p++) {
                         for (let i = 0; i < ByteArray.pageSize; i++) {
@@ -61,15 +61,15 @@
                     }
                     return rv;
                 };
-                ByteArray.prototype.writeByte = function(val) {
+                ByteArray.prototype.writeByte = function (val) {
                     if (this.cursor >= ByteArray.pageSize) this.newPage();
                     this.pages[this.page][this.cursor++] = val;
                 };
-                ByteArray.prototype.writeUTFBytes = function(string) {
+                ByteArray.prototype.writeUTFBytes = function (string) {
                     for (let l = string.length, i = 0; i < l; i++)
                         this.writeByte(string.charCodeAt(i));
                 };
-                ByteArray.prototype.writeBytes = function(
+                ByteArray.prototype.writeBytes = function (
                     array,
                     offset,
                     length
@@ -103,22 +103,22 @@
                     this.globalPalette = false;
                     this.out = new ByteArray();
                 }
-                GIFEncoder.prototype.setDelay = function(milliseconds) {
+                GIFEncoder.prototype.setDelay = function (milliseconds) {
                     this.delay = Math.round(milliseconds / 10);
                 };
-                GIFEncoder.prototype.setFrameRate = function(fps) {
+                GIFEncoder.prototype.setFrameRate = function (fps) {
                     this.delay = Math.round(100 / fps);
                 };
-                GIFEncoder.prototype.setDispose = function(disposalCode) {
+                GIFEncoder.prototype.setDispose = function (disposalCode) {
                     if (disposalCode >= 0) this.dispose = disposalCode;
                 };
-                GIFEncoder.prototype.setRepeat = function(repeat) {
+                GIFEncoder.prototype.setRepeat = function (repeat) {
                     this.repeat = repeat;
                 };
-                GIFEncoder.prototype.setTransparent = function(color) {
+                GIFEncoder.prototype.setTransparent = function (color) {
                     this.transparent = color;
                 };
-                GIFEncoder.prototype.addFrame = function(imageData) {
+                GIFEncoder.prototype.addFrame = function (imageData) {
                     this.image = imageData;
                     this.colorTab =
                         this.globalPalette && this.globalPalette.slice
@@ -142,21 +142,21 @@
                     this.writePixels();
                     this.firstFrame = false;
                 };
-                GIFEncoder.prototype.finish = function() {
+                GIFEncoder.prototype.finish = function () {
                     this.out.writeByte(59);
                 };
-                GIFEncoder.prototype.setQuality = function(quality) {
+                GIFEncoder.prototype.setQuality = function (quality) {
                     if (quality < 1) quality = 1;
                     this.sample = quality;
                 };
-                GIFEncoder.prototype.setDither = function(dither) {
+                GIFEncoder.prototype.setDither = function (dither) {
                     if (dither === true) dither = 'FloydSteinberg';
                     this.dither = dither;
                 };
-                GIFEncoder.prototype.setGlobalPalette = function(palette) {
+                GIFEncoder.prototype.setGlobalPalette = function (palette) {
                     this.globalPalette = palette;
                 };
-                GIFEncoder.prototype.getGlobalPalette = function() {
+                GIFEncoder.prototype.getGlobalPalette = function () {
                     return (
                         (this.globalPalette &&
                             this.globalPalette.slice &&
@@ -164,10 +164,10 @@
                         this.globalPalette
                     );
                 };
-                GIFEncoder.prototype.writeHeader = function() {
+                GIFEncoder.prototype.writeHeader = function () {
                     this.out.writeUTFBytes('GIF89a');
                 };
-                GIFEncoder.prototype.analyzePixels = function() {
+                GIFEncoder.prototype.analyzePixels = function () {
                     if (!this.colorTab) {
                         this.neuQuant = new NeuQuant(this.pixels, this.sample);
                         this.neuQuant.buildColormap();
@@ -191,7 +191,7 @@
                         );
                     }
                 };
-                GIFEncoder.prototype.indexPixels = function(imgq) {
+                GIFEncoder.prototype.indexPixels = function (imgq) {
                     const nPix = this.pixels.length / 3;
                     this.indexedPixels = new Uint8Array(nPix);
                     let k = 0;
@@ -205,7 +205,7 @@
                         this.indexedPixels[j] = index;
                     }
                 };
-                GIFEncoder.prototype.ditherPixels = function(
+                GIFEncoder.prototype.ditherPixels = function (
                     kernel,
                     serpentine
                 ) {
@@ -311,7 +311,7 @@
                         }
                     }
                 };
-                GIFEncoder.prototype.findClosest = function(c, used) {
+                GIFEncoder.prototype.findClosest = function (c, used) {
                     return this.findClosestRGB(
                         (c & 16711680) >> 16,
                         (c & 65280) >> 8,
@@ -319,7 +319,7 @@
                         used
                     );
                 };
-                GIFEncoder.prototype.findClosestRGB = function(r, g, b, used) {
+                GIFEncoder.prototype.findClosestRGB = function (r, g, b, used) {
                     if (this.colorTab === null) return -1;
                     if (this.neuQuant && !used) {
                         return this.neuQuant.lookupRGB(r, g, b);
@@ -340,7 +340,7 @@
                     }
                     return minpos;
                 };
-                GIFEncoder.prototype.getImagePixels = function() {
+                GIFEncoder.prototype.getImagePixels = function () {
                     const w = this.width;
                     const h = this.height;
                     this.pixels = new Uint8Array(w * h * 3);
@@ -356,7 +356,7 @@
                         }
                     }
                 };
-                GIFEncoder.prototype.writeGraphicCtrlExt = function() {
+                GIFEncoder.prototype.writeGraphicCtrlExt = function () {
                     this.out.writeByte(33);
                     this.out.writeByte(249);
                     this.out.writeByte(4);
@@ -378,7 +378,7 @@
                     this.out.writeByte(this.transIndex);
                     this.out.writeByte(0);
                 };
-                GIFEncoder.prototype.writeImageDesc = function() {
+                GIFEncoder.prototype.writeImageDesc = function () {
                     this.out.writeByte(44);
                     this.writeShort(0);
                     this.writeShort(0);
@@ -390,14 +390,14 @@
                         this.out.writeByte(128 | 0 | 0 | 0 | this.palSize);
                     }
                 };
-                GIFEncoder.prototype.writeLSD = function() {
+                GIFEncoder.prototype.writeLSD = function () {
                     this.writeShort(this.width);
                     this.writeShort(this.height);
                     this.out.writeByte(128 | 112 | 0 | this.palSize);
                     this.out.writeByte(0);
                     this.out.writeByte(0);
                 };
-                GIFEncoder.prototype.writeNetscapeExt = function() {
+                GIFEncoder.prototype.writeNetscapeExt = function () {
                     this.out.writeByte(33);
                     this.out.writeByte(255);
                     this.out.writeByte(11);
@@ -407,16 +407,16 @@
                     this.writeShort(this.repeat);
                     this.out.writeByte(0);
                 };
-                GIFEncoder.prototype.writePalette = function() {
+                GIFEncoder.prototype.writePalette = function () {
                     this.out.writeBytes(this.colorTab);
                     const n = 3 * 256 - this.colorTab.length;
                     for (let i = 0; i < n; i++) this.out.writeByte(0);
                 };
-                GIFEncoder.prototype.writeShort = function(pValue) {
+                GIFEncoder.prototype.writeShort = function (pValue) {
                     this.out.writeByte(pValue & 255);
                     this.out.writeByte((pValue >> 8) & 255);
                 };
-                GIFEncoder.prototype.writePixels = function() {
+                GIFEncoder.prototype.writePixels = function () {
                     const enc = new LZWEncoder(
                         this.width,
                         this.height,
@@ -425,7 +425,7 @@
                     );
                     enc.encode(this.out);
                 };
-                GIFEncoder.prototype.stream = function() {
+                GIFEncoder.prototype.stream = function () {
                     return this.out;
                 };
                 module.exports = GIFEncoder;
@@ -433,7 +433,7 @@
             { './LZWEncoder.js': 2, './TypedNeuQuant.js': 3 }
         ],
         2: [
-            function(require, module, exports) {
+            function (require, module, exports) {
                 const EOF = -1;
                 const BITS = 12;
                 const HSIZE = 5003;
@@ -594,7 +594,7 @@
             {}
         ],
         3: [
-            function(require, module, exports) {
+            function (require, module, exports) {
                 const ncycles = 100;
                 const netsize = 256;
                 const maxnetpos = netsize - 1;
@@ -906,11 +906,11 @@
             {}
         ],
         4: [
-            function(require, module, exports) {
+            function (require, module, exports) {
                 let GIFEncoder;
                 let renderFrame;
                 GIFEncoder = require('./GIFEncoder.js');
-                renderFrame = function(frame) {
+                renderFrame = function (frame) {
                     let encoder;
                     let page;
                     let stream;
@@ -939,7 +939,7 @@
                     frame.cursor = stream.cursor;
                     frame.pageSize = stream.constructor.pageSize;
                     if (frame.canTransfer) {
-                        transfer = (function() {
+                        transfer = (function () {
                             let i;
                             let len;
                             let ref;
@@ -956,7 +956,7 @@
                     }
                     return self.postMessage(frame);
                 };
-                self.onmessage = function(event) {
+                self.onmessage = function (event) {
                     return renderFrame(event.data);
                 };
             },
