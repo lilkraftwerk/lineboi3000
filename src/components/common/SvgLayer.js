@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { useRef, useEffect } from 'react';
-import PropTypes, { LineType } from 'customPropTypes';
+import PropTypes, { LineType } from '../../customPropTypes';
+import { prepareLines, drawLines, drawPointCircles } from './DrawingLayerUtils';
 
 import styles from './SvgLayer.styles.css';
 
@@ -24,53 +25,20 @@ export const CanvasLayer = ({
             const offScreenContext = offScreenCanvas.getContext('2d');
 
             offScreenContext.save();
-            // offScreenContext.scale(pixelRatio, pixelRatio);
             offScreenContext.clearRect(0, 0, width, height);
             offScreenContext.strokeStyle = color;
 
-            if (lines.length < 0) {
-                return;
-            }
-            const pointArrayContainers = lines.map(
-                line => line.pointArrayContainer
+            const formattedPointArrays = prepareLines(lines);
+            drawLines(
+                offScreenContext,
+                formattedPointArrays,
+                strokeWidth,
+                color
             );
-            const pointArraysWithoutZeroLength = pointArrayContainers.filter(
-                container => container.length > 0
-            );
-
-            pointArraysWithoutZeroLength.forEach(pointArray => {
-                offScreenContext.beginPath();
-                offScreenContext.lineWidth = strokeWidth;
-                offScreenContext.lineJoin = 'miter';
-
-                for (let index = 0; index < pointArray.length; index += 1) {
-                    const [currentX, currentY] = pointArray[index];
-                    if (currentX != null && currentY != null) {
-                        if (index === 0) {
-                            offScreenContext.moveTo(currentX, currentY);
-                        }
-                        offScreenContext.lineTo(currentX, currentY);
-                    }
-                }
-
-                offScreenContext.stroke();
-            });
 
             // show points
             if (showPoints) {
-                offScreenContext.strokeStyle = 'black';
-                const flatPoints = _.flatten(pointArraysWithoutZeroLength);
-                flatPoints.forEach(([pointX, pointY]) => {
-                    offScreenContext.beginPath();
-                    offScreenContext.arc(
-                        pointX,
-                        pointY,
-                        1, //radius
-                        0,
-                        Math.PI + Math.PI * 360
-                    );
-                    offScreenContext.stroke();
-                });
+                drawPointCircles(offScreenContext, formattedPointArrays, 3);
             }
 
             offScreenContext.restore();
@@ -98,83 +66,12 @@ export const CanvasLayer = ({
     );
 };
 
-export const PenLocationLayer = ({
-    width = 800,
-    height = 600,
-    currentLine = {},
-    scale
-}) => {
-    console.log('scale', scale);
-
-    const pixelRatio = window.devicePixelRatio;
-    const { pointArrayContainer } = currentLine;
-    const canvas = useRef(null);
-
-    useEffect(() => {
-        if (!pointArrayContainer) {
-            return;
-        }
-
-        try {
-            const context = canvas.current.getContext('bitmaprenderer');
-            const offScreenCanvas = new OffscreenCanvas(width, height);
-            const offScreenContext = offScreenCanvas.getContext('2d');
-
-            offScreenContext.save();
-            offScreenContext.clearRect(0, 0, width, height);
-            offScreenContext.strokeStyle = 'red';
-
-            offScreenContext.beginPath();
-            offScreenContext.lineWidth = 3;
-            offScreenContext.lineJoin = 'miter';
-
-            for (
-                let index = 0;
-                index < pointArrayContainer.length;
-                index += 1
-            ) {
-                const [currentX, currentY] = pointArrayContainer[index];
-                if (currentX != null && currentY != null) {
-                    if (index === 0) {
-                        offScreenContext.moveTo(currentX, currentY);
-                    }
-                    offScreenContext.lineTo(currentX, currentY);
-                }
-            }
-
-            offScreenContext.stroke();
-            offScreenContext.restore();
-            const offscreenBitmap = offScreenCanvas.transferToImageBitmap();
-            context.transferFromImageBitmap(offscreenBitmap);
-        } catch (e) {
-            console.error('***** line error *****');
-            console.error('p[en error');
-            console.error('***** line error *****');
-        }
-    }, [currentLine]);
-
-    const dw = Math.floor(pixelRatio * width);
-    const dh = Math.floor(pixelRatio * height);
-    const style = { width, height, position: 'absolute' };
-
-    return (
-        <canvas
-            className={styles.currentLineLayer}
-            ref={canvas}
-            width={dw}
-            height={dh}
-            style={style}
-        />
-    );
-};
-
 export const CombinedLayer = ({
     layers,
     width = 800,
     height = 600,
     blobCallback = () => {},
     position = 'absolute',
-    // shouldSaveFrame = false,
     showPoints = false
 }) => {
     const pixelRatio = window.devicePixelRatio;
@@ -187,63 +84,19 @@ export const CombinedLayer = ({
             const offScreenContext = offScreenCanvas.getContext('2d');
 
             offScreenContext.save();
-            // offScreenContext.scale(pixelRatio, pixelRatio);
             offScreenContext.clearRect(0, 0, width, height);
 
             if (layers.length >= 0) {
                 layers.forEach(({ efxLines, color }) => {
-                    if (efxLines.length <= 0) {
-                        return;
-                    }
-
-                    offScreenContext.strokeStyle = color;
-
-                    const pointArrayContainers = efxLines.map(
-                        line => line.pointArrayContainer
-                    );
-                    const pointArraysWithoutZeroLength = pointArrayContainers.filter(
-                        container => container.length > 0
-                    );
-
-                    pointArraysWithoutZeroLength.forEach(pointArray => {
-                        offScreenContext.beginPath();
-                        // add strokewidth to lines
-                        offScreenContext.lineWidth = 3;
-                        offScreenContext.lineJoin = 'miter';
-
-                        for (
-                            let index = 0;
-                            index < pointArray.length;
-                            index += 1
-                        ) {
-                            const [currentX, currentY] = pointArray[index];
-                            if (currentX != null && currentY != null) {
-                                if (index === 0) {
-                                    offScreenContext.moveTo(currentX, currentY);
-                                }
-                                offScreenContext.lineTo(currentX, currentY);
-                            }
-                        }
-
-                        offScreenContext.stroke();
-                    });
-
+                    const formattedLines = prepareLines(efxLines);
+                    drawLines(offScreenContext, formattedLines, 3, color);
                     if (showPoints) {
-                        offScreenContext.strokeStyle = 'black';
-                        const flatPoints = _.flatten(
-                            pointArraysWithoutZeroLength
+                        drawPointCircles(
+                            offScreenContext,
+                            formattedLines,
+                            'black',
+                            3
                         );
-                        flatPoints.forEach(([pointX, pointY]) => {
-                            offScreenContext.beginPath();
-                            offScreenContext.arc(
-                                pointX,
-                                pointY,
-                                3,
-                                0,
-                                Math.PI + Math.PI * 360
-                            );
-                            offScreenContext.stroke();
-                        });
                     }
                 });
             }
@@ -306,47 +159,21 @@ export const SelectLayer = ({
             offScreenContext.save();
             // offScreenContext.scale(pixelRatio, pixelRatio);
             offScreenContext.clearRect(0, 0, width, height);
-            offScreenContext.strokeStyle = color;
 
             if (hullCoords.length > 2) {
-                offScreenContext.strokeStyle = 'red';
-                offScreenContext.lineJoin = 'miter';
                 offScreenContext.fillStyle = 'rgba(255, 255, 255, 0.25)';
-                offScreenContext.beginPath();
-                _.forEach(hullCoords, ([x, y], index) => {
-                    if (index === 0) {
-                        offScreenContext.moveTo(x, y);
-                    } else {
-                        offScreenContext.lineTo(x, y);
-                    }
-                });
+                drawLines(offScreenContext, hullCoords, 3, 'red');
             }
+
             offScreenContext.closePath();
             offScreenContext.fill();
-            _.forEach(selectCoords, ([x, y]) => {
-                offScreenContext.beginPath();
-                offScreenContext.strokeStyle = 'black';
-                offScreenContext.fillStyle = 'black';
-                offScreenContext.arc(x, y, 1, 0, 2 * Math.PI);
-                offScreenContext.fill();
-                offScreenContext.stroke();
-            });
 
-            offScreenContext.strokeStyle = 'black';
+            drawPointCircles(offScreenContext, selectCoords, 'black', 1);
+
             offScreenContext.fillStyle = 'none';
 
             if (fillLines.length > 0) {
-                _.forEach(fillLines, currentFillLine => {
-                    offScreenContext.beginPath();
-                    _.forEach(currentFillLine, ([x, y], index) => {
-                        if (index === 0) {
-                            offScreenContext.moveTo(x, y);
-                        } else {
-                            offScreenContext.lineTo(x, y);
-                        }
-                    });
-                    offScreenContext.stroke();
-                });
+                drawLines(offScreenContext, fillLines, 1, 'black');
             }
 
             offScreenContext.restore();
