@@ -26,7 +26,13 @@ class EfxContainer extends React.Component {
     }
 
     render() {
-        const { height, width, visibleEfxLines, showPoints, dispatch } = this.props;
+        const {
+            height,
+            width,
+            visibleEfxLines,
+            showPoints,
+            dispatch
+        } = this.props;
         return (
             <div style={{ height, width }} className={styles.container}>
                 <CombinedLayer

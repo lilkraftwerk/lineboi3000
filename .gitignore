@@ -12,3 +12,5 @@ npm-debug.log*
 
 #yarn error
 yarn-error.log
+
+**/**/__diff_output__

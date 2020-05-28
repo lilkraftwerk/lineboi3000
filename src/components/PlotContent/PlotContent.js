@@ -5,7 +5,7 @@ import { LineType } from 'customPropTypes';
 import PropTypes from 'prop-types';
 import { getAllEfxLines } from 'store/line/lineSelectors';
 import { getCurrentOptions } from 'store/onions/onionsSelectors';
-import { CanvasLayer, PenLocationLayer } from 'components/common/SvgLayer';
+import { CanvasLayer } from 'components/common/SvgLayer';
 import {
     formatLayersForPlotDisplayTwo,
     generatePlotBoundaries
@@ -64,12 +64,6 @@ class PlotContent extends React.Component {
 
                 <div style={{ paperWidth }} className={styles.container}>
                     {isPlotBoundaryVisible && this.renderPlotBoundary()}
-                    {/* <PenLocationLayer
-                        width={paperWidthInPixels}
-                        height={paperHeightInPixels}
-                        currentLine={currentLine}
-                        scale={scale}
-                    /> */}
                     {formattedLayers.map(layer => {
                         return (
                             <CanvasLayer
