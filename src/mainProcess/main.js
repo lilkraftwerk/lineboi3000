@@ -18,10 +18,10 @@ const available = [];
 // queue of tasks to be done
 const tasks = [];
 
-require('./src/mainProcess/presetManager');
-require('./src/mainProcess/drawingManager');
-const menuTemplateGenerator = require('./src/mainProcess/appMenu');
-const { showSaveDialog } = require('./src/mainProcess/SaveAndLoad');
+require('./presetManager');
+require('./drawingManager');
+const menuTemplateGenerator = require('./appMenu');
+const { showSaveDialog } = require('./SaveAndLoad');
 
 function createWindow() {
     win = new BrowserWindow({
@@ -35,7 +35,7 @@ function createWindow() {
     });
 
     // run web server from here
-    const mainUrl = `file://${__dirname}/dist/index.html`;
+    const mainUrl = `file://${__dirname}/../../dist/index.html`;
     win.loadURL(mainUrl);
 
     win.webContents.once('dom-ready', () => {
@@ -54,10 +54,10 @@ function createWindow() {
     Menu.setApplicationMenu(menu);
 
     installExtension(REACT_DEVELOPER_TOOLS)
-        .then(name => {
+        .then((name) => {
             console.log(`Added Extension:  ${name}`);
         })
-        .catch(err => {
+        .catch((err) => {
             console.log('An error occurred: ', err);
         });
 
@@ -125,7 +125,7 @@ ipcMain.on('bg:efxLinesResult', (_, arg) => {
     win.webContents.send('renderer:efxLines', arg);
 });
 
-ipcMain.on('bg:ready', event => {
+ipcMain.on('bg:ready', (event) => {
     available.push(event.sender);
     performTasks();
 });

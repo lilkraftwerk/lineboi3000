@@ -8,7 +8,7 @@ module.exports = {
     devtool: 'source-map',
     entry: {
         main: './src/index.js',
-        background: './src/background.js',
+        background: './src/backgroundWindow/background.js',
         filterPlayground: './src/filterPlayground/filterPlayground.js'
     },
     target: 'electron-renderer',
@@ -84,7 +84,7 @@ module.exports = {
         }),
         new HtmlWebPackPlugin({
             filename: 'background.html',
-            template: 'src/background.html',
+            template: 'src/backgroundWindow/background.html',
             chunks: ['background']
         }),
         new HtmlWebPackPlugin({

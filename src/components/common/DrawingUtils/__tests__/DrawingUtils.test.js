@@ -5,7 +5,7 @@ import 'jest-canvas-mock';
 
 import {
     testLines,
-} from '../../../../../testing/LineFixtures';
+} from '../../../../testing/LineFixtures';
 
 expect.extend({ toMatchImageSnapshot });
 

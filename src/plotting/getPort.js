@@ -3,8 +3,8 @@ const SerialPort = require('serialport');
 const BOT_MANUFACTURER = 'SchmalzHaus';
 
 SerialPort.list().then(
-    ports => {
-        const port = ports.find(p => p.manufacturer === BOT_MANUFACTURER);
+    (ports) => {
+        const port = ports.find((p) => p.manufacturer === BOT_MANUFACTURER);
 
         if (port) {
             process.stdout.write(port.comName);
@@ -13,7 +13,7 @@ SerialPort.list().then(
 
         process.stdout.write('{auto}');
     },
-    err => {
+    (err) => {
         console.error('Error listing ports', err);
     }
 );
