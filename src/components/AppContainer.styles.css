@@ -17,7 +17,7 @@
 .headerRight {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
     grid-column: 2;
-    outline: 1px dashed black;
+    outline: 0px solid black;
 }
 
 .headerIcon {
@@ -30,7 +30,7 @@
 .sideBar {
     grid-column: 1;
     grid-row: 2;
-    outline: 1px dashed black;
+    outline: 0px solid black;
 }
 
 .permanentOptions {
@@ -60,7 +60,7 @@
 .content {
     grid-column: 2;
     grid-row: 2;
-    outline: 1px dashed black;
+    outline: 0px solid black;
 }
 
 .svg {

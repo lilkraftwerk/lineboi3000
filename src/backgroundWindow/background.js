@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron';
-import EfxProcessingUnit from './efxProcessing/EfxProcessingUnit';
+import EfxProcessingUnit from '../efxProcessing/EfxProcessingUnit';
 
 // // Send logs as messages to the main thread to show on the console
 // function log(value) {
