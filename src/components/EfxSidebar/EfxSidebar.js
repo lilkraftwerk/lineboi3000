@@ -29,6 +29,7 @@ import FilterWrapper from 'filters/FilterWrapper';
 import Multiply from 'filters/Multiply';
 import Wiggle from 'filters/Wiggle';
 import Distort from 'filters/Distort';
+import SplitLines from 'filters/SplitLines';
 import Simplify from 'filters/Simplify';
 import Experimental from 'filters/Experimental';
 import Dots from 'filters/Dots';
@@ -46,8 +47,9 @@ import '../common/SidebarStyles.css';
 
 const CONSTANT_FILTERS = [
     Move,
-    Exes,
     Distort,
+    SplitLines,
+    Exes,
     Multiply,
     Wiggle,
     Experimental,

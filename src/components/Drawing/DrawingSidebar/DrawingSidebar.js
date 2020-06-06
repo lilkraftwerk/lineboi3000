@@ -23,14 +23,14 @@ import {
 } from 'components/common/SidebarContainer';
 import PercentClicker from 'components/common/PercentClicker';
 import { EnabledToggleButton } from 'components/common/SidebarButton';
+import { applyTemplate } from './TemplateUtils';
 
+import TemplateOptions from './TemplateOptions';
 import TextOptions from './TextOptions';
 import EraserOptions from './EraserOptions';
 import ShrinkCanvasOptions from './ShrinkCanvasOptions';
 import MultiplyCanvasOptions from './MultiplyCanvasOptions';
 import CircleOptions from './CircleOptions';
-
-import { applyTemplate } from './TemplateUtils';
 
 const MAIN_MODES = ['draw', 'select', 'scale', 'template'];
 const DRAWING_MODES = [
@@ -43,7 +43,6 @@ const DRAWING_MODES = [
 ];
 const SELECT_MODES = ['pen', 'square', 'circle'];
 const SCALE_MODES = ['shrinkCanvas', 'multiplyCanvas'];
-const TEMPLATE_TYPES = ['frame', 'squares', 'circles', 'randomLines'];
 
 class DrawingSidebar extends React.Component {
     componentDidMount() {
@@ -113,7 +112,6 @@ class DrawingSidebar extends React.Component {
             randomLineDensity,
             showPreviewLines,
             pointsOnEachLine,
-            templateIntensity,
             dispatch
         } = this.props;
 
@@ -376,38 +374,11 @@ class DrawingSidebar extends React.Component {
                     />
                 )}
                 {mainMode === 'template' && (
-                    <SidebarItem title="templates" height={2}>
-                        {TEMPLATE_TYPES.map((templateType) => (
-                            <button
-                                style={{ gridColumn: 'span 2' }}
-                                type="button"
-                                onClick={() => {
-                                    this.addTemplateToCurrentLayer(
-                                        templateType
-                                    );
-                                }}
-                            >
-                                {templateType}
-                            </button>
-                        ))}
-                        <PercentClicker
-                            setValue={(value) => {
-                                dispatch(
-                                    setSelectOptionByKey({
-                                        key: 'templateIntensity',
-                                        value
-                                    })
-                                );
-                            }}
-                            float={false}
-                            title="point intensity"
-                            minLabel="small"
-                            maxLabel="lots"
-                            minValue={5}
-                            maxValue={50}
-                            currentValue={templateIntensity}
-                        />
-                    </SidebarItem>
+                    <TemplateOptions
+                        addTemplateToCurrentLayer={
+                            this.addTemplateToCurrentLayer
+                        }
+                    />
                 )}
             </SidebarContainer>
         );

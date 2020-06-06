@@ -33,6 +33,10 @@ class AppContainer extends React.Component {
         ipcRenderer.on('menu:startSaveProcess', () => {
             dispatch({ type: 'SEND_TO_MAIN_PROCESS' });
         });
+
+        ipcRenderer.on('app:reloadBackground', () => {
+            ipcRenderer.send('main:reloadBackground');
+        });
     }
 
     updateMode = (mode) => {

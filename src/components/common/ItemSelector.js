@@ -72,7 +72,7 @@ const ItemSelector = ({
                     }}
                     className={styles.confirm}
                 >
-                    ok
+                    go
                 </button>
             )}
         </div>

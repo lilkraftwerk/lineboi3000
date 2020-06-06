@@ -61,6 +61,8 @@ const frame = (globalHeight, globalWidth, intensity = 50) => {
     return [rectangle];
 };
 
+// const bricks = (globalHeight, globalWidth, )
+
 const squares = (globalHeight, globalWidth, intensity = 50) => {
     const OFFSET = 20;
     const NUM_SQUARES = intensity;
