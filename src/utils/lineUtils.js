@@ -192,12 +192,7 @@ export const splitLinesViaEraserCoords = ({
     smoothOriginalLines = false,
     smoothPasses = 1
 }) => {
-    // for each current line, add each point to a new temp line until you hit a point that is within
-    // erase radius. once you find this, save the previous temp line
-    // then, find next point that is not in erase radius.
-    // add that to the start of a new temp line. back to square 1
     const splitLines = [];
-
     let tempPointArrays = [...lines];
 
     if (smoothOriginalLines) {
@@ -210,7 +205,6 @@ export const splitLinesViaEraserCoords = ({
 
     tempPointArrays.forEach((line) => {
         let currentTempLine = [];
-        // let closestPointToEdgeOfCircle = null;
         line.forEach(([currentX, currentY], index) => {
             let coordsAreWithinEraseRadius = false;
             // check if the current point is within any erase circle
@@ -226,14 +220,6 @@ export const splitLinesViaEraserCoords = ({
 
                 if (pointIsWithinThisCircle) {
                     coordsAreWithinEraseRadius = true;
-                    // closestPointToEdgeOfCircle = closestPointOnCircleFromCoords(
-                    //     currentX,
-                    //     currentY,
-                    //     eraseX,
-                    //     eraseY,
-                    //     eraserRadius
-                    // );
-                    // currentTempLine.push(closestPointToEdgeOfCircle);
                     break;
                 }
             }
@@ -252,77 +238,6 @@ export const splitLinesViaEraserCoords = ({
     });
 
     return splitLines;
-};
-
-export const deletePointsViaEraserCoords = ({
-    lines,
-    eraseCoords,
-    eraserRadius
-}) => {
-    const splitLines = [];
-    // go throughe very point on line
-    // if next point is within polygon, add to current line
-    // if not, push current line (if >= 2 length) to splitLines
-    // start next line at next
-    lines.forEach((line) => {
-        let currentLine = [];
-        line.forEach((coords) => {
-            let isInEraseCoordRadius = false;
-            for (let i = 0; i < eraseCoords.length; i += 1) {
-                const [eraseX, eraseY] = eraseCoords[i];
-                if (
-                    isPointWithinCircle(
-                        eraseX,
-                        eraseY,
-                        eraserRadius,
-                        coords[0],
-                        coords[1]
-                    )
-                ) {
-                    isInEraseCoordRadius = true;
-                }
-                if (isInEraseCoordRadius) {
-                    break;
-                }
-            }
-
-            if (!isInEraseCoordRadius) {
-                currentLine.push(coords);
-            } else {
-                // if (currentLine.length >= 2) {
-                splitLines.push(currentLine);
-                // }
-                currentLine = [];
-            }
-        });
-    });
-
-    return splitLines;
-
-    // return lines.map((line) => {
-    //     return line.filter((coords) => {
-    //         let isInEraseCoordRadius = false;
-    //         for (let i = 0; i < eraseCoords.length; i += 1) {
-    //             const [eraseX, eraseY] = eraseCoords[i];
-    //             if (
-    //                 isPointWithinCircle(
-    //                     eraseX,
-    //                     eraseY,
-    //                     eraserRadius,
-    //                     coords[0],
-    //                     coords[1]
-    //                 )
-    //             ) {
-    //                 isInEraseCoordRadius = true;
-    //             }
-    //                 if (isInEraseCoordRadius) {
-    //                     break;
-    //                 }
-    //         }
-
-    //         return !isInEraseCoordRadius;
-    //     });
-    // });
 };
 
 export const deletePointsViaSelection = ({

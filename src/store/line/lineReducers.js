@@ -53,9 +53,7 @@ const eraseHelper = (state, { layerID, eraseCoords, eraserRadius }) => {
     const pointArrays = splitLinesViaEraserCoords({
         lines: justPoints,
         eraseCoords,
-        eraserRadius,
-        smoothOriginalLines: true,
-        smoothPasses: 1
+        eraserRadius
     });
 
     return pointArrays.map((pointArray) =>
