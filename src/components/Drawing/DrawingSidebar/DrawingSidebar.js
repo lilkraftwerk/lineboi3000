@@ -29,11 +29,13 @@ import ShrinkCanvasOptions from './ShrinkCanvasOptions';
 import MultiplyCanvasOptions from './MultiplyCanvasOptions';
 import CircleOptions from './CircleOptions';
 
+import { applyTemplate } from './TemplateUtils';
+
+const MAIN_MODES = ['draw', 'select', 'scale', 'template'];
 const DRAWING_MODES = ['pen', 'straightLine', 'square', 'circle', 'text'];
-
 const SELECT_MODES = ['pen', 'square', 'circle'];
-
 const SCALE_MODES = ['shrinkCanvas', 'multiplyCanvas'];
+const TEMPLATE_TYPES = ['frame', 'squares', 'circles', 'randomLines'];
 
 class DrawingSidebar extends React.Component {
     componentDidMount() {
@@ -70,6 +72,10 @@ class DrawingSidebar extends React.Component {
         this.clearSelection();
     };
 
+    addTemplateToCurrentLayer = (templateName) => {
+        applyTemplate({ templateName, ...this.props });
+    };
+
     clearSelection = () => {
         const { dispatch } = this.props;
         dispatch(
@@ -80,7 +86,7 @@ class DrawingSidebar extends React.Component {
         );
     };
 
-    onShrinkCanvas = factor => {
+    onShrinkCanvas = (factor) => {
         const { dispatch } = this.props;
         dispatch(
             shrinkCanvas({
@@ -99,13 +105,14 @@ class DrawingSidebar extends React.Component {
             randomLineDensity,
             showPreviewLines,
             pointsOnEachLine,
+            templateIntensity,
             dispatch
         } = this.props;
 
         return (
             <SidebarContainer>
                 <SidebarItem title="drawing type" height={2}>
-                    {['draw', 'select', 'scale', 'template'].map(modeKey => {
+                    {MAIN_MODES.map((modeKey) => {
                         return (
                             <button
                                 style={{ gridColumn: 'span 1' }}
@@ -123,7 +130,7 @@ class DrawingSidebar extends React.Component {
                 </SidebarItem>
                 <SidebarItem title="tool" height={2}>
                     {mainMode === 'draw' &&
-                        DRAWING_MODES.map(modeKey => {
+                        DRAWING_MODES.map((modeKey) => {
                             return (
                                 <button
                                     style={{ gridColumn: 'span 2' }}
@@ -139,7 +146,7 @@ class DrawingSidebar extends React.Component {
                             );
                         })}
                     {mainMode === 'select' &&
-                        SELECT_MODES.map(modeKey => {
+                        SELECT_MODES.map((modeKey) => {
                             return (
                                 <button
                                     style={{ gridColumn: 'span 2' }}
@@ -155,7 +162,7 @@ class DrawingSidebar extends React.Component {
                             );
                         })}
                     {mainMode === 'scale' &&
-                        SCALE_MODES.map(modeKey => {
+                        SCALE_MODES.map((modeKey) => {
                             return (
                                 <button
                                     style={{ gridColumn: 'span 2' }}
@@ -179,7 +186,7 @@ class DrawingSidebar extends React.Component {
                     (mode === 'straightLine' || mode === 'square') && (
                         <SidebarItem title="text options" height={2}>
                             <PercentClicker
-                                setValue={value => {
+                                setValue={(value) => {
                                     dispatch(
                                         setOptionByKey({
                                             key: 'pointsOnEachLine',
@@ -201,7 +208,7 @@ class DrawingSidebar extends React.Component {
                     <SidebarItem title="select options" height={2}>
                         select options
                         <PercentClicker
-                            setValue={value => {
+                            setValue={(value) => {
                                 dispatch(
                                     setSelectOptionByKey({
                                         key: 'distanceBetweenLines',
@@ -218,7 +225,7 @@ class DrawingSidebar extends React.Component {
                             currentValue={distanceBetweenLines}
                         />
                         <PercentClicker
-                            setValue={value => {
+                            setValue={(value) => {
                                 dispatch(
                                     setSelectOptionByKey({
                                         key: 'distanceBetweenPoints',
@@ -235,7 +242,7 @@ class DrawingSidebar extends React.Component {
                             currentValue={distanceBetweenPoints}
                         />
                         <PercentClicker
-                            setValue={value => {
+                            setValue={(value) => {
                                 dispatch(
                                     setSelectOptionByKey({
                                         key: 'randomLineDensity',
@@ -357,12 +364,46 @@ class DrawingSidebar extends React.Component {
                         {...this.props}
                     />
                 )}
+                {mainMode === 'template' && (
+                    <SidebarItem title="templates" height={2}>
+                        {TEMPLATE_TYPES.map((templateType) => (
+                            <button
+                                style={{ gridColumn: 'span 2' }}
+                                type="button"
+                                onClick={() => {
+                                    this.addTemplateToCurrentLayer(
+                                        templateType
+                                    );
+                                }}
+                            >
+                                {templateType}
+                            </button>
+                        ))}
+                        <PercentClicker
+                            setValue={(value) => {
+                                dispatch(
+                                    setSelectOptionByKey({
+                                        key: 'templateIntensity',
+                                        value
+                                    })
+                                );
+                            }}
+                            float={false}
+                            title="point intensity"
+                            minLabel="small"
+                            maxLabel="lots"
+                            minValue={5}
+                            maxValue={50}
+                            currentValue={templateIntensity}
+                        />
+                    </SidebarItem>
+                )}
             </SidebarContainer>
         );
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     const options = getCurrentOptions(state);
 
     const currentLayerID = getCurrentLayerID(state);

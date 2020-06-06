@@ -6,7 +6,7 @@ import PercentClicker from 'components/common/PercentClicker';
 
 import styles from './ShrinkCanvasOptions.styles.css';
 
-const MultiplyCanvasOptions = props => {
+const MultiplyCanvasOptions = (props) => {
     const {
         multiplyCanvasOptions,
         globalHeight,
@@ -21,7 +21,7 @@ const MultiplyCanvasOptions = props => {
     return (
         <SidebarItem title="multiply canvas" height={2}>
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     dispatch(setMultiplyCanvasOptions('x', value));
                 }}
                 title="times x"
@@ -32,7 +32,7 @@ const MultiplyCanvasOptions = props => {
                 currentValue={x}
             />
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     dispatch(setMultiplyCanvasOptions('y', value));
                 }}
                 title="times y"

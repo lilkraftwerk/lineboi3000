@@ -15,7 +15,7 @@ const makeCircle = (centerX, centerY, radius, pointsOnCircle = 50) => {
     return [...coords, first];
 };
 
-const onStart = coords => {
+const onStart = (coords) => {
     return [[coords]];
 };
 

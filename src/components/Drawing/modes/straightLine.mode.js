@@ -2,7 +2,7 @@ import { addMultipleLinesToLayerByID } from '../../../store/line/lineActions';
 import { allPointsBetweenTwoCoords } from '../../../utils/coordUtils';
 import { getStartCoordsFromFirstTempLines } from '../../../utils/drawingUtils';
 
-const onStart = coords => {
+const onStart = (coords) => {
     return [[coords]];
 };
 

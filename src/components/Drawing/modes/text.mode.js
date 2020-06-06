@@ -8,9 +8,9 @@ import {
     removePointsOutsidePolygons
 } from '../../../utils/lineUtils';
 
-const getMinMaxValues = polygon => {
-    const xValues = polygon.map(arr => arr[0]);
-    const yValues = polygon.map(arr => arr[1]);
+const getMinMaxValues = (polygon) => {
+    const xValues = polygon.map((arr) => arr[0]);
+    const yValues = polygon.map((arr) => arr[1]);
     const minX = _.min(xValues);
     const maxX = _.max(xValues);
     const minY = _.min(yValues);
@@ -49,7 +49,7 @@ const createTextCoords = (coords, textContent = 'no text', options) => {
     const svgD = textToSVG.getD(textContent, textOptions);
     const commands = svgD
         .split(/(?=[LMCQ])/)
-        .filter(command => command[0] !== 'Q')
+        .filter((command) => command[0] !== 'Q')
         .join('');
 
     const polygons = pathDataToPolys(commands);
@@ -67,8 +67,8 @@ const createTextCoords = (coords, textContent = 'no text', options) => {
         : generateVerticalLines(combinedOptions);
 
     // library returns a weird object
-    const mappedPolys = polygons.map(polygon => {
-        return polygon.map(x => x);
+    const mappedPolys = polygons.map((polygon) => {
+        return polygon.map((x) => x);
     });
 
     const splitLines = removePointsOutsidePolygons({
@@ -86,7 +86,7 @@ const generateTextCoords = (coords, _templines, options) => {
     const { textDistanceBetweenLetters, textDistanceBetweenWords } = options;
     let currentX = coords[0];
 
-    const letterCoords = options.textContent.split('').map(letter => {
+    const letterCoords = options.textContent.split('').map((letter) => {
         if (letter === ' ') {
             currentX += textDistanceBetweenWords;
             return [];

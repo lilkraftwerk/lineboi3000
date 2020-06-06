@@ -11,6 +11,8 @@ const cpus = debugBackgroundWindow ? 1 : require('os').cpus().length;
 
 console.log(`num available cpus: ${cpus}`);
 
+const testEnv = process.env.NODE_ENV === 'test';
+
 let win;
 // stack of available background threads
 const available = [];
@@ -18,10 +20,10 @@ const available = [];
 // queue of tasks to be done
 const tasks = [];
 
-require('./presetManager');
-require('./drawingManager');
-const menuTemplateGenerator = require('./appMenu');
-const { showSaveDialog } = require('./SaveAndLoad');
+require('./src/mainProcess/presetManager');
+require('./src/mainProcess/drawingManager');
+const menuTemplateGenerator = require('./src/mainProcess/appMenu');
+const { showSaveDialog } = require('./src/mainProcess/SaveAndLoad');
 
 function createWindow() {
     win = new BrowserWindow({
@@ -31,16 +33,18 @@ function createWindow() {
             nodeIntegration: true,
             nodeIntegrationInWorker: true
         },
-        show: false
+        show: testEnv
     });
 
     // run web server from here
-    const mainUrl = `file://${__dirname}/../../dist/index.html`;
+    const mainUrl = `file://${__dirname}/dist/index.html`;
     win.loadURL(mainUrl);
 
-    win.webContents.once('dom-ready', () => {
-        win.webContents.openDevTools();
-    });
+    if (!testEnv) {
+        win.webContents.once('dom-ready', () => {
+            win.webContents.openDevTools();
+        });
+    }
 
     win.on('closed', () => {
         win = null;

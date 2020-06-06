@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SidebarItem } from 'components/common/SidebarContainer';
 import styles from './ShrinkCanvasOptions.styles.css';
 
-const ShrinkCanvasOptions = props => {
+const ShrinkCanvasOptions = (props) => {
     const { globalHeight, globalWidth, onShrinkCanvas } = props;
     const [shrinkFactorIndex, setShrinkFactorIndex] = useState(3);
     const factors = [

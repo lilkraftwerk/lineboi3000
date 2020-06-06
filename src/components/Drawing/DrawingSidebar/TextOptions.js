@@ -21,7 +21,7 @@ const FONT_NAMES = [
     'mariokartds.ttf'
 ];
 
-const TextOptions = props => {
+const TextOptions = (props) => {
     const {
         textContent,
         textSize,
@@ -45,12 +45,12 @@ const TextOptions = props => {
                 style={{ gridColumn: 'span 2' }}
                 value={textContent}
                 type="text"
-                onChange={e => {
+                onChange={(e) => {
                     dispatch(setTextContent(e.target.value));
                 }}
             />
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     dispatch(setTextSize(Number(value)));
                 }}
                 float={false}
@@ -63,10 +63,10 @@ const TextOptions = props => {
             />
             <ItemSelector
                 spanCount={4}
-                onChange={selectedFontName => {
+                onChange={(selectedFontName) => {
                     dispatch(setFontName(selectedFontName));
                 }}
-                items={FONT_NAMES.map(currentFont => ({
+                items={FONT_NAMES.map((currentFont) => ({
                     key: currentFont,
                     title: currentFont
                 }))}
@@ -117,7 +117,7 @@ const TextOptions = props => {
                 {textFillIsHorizontal ? 'horizontal fill' : 'vertical fill'}
             </button>
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     dispatch(
                         setSelectOptionByKey({
                             key: 'textDistanceBetweenLines',
@@ -134,7 +134,7 @@ const TextOptions = props => {
                 currentValue={textDistanceBetweenLines}
             />
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     dispatch(
                         setSelectOptionByKey({
                             key: 'textDistanceBetweenPoints',
@@ -151,7 +151,7 @@ const TextOptions = props => {
                 currentValue={textDistanceBetweenPoints}
             />
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     dispatch(
                         setSelectOptionByKey({
                             key: 'textDistanceBetweenLetters',
@@ -168,7 +168,7 @@ const TextOptions = props => {
                 currentValue={textDistanceBetweenLetters}
             />
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     dispatch(
                         setSelectOptionByKey({
                             key: 'textDistanceBetweenWords',
