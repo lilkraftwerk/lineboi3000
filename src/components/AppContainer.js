@@ -54,7 +54,7 @@ class AppContainer extends React.Component {
         return (
             <div className={styles.wholeApp}>
                 <Listener />
-                <div className={styles.headerLeft}>lineboi</div>
+                <div className={styles.headerLeft}>lineboi3000</div>
                 <div className={styles.headerRight}>
                     {mode !== 'gifmaker' && <LayerControls />}
                     {mode === 'gifmaker' && <GifmakerHeader />}
