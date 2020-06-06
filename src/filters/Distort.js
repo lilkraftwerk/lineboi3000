@@ -13,7 +13,7 @@ const DistortComponent = ({ filterSettings, updateOptions }) => {
         horizontal,
         vertical
     } = filterSettings;
-    console.log('hi');
+
     return (
         <Fragment>
             <PercentClicker
