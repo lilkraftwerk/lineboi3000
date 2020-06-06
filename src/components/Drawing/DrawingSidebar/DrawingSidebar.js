@@ -25,6 +25,7 @@ import PercentClicker from 'components/common/PercentClicker';
 import { EnabledToggleButton } from 'components/common/SidebarButton';
 
 import TextOptions from './TextOptions';
+import EraserOptions from './EraserOptions';
 import ShrinkCanvasOptions from './ShrinkCanvasOptions';
 import MultiplyCanvasOptions from './MultiplyCanvasOptions';
 import CircleOptions from './CircleOptions';
@@ -32,7 +33,14 @@ import CircleOptions from './CircleOptions';
 import { applyTemplate } from './TemplateUtils';
 
 const MAIN_MODES = ['draw', 'select', 'scale', 'template'];
-const DRAWING_MODES = ['pen', 'straightLine', 'square', 'circle', 'text'];
+const DRAWING_MODES = [
+    'pen',
+    'eraser',
+    'straightLine',
+    'square',
+    'circle',
+    'text'
+];
 const SELECT_MODES = ['pen', 'square', 'circle'];
 const SCALE_MODES = ['shrinkCanvas', 'multiplyCanvas'];
 const TEMPLATE_TYPES = ['frame', 'squares', 'circles', 'randomLines'];
@@ -180,6 +188,9 @@ class DrawingSidebar extends React.Component {
                 </SidebarItem>
                 {mainMode === 'draw' && mode === 'text' && (
                     <TextOptions {...this.props} />
+                )}
+                {mainMode === 'draw' && mode === 'eraser' && (
+                    <EraserOptions {...this.props} />
                 )}
                 {mode === 'circle' && <CircleOptions {...this.props} />}
                 {mainMode === 'draw' &&

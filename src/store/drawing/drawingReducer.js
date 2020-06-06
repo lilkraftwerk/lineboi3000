@@ -13,7 +13,7 @@ import {
 
 const initState = {
     mainMode: 'draw',
-    mode: 'text',
+    mode: 'eraser',
     textContent: 'L',
     textSize: 150,
     textFill: true,
@@ -42,6 +42,7 @@ const initState = {
         showPreviewLines: false,
         randomLineDensity: 5
     },
+    eraserRadius: 20,
     pointsOnCircle: 50,
     templateIntensity: 50
 };

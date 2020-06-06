@@ -213,7 +213,7 @@ export class DrawingContent extends React.Component {
 
     drawOnTempLinesDiv() {
         const { tempLinesRef, tempLines } = this;
-        const { width, height } = this.props;
+        const { width, height, drawingMode, eraserRadius } = this.props;
         const context = tempLinesRef.current.getContext('bitmaprenderer');
         const offScreenCanvas = new OffscreenCanvas(width, height);
         const offScreenContext = offScreenCanvas.getContext('2d');
@@ -222,7 +222,7 @@ export class DrawingContent extends React.Component {
         // offScreenContext.scale(pixelRatio, pixelRatio);
         offScreenContext.clearRect(0, 0, width, height);
 
-        if (tempLines && tempLines.length) {
+        if (tempLines && tempLines.length && drawingMode !== 'eraser') {
             tempLines.forEach((pointArrays) => {
                 if (pointArrays.length <= 0) {
                     return;
@@ -234,6 +234,33 @@ export class DrawingContent extends React.Component {
                 // add strokewidth to lines
                 offScreenContext.lineWidth = 3;
                 offScreenContext.lineJoin = 'miter';
+
+                for (let index = 0; index < pointArrays.length; index += 1) {
+                    const [currentX, currentY] = pointArrays[index];
+                    if (currentX != null && currentY != null) {
+                        if (index === 0) {
+                            offScreenContext.moveTo(currentX, currentY);
+                        }
+                        offScreenContext.lineTo(currentX, currentY);
+                    }
+                }
+
+                offScreenContext.stroke();
+            });
+        }
+
+        if (tempLines && tempLines.length && drawingMode === 'eraser') {
+            tempLines.forEach((pointArrays) => {
+                if (pointArrays.length <= 0) {
+                    return;
+                }
+
+                offScreenContext.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+                offScreenContext.beginPath();
+                // add strokewidth to lines
+                offScreenContext.lineWidth = eraserRadius;
+                offScreenContext.lineCap = 'round';
+                offScreenContext.lineJoin = 'round';
 
                 for (let index = 0; index < pointArrays.length; index += 1) {
                     const [currentX, currentY] = pointArrays[index];

@@ -1,3 +1,5 @@
+import id from '../utils/id';
+
 export const testHeight = 600;
 export const testWidth = 800;
 export const multiplierOne = 10;
@@ -21,15 +23,27 @@ export const pointArrayContainerTwo = [
 
 export const testLines = [
     {
-        id: 'abc',
+        id: id(),
         pointArrayContainer: pointArrayContainerOne
     },
     {
-        id: 'def',
+        id: id(),
         pointArrayContainer: pointArrayContainerTwo
     },
     {
-        id: 'xyz',
+        id: id(),
         pointArrayContainer: []
     }
 ];
+
+export const makeVerticalLinesPointArrays = (height, width, distance) => {
+    const pointArrays = [];
+    for (let x = 0; x < width; x += distance) {
+        const pointArrayContainer = [];
+        for (let y = 0; y < height; y += distance) {
+            pointArrayContainer.push([x, y]);
+        }
+        pointArrays.push(pointArrayContainer);
+    }
+    return pointArrays;
+};

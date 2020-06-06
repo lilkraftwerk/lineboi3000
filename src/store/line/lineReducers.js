@@ -2,6 +2,7 @@ import _ from 'lodash';
 import undoable, { includeAction } from 'redux-undo';
 import {
     deletePointsViaSelection,
+    splitLinesViaEraserCoords,
     createLineFromPointArray
 } from '../../utils/lineUtils';
 import idGenerator from '../../utils/id';
@@ -14,7 +15,8 @@ import {
     DELETE_ALL_ORIGINAL_LINES_FOR_LAYER,
     MULTIPLY_CANVAS,
     SHRINK_CANVAS,
-    DELETE_FILL_LINES_FROM_LAYER_BY_ID
+    DELETE_FILL_LINES_FROM_LAYER_BY_ID,
+    ERASE_POINTS_WITHIN_ERASER_COORDS
 } from './lineActions';
 
 import { DUPLICATE_LAYER } from '../layer/layerActions';
@@ -37,6 +39,21 @@ const deleteFillLinesHelper = (state, { layerID, fillLines, inside }) => {
         lines: justPoints,
         selectedPolygon: fillLines,
         inside
+    });
+
+    return pointArrays.map((pointArray) =>
+        createLineFromPointArray(pointArray)
+    );
+};
+
+const eraseHelper = (state, { layerID, eraseCoords, eraserRadius }) => {
+    const layerLines = state[layerID] || [];
+
+    const justPoints = layerLines.map((x) => x.pointArrayContainer);
+    const pointArrays = splitLinesViaEraserCoords({
+        lines: justPoints,
+        eraseCoords,
+        eraserRadius
     });
 
     return pointArrays.map((pointArray) =>
@@ -145,6 +162,11 @@ export const originalLinesReducer = (state = {}, action) => {
                     state,
                     action.value
                 )
+            };
+        case ERASE_POINTS_WITHIN_ERASER_COORDS:
+            return {
+                ...state,
+                [action.value.layerID]: eraseHelper(state, action.value)
             };
         case DELETE_ALL_ORIGINAL_LINES_FOR_LAYER:
             return {

@@ -1562,6 +1562,18 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@mathigon/core@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@mathigon/core/-/core-0.5.0.tgz#7c64a6ad6138a81d11cceb007d7e262d531990e5"
+  integrity sha512-gRz1wbKe5oj69Q8gKat0u8gB/iQDvVCjjGRUcAFJ7W1VXXitEpiQ9i+sVC6UEAvWO7tV4w79Vx4DIj54jISy+w==
+
+"@mathigon/fermat@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@mathigon/fermat/-/fermat-0.5.0.tgz#7dabe6822d247af3c29de6b2a7f03750ea4038af"
+  integrity sha512-3CVqGuV8GJd7rUJBvC2KgdSUi/HpFFp5rgs62JFLg16st8bY4GsFvvOW+v1Sfs7O8kbzP6hKx/s/uRZZHX1L3w==
+  dependencies:
+    "@mathigon/core" "^0.5.0"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
