@@ -52,8 +52,6 @@ class DrawingSidebar extends React.Component {
         ipcRenderer.on('keystroke:undo', () => {
             dispatch(ActionCreators.undo());
         });
-
-        this.addTemplateToCurrentLayer('squares');
     }
 
     componentWillUnmount() {
