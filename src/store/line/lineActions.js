@@ -11,6 +11,8 @@ export const MULTIPLY_CANVAS = 'MULTIPLY_CANVAS';
 export const SHRINK_CANVAS = 'SHRINK_CANVAS';
 export const DELETE_FILL_LINES_FROM_LAYER_BY_ID =
     'DELETE_FILL_LINES_FROM_LAYER_BY_ID';
+export const ERASE_POINTS_WITHIN_ERASER_COORDS =
+    'ERASE_POINTS_WITHIN_ERASER_COORDS';
 
 // action creators
 export const addLineToLayerByID = (layerID, pointArray) => {
@@ -77,5 +79,12 @@ export const shrinkCanvas = ({ currentWidth, currentHeight, factor }) => {
     return {
         type: SHRINK_CANVAS,
         value: { currentWidth, currentHeight, factor }
+    };
+};
+
+export const erasePointsAtCoords = (layerID, eraseCoords, eraserRadius) => {
+    return {
+        type: ERASE_POINTS_WITHIN_ERASER_COORDS,
+        value: { layerID, eraseCoords, eraserRadius }
     };
 };
