@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import isPointInPolygon from 'point-in-polygon';
-import smoothPolyline from 'smooth-polyline';
+import { Line, Circle, Point, intersections } from '@mathigon/fermat';
 import id from './id';
 
 export const getPointArraysFromLine = (line) => {
@@ -67,17 +67,17 @@ export const removePointsOutsidePolygons = ({ allLines, polygons }) => {
     allLines.forEach((line) => {
         let currentLine = [];
         line.forEach((currentPoints) => {
-            let intersections = 0;
+            let intersectionCount = 0;
 
             polygons.forEach((polygon) => {
                 const isInside = isPointInPolygon(currentPoints, polygon);
 
                 if (isInside) {
-                    intersections += 1;
+                    intersectionCount += 1;
                 }
             });
 
-            if (intersections % 2) {
+            if (intersectionCount % 2) {
                 currentLine.push(currentPoints);
             } else {
                 if (currentLine.length >= 2) {
@@ -146,6 +146,45 @@ export const addIntermediatePointsToLine = (line, passes = 1) => {
     return copiedLine;
 };
 
+export const closestPointOnCircleFromCoords = (
+    pointX,
+    pointY,
+    circleX,
+    circleY,
+    circleRadius
+) => {
+    const findDistance = (x1, y1, x2, y2) => {
+        const a = x1 - x2;
+        const b = y1 - y2;
+        return Math.sqrt(a * a + b * b);
+    };
+
+    const startPoint = new Point(pointX, pointY);
+    const circleCenterPoint = new Point(circleX, circleY);
+    const line = new Line(startPoint, circleCenterPoint);
+    const circle = new Circle(circleCenterPoint, circleRadius);
+    const result = intersections(circle, line);
+
+    if (result.length === 0) {
+        return result;
+    }
+
+    const withDistance = result.map((intersection) => {
+        return {
+            ...intersection,
+            distance: findDistance(
+                pointX,
+                pointY,
+                intersection.x,
+                intersection.y
+            )
+        };
+    });
+
+    const [closest] = withDistance.sort((a, b) => a.distance - b.distance);
+    return [closest.x, closest.y];
+};
+
 export const splitLinesViaEraserCoords = ({
     lines,
     eraseCoords,
@@ -163,15 +202,20 @@ export const splitLinesViaEraserCoords = ({
 
     if (smoothOriginalLines) {
         _.times(smoothPasses, () => {
-            tempPointArrays = tempPointArrays.map(pointArray => addIntermediatePointsToLine(pointArray, smoothPasses))
+            tempPointArrays = tempPointArrays.map((pointArray) =>
+                addIntermediatePointsToLine(pointArray, smoothPasses)
+            );
         });
     }
 
     tempPointArrays.forEach((line) => {
         let currentTempLine = [];
+        // let closestPointToEdgeOfCircle = null;
         line.forEach(([currentX, currentY], index) => {
             let coordsAreWithinEraseRadius = false;
-            eraseCoords.forEach(([eraseX, eraseY]) => {
+            // check if the current point is within any erase circle
+            for (let i = 0; i < eraseCoords.length; i += 1) {
+                const [eraseX, eraseY] = eraseCoords[i];
                 const pointIsWithinThisCircle = isPointWithinCircle(
                     eraseX,
                     eraseY,
@@ -179,10 +223,20 @@ export const splitLinesViaEraserCoords = ({
                     currentX,
                     currentY
                 );
+
                 if (pointIsWithinThisCircle) {
                     coordsAreWithinEraseRadius = true;
+                    // closestPointToEdgeOfCircle = closestPointOnCircleFromCoords(
+                    //     currentX,
+                    //     currentY,
+                    //     eraseX,
+                    //     eraseY,
+                    //     eraserRadius
+                    // );
+                    // currentTempLine.push(closestPointToEdgeOfCircle);
+                    break;
                 }
-            });
+            }
 
             if (!coordsAreWithinEraseRadius) {
                 currentTempLine.push([currentX, currentY]);

@@ -2,7 +2,7 @@ import Frame from 'canvas-to-buffer';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 // to do move those utils to utils folder
 import {
-    prepareLines,
+    // prepareLines,
     drawLines
 } from '../components/common/DrawingUtils/DrawingUtils';
 import { allPointsBetweenTwoCoords } from './coordUtils';
@@ -54,11 +54,11 @@ describe('Split Lines', () => {
             eraseLineFour
         ].flat();
 
-        const testLines = makeVerticalLinesPointArrays(600, 800, eraserRadius);
+        const testLines = makeVerticalLinesPointArrays(600, 800, 20);
         drawLines(
             context,
             [eraseLine, eraseLineThree, eraseLineTwo, eraseLineFour],
-            15,
+            eraserRadius,
             'red'
         );
 

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import undoable, { includeAction } from 'redux-undo';
 import {
     deletePointsViaSelection,
-    deletePointsViaEraserCoords,
+    splitLinesViaEraserCoords,
     createLineFromPointArray
 } from '../../utils/lineUtils';
 import idGenerator from '../../utils/id';
@@ -50,10 +50,12 @@ const eraseHelper = (state, { layerID, eraseCoords, eraserRadius }) => {
     const layerLines = state[layerID] || [];
 
     const justPoints = layerLines.map((x) => x.pointArrayContainer);
-    const pointArrays = deletePointsViaEraserCoords({
+    const pointArrays = splitLinesViaEraserCoords({
         lines: justPoints,
         eraseCoords,
-        eraserRadius
+        eraserRadius,
+        smoothOriginalLines: true,
+        smoothPasses: 1
     });
 
     return pointArrays.map((pointArray) =>
