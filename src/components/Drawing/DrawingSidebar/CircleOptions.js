@@ -3,13 +3,13 @@ import { setOptionByKey } from 'store/drawing/drawingActions';
 import { SidebarItem } from 'components/common/SidebarContainer';
 import PercentClicker from 'components/common/PercentClicker';
 
-const CircleOptions = props => {
+const CircleOptions = (props) => {
     const { pointsOnCircle, dispatch } = props;
 
     return (
         <SidebarItem title="circle options" height={2}>
             <PercentClicker
-                setValue={value => {
+                setValue={(value) => {
                     dispatch(
                         setOptionByKey({
                             key: 'pointsOnCircle',

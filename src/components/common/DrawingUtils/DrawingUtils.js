@@ -6,10 +6,10 @@ export const prepareLines = (lines = []) => {
         return null;
     }
 
-    const pointArrayContainers = lines.map(line => line.pointArrayContainer);
+    const pointArrayContainers = lines.map((line) => line.pointArrayContainer);
 
     const pointArraysWithoutZeroLength = pointArrayContainers.filter(
-        container => container.length > 0
+        (container) => container.length > 0
     );
 
     return pointArraysWithoutZeroLength;
@@ -21,7 +21,7 @@ export const drawLines = (
     strokeWidth = 3,
     color = 'black'
 ) => {
-    pointArrays.forEach(pointArray => {
+    pointArrays.forEach((pointArray) => {
         context.strokeStyle = color;
         context.beginPath();
         context.lineWidth = strokeWidth;
@@ -36,7 +36,7 @@ export const drawLines = (
                 context.lineTo(currentX, currentY);
             }
         }
-        
+
         context.stroke();
     });
 };
@@ -55,4 +55,3 @@ export const drawPointCircles = (
         context.stroke();
     });
 };
-

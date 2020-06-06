@@ -42,7 +42,8 @@ const initState = {
         showPreviewLines: false,
         randomLineDensity: 5
     },
-    pointsOnCircle: 50
+    pointsOnCircle: 50,
+    templateIntensity: 50
 };
 
 const drawingReducer = (state = initState, action) => {

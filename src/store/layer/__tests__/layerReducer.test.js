@@ -342,7 +342,7 @@ describe('layer reducer', () => {
         it('should move a filter up if it can move', () => {
             const action = actions.moveFilterUp('layer1', 'def');
             const result = layerReducer(initState, action);
-            expect(result.layers[0].filters.map(f => f.id)).toEqual([
+            expect(result.layers[0].filters.map((f) => f.id)).toEqual([
                 'abc',
                 'hji',
                 'def'
@@ -375,7 +375,7 @@ describe('layer reducer', () => {
         it('should move a filter down if it can move', () => {
             const action = actions.moveFilterDown('layer1', 'def');
             const result = layerReducer(initState, action);
-            expect(result.layers[0].filters.map(f => f.id)).toEqual([
+            expect(result.layers[0].filters.map((f) => f.id)).toEqual([
                 'def',
                 'abc',
                 'hji'

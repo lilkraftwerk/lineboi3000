@@ -3,18 +3,14 @@ import { toMatchImageSnapshot } from 'jest-image-snapshot';
 import { prepareLines, drawLines } from '../DrawingUtils';
 import 'jest-canvas-mock';
 
-import {
-    testLines,
-} from '../../../../testing/LineFixtures';
+import { testLines } from '../../../../testing/LineFixtures';
 
 expect.extend({ toMatchImageSnapshot });
 
 const { createCanvas } = require('canvas');
 
 describe('prepareLines', () => {
-    it('should format', () => {
-
-    });
+    it('should format', () => {});
 });
 
 describe('drawLines', () => {

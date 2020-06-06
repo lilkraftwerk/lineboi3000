@@ -9,8 +9,18 @@ describe.skip('select drawing mode', () => {
     describe('flatAndUniqueSortedCoords', () => {
         it('does the right thing', () => {
             const coords = [10, 10];
-            const tempLines = [[9, 9], [10, 10], [11, 11], [7, 7]];
-            const pointsAroundCoord = [[5, 5], [4, 4], [10, 10], [7, 7]];
+            const tempLines = [
+                [9, 9],
+                [10, 10],
+                [11, 11],
+                [7, 7]
+            ];
+            const pointsAroundCoord = [
+                [5, 5],
+                [4, 4],
+                [10, 10],
+                [7, 7]
+            ];
             const result = flatUniqueAndSortedCoords(
                 coords,
                 tempLines,

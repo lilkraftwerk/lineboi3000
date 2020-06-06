@@ -19,20 +19,20 @@ export const getPointsAroundCoord = ([centerX, centerY], options) => {
 
 const onEnd = (coords, selectCoords) => {
     const newSelectCoords = _.clone(selectCoords);
-    const pointsAroundCoord = getPointsAroundCoord(coords, { radius: 8 }).map(
-        theseCoords => JSON.stringify(theseCoords)
-    );
-    const selectedStrings = newSelectCoords.map(selectedCoords =>
+    const pointsAroundCoord = getPointsAroundCoord(coords, {
+        radius: 8
+    }).map((theseCoords) => JSON.stringify(theseCoords));
+    const selectedStrings = newSelectCoords.map((selectedCoords) =>
         JSON.stringify(selectedCoords)
     );
     const filtered = selectedStrings.filter(
-        theseCoords => !pointsAroundCoord.includes(theseCoords)
+        (theseCoords) => !pointsAroundCoord.includes(theseCoords)
     );
     if (filtered.length === newSelectCoords.length) {
         newSelectCoords.push(coords);
         return newSelectCoords;
     }
-    return filtered.map(x => JSON.parse(x));
+    return filtered.map((x) => JSON.parse(x));
 };
 
 export default {

@@ -56,12 +56,12 @@ export class DrawingContent extends React.Component {
         }
     }
 
-    setTempLines = tempLines => {
+    setTempLines = (tempLines) => {
         this.tempLines = tempLines;
         this.drawOnTempLinesDiv();
     };
 
-    setStartCoords = startCoords => {
+    setStartCoords = (startCoords) => {
         this.startCoords = startCoords;
     };
 
@@ -77,7 +77,7 @@ export class DrawingContent extends React.Component {
         dispatch(setFillLines({ fillLines }));
     };
 
-    getCoordsFromMouseEvent = event => {
+    getCoordsFromMouseEvent = (event) => {
         const rect = event.target.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
@@ -90,7 +90,7 @@ export class DrawingContent extends React.Component {
         return activeMode;
     };
 
-    handleStartSwitch = event => {
+    handleStartSwitch = (event) => {
         const { drawingMode } = this.props;
         switch (drawingMode) {
             case 'select':
@@ -101,7 +101,7 @@ export class DrawingContent extends React.Component {
         }
     };
 
-    handleDrawStart = event => {
+    handleDrawStart = (event) => {
         const startCoords = this.getCoordsFromMouseEvent(event);
         const { onStart } = this.getActiveModeHandlers();
         const tempLines = onStart(startCoords, null, {
@@ -111,7 +111,7 @@ export class DrawingContent extends React.Component {
         this.setStartCoords(startCoords);
     };
 
-    handleMoveSwitch = event => {
+    handleMoveSwitch = (event) => {
         const { drawingMode } = this.props;
         switch (drawingMode) {
             case 'select':
@@ -122,7 +122,7 @@ export class DrawingContent extends React.Component {
         }
     };
 
-    handleDrawMove = event => {
+    handleDrawMove = (event) => {
         const { tempLines, startCoords } = this;
 
         if (!tempLines) {
@@ -138,7 +138,7 @@ export class DrawingContent extends React.Component {
         this.setTempLines(newTempLines);
     };
 
-    handleEndSwitch = event => {
+    handleEndSwitch = (event) => {
         const { drawingMode } = this.props;
         switch (drawingMode) {
             case 'select':
@@ -160,7 +160,7 @@ export class DrawingContent extends React.Component {
         };
     };
 
-    handleDrawEnd = event => {
+    handleDrawEnd = (event) => {
         const { dispatch } = this.props;
         const { tempLines } = this;
 
@@ -176,7 +176,7 @@ export class DrawingContent extends React.Component {
         this.setStartCoords(null);
     };
 
-    handleSelectEnd = event => {
+    handleSelectEnd = (event) => {
         const { selectCoords, dispatch } = this.props;
 
         if (!selectCoords) {
@@ -193,7 +193,7 @@ export class DrawingContent extends React.Component {
         );
     };
 
-    handleSelectPolyEnd = event => {
+    handleSelectPolyEnd = (event) => {
         const { selectCoords, dispatch } = this.props;
 
         if (!selectCoords) {
@@ -223,7 +223,7 @@ export class DrawingContent extends React.Component {
         offScreenContext.clearRect(0, 0, width, height);
 
         if (tempLines && tempLines.length) {
-            tempLines.forEach(pointArrays => {
+            tempLines.forEach((pointArrays) => {
                 if (pointArrays.length <= 0) {
                     return;
                 }
@@ -280,7 +280,11 @@ export class DrawingContent extends React.Component {
         } = this.props;
 
         return (
-            <div style={{ height, width }} className={styles.container}>
+            <div
+                id="drawingContent"
+                style={{ height, width }}
+                className={styles.container}
+            >
                 <div
                     style={{ height, width }}
                     ref={this.drawDivRef}
@@ -306,7 +310,7 @@ export class DrawingContent extends React.Component {
                 {Object.entries(visibleOriginalLines).map(
                     ([layerID, layerLines]) => {
                         const { color } = visibleLayers.find(
-                            layer => layer.id === layerID
+                            (layer) => layer.id === layerID
                         );
                         return (
                             <CanvasLayer
@@ -327,7 +331,7 @@ export class DrawingContent extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     const { color } = getCurrentLayer(state);
     const visibleOriginalLines = getVisibleOriginalLines(state);
     const visibleLayers = getVisibleLayers(state);

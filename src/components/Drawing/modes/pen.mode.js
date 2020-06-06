@@ -3,7 +3,7 @@ import { addMultipleLinesToLayerByID } from '../../../store/line/lineActions';
 import { setSelectCoords } from '../../../store/drawing/drawingActions';
 import { getFirstLineFromTempLines } from '../../../utils/drawingUtils';
 
-const onStart = coords => {
+const onStart = (coords) => {
     return [[coords]];
 };
 
