@@ -66,6 +66,13 @@ const appMenu = (window) => {
         {
             label: 'View',
             submenu: [
+                {
+                    label: 'Reload Background Windows',
+                    accelerator: 'CmdOrCtrl+B',
+                    click: () => {
+                        window.webContents.send('app:reloadBackground');
+                    }
+                },
                 { role: 'reload' },
                 { role: 'forcereload' },
                 { role: 'toggledevtools' },

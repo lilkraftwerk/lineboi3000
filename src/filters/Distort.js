@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { ipcRenderer } from 'electron';
 import React, { Fragment } from 'react';
 import PercentClicker from '../components/common/PercentClicker';
 
@@ -6,7 +7,12 @@ const filterName = 'distort';
 const displayName = 'dist0rt';
 
 const DistortComponent = ({ filterSettings, updateOptions }) => {
-    const { percentToAffect, distortionAmount } = filterSettings;
+    const {
+        percentToAffect,
+        distortionAmount,
+        horizontal,
+        vertical
+    } = filterSettings;
 
     return (
         <Fragment>
@@ -34,25 +40,58 @@ const DistortComponent = ({ filterSettings, updateOptions }) => {
                 maxValue={100}
                 currentValue={distortionAmount}
             />
+            <label>
+                horizontal
+                <input
+                    type="checkbox"
+                    defaultChecked={horizontal}
+                    onChange={() => {
+                        updateOptions({ horizontal: !horizontal });
+                    }}
+                />
+            </label>
+            <label>
+                vertical
+                <input
+                    type="checkbox"
+                    defaultChecked={vertical}
+                    onChange={() => {
+                        updateOptions({ vertical: !vertical });
+                    }}
+                />
+            </label>
         </Fragment>
     );
 };
 
 export const DistortFilter = ({ filterSettings, pointArrays }) => {
+    ipcRenderer.send('main:log', 'swag me da fuck out');
     if (!filterSettings || !filterSettings.enabled) return pointArrays;
 
-    const { percentToAffect, distortionAmount } = filterSettings;
+    const {
+        percentToAffect,
+        distortionAmount,
+        horizontal,
+        vertical
+    } = filterSettings;
 
     const yValueMap = {};
+    const xValueMap = {};
 
-    // height goes here
-    // doesn't work for fractions, should loop probably
-    // or floor values
     pointArrays.forEach((pointArray) =>
-        pointArray.forEach(([_x, y]) => {
+        pointArray.forEach(([x, y]) => {
             const flooredY = Math.floor(y);
+            const flooredX = Math.floor(x);
+
             if (yValueMap[flooredY.toString()] == null) {
                 yValueMap[flooredY.toString()] = _.random(
+                    -distortionAmount,
+                    distortionAmount
+                );
+            }
+
+            if (xValueMap[flooredX.toString()] == null) {
+                xValueMap[flooredX.toString()] = _.random(
                     -distortionAmount,
                     distortionAmount
                 );
@@ -63,12 +102,22 @@ export const DistortFilter = ({ filterSettings, pointArrays }) => {
     const distortLine = (pointArray) => {
         return pointArray.map(([x, y]) => {
             let newX = x;
+            let newY = y;
 
-            if (_.random(0, 100) < percentToAffect) {
+            if (horizontal && _.random(0, 100) < percentToAffect) {
                 const flooredY = Math.floor(y);
                 newX = x + yValueMap[flooredY.toString()];
             }
-            return [newX, y];
+
+            if (vertical && _.random(0, 100) < percentToAffect) {
+                const flooredX = Math.floor(x);
+                newY = y + xValueMap[flooredX.toString()];
+            }
+
+            console.log(xValueMap);
+            console.log(yValueMap);
+
+            return [newX, newY];
         });
     };
 
@@ -79,7 +128,9 @@ const initSettings = () => ({
     filterName,
     enabled: true,
     percentToAffect: 90,
-    distortionAmount: 5
+    distortionAmount: 5,
+    horizontal: true,
+    vertical: false
 });
 
 export default {

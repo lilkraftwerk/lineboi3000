@@ -9,6 +9,7 @@
 .headerLeft {
     align-items: center;
     display: grid;
+    font-family: linebeam;
     font-size: 2em;
     grid-column: 1;
     justify-content: center;

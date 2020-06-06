@@ -15,10 +15,12 @@ const testEnv = process.env.NODE_ENV === 'test';
 
 let win;
 // stack of available background threads
-const available = [];
+let available = [];
 
 // queue of tasks to be done
 const tasks = [];
+
+const backgroundWindows = [];
 
 require('./src/mainProcess/presetManager');
 require('./src/mainProcess/drawingManager');
@@ -100,7 +102,7 @@ function createBgWindow() {
 app.on('ready', () => {
     createWindow();
     for (let i = 0; i < cpus; i += 1) {
-        createBgWindow();
+        backgroundWindows.push(createBgWindow());
     }
 });
 
@@ -109,6 +111,18 @@ app.on('window-all-closed', () => {
         app.quit();
     }
 });
+
+const reloadBackgroundWindows = () => {
+    console.log('reloading background windows...');
+    backgroundWindows.forEach((window) => {
+        console.log('closing window...');
+        window.close();
+    });
+    available = [];
+    for (let i = 0; i < cpus; i += 1) {
+        backgroundWindows.push(createBgWindow());
+    }
+};
 
 app.on('activate', () => {
     if (win === null) {
@@ -136,6 +150,11 @@ ipcMain.on('bg:ready', (event) => {
 
 ipcMain.on('main:log', (_, message) => {
     console.log(`log in main: ${message}`);
+});
+
+ipcMain.on('main:reloadBackground', () => {
+    console.log('reloading background');
+    reloadBackgroundWindows();
 });
 
 // receive full redux store to save

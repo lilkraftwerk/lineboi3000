@@ -3,6 +3,11 @@
     src: url('./assets/fonts/VCR_OSD_MONO.ttf');
 }
 
+@font-face {
+    font-family: 'linebeam';
+    src: url('./assets/fonts/linebeam.ttf');
+}
+
 
 /* global styles go here */
 
