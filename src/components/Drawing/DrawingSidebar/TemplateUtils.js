@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { addMultipleLinesToLayerByID } from 'store/line/lineActions';
 import { allPointsBetweenTwoCoords } from '../../../utils/coordUtils';
 
@@ -21,8 +22,7 @@ const makeRectangleAtDistance = (height, width, distance, intensity) => {
         }),
         ...allPointsBetweenTwoCoords(bottomLeft, topLeft, {
             maxPointCount: pointsOnEachLine
-        }),
-        [topLeft]
+        })
     ];
 };
 
@@ -50,22 +50,78 @@ const makeRectangleAtCoords = (topLeftX, topLeftY, width, height) => {
     ];
 };
 
-const frame = (globalHeight, globalWidth, intensity = 50) => {
+const frame = (options) => {
+    const { globalHeight, globalWidth, templateIntensity } = options;
     const FRAME_DISTANCE = 10;
     const rectangle = makeRectangleAtDistance(
         globalHeight,
         globalWidth,
         FRAME_DISTANCE,
-        intensity
+        templateIntensity
     );
     return [rectangle];
 };
 
-// const rain = ()
+const rain = (options) => {
+    const {
+        globalHeight,
+        globalWidth,
+        rainTemplateLineCount,
+        rainTemplatePointDistance,
+        rainTemplateMinPercent,
+        rainTemplateMaxPercent,
+        rainTemplateStartFromTop
+    } = options;
+    const lineCount = Math.floor(globalWidth * rainTemplateLineCount * 0.01);
+    const rainLines = [];
 
-const squares = (globalHeight, globalWidth, intensity = 50) => {
+    const xValues = _.shuffle(Array.from(Array(globalWidth).keys()));
+    const slicedXValues = _.slice(xValues, 0, lineCount);
+
+    slicedXValues.forEach((xValue) => {
+        if (rainTemplateStartFromTop) {
+            const line = [[xValue, 0]];
+            const heightOfLine = _.random(
+                Math.floor(rainTemplateMinPercent * 0.01 * globalHeight),
+                Math.floor(rainTemplateMaxPercent * 0.01 * globalHeight)
+            );
+            for (
+                let i = rainTemplatePointDistance;
+                i < heightOfLine;
+                i += rainTemplatePointDistance
+            ) {
+                line.push([xValue, i]);
+            }
+            rainLines.push(line);
+            return;
+        }
+
+        const line = [[xValue, globalHeight]];
+        const heightOfLine = _.random(
+            Math.floor(rainTemplateMinPercent * 0.01 * globalHeight),
+            Math.floor(rainTemplateMaxPercent * 0.01 * globalHeight)
+        );
+        const adjustedHeight = Math.abs(heightOfLine - globalHeight);
+        for (
+            let i = globalHeight - rainTemplatePointDistance;
+            i > adjustedHeight;
+            i -= rainTemplatePointDistance
+        ) {
+            line.push([xValue, i]);
+        }
+        rainLines.push(line);
+
+        // if FROM BOTTOM
+    });
+
+    return rainLines;
+};
+
+const squares = (options) => {
+    const { globalHeight, globalWidth, templateIntensity } = options;
+
     const OFFSET = 20;
-    const NUM_SQUARES = intensity;
+    const NUM_SQUARES = templateIntensity;
     const result = [];
     let currentWidth = globalWidth - OFFSET * 2;
     let currentHeight = globalHeight - OFFSET * 2;
@@ -102,22 +158,13 @@ const squares = (globalHeight, globalWidth, intensity = 50) => {
 
 const templates = {
     frame,
-    squares
+    squares,
+    rain
 };
 
-export const applyTemplate = ({
-    currentLayerID,
-    templateIntensity,
-    globalHeight,
-    globalWidth,
-    templateName,
-    dispatch
-}) => {
+export const applyTemplate = ({ templateName, options, dispatch }) => {
+    const { currentLayerID } = options;
     const selectedTemplate = templates[templateName];
-    const lines = selectedTemplate(
-        globalHeight,
-        globalWidth,
-        templateIntensity
-    );
+    const lines = selectedTemplate(options);
     dispatch(addMultipleLinesToLayerByID(currentLayerID, lines));
 };

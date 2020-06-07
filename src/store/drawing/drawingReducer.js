@@ -44,7 +44,13 @@ const initState = {
     },
     eraserRadius: 20,
     pointsOnCircle: 50,
-    templateIntensity: 50
+    templateIntensity: 50,
+    selectedTemplate: 'frame',
+    rainTemplateMinPercent: 25,
+    rainTemplateMaxPercent: 75,
+    rainTemplatePointDistance: 5,
+    rainTemplateLineCount: 50,
+    rainTemplateStartFromTop: true
 };
 
 const drawingReducer = (state = initState, action) => {

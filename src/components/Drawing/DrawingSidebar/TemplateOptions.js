@@ -4,19 +4,36 @@ import { SidebarItem } from 'components/common/SidebarContainer';
 import PercentClicker from 'components/common/PercentClicker';
 import { connect } from 'react-redux';
 
-const TEMPLATE_TYPES = ['frame', 'squares', 'circles', 'randomLines'];
+const TEMPLATE_TYPES = ['frame', 'squares', 'rain'];
 
 const TemplateOptionsComponent = (props) => {
-    const { templateIntensity, addTemplateToCurrentLayer, dispatch } = props;
+    const {
+        templateIntensity,
+        addTemplateToCurrentLayer,
+        selectedTemplate,
+        rainTemplateMaxPercent,
+        rainTemplateMinPercent,
+        rainTemplateLineCount,
+        rainTemplatePointDistance,
+        rainTemplateStartFromTop,
+        dispatch
+    } = props;
 
     return (
         <SidebarItem title="templates" height={2}>
             {TEMPLATE_TYPES.map((templateType) => (
                 <button
                     style={{ gridColumn: 'span 2' }}
+                    key={templateType}
                     type="button"
+                    disabled={selectedTemplate === templateType}
                     onClick={() => {
-                        addTemplateToCurrentLayer(templateType);
+                        dispatch(
+                            setOptionByKey({
+                                key: 'selectedTemplate',
+                                value: templateType
+                            })
+                        );
                     }}
                 >
                     {templateType}
@@ -39,6 +56,102 @@ const TemplateOptionsComponent = (props) => {
                 maxValue={50}
                 currentValue={templateIntensity}
             />
+            {selectedTemplate === 'rain' && (
+                <>
+                    <PercentClicker
+                        setValue={(value) => {
+                            dispatch(
+                                setOptionByKey({
+                                    key: 'rainTemplateLineCount',
+                                    value
+                                })
+                            );
+                        }}
+                        float={false}
+                        title="rain count"
+                        minLabel="1"
+                        maxLabel="100"
+                        minValue={1}
+                        maxValue={100}
+                        currentValue={rainTemplateLineCount}
+                    />
+                    <PercentClicker
+                        setValue={(value) => {
+                            dispatch(
+                                setOptionByKey({
+                                    key: 'rainTemplateMinPercent',
+                                    value
+                                })
+                            );
+                        }}
+                        float={false}
+                        title="min height %"
+                        minLabel="1"
+                        maxLabel="100"
+                        minValue={1}
+                        maxValue={100}
+                        currentValue={rainTemplateMinPercent}
+                    />
+                    <PercentClicker
+                        setValue={(value) => {
+                            dispatch(
+                                setOptionByKey({
+                                    key: 'rainTemplateMaxPercent',
+                                    value
+                                })
+                            );
+                        }}
+                        float={false}
+                        title="max height %"
+                        minLabel="1"
+                        maxLabel="100"
+                        minValue={1}
+                        maxValue={100}
+                        currentValue={rainTemplateMaxPercent}
+                    />
+                    <PercentClicker
+                        setValue={(value) => {
+                            dispatch(
+                                setOptionByKey({
+                                    key: 'rainTemplatePointDistance',
+                                    value
+                                })
+                            );
+                        }}
+                        float={false}
+                        title="distance between points"
+                        minLabel="1"
+                        maxLabel="100"
+                        minValue={1}
+                        maxValue={50}
+                        currentValue={rainTemplatePointDistance}
+                    />
+                    <label>
+                        start at top
+                        <input
+                            type="checkbox"
+                            defaultChecked={rainTemplateStartFromTop}
+                            onChange={() => {
+                                dispatch(
+                                    setOptionByKey({
+                                        key: 'rainTemplateStartFromTop',
+                                        value: !rainTemplateStartFromTop
+                                    })
+                                );
+                            }}
+                        />
+                    </label>
+                </>
+            )}
+            <button
+                style={{ gridColumn: 'span 4' }}
+                type="button"
+                onClick={() => {
+                    addTemplateToCurrentLayer(selectedTemplate);
+                }}
+            >
+                apply
+            </button>
         </SidebarItem>
     );
 };

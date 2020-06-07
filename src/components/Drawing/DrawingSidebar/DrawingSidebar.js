@@ -80,7 +80,8 @@ class DrawingSidebar extends React.Component {
     };
 
     addTemplateToCurrentLayer = (templateName) => {
-        applyTemplate({ templateName, ...this.props });
+        const { dispatch } = this.props;
+        applyTemplate({ templateName, options: this.props, dispatch });
     };
 
     clearSelection = () => {
