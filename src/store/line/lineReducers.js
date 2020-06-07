@@ -16,7 +16,8 @@ import {
     MULTIPLY_CANVAS,
     SHRINK_CANVAS,
     DELETE_FILL_LINES_FROM_LAYER_BY_ID,
-    ERASE_POINTS_WITHIN_ERASER_COORDS
+    ERASE_POINTS_WITHIN_ERASER_COORDS,
+    CLEAR_LAYER
 } from './lineActions';
 
 import { DUPLICATE_LAYER } from '../layer/layerActions';
@@ -155,6 +156,9 @@ export const originalLinesReducer = (state = {}, action) => {
                     action.value
                 )
             };
+        case CLEAR_LAYER:
+            // debugger;
+            return _.omit(state, [action.value.layerID]);
         case DELETE_FILL_LINES_FROM_LAYER_BY_ID:
             return {
                 ...state,
@@ -205,6 +209,7 @@ export const efxLinesReducer = (state = {}, action) => {
                 ...state,
                 [action.value.layerID]: action.value.efxLines
             };
+        // this code seems to be totally pointless
         case DELETE_ALL_EFX_LINES_FOR_LAYER:
             return {
                 ...state,
@@ -218,6 +223,9 @@ export const efxLinesReducer = (state = {}, action) => {
                         state[action.value.originalLayerID]
                 }
             };
+            case CLEAR_LAYER:
+                // debugger;
+                return _.omit(state, [action.value.layerID]);
         default:
             return state;
     }

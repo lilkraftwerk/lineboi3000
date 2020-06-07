@@ -4,15 +4,13 @@ export const ADD_LINE_TO_LAYER_BY_ID = 'ADD_LINE_TO_LAYER_BY_ID';
 export const ADD_MULTIPLE_LINES_TO_LAYER_BY_ID =
     'ADD_MULTIPLE_LINES_TO_LAYER_BY_ID';
 export const SET_LAYER_EFX_LINES = 'SET_LAYER_EFX_LINES';
-export const DELETE_ALL_EFX_LINES_FOR_LAYER = 'DELETE_ALL_EFX_LINES_FOR_LAYER';
-export const DELETE_ALL_ORIGINAL_LINES_FOR_LAYER =
-    'DELETE_ALL_ORIGINAL_LINES_FOR_LAYER';
 export const MULTIPLY_CANVAS = 'MULTIPLY_CANVAS';
 export const SHRINK_CANVAS = 'SHRINK_CANVAS';
 export const DELETE_FILL_LINES_FROM_LAYER_BY_ID =
     'DELETE_FILL_LINES_FROM_LAYER_BY_ID';
 export const ERASE_POINTS_WITHIN_ERASER_COORDS =
     'ERASE_POINTS_WITHIN_ERASER_COORDS';
+export const CLEAR_LAYER = 'CLEAR_LAYER';
 
 // action creators
 export const addLineToLayerByID = (layerID, pointArray) => {
@@ -49,20 +47,6 @@ export const setLayerEfxLines = (layerID, efxLines) => {
     };
 };
 
-export const deleteLayerEfxLines = (layerID) => {
-    return {
-        type: DELETE_ALL_EFX_LINES_FOR_LAYER,
-        value: layerID
-    };
-};
-
-export const deleteLayerOriginalLines = (layerID) => {
-    return {
-        type: DELETE_ALL_ORIGINAL_LINES_FOR_LAYER,
-        value: layerID
-    };
-};
-
 export const multiplyCanvas = ({
     currentWidth,
     currentHeight,
@@ -86,5 +70,12 @@ export const erasePointsAtCoords = (layerID, eraseCoords, eraserRadius) => {
     return {
         type: ERASE_POINTS_WITHIN_ERASER_COORDS,
         value: { layerID, eraseCoords, eraserRadius }
+    };
+};
+
+export const clearLayer = (layerID) => {
+    return {
+        type: CLEAR_LAYER,
+        value: { layerID }
     };
 };

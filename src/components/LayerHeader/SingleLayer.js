@@ -14,6 +14,7 @@ const SingleLayer = ({
     onMoveLayerUp,
     onDeleteLayer,
     onDuplicateLayer,
+    onClearLayer,
     canMoveUp,
     canMoveDown,
     canDelete
@@ -126,6 +127,14 @@ const SingleLayer = ({
                     selectedColor={layer.color}
                     onColorSelect={(newColor) => {
                         onUpdateLayerSetting(layer.id, 'color', newColor);
+                    }}
+                />
+                <Icon
+                    height={24}
+                    width={24}
+                    fileName="cleanpaper"
+                    onClick={() => {
+                        onClearLayer(layer.id);
                     }}
                 />
             </div>
