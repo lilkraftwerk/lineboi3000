@@ -11,12 +11,11 @@ import {
     ADD_LINE_TO_LAYER_BY_ID,
     ADD_MULTIPLE_LINES_TO_LAYER_BY_ID,
     SET_LAYER_EFX_LINES,
-    DELETE_ALL_EFX_LINES_FOR_LAYER,
-    DELETE_ALL_ORIGINAL_LINES_FOR_LAYER,
     MULTIPLY_CANVAS,
     SHRINK_CANVAS,
     DELETE_FILL_LINES_FROM_LAYER_BY_ID,
-    ERASE_POINTS_WITHIN_ERASER_COORDS
+    ERASE_POINTS_WITHIN_ERASER_COORDS,
+    CLEAR_LAYER
 } from './lineActions';
 
 import { DUPLICATE_LAYER } from '../layer/layerActions';
@@ -65,8 +64,6 @@ const multiplyCanvasHelper = (
     state,
     { currentWidth, currentHeight, timesX, timesY }
 ) => {
-    // loop through entire layer
-
     const layers = Object.entries(_.clone(state));
     const multiplyLayer = ([layerID, lines]) => {
         const originalPointArrayContainers = [
@@ -155,6 +152,8 @@ export const originalLinesReducer = (state = {}, action) => {
                     action.value
                 )
             };
+        case CLEAR_LAYER:
+            return _.omit(state, [action.value.layerID]);
         case DELETE_FILL_LINES_FROM_LAYER_BY_ID:
             return {
                 ...state,
@@ -167,11 +166,6 @@ export const originalLinesReducer = (state = {}, action) => {
             return {
                 ...state,
                 [action.value.layerID]: eraseHelper(state, action.value)
-            };
-        case DELETE_ALL_ORIGINAL_LINES_FOR_LAYER:
-            return {
-                ...state,
-                ..._.omit(state, action.value.layerID)
             };
         case DUPLICATE_LAYER:
             return {
@@ -205,11 +199,6 @@ export const efxLinesReducer = (state = {}, action) => {
                 ...state,
                 [action.value.layerID]: action.value.efxLines
             };
-        case DELETE_ALL_EFX_LINES_FOR_LAYER:
-            return {
-                ...state,
-                ..._.omit(state, action.value.layerID)
-            };
         case DUPLICATE_LAYER:
             return {
                 ...state,
@@ -218,6 +207,8 @@ export const efxLinesReducer = (state = {}, action) => {
                         state[action.value.originalLayerID]
                 }
             };
+        case CLEAR_LAYER:
+            return _.omit(state, [action.value.layerID]);
         default:
             return state;
     }

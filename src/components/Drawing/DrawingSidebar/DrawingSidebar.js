@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
@@ -80,7 +81,8 @@ class DrawingSidebar extends React.Component {
     };
 
     addTemplateToCurrentLayer = (templateName) => {
-        applyTemplate({ templateName, ...this.props });
+        const { dispatch } = this.props;
+        applyTemplate({ templateName, options: this.props, dispatch });
     };
 
     clearSelection = () => {
@@ -147,7 +149,7 @@ class DrawingSidebar extends React.Component {
                                         dispatch(selectDrawMode(modeKey));
                                     }}
                                 >
-                                    {modeKey}
+                                    {_.lowerCase(modeKey)}
                                 </button>
                             );
                         })}
@@ -179,7 +181,7 @@ class DrawingSidebar extends React.Component {
                                         dispatch(selectDrawMode(modeKey));
                                     }}
                                 >
-                                    {modeKey}
+                                    {_.lowerCase(modeKey)}
                                 </button>
                             );
                         })}

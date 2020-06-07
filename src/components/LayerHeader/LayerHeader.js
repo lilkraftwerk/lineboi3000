@@ -14,6 +14,8 @@ import {
     duplicateLayer
 } from 'store/layer/layerActions';
 
+import { clearLayer } from 'store/line/lineActions';
+
 import Icon from 'components/common/Icon';
 import SingleLayer from './SingleLayer';
 
@@ -50,6 +52,10 @@ export const LayerControls = ({ layers, currentLayerID, dispatch }) => {
         dispatch(duplicateLayer(id, newID));
     };
 
+    const onClearLayer = (id) => {
+        dispatch(clearLayer(id));
+    };
+
     const canDelete = layers.length > 1;
     const mappedLayers = layers.map((layer) => {
         const isSelected = layer.id === currentLayerID;
@@ -70,6 +76,7 @@ export const LayerControls = ({ layers, currentLayerID, dispatch }) => {
                 canMoveDown={canMoveDown}
                 canMoveUp={canMoveUp}
                 canDelete={canDelete}
+                onClearLayer={onClearLayer}
             />
         );
     });
