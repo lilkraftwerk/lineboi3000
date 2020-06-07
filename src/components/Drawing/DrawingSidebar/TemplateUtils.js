@@ -127,6 +127,81 @@ const rain = (options) => {
     return rainLines;
 };
 
+const circleFrame = (options) => {
+    const {
+        globalHeight,
+        globalWidth,
+        circleFrameTemplateRadius,
+        circleFrameTemplatePointsOnCircle
+    } = options;
+
+    const maxRadius = _.min([globalHeight / 2, globalWidth / 2]) - 10;
+
+    const centerX = globalWidth / 2;
+    const centerY = globalHeight / 2;
+
+    const r = circleFrameTemplateRadius * 0.01 * maxRadius;
+    const line = [];
+    for (let i = 0; i < circleFrameTemplatePointsOnCircle + 1; i += 1) {
+        const x =
+            centerX +
+            r * Math.cos((2 * Math.PI * i) / circleFrameTemplatePointsOnCircle);
+        const y =
+            centerY +
+            r * Math.sin((2 * Math.PI * i) / circleFrameTemplatePointsOnCircle);
+
+        line.push([x, y]);
+    }
+    return [line];
+};
+
+const manyCircles = (options) => {
+    const {
+        globalHeight,
+        globalWidth,
+        manyCirclesTemplateCount,
+        manyCirclesTemplatePoints
+    } = options;
+
+    const maxRadius = _.min([globalHeight / 2, globalWidth / 2]) - 10;
+    const radiusOffset = maxRadius / manyCirclesTemplateCount;
+    let currentRadius = maxRadius;
+
+    const centerX = globalWidth / 2;
+    const centerY = globalHeight / 2;
+
+    const circleLines = [];
+
+    const makeCircle = () => {
+        const r = currentRadius;
+        const pointsOnCircle = currentRadius * manyCirclesTemplatePoints;
+        const line = [];
+
+        const startOffset = _.random(0, pointsOnCircle);
+
+        for (
+            let i = startOffset;
+            i < startOffset + pointsOnCircle + 1;
+            i += 1
+        ) {
+            const x =
+                centerX + r * Math.cos((2 * Math.PI * i) / pointsOnCircle);
+            const y =
+                centerY + r * Math.sin((2 * Math.PI * i) / pointsOnCircle);
+
+            line.push([x, y]);
+        }
+        circleLines.push(line);
+        currentRadius -= radiusOffset;
+    };
+
+    for (let i = 0; i < manyCirclesTemplateCount; i += 1) {
+        makeCircle();
+    }
+
+    return circleLines;
+};
+
 const squares = (options) => {
     const { globalHeight, globalWidth, templateIntensity } = options;
 
@@ -168,8 +243,10 @@ const squares = (options) => {
 
 const templates = {
     frame,
+    circleFrame,
     squares,
-    rain
+    rain,
+    manyCircles
 };
 
 export const applyTemplate = ({ templateName, options, dispatch }) => {

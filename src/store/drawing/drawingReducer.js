@@ -51,7 +51,11 @@ const initState = {
     rainTemplatePointDistance: 5,
     rainTemplateLineCount: 50,
     rainTemplateStartFromTop: true,
-    rainTemplateMinDistanceBetweenLines: 1
+    rainTemplateMinDistanceBetweenLines: 1,
+    circleFrameTemplateRadius: 75,
+    circleFrameTemplatePointsOnCircle: 500,
+    manyCirclesTemplateCount: 15,
+    manyCirclesTemplatePoints: 5
 };
 
 const drawingReducer = (state = initState, action) => {

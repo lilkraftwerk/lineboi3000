@@ -1,10 +1,17 @@
+import _ from 'lodash';
 import React from 'react';
 import { setOptionByKey } from 'store/drawing/drawingActions';
 import { SidebarItem } from 'components/common/SidebarContainer';
 import PercentClicker from 'components/common/PercentClicker';
 import { connect } from 'react-redux';
 
-const TEMPLATE_TYPES = ['frame', 'squares', 'rain'];
+const TEMPLATE_TYPES = [
+    'frame',
+    'circleFrame',
+    'manyCircles',
+    'squares',
+    'rain'
+];
 
 const TemplateOptionsComponent = (props) => {
     const {
@@ -17,6 +24,10 @@ const TemplateOptionsComponent = (props) => {
         rainTemplatePointDistance,
         rainTemplateStartFromTop,
         rainTemplateMinDistanceBetweenLines,
+        circleFrameTemplateRadius,
+        circleFrameTemplatePointsOnCircle,
+        manyCirclesTemplateCount,
+        manyCirclesTemplatePoints,
         dispatch
     } = props;
 
@@ -37,7 +48,7 @@ const TemplateOptionsComponent = (props) => {
                         );
                     }}
                 >
-                    {templateType}
+                    {_.startCase(templateType)}
                 </button>
             ))}
             <PercentClicker
@@ -57,6 +68,83 @@ const TemplateOptionsComponent = (props) => {
                 maxValue={50}
                 currentValue={templateIntensity}
             />
+            {selectedTemplate === 'circleFrame' && (
+                <>
+                    <PercentClicker
+                        setValue={(value) => {
+                            dispatch(
+                                setOptionByKey({
+                                    key: 'circleFrameTemplateRadius',
+                                    value
+                                })
+                            );
+                        }}
+                        float={false}
+                        title="radius percent"
+                        minLabel="1"
+                        maxLabel="100"
+                        minValue={1}
+                        maxValue={100}
+                        currentValue={circleFrameTemplateRadius}
+                    />
+                    <PercentClicker
+                        setValue={(value) => {
+                            dispatch(
+                                setOptionByKey({
+                                    key: 'circleFrameTemplatePointsOnCircle',
+                                    value
+                                })
+                            );
+                        }}
+                        float={false}
+                        title="points on circle"
+                        minLabel="1"
+                        maxLabel="5000"
+                        minValue={1}
+                        maxValue={5000}
+                        currentValue={circleFrameTemplatePointsOnCircle}
+                    />
+                </>
+            )}
+            {selectedTemplate === 'manyCircles' && (
+                <>
+                    <PercentClicker
+                        setValue={(value) => {
+                            dispatch(
+                                setOptionByKey({
+                                    key: 'manyCirclesTemplateCount',
+                                    value
+                                })
+                            );
+                        }}
+                        float={false}
+                        title="circle count"
+                        minLabel="1"
+                        maxLabel="100"
+                        minValue={1}
+                        maxValue={100}
+                        currentValue={manyCirclesTemplateCount}
+                    />
+                    <PercentClicker
+                        setValue={(value) => {
+                            dispatch(
+                                setOptionByKey({
+                                    key: 'manyCirclesTemplatePoints',
+                                    value
+                                })
+                            );
+                        }}
+                        float={false}
+                        title="points on circle"
+                        minLabel="a few"
+                        maxLabel="a lot"
+                        minValue={1}
+                        maxValue={10}
+                        currentValue={manyCirclesTemplatePoints}
+                    />
+                </>
+            )}
+
             {selectedTemplate === 'rain' && (
                 <>
                     <PercentClicker
@@ -110,7 +198,7 @@ const TemplateOptionsComponent = (props) => {
                         maxValue={100}
                         currentValue={rainTemplateMaxPercent}
                     />
-                     <PercentClicker
+                    <PercentClicker
                         setValue={(value) => {
                             dispatch(
                                 setOptionByKey({
