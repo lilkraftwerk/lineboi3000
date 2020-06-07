@@ -48,7 +48,7 @@ const TemplateOptionsComponent = (props) => {
                         );
                     }}
                 >
-                    {_.startCase(templateType)}
+                    {_.lowerCase(templateType)}
                 </button>
             ))}
             <PercentClicker
