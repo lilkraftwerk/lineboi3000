@@ -30,6 +30,7 @@ import Multiply from 'filters/Multiply';
 import Wiggle from 'filters/Wiggle';
 import Distort from 'filters/Distort';
 import SplitLines from 'filters/SplitLines';
+import SplitLinesRandom from 'filters/SplitLinesRandom';
 import Simplify from 'filters/Simplify';
 import Experimental from 'filters/Experimental';
 import Dots from 'filters/Dots';
@@ -49,6 +50,7 @@ const CONSTANT_FILTERS = [
     Move,
     Distort,
     SplitLines,
+    SplitLinesRandom,
     Exes,
     Multiply,
     Wiggle,

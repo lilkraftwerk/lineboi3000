@@ -96,7 +96,6 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new CopyPlugin([{ from: 'src/assets', to: 'assets' }])
     ],
-    watch: true,
     devServer: {
         watchContentBase: true
     }

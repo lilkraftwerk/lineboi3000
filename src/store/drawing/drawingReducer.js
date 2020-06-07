@@ -50,7 +50,8 @@ const initState = {
     rainTemplateMaxPercent: 75,
     rainTemplatePointDistance: 5,
     rainTemplateLineCount: 50,
-    rainTemplateStartFromTop: true
+    rainTemplateStartFromTop: true,
+    rainTemplateMinDistanceBetweenLines: 1
 };
 
 const drawingReducer = (state = initState, action) => {

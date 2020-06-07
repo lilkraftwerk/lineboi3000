@@ -70,15 +70,27 @@ const rain = (options) => {
         rainTemplatePointDistance,
         rainTemplateMinPercent,
         rainTemplateMaxPercent,
+        rainTemplateMinDistanceBetweenLines,
         rainTemplateStartFromTop
     } = options;
     const lineCount = Math.floor(globalWidth * rainTemplateLineCount * 0.01);
     const rainLines = [];
 
     const xValues = _.shuffle(Array.from(Array(globalWidth).keys()));
+    const doneXValues = [];
     const slicedXValues = _.slice(xValues, 0, lineCount);
 
     slicedXValues.forEach((xValue) => {
+        const tooClose = _.findIndex(doneXValues, (usedValue) => {
+            const distance = Math.abs(usedValue - xValue);
+            return distance < rainTemplateMinDistanceBetweenLines;
+        });
+
+        if (tooClose !== -1) {
+            return;
+        }
+        doneXValues.push(xValue);
+
         if (rainTemplateStartFromTop) {
             const line = [[xValue, 0]];
             const heightOfLine = _.random(
@@ -110,8 +122,6 @@ const rain = (options) => {
             line.push([xValue, i]);
         }
         rainLines.push(line);
-
-        // if FROM BOTTOM
     });
 
     return rainLines;

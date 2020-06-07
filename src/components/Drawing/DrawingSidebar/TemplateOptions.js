@@ -16,6 +16,7 @@ const TemplateOptionsComponent = (props) => {
         rainTemplateLineCount,
         rainTemplatePointDistance,
         rainTemplateStartFromTop,
+        rainTemplateMinDistanceBetweenLines,
         dispatch
     } = props;
 
@@ -108,6 +109,23 @@ const TemplateOptionsComponent = (props) => {
                         minValue={1}
                         maxValue={100}
                         currentValue={rainTemplateMaxPercent}
+                    />
+                     <PercentClicker
+                        setValue={(value) => {
+                            dispatch(
+                                setOptionByKey({
+                                    key: 'rainTemplateMinDistanceBetweenLines',
+                                    value
+                                })
+                            );
+                        }}
+                        float={false}
+                        title="min distance between"
+                        minLabel="1"
+                        maxLabel="50"
+                        minValue={1}
+                        maxValue={100}
+                        currentValue={rainTemplateMinDistanceBetweenLines}
                     />
                     <PercentClicker
                         setValue={(value) => {
