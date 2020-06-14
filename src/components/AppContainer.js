@@ -77,8 +77,8 @@ class AppContainer extends React.Component {
                             );
                         })}
                         <PointCounter />
-                        {showGrid && <GridControls />}
                     </div>
+                    {showGrid && <GridControls />}
                     {mode === 'efx' && <EfxSidebar />}
                     {mode === 'draw' && <DrawingSidebar />}
                     {mode === 'plot' && <PlotSidebar />}

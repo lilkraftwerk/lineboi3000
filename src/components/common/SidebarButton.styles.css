@@ -8,7 +8,9 @@
     text-transform: uppercase;
     -webkit-user-select: none;
     user-select: none;  /* Chrome all / Safari all */
-    width: 90%;
+    width: 100%;
+    height: 25px;
+    line-height: 10px;
 }
 
 .sidebarButton:active {

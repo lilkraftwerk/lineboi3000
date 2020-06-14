@@ -50,7 +50,7 @@ class PlotSidebar extends React.Component {
     setPlotterCheckInterval = () => {
         this.plotterCheckInterval = setInterval(() => {
             this.checkPlotterConnection();
-        }, 500);
+        }, 1000);
     };
 
     checkPlotterConnection = async () => {

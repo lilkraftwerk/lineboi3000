@@ -25,3 +25,9 @@ export const getFirstLineFromTempLines = (tempLines) => {
 
     return _.clone(tempLines[0]);
 };
+
+export const getFirstAndLastCoordsFromTempCoords = (coords) => {
+    const first = coords[0];
+    const last = coords[coords.length - 1];
+    return [first, last];
+};

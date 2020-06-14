@@ -1,16 +1,14 @@
 import _ from 'lodash';
-import hull from 'hull.js';
-import { addMultipleLinesToLayerByID } from '../../../store/line/lineActions';
-import { setSelectCoords } from '../../../store/drawing/drawingActions';
 import { allPointsBetweenTwoCoords } from '../../../utils/coordUtils';
-import { getStartCoordsFromFirstTempLines } from '../../../utils/drawingUtils';
+import { getFirstAndLastCoordsFromTempCoords } from '../../../utils/drawingUtils';
 
-const onStart = (coords) => {
-    return [[coords]];
-};
-
-const onMove = ([endX, endY], tempLines) => {
-    const [startX, startY] = getStartCoordsFromFirstTempLines(tempLines);
+const formatTempCoords = (coords) => {
+    console.log('coords in square', coords);
+    const [startCoords, endCoords] = getFirstAndLastCoordsFromTempCoords(
+        coords
+    );
+    const [startX, startY] = startCoords;
+    const [endX, endY] = endCoords;
     const fourCorners = _.clone([
         [startX, startY],
         [startX, endY],
@@ -19,12 +17,16 @@ const onMove = ([endX, endY], tempLines) => {
         [startX, startY]
     ]);
 
-    return [fourCorners];
+    return fourCorners;
 };
 
-const onEndProcessor = ([endX, endY], tempLines, options) => {
+const formatFinalCoords = (coords, options) => {
     const { pointsOnEachLine } = options;
-    const [startX, startY] = getStartCoordsFromFirstTempLines(tempLines);
+    const [startCoords, endCoords] = getFirstAndLastCoordsFromTempCoords(
+        coords
+    );
+    const [startX, startY] = startCoords;
+    const [endX, endY] = endCoords;
 
     const topLeft = [startX, startY];
     const topRight = [endX, startY];
@@ -44,24 +46,10 @@ const onEndProcessor = ([endX, endY], tempLines, options) => {
             maxPointCount: pointsOnEachLine
         })
     ];
-    return [squareLines];
-};
-
-const onEnd = ([endX, endY], tempLines, options, dispatch) => {
-    const { currentLayerID, mainMode } = options;
-    const squareLines = onEndProcessor([endX, endY], tempLines, options);
-
-    if (mainMode === 'select') {
-        const hullCoords = hull(squareLines, 20);
-        dispatch(setSelectCoords({ selectCoords: squareLines, hullCoords }));
-    } else {
-        dispatch(addMultipleLinesToLayerByID(currentLayerID, squareLines));
-    }
+    return squareLines;
 };
 
 export default {
-    onStart,
-    onMove,
-    onEndProcessor,
-    onEnd
+    formatTempCoords,
+    formatFinalCoords
 };

@@ -1,6 +1,4 @@
-import { addMultipleLinesToLayerByID } from 'store/line/lineActions';
-import { setSelectCoords } from 'store/drawing/drawingActions';
-import hull from 'hull.js';
+import { getFirstAndLastCoordsFromTempCoords } from '../../../utils/drawingUtils';
 
 const makeCircle = (centerX, centerY, radius, pointsOnCircle = 50) => {
     const coords = [];
@@ -11,38 +9,26 @@ const makeCircle = (centerX, centerY, radius, pointsOnCircle = 50) => {
             centerY + radius * Math.sin((2 * Math.PI * i) / pointsOnCircle);
         coords.push([thisX, thisY]);
     }
-    const first = coords[0];
+    const [first] = coords;
     return [...coords, first];
 };
 
-const onStart = (coords) => {
-    return [[coords]];
-};
+const formatTempCoords = (tempCoords, { pointsOnCircle }) => {
+    const [startCoords, endCoords] = getFirstAndLastCoordsFromTempCoords(
+        tempCoords
+    );
 
-const onMove = (coords, _templines, { startCoords, pointsOnCircle }) => {
     const [x1, y1] = startCoords;
-    const [x2, y2] = coords;
+    const [x2, y2] = endCoords;
     const centerX = (x1 + x2) / 2;
     const centerY = (y1 + y2) / 2;
     const xFactor = x1 > x2 ? x1 - x2 : x2 - x1;
     const yFactor = y1 > y2 ? y1 - y2 : y2 - y1;
     const distance = Math.sqrt(xFactor ** 2 + yFactor ** 2);
     const circle = makeCircle(centerX, centerY, distance / 2, pointsOnCircle);
-    return [circle];
-};
-
-const onEnd = (_coords, tempLines, options, dispatch) => {
-    const { currentLayerID, mainMode } = options;
-    if (mainMode === 'select') {
-        const hullCoords = hull(tempLines[0], 20);
-        dispatch(setSelectCoords({ selectCoords: tempLines[0], hullCoords }));
-    } else {
-        dispatch(addMultipleLinesToLayerByID(currentLayerID, tempLines));
-    }
+    return circle;
 };
 
 export default {
-    onStart,
-    onMove,
-    onEnd
+    formatTempCoords
 };

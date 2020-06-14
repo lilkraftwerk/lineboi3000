@@ -123,8 +123,7 @@ const rain = (options) => {
         }
         rainLines.push(line);
     });
-
-    return rainLines;
+    return _.sortBy(rainLines, (coords) => coords[0]);
 };
 
 const circleFrame = (options) => {

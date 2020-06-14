@@ -2,6 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Icon from 'components/common/Icon';
 
+import { getShowPoints } from 'store/global/globalSelectors';
+import {
+    SidebarItem,
+    SidebarContainer
+} from 'components/common/SidebarContainer';
+import { EnabledToggleButton, SidebarButton } from 'components/common/SidebarButton';
+
 import {
     toggleGridVisibility,
     togglePointVisibility,
@@ -12,7 +19,13 @@ import { getCurrentOptions } from 'store/onions/onionsSelectors';
 
 import styles from './GridControls.styles.css';
 
-const GridControls = ({ globalHeight, globalWidth, dispatch }) => {
+const GridControls = ({
+    gridVisible,
+    globalHeight,
+    globalWidth,
+    showPoints,
+    dispatch
+}) => {
     const LINE_COUNTS = [2, 4, 8, 16, 32, 64];
     const [gridLineCountIndex, setGridLineCountIndex] = useState(1);
 
@@ -30,46 +43,60 @@ const GridControls = ({ globalHeight, globalWidth, dispatch }) => {
     }, [globalHeight, globalWidth, gridLineCountIndex]);
 
     return (
-        <div className={styles.gridControlsContainer}>
-            <Icon
-                onClick={() => {
-                    dispatch(togglePointVisibility());
-                }}
-                fileName="showpoint"
-            />
+        <SidebarContainer>
+            <SidebarItem title="grid/point display" height={2}>
+                <EnabledToggleButton
+                    style={{ gridColumn: 'span 4' }}
+                    onClick={() => {
+                        dispatch(togglePointVisibility());
+                    }}
+                    active={showPoints}
+                    labelActive="points showing"
+                    labelInactive="points hidden"
+                />
 
-            <Icon
-                onClick={() => {
-                    dispatch(toggleGridVisibility());
-                }}
-                fileName="grid"
-            />
-
-            <Icon
-                onClick={() => {
-                    setGridLineCountIndex(gridLineCountIndex - 1);
-                }}
-                fileName="grid-shrink"
-                disabled={gridLineCountIndex === 0}
-            />
-
-            <Icon
-                disabled={gridLineCountIndex === 3}
-                onClick={() => {
-                    setGridLineCountIndex(gridLineCountIndex + 1);
-                }}
-                fileName="grid-enlarge"
-            />
-        </div>
+                <EnabledToggleButton
+                    style={{ gridColumn: 'span 2' }}
+                    onClick={() => {
+                        dispatch(toggleGridVisibility());
+                    }}
+                    active={gridVisible}
+                    labelActive="grid on"
+                    labelInactive="grid off"
+                />
+                <SidebarButton
+                    span={1}
+                    style={{ gridColumn: 'span 1' }}
+                    onClick={() => {
+                        setGridLineCountIndex(gridLineCountIndex - 1);
+                    }}
+                    disabled={gridLineCountIndex === 0}
+                    label={'⬇️'}
+                />
+                <SidebarButton
+                span={1}
+                label={'⬆️'}
+                    disabled={gridLineCountIndex === 3}
+                    onClick={() => {
+                        setGridLineCountIndex(gridLineCountIndex + 1);
+                    }}
+                    type="button"
+                />
+            </SidebarItem>
+        </SidebarContainer>
     );
 };
 
 const mapStateToProps = (state) => {
     const options = getCurrentOptions(state);
+    const showPoints = getShowPoints(state);
+
     return {
         gridState: state.globalReducer.grid,
         globalHeight: options.height,
-        globalWidth: options.width
+        globalWidth: options.width,
+        showPoints,
+        gridVisible: state.globalReducer.grid.visible
     };
 };
 

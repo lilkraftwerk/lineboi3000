@@ -1,12 +1,12 @@
 import _ from 'lodash';
 import TextToSVG from 'text-to-svg';
 import { pathDataToPolys } from 'svg-path-to-polygons';
-import { addMultipleLinesToLayerByID } from '../../../store/line/lineActions';
 import {
     generateHorizontalLines,
     generateVerticalLines,
     removePointsOutsidePolygons
 } from '../../../utils/lineUtils';
+import { getFirstAndLastCoordsFromTempCoords } from '../../../utils/drawingUtils';
 
 const getMinMaxValues = (polygon) => {
     const xValues = polygon.map((arr) => arr[0]);
@@ -82,9 +82,10 @@ const createTextCoords = (coords, textContent = 'no text', options) => {
     ];
 };
 
-const generateTextCoords = (coords, _templines, options) => {
+const generateTextCoords = (tempCoords, options) => {
     const { textDistanceBetweenLetters, textDistanceBetweenWords } = options;
-    let currentX = coords[0];
+    const [, endCoords] = getFirstAndLastCoordsFromTempCoords(tempCoords);
+    let currentX = endCoords[0];
 
     const letterCoords = options.textContent.split('').map((letter) => {
         if (letter === ' ') {
@@ -93,7 +94,7 @@ const generateTextCoords = (coords, _templines, options) => {
         }
 
         const letterPolygons = createTextCoords(
-            [currentX, coords[1]],
+            [currentX, endCoords[1]],
             letter,
             options
         );
@@ -107,20 +108,7 @@ const generateTextCoords = (coords, _templines, options) => {
     return _.flatten(letterCoords);
 };
 
-const onEndProcessor = (coords, _templines, options) => {
-    const generatedCoords = generateTextCoords(coords, _templines, options);
-    return generatedCoords;
-};
-
-const onEnd = (coords, _templines, options, dispatch) => {
-    const { currentLayerID } = options;
-    const generatedCoords = onEndProcessor(coords, _templines, options);
-    dispatch(addMultipleLinesToLayerByID(currentLayerID, generatedCoords));
-};
-
 export default {
-    onStart: generateTextCoords,
-    onMove: generateTextCoords,
-    onEnd,
-    onEndProcessor
+    formatTempCoords: generateTextCoords,
+    formatFinalCoords: generateTextCoords
 };

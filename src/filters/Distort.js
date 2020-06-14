@@ -65,7 +65,6 @@ const DistortComponent = ({ filterSettings, updateOptions }) => {
 };
 
 export const DistortFilter = ({ filterSettings, pointArrays }) => {
-    ipcRenderer.send('main:log', 'swag me da fuck out');
     if (!filterSettings || !filterSettings.enabled) return pointArrays;
 
     const {

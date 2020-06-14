@@ -114,6 +114,7 @@ class DrawingSidebar extends React.Component {
             randomLineDensity,
             showPreviewLines,
             pointsOnEachLine,
+            drawWithShift,
             dispatch
         } = this.props;
 
@@ -185,6 +186,26 @@ class DrawingSidebar extends React.Component {
                                 </button>
                             );
                         })}
+                    {mainMode === 'draw' && (
+                        <>
+                            <SidebarItem title="draw options" height={2}>
+                                <EnabledToggleButton
+                                    style={{ gridColumn: 'span 4' }}
+                                    onClick={() => {
+                                        dispatch(
+                                            setOptionByKey({
+                                                key: 'drawWithShift',
+                                                value: !drawWithShift
+                                            })
+                                        );
+                                    }}
+                                    active={drawWithShift}
+                                    labelActive="ShiftDraw On"
+                                    labelInactive="ShiftDraw Off"
+                                />
+                            </SidebarItem>
+                        </>
+                    )}
                 </SidebarItem>
                 {mainMode === 'draw' && mode === 'text' && (
                     <TextOptions {...this.props} />

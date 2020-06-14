@@ -5,10 +5,12 @@ import styles from './SidebarButton.styles.css';
 export const SidebarButton = ({
     label,
     onClick = () => {},
-    disabled = false
+    disabled = false,
+    span = 1,
 }) => {
     return (
         <button
+            style={{ gridColumn: `span ${span}` }}
             type="button"
             onClick={() => {
                 onClick();

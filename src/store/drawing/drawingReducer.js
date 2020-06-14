@@ -25,6 +25,7 @@ const initState = {
     textDistanceBetweenWords: 50,
     textFillIsHorizontal: true,
     fontName: 'VCR_OSD_MONO.ttf',
+    drawWithShift: false,
     pointsOnEachLine: 5,
     multiplyCanvasOptions: {
         x: 2,
