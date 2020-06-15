@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import { ipcRenderer } from 'electron';
 import React, { Fragment } from 'react';
 import PercentClicker from '../components/common/PercentClicker';
 
