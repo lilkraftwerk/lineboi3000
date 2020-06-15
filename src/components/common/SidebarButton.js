@@ -6,7 +6,7 @@ export const SidebarButton = ({
     label,
     onClick = () => {},
     disabled = false,
-    span = 1,
+    span = 1
 }) => {
     return (
         <button

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import Icon from 'components/common/Icon';
 
 import { getShowPoints } from 'store/global/globalSelectors';
 import {
     SidebarItem,
     SidebarContainer
 } from 'components/common/SidebarContainer';
-import { EnabledToggleButton, SidebarButton } from 'components/common/SidebarButton';
+import {
+    EnabledToggleButton,
+    SidebarButton
+} from 'components/common/SidebarButton';
 
 import {
     toggleGridVisibility,
@@ -16,8 +18,6 @@ import {
 } from 'store/global/globalActions';
 
 import { getCurrentOptions } from 'store/onions/onionsSelectors';
-
-import styles from './GridControls.styles.css';
 
 const GridControls = ({
     gridVisible,
@@ -71,11 +71,11 @@ const GridControls = ({
                         setGridLineCountIndex(gridLineCountIndex - 1);
                     }}
                     disabled={gridLineCountIndex === 0}
-                    label={'⬇️'}
+                    label="⬇️"
                 />
                 <SidebarButton
-                span={1}
-                label={'⬆️'}
+                    span={1}
+                    label="⬆️"
                     disabled={gridLineCountIndex === 3}
                     onClick={() => {
                         setGridLineCountIndex(gridLineCountIndex + 1);

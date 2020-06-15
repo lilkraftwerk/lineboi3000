@@ -7,7 +7,7 @@ import { LayerType, LineType } from 'customPropTypes';
 import { getShowPoints } from 'store/global/globalSelectors';
 import { getVisibleOriginalLines } from 'store/line/lineSelectors';
 import { getCurrentOptions } from 'store/onions/onionsSelectors';
-import { setSelectCoords, setFillLines } from 'store/drawing/drawingActions';
+import { setFillLines } from 'store/drawing/drawingActions';
 
 import {
     getCurrentLayer,
@@ -15,8 +15,8 @@ import {
     getVisibleLayers
 } from 'store/layer/layerSelectors';
 import { CanvasLayer, SelectLayer } from 'components/common/SvgLayer';
-
-import generateFillLines from 'utils/fillLineUtils';
+import { printLinesViaFillCoords } from '../../../utils/lineUtils';
+import generateFillLines from '../../../utils/fillLineUtils';
 import DrawingModes from '../modes';
 import {
     addMultipleLinesToLayerByID,
@@ -131,8 +131,6 @@ export class DrawingContent extends React.Component {
 
         const coordsAtEvent = this.getCoordsFromMouseEvent(event);
         const finalCoords = [...tempCoords, coordsAtEvent];
-        // dispatch send line to redux here
-
         this.processFinalCoords(finalCoords);
         this.endTextDrawing();
         this.setTempCoords(null);
@@ -173,7 +171,11 @@ export class DrawingContent extends React.Component {
             drawingMode,
             dispatch,
             currentLayerID,
-            eraserRadius
+            eraserRadius,
+            fillRadius,
+            fillHorizontal,
+            distanceBetweenLines,
+            distanceBetweenPoints
         } = this.props;
 
         const endProcessor = this.getDrawingEndProcessor();
@@ -194,6 +196,20 @@ export class DrawingContent extends React.Component {
                     processedLines,
                     eraserRadius
                 )
+            );
+            return;
+        }
+
+        if (drawingMode === 'fill') {
+            const resultingLines = printLinesViaFillCoords({
+                fillCoords: processedLines,
+                radius: fillRadius,
+                fillHorizontal,
+                distanceBetweenLines,
+                distanceBetweenPoints
+            });
+            dispatch(
+                addMultipleLinesToLayerByID(currentLayerID, resultingLines)
             );
             return;
         }
@@ -261,171 +277,16 @@ export class DrawingContent extends React.Component {
         return activeMode;
     };
 
-    // handleStartSwitch = (event) => {
-    //     const { drawingMode } = this.props;
-    //     switch (drawingMode) {
-    //         case 'select':
-    //             // this.handleSelectStart(event);
-    //             break;
-    //         default:
-    //             this.handleDrawStart(event);
-    //     }
-    // };
-
-    // handleDrawStart = (event) => {
-    //     const startCoords = this.getCoordsFromMouseEvent(event);
-    //     const { onStart } = this.getActiveModeHandlers();
-    //     const tempCoords = onStart(startCoords, null, {
-    //         ...this.props
-    //     });
-    //     this.setTempCoords(tempCoords);
-    //     this.setStartCoords(startCoords);
-    // };
-
-    // handleMoveSwitch = (event) => {
-    //     const { drawingMode, drawWithShift } = this.props;
-    //     const { shiftDown } = this.state;
-
-    //     if (drawWithShift) {
-    //         if (shiftDown) {
-    //             this.handleKeydownMove(event);
-    //             return;
-    //         }
-
-    //         return;
-    //     }
-
-    //     switch (drawingMode) {
-    //         case 'select':
-    //             // this.handleSelectMove(event);
-    //             break;
-    //         default:
-    //             this.handleDrawMove(event);
-    //     }
-    // };
-
-    // handleDrawMove = (event) => {
-    //     const { tempCoords, startCoords } = this;
-
-    //     if (!tempCoords) {
-    //         return;
-    //     }
-
-    //     const { onMove } = this.getActiveModeHandlers();
-    //     const coords = this.getCoordsFromMouseEvent(event);
-    //     const newTempLines = onMove(coords, tempCoords, {
-    //         ...this.props,
-    //         startCoords
-    //     });
-    //     this.setTempCoords(newTempLines);
-    // };
-
-    // handleEndSwitch = (event) => {
-    //     const { drawingMode } = this.props;
-    //     switch (drawingMode) {
-    //         case 'select':
-    //             this.handleSelectEnd(event);
-    //             break;
-    //         case 'selectPoly':
-    //             this.handleSelectPolyEnd(event);
-    //             break;
-    //         default:
-    //             this.handleDrawEnd(event);
-    //     }
-    // };
-
-    // handleDrawEnd = (event) => {
-    //     const { dispatch } = this.props;
-    //     const { tempCoords } = this;
-
-    //     if (!tempCoords) {
-    //         return;
-    //     }
-
-    //     const coords = this.getCoordsFromMouseEvent(event);
-    //     const { onEnd } = this.getActiveModeHandlers();
-
-    //     onEnd(coords, tempCoords, this.props, dispatch);
-    //     this.setTempCoords(null);
-    //     this.setStartCoords(null);
-    // };
-
-    // handleKeydownMove = (event) => {
-    //     const { tempCoords, startCoords } = this;
-
-    //     if (!tempCoords) {
-    //         return;
-    //     }
-
-    //     const coords = this.getCoordsFromMouseEvent(event);
-    //     if (tempCoords.length === 0) {
-    //         this.setTempCoords([[coords]]);
-    //         return;
-    //     }
-
-    //     const { onMove } = this.getActiveModeHandlers();
-    //     const newTempLines = onMove(coords, tempCoords, {
-    //         ...this.props,
-    //         startCoords
-    //     });
-    //     this.setTempCoords(newTempLines);
-    // };
-
-    // handleKeyupEnd = () => {
-    //     const { dispatch } = this.props;
-    //     const { tempCoords } = this;
-
-    //     if (!tempCoords) {
-    //         return;
-    //     }
-
-    //     const tempLine = getFirstLineFromTempLines(tempCoords);
-    //     const lastCoords = tempLine[tempLine.length - 1];
-    //     tempLine.pop();
-    //     const { onEnd } = this.getActiveModeHandlers();
-    //     onEnd(lastCoords, [tempLine], this.props, dispatch);
-    //     this.setTempCoords(null);
-    //     this.setStartCoords(null);
-    // };
-
-    // handleSelectEnd = (event) => {
-    //     const { selectCoords, dispatch } = this.props;
-
-    //     if (!selectCoords) {
-    //         return;
-    //     }
-
-    //     const { onEnd } = this.getActiveModeHandlers();
-    //     const coords = this.getCoordsFromMouseEvent(event);
-
-    //     const newSelectCoords = onEnd(coords, selectCoords, this.props);
-    //     const hullCoords = hull(newSelectCoords, 20);
-    //     dispatch(
-    //         setSelectCoords({ selectCoords: newSelectCoords, hullCoords })
-    //     );
-    // };
-
-    // handleSelectPolyEnd = (event) => {
-    //     const { selectCoords, dispatch } = this.props;
-
-    //     if (!selectCoords) {
-    //         return;
-    //     }
-
-    //     const { onEnd } = this.getActiveModeHandlers();
-    //     const coords = this.getCoordsFromMouseEvent(event);
-
-    //     const newSelectCoords = onEnd(coords, selectCoords, this.props);
-    //     const hullCoords = _.clone(newSelectCoords);
-
-    //     dispatch(
-    //         setSelectCoords({ selectCoords: newSelectCoords, hullCoords })
-    //     );
-    // };
-
     drawOnTempLinesDiv() {
         const { tempLinesRef, tempCoords, tempTextLines } = this;
-        const { width, height, drawingMode, eraserRadius } = this.props;
+        const {
+            width,
+            height,
+            drawingMode,
+            eraserRadius,
+            fillRadius,
+            fillCircle
+        } = this.props;
         const context = tempLinesRef.current.getContext('bitmaprenderer');
         const offScreenCanvas = new OffscreenCanvas(width, height);
         const offScreenContext = offScreenCanvas.getContext('2d');
@@ -461,6 +322,7 @@ export class DrawingContent extends React.Component {
             tempCoords &&
             tempCoords.length > 1 &&
             drawingMode !== 'eraser' &&
+            drawingMode !== 'fill' &&
             drawingMode !== 'text'
         ) {
             const { formatTempCoords } = this.getActiveModeHandlers();
@@ -499,6 +361,29 @@ export class DrawingContent extends React.Component {
             // add strokewidth to lines
             offScreenContext.lineWidth = eraserRadius;
             offScreenContext.lineCap = 'round';
+            offScreenContext.lineJoin = 'round';
+
+            for (let index = 0; index < tempCoords.length; index += 1) {
+                const [currentX, currentY] = tempCoords[index];
+                if (currentX != null && currentY != null) {
+                    if (index === 0) {
+                        offScreenContext.moveTo(currentX, currentY);
+                    }
+                    offScreenContext.lineTo(currentX, currentY);
+                }
+            }
+
+            offScreenContext.stroke();
+        }
+
+        if (tempCoords && tempCoords.length && drawingMode === 'fill') {
+            offScreenContext.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            offScreenContext.beginPath();
+            // add strokewidth to lines
+            const lineCap = fillCircle ? 'round' : 'butt';
+
+            offScreenContext.lineWidth = fillRadius;
+            offScreenContext.lineCap = lineCap;
             offScreenContext.lineJoin = 'round';
 
             for (let index = 0; index < tempCoords.length; index += 1) {

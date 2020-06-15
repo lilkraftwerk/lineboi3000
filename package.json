@@ -25,6 +25,7 @@
         "style:fix": "stylelint \"**/**/*.css\" --fix",
         "test": "jest --colors --verbose",
         "test:src": "jest ./src --colors --verbose",
+        "test:update": "jest ./src --u --colors --verbose",
         "test:watch": "jest --colors --verbose --watch",
         "test:main": "jest ./spectron --runInBand",
         "test:coverage": "jest ./src --colors --verbose --collectCoverage"

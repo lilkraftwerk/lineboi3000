@@ -36,6 +36,7 @@ import CircleOptions from './CircleOptions';
 const MAIN_MODES = ['draw', 'select', 'scale', 'template'];
 const DRAWING_MODES = [
     'pen',
+    'fill',
     'eraser',
     'straightLine',
     'square',
@@ -115,6 +116,9 @@ class DrawingSidebar extends React.Component {
             showPreviewLines,
             pointsOnEachLine,
             drawWithShift,
+            fillHorizontal,
+            fillRadius,
+            fillCircle,
             dispatch
         } = this.props;
 
@@ -137,7 +141,28 @@ class DrawingSidebar extends React.Component {
                         );
                     })}
                 </SidebarItem>
-                <SidebarItem title="tool" height={2}>
+                {mainMode === 'draw' && (
+                    <SidebarItem title="shiftdraw" height={2}>
+                        <EnabledToggleButton
+                            style={{ gridColumn: 'span 4' }}
+                            onClick={() => {
+                                dispatch(
+                                    setOptionByKey({
+                                        key: 'drawWithShift',
+                                        value: !drawWithShift
+                                    })
+                                );
+                            }}
+                            active={drawWithShift}
+                            labelActive="press shift to draw: on"
+                            labelInactive="press shift to draw: off"
+                        />
+                    </SidebarItem>
+                )}
+                <SidebarItem
+                    title={`${_.lowerCase(mainMode)} options`}
+                    height={2}
+                >
                     {mainMode === 'draw' &&
                         DRAWING_MODES.map((modeKey) => {
                             return (
@@ -186,26 +211,6 @@ class DrawingSidebar extends React.Component {
                                 </button>
                             );
                         })}
-                    {mainMode === 'draw' && (
-                        <>
-                            <SidebarItem title="draw options" height={2}>
-                                <EnabledToggleButton
-                                    style={{ gridColumn: 'span 4' }}
-                                    onClick={() => {
-                                        dispatch(
-                                            setOptionByKey({
-                                                key: 'drawWithShift',
-                                                value: !drawWithShift
-                                            })
-                                        );
-                                    }}
-                                    active={drawWithShift}
-                                    labelActive="ShiftDraw On"
-                                    labelInactive="ShiftDraw Off"
-                                />
-                            </SidebarItem>
-                        </>
-                    )}
                 </SidebarItem>
                 {mainMode === 'draw' && mode === 'text' && (
                     <TextOptions {...this.props} />
@@ -213,10 +218,93 @@ class DrawingSidebar extends React.Component {
                 {mainMode === 'draw' && mode === 'eraser' && (
                     <EraserOptions {...this.props} />
                 )}
+                {mainMode === 'draw' && mode === 'fill' && (
+                    <SidebarItem title="fill options" height={2}>
+                        <PercentClicker
+                            setValue={(value) => {
+                                dispatch(
+                                    setOptionByKey({
+                                        key: 'fillRadius',
+                                        value
+                                    })
+                                );
+                            }}
+                            float={false}
+                            title="fill radius"
+                            minLabel="1"
+                            maxLabel="50"
+                            minValue={1}
+                            maxValue={50}
+                            currentValue={fillRadius}
+                        />
+                        <button
+                            style={{ gridColumn: 'span 2' }}
+                            type="button"
+                            onClick={() => {
+                                dispatch(
+                                    setOptionByKey({
+                                        key: 'fillHorizontal',
+                                        value: !fillHorizontal
+                                    })
+                                );
+                            }}
+                        >
+                            {fillHorizontal ? 'horizontal' : 'vertical'}
+                        </button>
+                        <button
+                            style={{ gridColumn: 'span 2' }}
+                            type="button"
+                            onClick={() => {
+                                dispatch(
+                                    setOptionByKey({
+                                        key: 'fillCircle',
+                                        value: !fillCircle
+                                    })
+                                );
+                            }}
+                        >
+                            {fillCircle ? 'circle' : 'square'}
+                        </button>
+                        <PercentClicker
+                            setValue={(value) => {
+                                dispatch(
+                                    setSelectOptionByKey({
+                                        key: 'distanceBetweenLines',
+                                        value
+                                    })
+                                );
+                            }}
+                            float={false}
+                            title="distance between lines"
+                            minLabel="1"
+                            maxLabel="15"
+                            minValue={1}
+                            maxValue={15}
+                            currentValue={distanceBetweenLines}
+                        />
+                        <PercentClicker
+                            setValue={(value) => {
+                                dispatch(
+                                    setSelectOptionByKey({
+                                        key: 'distanceBetweenPoints',
+                                        value
+                                    })
+                                );
+                            }}
+                            float={false}
+                            title="distance between points"
+                            minLabel="1"
+                            maxLabel="15"
+                            minValue={1}
+                            maxValue={15}
+                            currentValue={distanceBetweenPoints}
+                        />
+                    </SidebarItem>
+                )}
                 {mode === 'circle' && <CircleOptions {...this.props} />}
                 {mainMode === 'draw' &&
                     (mode === 'straightLine' || mode === 'square') && (
-                        <SidebarItem title="text options" height={2}>
+                        <SidebarItem title="line options" height={2}>
                             <PercentClicker
                                 setValue={(value) => {
                                     dispatch(
