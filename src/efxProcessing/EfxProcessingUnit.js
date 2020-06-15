@@ -5,6 +5,7 @@ import ExperimentalFilter from '../filters/Experimental';
 import DotsFilter from '../filters/Dots';
 import WiggleFilter from '../filters/Wiggle';
 import DistortFilter from '../filters/Distort';
+import ShortenLinesFilter from '../filters/ShortenLine';
 import SplitLinesFilter from '../filters/SplitLines';
 import SplitLinesRandomFilter from '../filters/SplitLinesRandom';
 import ExesFilter from '../filters/Exes';
@@ -14,6 +15,7 @@ const FILTERS = [
     MoveFilter,
     MultiplyFilter,
     DistortFilter,
+    ShortenLinesFilter,
     SplitLinesFilter,
     SplitLinesRandomFilter,
     ExesFilter,
