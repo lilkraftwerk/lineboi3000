@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import isPointInPolygon from 'point-in-polygon';
 import { Line, Circle, Point, intersections } from '@mathigon/fermat';
+import { getExtremePointsOfCoords } from '../plotting/plotUtils';
 import id from './id';
 
 export const getPointArraysFromLine = (line) => {
@@ -228,6 +229,101 @@ export const splitLinesViaEraserCoords = ({
                 currentTempLine.push([currentX, currentY]);
 
                 if (index === line.length - 1) {
+                    splitLines.push([...currentTempLine]);
+                }
+            } else if (currentTempLine.length > 0) {
+                splitLines.push([...currentTempLine]);
+                currentTempLine = [];
+            }
+        });
+    });
+
+    return splitLines;
+};
+
+export const printLinesViaFillCoords = ({
+    fillCoords,
+    fillHorizontal,
+    radius,
+    smoothOriginalCoords = true,
+    distanceBetweenLines,
+    distanceBetweenPoints,
+    fillCircle
+}) => {
+    let newFillCoords = [...fillCoords];
+
+    if (smoothOriginalCoords) {
+        newFillCoords = addIntermediatePointsToLine(newFillCoords);
+    }
+
+    let linesToUse;
+    const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(fillCoords);
+
+    if (fillHorizontal) {
+        linesToUse = generateHorizontalLines({
+            minX,
+            maxX,
+            minY,
+            maxY,
+            distanceBetweenLines,
+            distanceBetweenPoints
+        });
+    } else {
+        linesToUse = generateVerticalLines({
+            minX,
+            maxX,
+            minY,
+            maxY,
+            distanceBetweenLines,
+            distanceBetweenPoints
+        });
+    }
+
+    const splitLines = [];
+    linesToUse.forEach((currentLine) => {
+        let currentTempLine = [];
+        currentLine.forEach(([currentX, currentY], index) => {
+            let coordsAreWithinFillRadius = false;
+
+            for (let i = 0; i < newFillCoords.length; i += 1) {
+                const [fillX, fillY] = newFillCoords[i];
+                let pointIsInside;
+                if (fillCircle) {
+                    pointIsInside = isPointWithinCircle(
+                        fillX,
+                        fillY,
+                        radius,
+                        currentX,
+                        currentY
+                    );
+                } else {
+                    const leftX = fillX - radius / 2;
+                    const rightX = fillX + radius / 2;
+                    const topY = fillY - radius / 2;
+                    const bottomY = fillY + radius / 2;
+                    const polygonCoords = [
+                        [leftX, topY],
+                        [rightX, topY],
+                        [rightX, bottomY],
+                        [leftX, bottomY]
+                    ];
+
+                    pointIsInside = isPointInPolygon(
+                        [currentX, currentY],
+                        polygonCoords
+                    );
+                }
+
+                if (pointIsInside) {
+                    coordsAreWithinFillRadius = true;
+                    break;
+                }
+            }
+
+            if (coordsAreWithinFillRadius) {
+                currentTempLine.push([currentX, currentY]);
+
+                if (index === currentLine.length - 1) {
                     splitLines.push([...currentTempLine]);
                 }
             } else if (currentTempLine.length > 0) {

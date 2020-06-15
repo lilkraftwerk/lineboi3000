@@ -84,6 +84,24 @@ export const getExtremePointsOfLines = (lines) => {
     };
 };
 
+export const getExtremePointsOfCoords = (flattenedCoords) => {
+    const allXValues = flattenedCoords.map((pointArray) => pointArray[0]);
+    const allYValues = flattenedCoords.map((pointArray) => pointArray[1]);
+
+    const minX = _.min(allXValues);
+    const maxX = _.max(allXValues);
+
+    const minY = _.min(allYValues);
+    const maxY = _.max(allYValues);
+
+    return {
+        minX,
+        maxX,
+        minY,
+        maxY
+    };
+};
+
 export const centerLines = (
     lines,
     {
