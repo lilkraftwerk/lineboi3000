@@ -10,6 +10,7 @@ const ItemSelector = ({
     items
 }) => {
     const [selectedIndex, setSelectedIndex] = React.useState(0);
+    const [menuOpen, setMenuOpen] = React.useState(false);
 
     let selectedKey = '';
     if (items && items[selectedIndex]) {
@@ -45,26 +46,56 @@ const ItemSelector = ({
             style={{ gridColumn: `span ${spanCount}` }}
             className={styles.itemSelector}
         >
-            <button
-                type="button"
-                onClick={() => {
-                    selectLeft();
-                }}
-                className={styles.leftArrow}
-            >
-                ⬅️
-            </button>
-            <div className={styles.textBox}>{selectedKey}</div>
-            <button
-                type="button"
-                onClick={() => {
-                    selectRight();
-                }}
-                className={styles.rightArrow}
-            >
-                ➡️
-            </button>
-            {showConfirmButton && (
+            {menuOpen && (
+                <div className={styles.dropdownContainer}>
+                    {items.map((filter, index) => (
+                        <div
+                            onClick={() => {
+                                setSelectedIndex(index);
+                                setMenuOpen(false);
+                                const { key } = items[index];
+                                onSelect(key);
+                            }}
+                            key={filter.key}
+                            className={styles.dropdownItem}
+                        >
+                            {filter.key}
+                        </div>
+                    ))}
+                </div>
+            )}
+            {!menuOpen && (
+                <>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            selectLeft();
+                        }}
+                        className={styles.leftArrow}
+                    >
+                        ⬅️
+                    </button>
+                    <div
+                        onClick={() => {
+                            setMenuOpen(true);
+                        }}
+                        className={styles.textBox}
+                    >
+                        {selectedKey}
+                    </div>
+
+                    <button
+                        type="button"
+                        onClick={() => {
+                            selectRight();
+                        }}
+                        className={styles.rightArrow}
+                    >
+                        ➡️
+                    </button>
+                </>
+            )}
+            {showConfirmButton && !menuOpen && (
                 <button
                     type="button"
                     onClick={() => {
@@ -73,6 +104,17 @@ const ItemSelector = ({
                     className={styles.confirm}
                 >
                     go
+                </button>
+            )}
+            {menuOpen && (
+                <button
+                    type="button"
+                    onClick={() => {
+                        setMenuOpen(false);
+                    }}
+                    className={styles.cancel}
+                >
+                    X
                 </button>
             )}
         </div>

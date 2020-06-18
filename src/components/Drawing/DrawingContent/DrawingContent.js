@@ -173,7 +173,8 @@ export class DrawingContent extends React.Component {
             currentLayerID,
             eraserRadius,
             fillRadius,
-            fillHorizontal,
+            fillCircle,
+            fillAngle,
             distanceBetweenLines,
             distanceBetweenPoints
         } = this.props;
@@ -202,11 +203,12 @@ export class DrawingContent extends React.Component {
 
         if (drawingMode === 'fill') {
             const resultingLines = printLinesViaFillCoords({
+                fillCircle,
                 fillCoords: processedLines,
                 radius: fillRadius,
-                fillHorizontal,
                 distanceBetweenLines,
-                distanceBetweenPoints
+                distanceBetweenPoints,
+                angle: fillAngle
             });
             dispatch(
                 addMultipleLinesToLayerByID(currentLayerID, resultingLines)
@@ -382,7 +384,7 @@ export class DrawingContent extends React.Component {
             // add strokewidth to lines
             const lineCap = fillCircle ? 'round' : 'butt';
 
-            offScreenContext.lineWidth = fillRadius;
+            offScreenContext.lineWidth = fillRadius * 2;
             offScreenContext.lineCap = lineCap;
             offScreenContext.lineJoin = 'round';
 

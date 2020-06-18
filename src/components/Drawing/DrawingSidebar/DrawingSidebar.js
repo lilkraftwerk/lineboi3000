@@ -23,6 +23,7 @@ import {
     SidebarItem
 } from 'components/common/SidebarContainer';
 import PercentClicker from 'components/common/PercentClicker';
+import AngleChooser from 'components/common/AngleChooser';
 import { EnabledToggleButton } from 'components/common/SidebarButton';
 import { applyTemplate } from './TemplateUtils';
 
@@ -116,7 +117,7 @@ class DrawingSidebar extends React.Component {
             showPreviewLines,
             pointsOnEachLine,
             drawWithShift,
-            fillHorizontal,
+            fillAngle,
             fillRadius,
             fillCircle,
             dispatch
@@ -220,6 +221,22 @@ class DrawingSidebar extends React.Component {
                 )}
                 {mainMode === 'draw' && mode === 'fill' && (
                     <SidebarItem title="fill options" height={2}>
+                        <AngleChooser
+                            setValue={(value) => {
+                                dispatch(
+                                    setOptionByKey({
+                                        key: 'fillAngle',
+                                        value
+                                    })
+                                );
+                            }}
+                            title="fill angle"
+                            minLabel="1"
+                            maxLabel="180"
+                            minValue={1}
+                            maxValue={180}
+                            currentValue={fillAngle}
+                        />
                         <PercentClicker
                             setValue={(value) => {
                                 dispatch(
@@ -232,27 +249,13 @@ class DrawingSidebar extends React.Component {
                             float={false}
                             title="fill radius"
                             minLabel="1"
-                            maxLabel="50"
+                            maxLabel="250"
                             minValue={1}
-                            maxValue={50}
+                            maxValue={250}
                             currentValue={fillRadius}
                         />
                         <button
-                            style={{ gridColumn: 'span 2' }}
-                            type="button"
-                            onClick={() => {
-                                dispatch(
-                                    setOptionByKey({
-                                        key: 'fillHorizontal',
-                                        value: !fillHorizontal
-                                    })
-                                );
-                            }}
-                        >
-                            {fillHorizontal ? 'horizontal' : 'vertical'}
-                        </button>
-                        <button
-                            style={{ gridColumn: 'span 2' }}
+                            style={{ gridColumn: 'span 4' }}
                             type="button"
                             onClick={() => {
                                 dispatch(

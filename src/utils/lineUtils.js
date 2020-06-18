@@ -39,6 +39,122 @@ export const generateVerticalLines = ({
     return allLines;
 };
 
+export const generateLinesAtAngle = ({
+    minX,
+    maxX,
+    minY,
+    maxY,
+    distanceBetweenLines,
+    distanceBetweenPoints,
+    angle
+}) => {
+    const findNewPoint = (x, y, multiAngle, distance) => {
+        const newX = Math.cos((multiAngle * Math.PI) / 180) * distance + x;
+        const newY = Math.sin((multiAngle * Math.PI) / 180) * distance + y;
+        return [newX, newY];
+    };
+
+    const pointIsValid = (testX, testY) => {
+        return testX <= maxX && testX >= minX && testY >= minY && testY <= maxY;
+    };
+
+    const maxDistance = Math.hypot(maxX - minX, maxY - minY);
+
+    const lines = [];
+    if (angle <= 44) {
+        for (
+            let currentY = minY - maxDistance;
+            currentY <= maxY;
+            currentY += distanceBetweenLines
+        ) {
+            const thisLine = [];
+            for (let counter = 0; counter < maxDistance; counter += 1) {
+                const [newX, newY] = findNewPoint(
+                    minX,
+                    currentY,
+                    angle,
+                    counter * distanceBetweenPoints
+                );
+                if (pointIsValid(newX, newY)) {
+                    thisLine.push([newX, newY]);
+                }
+            }
+            if (thisLine.length > 1) {
+                lines.push(thisLine);
+            }
+        }
+        return lines;
+    }
+    if (angle <= 89) {
+        for (
+            let currentX = minX - maxDistance;
+            currentX <= maxX;
+            currentX += distanceBetweenLines
+        ) {
+            const thisLine = [];
+            for (let counter = 0; counter < maxDistance; counter += 1) {
+                const [newX, newY] = findNewPoint(
+                    currentX,
+                    minY,
+                    angle,
+                    counter * distanceBetweenPoints
+                );
+                if (pointIsValid(newX, newY)) {
+                    thisLine.push([newX, newY]);
+                }
+            }
+            lines.push(thisLine);
+        }
+        return lines;
+    }
+    if (angle <= 134) {
+        for (
+            let currentX = maxX + maxDistance;
+            currentX >= minX;
+            currentX -= distanceBetweenLines
+        ) {
+            const thisLine = [];
+            for (let counter = 0; counter < maxDistance; counter += 1) {
+                const [newX, newY] = findNewPoint(
+                    currentX,
+                    minY,
+                    angle,
+                    counter * distanceBetweenPoints
+                );
+                if (pointIsValid(newX, newY)) {
+                    thisLine.push([newX, newY]);
+                }
+            }
+            lines.push(thisLine);
+        }
+        return lines;
+    }
+
+    if (angle <= 180) {
+        for (
+            let currentY = maxY + maxDistance;
+            currentY >= minY - minY;
+            currentY -= distanceBetweenLines
+        ) {
+            const thisLine = [];
+            for (let counter = 0; counter < maxDistance; counter += 1) {
+                const [newX, newY] = findNewPoint(
+                    maxX,
+                    currentY,
+                    angle,
+                    counter * distanceBetweenPoints
+                );
+                if (pointIsValid(newX, newY)) {
+                    thisLine.push([newX, newY]);
+                }
+            }
+            lines.push(thisLine);
+        }
+        return lines;
+    }
+    return [];
+};
+
 export const generateHorizontalLines = ({
     minX,
     maxX,
@@ -112,17 +228,11 @@ export const isPointWithinCircle = (
     circleY,
     circleRadius,
     pointX,
-    pointY
+    pointY,
+    includeEdge = false
 ) => {
-    if (
-        (pointX - circleX) * (pointX - circleX) +
-            (pointY - circleY) * (pointY - circleY) <=
-        circleRadius * circleRadius
-    ) {
-        return true;
-    }
-
-    return false;
+    const squareDist = (circleX - pointX) ** 2 + (circleY - pointY) ** 2;
+    return squareDist <= circleRadius ** 2;
 };
 
 export const addIntermediatePointsToLine = (line, passes = 1) => {
@@ -243,12 +353,12 @@ export const splitLinesViaEraserCoords = ({
 
 export const printLinesViaFillCoords = ({
     fillCoords,
-    fillHorizontal,
     radius,
     smoothOriginalCoords = true,
     distanceBetweenLines,
     distanceBetweenPoints,
-    fillCircle
+    fillCircle,
+    angle = 30
 }) => {
     let newFillCoords = [...fillCoords];
 
@@ -256,28 +366,19 @@ export const printLinesViaFillCoords = ({
         newFillCoords = addIntermediatePointsToLine(newFillCoords);
     }
 
-    let linesToUse;
-    const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(fillCoords);
-
-    if (fillHorizontal) {
-        linesToUse = generateHorizontalLines({
-            minX,
-            maxX,
-            minY,
-            maxY,
-            distanceBetweenLines,
-            distanceBetweenPoints
-        });
-    } else {
-        linesToUse = generateVerticalLines({
-            minX,
-            maxX,
-            minY,
-            maxY,
-            distanceBetweenLines,
-            distanceBetweenPoints
-        });
-    }
+    const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(
+        fillCoords,
+        radius
+    );
+    const linesToUse = generateLinesAtAngle({
+        minX,
+        maxX,
+        minY,
+        maxY,
+        distanceBetweenLines,
+        distanceBetweenPoints,
+        angle
+    });
 
     const splitLines = [];
     linesToUse.forEach((currentLine) => {
@@ -297,10 +398,10 @@ export const printLinesViaFillCoords = ({
                         currentY
                     );
                 } else {
-                    const leftX = fillX - radius / 2;
-                    const rightX = fillX + radius / 2;
-                    const topY = fillY - radius / 2;
-                    const bottomY = fillY + radius / 2;
+                    const leftX = fillX - radius;
+                    const rightX = fillX + radius;
+                    const topY = fillY - radius;
+                    const bottomY = fillY + radius;
                     const polygonCoords = [
                         [leftX, topY],
                         [rightX, topY],

@@ -84,15 +84,15 @@ export const getExtremePointsOfLines = (lines) => {
     };
 };
 
-export const getExtremePointsOfCoords = (flattenedCoords) => {
+export const getExtremePointsOfCoords = (flattenedCoords, radius = 0) => {
     const allXValues = flattenedCoords.map((pointArray) => pointArray[0]);
     const allYValues = flattenedCoords.map((pointArray) => pointArray[1]);
 
-    const minX = _.min(allXValues);
-    const maxX = _.max(allXValues);
+    const minX = _.min(allXValues) - radius;
+    const maxX = _.max(allXValues) + radius;
 
-    const minY = _.min(allYValues);
-    const maxY = _.max(allYValues);
+    const minY = _.min(allYValues) - radius;
+    const maxY = _.max(allYValues) + radius;
 
     return {
         minX,

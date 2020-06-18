@@ -29,6 +29,7 @@ import FilterWrapper from 'filters/FilterWrapper';
 import Multiply from 'filters/Multiply';
 import Wiggle from 'filters/Wiggle';
 import Distort from 'filters/Distort';
+import RemoveLines from 'filters/RemoveLines';
 import ShortenLines from 'filters/ShortenLine';
 import SplitLines from 'filters/SplitLines';
 import SplitLinesRandom from 'filters/SplitLinesRandom';
@@ -53,6 +54,7 @@ const CONSTANT_FILTERS = [
     ShortenLines,
     SplitLines,
     SplitLinesRandom,
+    RemoveLines,
     Exes,
     Multiply,
     Wiggle,

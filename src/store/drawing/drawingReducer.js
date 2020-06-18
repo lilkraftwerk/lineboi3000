@@ -38,7 +38,7 @@ const initState = {
     selectOptions: {
         angle: 90,
         distanceBetweenLines: 5,
-        distanceBetweenPoints: 10,
+        distanceBetweenPoints: 2,
         lineMode: 'vertical',
         showPreviewLines: false,
         randomLineDensity: 5
@@ -46,7 +46,7 @@ const initState = {
     eraserRadius: 20,
     fillRadius: 20,
     fillCircle: true,
-    fillHorizontal: true,
+    fillAngle: 90,
     pointsOnCircle: 50,
     templateIntensity: 50,
     selectedTemplate: 'frame',

@@ -8,7 +8,9 @@
     src: url('./assets/fonts/linebeam.ttf');
 }
 
-
+button {
+    cursor: pointer;
+}
 /* global styles go here */
 
 html, body {
