@@ -8,7 +8,7 @@ import { getExtremePointsOfCoords } from '../plotUtils';
 import { zShape } from '../../../tests/LineFixtures';
 
 const imageSnapshotOptions = {
-    failureThreshold: 0.1,
+    failureThreshold: 0.02,
     failureThresholdType: 'percent',
     customSnapshotsDir: 'tests/screenshots',
     customDiffDir: 'tmp/diffs'

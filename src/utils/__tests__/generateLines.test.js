@@ -12,7 +12,7 @@ expect.extend({ toMatchImageSnapshot });
 const imageSnapshotOptions = {
     customSnapshotsDir: 'tests/screenshots',
     customDiffDir: 'tmp/diffs',
-    failureThreshold: 0.1,
+    failureThreshold: 0.02,
     failureThresholdType: 'percent'
 };
 

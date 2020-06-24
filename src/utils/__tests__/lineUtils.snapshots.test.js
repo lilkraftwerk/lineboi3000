@@ -9,7 +9,7 @@ import { splitLinesViaEraserCoords, isPointWithinCircle } from '../lineUtils';
 import { makeVerticalLinesPointArrays } from '../../../tests/LineFixtures';
 
 const imageSnapshotOptions = {
-    failureThreshold: 0.1,
+    failureThreshold: 0.02,
     failureThresholdType: 'percent',
     customSnapshotsDir: 'tests/screenshots',
     customDiffDir: 'tmp/diffs'
