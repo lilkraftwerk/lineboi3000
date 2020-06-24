@@ -80,5 +80,3 @@ export default {
     Component: SmoothComponent,
     initSettings
 };
-
-SmoothComponent.propTypes = {};

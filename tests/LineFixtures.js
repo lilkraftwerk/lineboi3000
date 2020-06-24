@@ -1,4 +1,4 @@
-import id from '../utils/id';
+import id from '../src/utils/id';
 
 export const testHeight = 600;
 export const testWidth = 800;
@@ -135,4 +135,84 @@ export const zShape = [
     [513, 364],
     [513, 360],
     [513, 360]
+];
+
+export const drawnRandomLines = [
+    {
+        id: '_65ud5g7qpxbkbm227w5',
+        pointArrayContainer: [
+            [188, 121],
+            [186, 122],
+            [131, 314]
+        ]
+    },
+    {
+        id: '_6rjbt9r7i4skbm229lu',
+        pointArrayContainer: [
+            [200, 442],
+            [200, 442],
+            [311, 322]
+        ]
+    },
+    {
+        id: '_5eysh6z4i3qkbm22o2q',
+        pointArrayContainer: [
+            [452, 480],
+            [569, 154],
+            [93, 411]
+        ]
+    },
+    {
+        id: '_jslu7l6qz9kbm22pwp_',
+        pointArrayContainer: [
+            [216, 69],
+            [648, 462],
+            [633, 514]
+        ]
+    },
+    {
+        id: '_7mfip99h9cikbm22r04',
+        pointArrayContainer: [
+            [129, 544],
+            [514, 557]
+        ]
+    },
+    {
+        id: '_797n8d5stx8kbm22rt9',
+        pointArrayContainer: [
+            [738, 248],
+            [737, 297]
+        ]
+    },
+    {
+        id: '_2by3t52p9dukbm22sqk',
+        pointArrayContainer: [
+            [753, 255],
+            [753, 289],
+            [753, 292]
+        ]
+    },
+    {
+        id: '_a618uy2tcmkbm22tmm_',
+        pointArrayContainer: [
+            [772, 247],
+            [773, 299],
+            [773, 299]
+        ]
+    },
+    {
+        id: '_79qossstgqokbm22wma',
+        pointArrayContainer: [
+            [111, 72],
+            [337, 147]
+        ]
+    },
+    {
+        id: '_vboprs4i83kbm2303u_',
+        pointArrayContainer: [
+            [697, 51],
+            [698, 162],
+            [698, 162]
+        ]
+    }
 ];

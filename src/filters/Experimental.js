@@ -68,5 +68,3 @@ export default {
     Component: ExperimentalComponent,
     initSettings
 };
-
-ExperimentalComponent.propTypes = {};

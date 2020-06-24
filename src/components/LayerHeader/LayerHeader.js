@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes, { LayerType } from 'customPropTypes';
 import { connect } from 'react-redux';
 import idGenerator from 'utils/id';
 import _ from 'lodash';
@@ -115,11 +114,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(LayerControls);
-
-LayerControls.defaultProps = {};
-
-LayerControls.propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    layers: PropTypes.arrayOf(LayerType).isRequired,
-    currentLayerID: PropTypes.string.isRequired
-};

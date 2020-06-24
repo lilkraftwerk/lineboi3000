@@ -1,37 +1,25 @@
 import _ from 'lodash';
 import Frame from 'canvas-to-buffer';
-import { toMatchImageSnapshot } from 'jest-image-snapshot';
-// to do move those utils to utils folder
-import {
-    // prepareLines,
-    drawLines,
-    drawCircles,
-    drawPoints
-} from '../components/common/DrawingUtils/DrawingUtils';
-import { allPointsBetweenTwoCoords } from './coordUtils';
-import { splitLinesViaEraserCoords, isPointWithinCircle } from './lineUtils';
-
 import 'jest-canvas-mock';
+import { toMatchImageSnapshot } from 'jest-image-snapshot';
+import { drawLines, drawCircles, drawPoints } from '../drawingUtils';
+import { createTestCanvas } from '../testUtils';
+import { allPointsBetweenTwoCoords } from '../coordUtils';
+import { splitLinesViaEraserCoords, isPointWithinCircle } from '../lineUtils';
+import { makeVerticalLinesPointArrays } from '../../../tests/LineFixtures';
 
-import { makeVerticalLinesPointArrays } from '../testing/LineFixtures';
+const imageSnapshotOptions = {
+    failureThreshold: 0.1,
+    failureThresholdType: 'percent',
+    customSnapshotsDir: 'tests/screenshots',
+    customDiffDir: 'tmp/diffs'
+};
 
 expect.extend({ toMatchImageSnapshot });
 
-const { createCanvas } = require('canvas');
-
 describe('Split Lines', () => {
     it('should split lines properly', () => {
-        const canvas = createCanvas(800, 600);
-        const context = canvas.getContext('2d');
-
-        context.beginPath();
-        context.lineWidth = '6';
-        context.fillStyle = 'white';
-        context.strokeStyle = 'black';
-        context.rect(0, 0, 800, 600);
-        context.stroke();
-        context.fill();
-
+        const { canvas, context } = createTestCanvas();
         const eraserRadius = 15;
 
         const eraseLine = allPointsBetweenTwoCoords([0, 50], [800, 50], {
@@ -76,22 +64,13 @@ describe('Split Lines', () => {
         drawLines(context, splitLines);
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot();
+        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 });
 
 describe('isPointWithinCircle', () => {
     it('should highlight all points within a circle with edges', () => {
-        const canvas = createCanvas(800, 600);
-        const context = canvas.getContext('2d');
-
-        context.beginPath();
-        context.lineWidth = '6';
-        context.fillStyle = 'white';
-        context.strokeStyle = 'black';
-        context.rect(0, 0, 800, 600);
-        context.stroke();
-        context.fill();
+        const { canvas, context } = createTestCanvas();
 
         const circleLocations = [
             [100, 100],
@@ -132,31 +111,13 @@ describe('isPointWithinCircle', () => {
         drawCircles(context, circleLocations, circleRadius, 'red');
         drawPoints(context, finalPoints);
 
-        // const splitLines = splitLinesViaEraserCoords({
-        //     lines: testLines,
-        //     eraseCoords,
-        //     eraserRadius,
-        //     smoothOriginalLines: true,
-        //     smoothPasses: 1
-        // });
-
-        // drawLines(context, splitLines);
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot();
+        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should highlight all points within a circle without edges', () => {
-        const canvas = createCanvas(800, 600);
-        const context = canvas.getContext('2d');
-
-        context.beginPath();
-        context.lineWidth = '6';
-        context.fillStyle = 'white';
-        context.strokeStyle = 'black';
-        context.rect(0, 0, 800, 600);
-        context.stroke();
-        context.fill();
+        const { canvas, context } = createTestCanvas();
 
         const circleLocations = [
             [100, 100],
@@ -197,17 +158,8 @@ describe('isPointWithinCircle', () => {
         drawCircles(context, circleLocations, circleRadius, 'red');
         drawPoints(context, finalPoints);
 
-        // const splitLines = splitLinesViaEraserCoords({
-        //     lines: testLines,
-        //     eraseCoords,
-        //     eraserRadius,
-        //     smoothOriginalLines: true,
-        //     smoothPasses: 1
-        // });
-
-        // drawLines(context, splitLines);
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot();
+        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 });

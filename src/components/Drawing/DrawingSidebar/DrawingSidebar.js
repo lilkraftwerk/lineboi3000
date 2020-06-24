@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
 import { ActionCreators } from 'redux-undo';
-import PropTypes from 'prop-types';
 import {
     selectMainMode,
     selectDrawMode,
@@ -515,9 +514,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(DrawingSidebar);
-
-DrawingSidebar.defaultProps = {};
-
-DrawingSidebar.propTypes = {
-    dispatch: PropTypes.func.isRequired
-};

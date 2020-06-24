@@ -72,5 +72,3 @@ export default {
     Component: ShortenLineComponent,
     initSettings
 };
-
-ShortenLineComponent.propTypes = {};

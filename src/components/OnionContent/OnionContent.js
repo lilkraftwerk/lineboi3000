@@ -138,7 +138,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(OnionContent);
-
-OnionContent.defaultProps = {};
-
-OnionContent.propTypes = {};

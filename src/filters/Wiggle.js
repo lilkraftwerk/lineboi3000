@@ -73,5 +73,3 @@ export default {
     Component: WiggleLinesComponent,
     initSettings
 };
-
-WiggleLinesComponent.propTypes = {};

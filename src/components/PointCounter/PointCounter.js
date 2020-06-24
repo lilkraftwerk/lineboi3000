@@ -46,5 +46,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(PointCounter);
-
-PointCounter.propTypes = {};

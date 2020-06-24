@@ -79,5 +79,3 @@ export default {
     Component: SimplifyComponent,
     initSettings
 };
-
-SimplifyComponent.propTypes = {};

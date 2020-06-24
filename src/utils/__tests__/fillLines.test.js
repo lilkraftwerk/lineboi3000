@@ -1,31 +1,24 @@
 import 'jest-canvas-mock';
 import Frame from 'canvas-to-buffer';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
-import {
-    drawLines,
-    drawCircles,
-    drawSquares
-} from '../components/common/DrawingUtils/DrawingUtils';
-import { printLinesViaFillCoords, generateLinesAtAngle } from './lineUtils';
-import { getExtremePointsOfCoords } from '../plotting/plotUtils';
-import { zShape } from '../testing/LineFixtures';
+import { drawLines, drawCircles, drawSquares } from '../drawingUtils';
+import { createTestCanvas } from '../testUtils';
+import { printLinesViaFillCoords, generateLinesAtAngle } from '../lineUtils';
+import { getExtremePointsOfCoords } from '../plotUtils';
+import { zShape } from '../../../tests/LineFixtures';
+
+const imageSnapshotOptions = {
+    failureThreshold: 0.1,
+    failureThresholdType: 'percent',
+    customSnapshotsDir: 'tests/screenshots',
+    customDiffDir: 'tmp/diffs'
+};
 
 expect.extend({ toMatchImageSnapshot });
 
-const { createCanvas } = require('canvas');
-
 describe('Fill Lines', () => {
     it('should fill lines horizontally', () => {
-        const canvas = createCanvas(800, 600);
-        const context = canvas.getContext('2d');
-
-        context.beginPath();
-        context.lineWidth = '6';
-        context.fillStyle = 'white';
-        context.strokeStyle = 'black';
-        context.rect(0, 0, 800, 600);
-        context.stroke();
-        context.fill();
+        const { canvas, context } = createTestCanvas();
 
         const resultingLines = printLinesViaFillCoords({
             fillCoords: zShape,
@@ -39,22 +32,12 @@ describe('Fill Lines', () => {
         drawLines(context, resultingLines, 1, 'black');
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot();
+        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should fill lines vertically, with circle shape', () => {
-        const canvas = createCanvas(800, 600);
-        const context = canvas.getContext('2d');
-
+        const { canvas, context } = createTestCanvas();
         const radius = 30;
-
-        context.beginPath();
-        context.lineWidth = '6';
-        context.fillStyle = 'white';
-        context.strokeStyle = 'black';
-        context.rect(0, 0, 800, 600);
-        context.stroke();
-        context.fill();
 
         const resultingLines = printLinesViaFillCoords({
             fillCoords: zShape,
@@ -69,22 +52,12 @@ describe('Fill Lines', () => {
         drawLines(context, resultingLines, 1, 'black');
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot();
+        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should fill lines vertically, with square shape', () => {
-        const canvas = createCanvas(800, 600);
-        const context = canvas.getContext('2d');
-
+        const { canvas, context } = createTestCanvas();
         const radius = 30;
-
-        context.beginPath();
-        context.lineWidth = '6';
-        context.fillStyle = 'white';
-        context.strokeStyle = 'black';
-        context.rect(0, 0, 800, 600);
-        context.stroke();
-        context.fill();
 
         const resultingLines = printLinesViaFillCoords({
             fillCoords: zShape,
@@ -99,22 +72,12 @@ describe('Fill Lines', () => {
         drawLines(context, resultingLines, 1, 'black');
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot();
+        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should fill lines at an angle with square shape', () => {
-        const canvas = createCanvas(800, 600);
-        const context = canvas.getContext('2d');
-
+        const { canvas, context } = createTestCanvas();
         const radius = 30;
-
-        context.beginPath();
-        context.lineWidth = '6';
-        context.fillStyle = 'white';
-        context.strokeStyle = 'black';
-        context.rect(0, 0, 800, 600);
-        context.stroke();
-        context.fill();
 
         const resultingLines = printLinesViaFillCoords({
             fillCoords: zShape,
@@ -129,26 +92,16 @@ describe('Fill Lines', () => {
         drawLines(context, resultingLines, 1, 'black');
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot();
+        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 });
 
 describe('Draw Lines At Angle', () => {
     it('should work with angles less than 44', () => {
-        const canvas = createCanvas(800, 600);
-        const context = canvas.getContext('2d');
-
+        const { canvas, context } = createTestCanvas();
         const radius = 30;
         const angle = 44;
 
-        context.beginPath();
-        context.lineWidth = '6';
-        context.fillStyle = 'white';
-        context.strokeStyle = 'black';
-        context.rect(0, 0, 800, 600);
-        context.stroke();
-        context.fill();
-
         const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(
             zShape,
             radius
@@ -167,24 +120,14 @@ describe('Draw Lines At Angle', () => {
         drawLines(context, linesToUse, 1, 'black');
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot();
+        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should work with angles less than 89', () => {
-        const canvas = createCanvas(800, 600);
-        const context = canvas.getContext('2d');
-
+        const { canvas, context } = createTestCanvas();
         const radius = 30;
         const angle = 85;
 
-        context.beginPath();
-        context.lineWidth = '6';
-        context.fillStyle = 'white';
-        context.strokeStyle = 'black';
-        context.rect(0, 0, 800, 600);
-        context.stroke();
-        context.fill();
-
         const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(
             zShape,
             radius
@@ -203,23 +146,13 @@ describe('Draw Lines At Angle', () => {
         drawLines(context, linesToUse, 1, 'black');
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot();
+        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should work with angles less than 134', () => {
-        const canvas = createCanvas(800, 600);
-        const context = canvas.getContext('2d');
-
-        const radius = 30;
+        const { canvas, context } = createTestCanvas();
         const angle = 120;
-
-        context.beginPath();
-        context.lineWidth = '6';
-        context.fillStyle = 'white';
-        context.strokeStyle = 'black';
-        context.rect(0, 0, 800, 600);
-        context.stroke();
-        context.fill();
+        const radius = 30;
 
         const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(
             zShape,
@@ -239,23 +172,13 @@ describe('Draw Lines At Angle', () => {
         drawLines(context, linesToUse, 1, 'black');
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot();
+        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should work with angles less than 180', () => {
-        const canvas = createCanvas(800, 600);
-        const context = canvas.getContext('2d');
-
+        const { canvas, context } = createTestCanvas();
         const radius = 30;
         const angle = 175;
-
-        context.beginPath();
-        context.lineWidth = '6';
-        context.fillStyle = 'white';
-        context.strokeStyle = 'black';
-        context.rect(0, 0, 800, 600);
-        context.stroke();
-        context.fill();
 
         const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(
             zShape,
@@ -275,6 +198,6 @@ describe('Draw Lines At Angle', () => {
         drawLines(context, linesToUse, 1, 'black');
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot();
+        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 });

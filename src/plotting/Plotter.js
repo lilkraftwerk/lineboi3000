@@ -28,6 +28,10 @@ export default class Plotter {
         this.axidraw.parkPen();
     }
 
+    returnToStart() {
+        this.axidraw.returnToStart();
+    }
+
     penUp() {
         this.axidraw.penUp();
     }

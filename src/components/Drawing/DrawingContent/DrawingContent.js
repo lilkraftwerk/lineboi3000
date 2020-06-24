@@ -1,9 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
-import { LayerType, LineType } from 'customPropTypes';
 import { getShowPoints } from 'store/global/globalSelectors';
 import { getVisibleOriginalLines } from 'store/line/lineSelectors';
 import { getCurrentOptions } from 'store/onions/onionsSelectors';
@@ -511,16 +509,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(DrawingContent);
-
-DrawingContent.defaultProps = {};
-
-DrawingContent.propTypes = {
-    currentLayerID: PropTypes.string.isRequired,
-    dispatch: PropTypes.func.isRequired,
-    visibleLayers: PropTypes.arrayOf(LayerType).isRequired,
-    height: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
-    visibleOriginalLines: PropTypes.shape({
-        layerId: PropTypes.arrayOf(LineType)
-    }).isRequired
-};

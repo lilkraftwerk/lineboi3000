@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes, { ModeType } from 'customPropTypes';
 import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
 
@@ -104,8 +103,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(AppContainer);
-
-AppContainer.propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    mode: ModeType.isRequired
-};

@@ -1,10 +1,9 @@
 import React, { useRef, useEffect } from 'react';
-import PropTypes, { LineType } from '../../customPropTypes';
 import {
     prepareLines,
     drawLines,
     drawPointCircles
-} from './DrawingUtils/DrawingUtils';
+} from '../../utils/drawingUtils';
 
 import styles from './SvgLayer.styles.css';
 
@@ -204,16 +203,6 @@ export const SelectLayer = ({
         />
     );
 };
-
-const commonPropTypes = {
-    lines: PropTypes.arrayOf(LineType).isRequired,
-    color: PropTypes.string,
-    height: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
-    strokeWidth: PropTypes.number.isRequired
-};
-
-CanvasLayer.propTypes = commonPropTypes;
 
 CanvasLayer.defaultProps = {
     color: 'black'

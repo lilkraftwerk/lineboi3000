@@ -9,6 +9,7 @@ import {
 import { SidebarItem } from 'components/common/SidebarContainer';
 import ItemSelector from 'components/common/ItemSelector';
 import PercentClicker from 'components/common/PercentClicker';
+import AngleChooser from 'components/common/AngleChooser';
 
 const FONT_NAMES = [
     'VCR_OSD_MONO.ttf',
@@ -25,10 +26,10 @@ const TextOptions = (props) => {
     const {
         textContent,
         textSize,
-        textFill,
+        fillAngle,
         textOutline,
-        textDistanceBetweenLines,
-        textDistanceBetweenPoints,
+        distanceBetweenLines,
+        distanceBetweenPoints,
         textDistanceBetweenLetters,
         textDistanceBetweenWords,
         textFillIsHorizontal,
@@ -87,21 +88,22 @@ const TextOptions = (props) => {
                     }}
                 />
             </label>
-            <label>
-                fill
-                <input
-                    type="checkbox"
-                    defaultChecked={textFill}
-                    onChange={() => {
-                        dispatch(
-                            setOptionByKey({
-                                key: 'textFill',
-                                value: !textFill
-                            })
-                        );
-                    }}
-                />
-            </label>{' '}
+            <AngleChooser
+                setValue={(value) => {
+                    dispatch(
+                        setOptionByKey({
+                            key: 'fillAngle',
+                            value
+                        })
+                    );
+                }}
+                title="fill angle"
+                minLabel="1"
+                maxLabel="180"
+                minValue={1}
+                maxValue={180}
+                currentValue={fillAngle}
+            />
             <button
                 style={{ gridColumn: 'span 4' }}
                 type="button"
@@ -120,7 +122,7 @@ const TextOptions = (props) => {
                 setValue={(value) => {
                     dispatch(
                         setSelectOptionByKey({
-                            key: 'textDistanceBetweenLines',
+                            key: 'distanceBetweenLines',
                             value
                         })
                     );
@@ -131,13 +133,13 @@ const TextOptions = (props) => {
                 maxLabel="15"
                 minValue={1}
                 maxValue={15}
-                currentValue={textDistanceBetweenLines}
+                currentValue={distanceBetweenLines}
             />
             <PercentClicker
                 setValue={(value) => {
                     dispatch(
                         setSelectOptionByKey({
-                            key: 'textDistanceBetweenPoints',
+                            key: 'distanceBetweenPoints',
                             value
                         })
                     );
@@ -148,7 +150,7 @@ const TextOptions = (props) => {
                 maxLabel="15"
                 minValue={1}
                 maxValue={15}
-                currentValue={textDistanceBetweenPoints}
+                currentValue={distanceBetweenPoints}
             />
             <PercentClicker
                 setValue={(value) => {

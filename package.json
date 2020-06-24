@@ -25,6 +25,8 @@
         "style:fix": "stylelint \"**/**/*.css\" --fix",
         "test": "jest --colors --verbose",
         "test:src": "jest ./src --colors --verbose",
+        "test:filters": "jest --testMatch='**/*.example.js' --colors --verbose",
+        "test:filters:watch": "jest --watch --testMatch='**/*.example.js' --colors --verbose",
         "test:update": "jest --u --colors --verbose",
         "test:update:watch": "jest --u --watch --colors --verbose",
         "test:watch": "jest --colors --verbose --watch",
@@ -36,7 +38,6 @@
             "jest-canvas-mock"
         ],
         "moduleNameMapper": {
-            "^$customPropTypes(.*)": "<rootdir>/src/customPropTypes$1",
             "^$components(.*)": "<rootdir>/src/components$1",
             "^$mainProcess(.*)": "<rootdir>/src/mainProcess$1",
             "^$store(.*)": "<rootdir>/src/store$1",

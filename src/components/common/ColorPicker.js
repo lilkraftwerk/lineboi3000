@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Popover from 'react-tiny-popover';
 import Icon from 'components/common/Icon';
@@ -72,11 +71,6 @@ const ColorPicker = ({ colorList, onColorSelect }) => {
     );
 };
 
-ColorPicker.propTypes = {
-    colorList: PropTypes.arrayOf(PropTypes.string).isRequired,
-    onColorSelect: PropTypes.func.isRequired
-};
-
 const ColorPickerWrapper = ({ onColorSelect, selectedColor = '#364B44' }) => {
     const [visible, toggleVisible] = useState(false);
 
@@ -118,11 +112,6 @@ const ColorPickerWrapper = ({ onColorSelect, selectedColor = '#364B44' }) => {
             </Popover>
         </Fragment>
     );
-};
-
-ColorPickerWrapper.propTypes = {
-    selectedColor: PropTypes.string.isRequired,
-    onColorSelect: PropTypes.func.isRequired
 };
 
 export default ColorPickerWrapper;
