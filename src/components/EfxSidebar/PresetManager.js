@@ -91,7 +91,3 @@ export default class PresetManager extends React.Component {
         );
     }
 }
-
-PresetManager.defaultProps = {};
-
-PresetManager.propTypes = {};

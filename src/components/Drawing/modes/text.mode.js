@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import TextToSVG from 'text-to-svg';
 import { pathDataToPolys } from 'svg-path-to-polygons';
+import { getExtremePointsOfCoords } from '../../../utils/plotUtils';
 import {
-    generateHorizontalLines,
-    generateVerticalLines,
-    removePointsOutsidePolygons
+    removePointsOutsidePolygons,
+    generateLinesAtAngle
 } from '../../../utils/lineUtils';
 import { getFirstAndLastCoordsFromTempCoords } from '../../../utils/drawingUtils';
 
@@ -30,10 +30,10 @@ const createTextCoords = (coords, textContent = 'no text', options) => {
         textFill,
         textOutline,
         textSize,
+        fillAngle,
         fontName,
-        textFillIsHorizontal,
-        textDistanceBetweenLines,
-        textDistanceBetweenPoints
+        distanceBetweenLines,
+        distanceBetweenPoints
     } = options;
     const textToSVG = TextToSVG.loadSync(`src/assets/fonts/${fontName}`);
 
@@ -56,15 +56,22 @@ const createTextCoords = (coords, textContent = 'no text', options) => {
 
     const justCoords = _.flatten(polygons);
 
-    const combinedOptions = {
-        ...getMinMaxValues(justCoords),
-        distanceBetweenLines: textDistanceBetweenLines,
-        distanceBetweenPoints: textDistanceBetweenPoints
-    };
+    // const combinedOptions = {
+    // ...getMinMaxValues(justCoords),
+    // distanceBetweenLines,
+    // distanceBetweenPoints
+    // };
 
-    const allLines = textFillIsHorizontal
-        ? generateHorizontalLines(combinedOptions)
-        : generateVerticalLines(combinedOptions);
+    const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(justCoords, 50);
+    const allLines = generateLinesAtAngle({
+        minX,
+        maxX,
+        minY,
+        maxY,
+        distanceBetweenLines,
+        distanceBetweenPoints,
+        angle: fillAngle
+    });
 
     // library returns a weird object
     const mappedPolys = polygons.map((polygon) => {

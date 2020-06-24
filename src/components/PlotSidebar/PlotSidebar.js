@@ -1,11 +1,11 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import Plotter from 'plotting/Plotter';
 import { getAllEfxLines } from 'store/line/lineSelectors';
 import { getCurrentOptions } from 'store/onions/onionsSelectors';
 import PercentClicker from 'components/common/PercentClicker';
+import { EnabledToggleButton } from 'components/common/SidebarButton';
 
 import {
     setPlotSettingByKey,
@@ -14,14 +14,15 @@ import {
     setCurrentLineId
 } from 'store/plot/plotActions';
 import {
-    formatLayersForPlotDisplayTwo,
-    addPercentageCoordinatesToLine,
-    generatePlotBoundaries
-} from 'plotting/plotUtils';
-import {
     SidebarContainer,
     SidebarItem
 } from 'components/common/SidebarContainer';
+import {
+    formatLayersForPlotDisplayTwo,
+    addPercentageCoordinatesToLine,
+    generatePlotBoundaries
+} from '../../utils/plotUtils';
+import { sortLinesForPlotter } from '../../utils/lineSortUtils';
 import id from '../../utils/id';
 
 import styles from './PlotSidebar.styles.css';
@@ -119,10 +120,17 @@ class PlotSidebar extends React.Component {
             formattedLayers,
             paperHeightInPixels,
             paperWidthInPixels,
+            optimizeLineOrder,
             dispatch
         } = this.props;
+
         this.parkPen();
-        const justLines = _.flatten(formattedLayers.map((x) => x.lines));
+        let justLines = _.flatten(formattedLayers.map((x) => x.lines));
+
+        if (optimizeLineOrder) {
+            justLines = sortLinesForPlotter(justLines);
+        }
+
         const mappedRelativeLines = justLines.map((line) =>
             addPercentageCoordinatesToLine(
                 line,
@@ -138,6 +146,41 @@ class PlotSidebar extends React.Component {
         });
     };
 
+    // testPlotCoords = () => {
+    //     const {
+    //         formattedLayers,
+    //         paperHeightInPixels,
+    //         paperWidthInPixels
+    //     } = this.props;
+
+    //     const justLines = _.flatten(formattedLayers.map((x) => x.lines));
+    //     const originalLines = _.flatten(formattedLayers.map((x) => x.lines));
+    //     const sortedLines = sortLinesForPlotter(justLines);
+
+    //     const mappedSorted = sortedLines.map((line) =>
+    //         addPercentageCoordinatesToLine(
+    //             line,
+    //             paperWidthInPixels,
+    //             paperHeightInPixels
+    //         )
+    //     );
+
+    //     const mappedOriginal = originalLines.map((line) =>
+    //         addPercentageCoordinatesToLine(
+    //             line,
+    //             paperWidthInPixels,
+    //             paperHeightInPixels
+    //         )
+    //     );
+
+    //     const flatOriginalPercent = _.flatten(
+    //         mappedOriginal.map((x) => x.percentageCoordinates)
+    //     );
+    //     const flatSorted = _.flatten(
+    //         mappedSorted.map((x) => x.percentageCoordinates)
+    //     );
+    // };
+
     abort = () => {
         this.plotter.abort();
     };
@@ -152,6 +195,10 @@ class PlotSidebar extends React.Component {
 
     parkPen = () => {
         this.plotter.parkPen();
+    };
+
+    parkPen = () => {
+        this.plotter.returnToStart();
     };
 
     setPenHeights = () => {
@@ -218,7 +265,13 @@ class PlotSidebar extends React.Component {
     };
 
     render() {
-        const { penUpHeight, penDownHeight, scale, dispatch } = this.props;
+        const {
+            penUpHeight,
+            penDownHeight,
+            scale,
+            optimizeLineOrder,
+            dispatch
+        } = this.props;
 
         return (
             <SidebarContainer>
@@ -227,6 +280,20 @@ class PlotSidebar extends React.Component {
                     {this.penHeightStatusDisplay()}
                 </SidebarItem>
                 <SidebarItem cols={2} title="pen controls">
+                    <EnabledToggleButton
+                        style={{ gridColumn: 'span 4' }}
+                        onClick={() => {
+                            dispatch(
+                                setPlotSettingByKey(
+                                    'optimizeLineOrder',
+                                    !optimizeLineOrder
+                                )
+                            );
+                        }}
+                        active={optimizeLineOrder}
+                        labelActive="optimize line order on"
+                        labelInactive="optimize line order off"
+                    />
                     <button
                         className={styles.button}
                         type="button"
@@ -255,6 +322,13 @@ class PlotSidebar extends React.Component {
                     >
                         park pen
                     </button>
+                    <button
+                        className={styles.button}
+                        type="button"
+                        onClick={this.returnToStart}
+                    >
+                        return pen to start
+                    </button>
                 </SidebarItem>
                 <SidebarItem title="plot stuff" cols={2}>
                     <button
@@ -271,6 +345,13 @@ class PlotSidebar extends React.Component {
                         onClick={this.plotCoords}
                     >
                         plot
+                    </button>
+                    <button
+                        className={styles.button}
+                        type="button"
+                        onClick={this.testPlotCoords}
+                    >
+                        test plot
                     </button>
                     <button
                         className={styles.button}
@@ -362,6 +443,7 @@ const mapStateToProps = (state) => {
         scale,
         penUpHeight,
         penDownHeight,
+        optimizeLineOrder,
         isPlotBoundaryVisible
     } = state.plotReducer;
 
@@ -383,6 +465,7 @@ const mapStateToProps = (state) => {
         width,
         penUpHeight,
         penDownHeight,
+        optimizeLineOrder,
         paperWidthInPixels,
         paperHeightInPixels,
         isPlotBoundaryVisible,
@@ -394,9 +477,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(PlotSidebar);
-
-PlotSidebar.defaultProps = {};
-
-PlotSidebar.propTypes = {
-    dispatch: PropTypes.func.isRequired
-};

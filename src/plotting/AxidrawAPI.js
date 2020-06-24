@@ -41,8 +41,17 @@ class AxidrawAPI {
             const [x, y] = path[i];
             await this.setPenState(`x=${x}&y=${y}`);
 
-            if (i === 0) await this.setPenState(`state=${penDownHeight}`);
+            if (i === 0) {
+                await this.setPenState(`state=${penDownHeight}`);
+            }
         }
+        await this.setPenState(`state=${penUpHeight}`);
+        await this.timeout(100);
+        return Promise.resolve();
+    }
+
+    timeout(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
     }
 
     async setPenState(state) {
@@ -57,6 +66,10 @@ class AxidrawAPI {
 
     async resetMotor() {
         await fetch(`${API_URL}/motors`, { method: 'DELETE' });
+    }
+
+    async returnToStart() {
+        await fetch(`${API_URL}/pen`, { method: 'DELETE' });
     }
 
     async parkPen() {

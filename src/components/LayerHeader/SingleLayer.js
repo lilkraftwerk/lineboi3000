@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import PropTypes, { LayerType } from 'customPropTypes';
 import ColorPicker from 'components/common/ColorPicker';
 import Icon from 'components/common/Icon';
 
@@ -140,19 +139,6 @@ const SingleLayer = ({
             </div>
         </div>
     );
-};
-
-SingleLayer.propTypes = {
-    layer: LayerType.isRequired,
-    isSelected: PropTypes.bool.isRequired,
-    onSelectLayer: PropTypes.func.isRequired,
-    onUpdateLayerSetting: PropTypes.func.isRequired,
-    onMoveLayerUp: PropTypes.func.isRequired,
-    onMoveLayerDown: PropTypes.func.isRequired,
-    onDeleteLayer: PropTypes.func.isRequired,
-    canMoveDown: PropTypes.bool.isRequired,
-    canMoveUp: PropTypes.bool.isRequired,
-    canDelete: PropTypes.bool.isRequired
 };
 
 export default SingleLayer;

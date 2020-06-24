@@ -65,7 +65,6 @@ module.exports = {
     },
     resolve: {
         alias: {
-            customPropTypes: path.resolve(__dirname, './src/customPropTypes/'),
             components: path.resolve(__dirname, './src/components/'),
             mainProcess: path.resolve(__dirname, './src/mainProcess/'),
             store: path.resolve(__dirname, './src/store/'),

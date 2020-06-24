@@ -14,3 +14,6 @@ npm-debug.log*
 yarn-error.log
 
 **/**/__diff_output__
+
+# keep diff folder for CI but don't check diffs in locally
+tmp/diffs/*.png

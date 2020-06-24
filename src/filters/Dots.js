@@ -73,5 +73,3 @@ export default {
     Component: DotsComponent,
     initSettings
 };
-
-DotsComponent.propTypes = {};

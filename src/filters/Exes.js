@@ -147,5 +147,3 @@ export default {
     Component: ExesComponent,
     initSettings
 };
-
-ExesComponent.propTypes = {};

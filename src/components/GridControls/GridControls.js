@@ -101,5 +101,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(GridControls);
-
-GridControls.propTypes = {};

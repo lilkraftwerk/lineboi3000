@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
-import PropTypes from 'prop-types';
 import {
     addFilterToLayerByID,
     updateFilterByLayerIDandFilterID,
@@ -452,9 +451,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(EfxSidebar);
-
-EfxSidebar.defaultProps = {};
-
-EfxSidebar.propTypes = {
-    dispatch: PropTypes.func.isRequired
-};

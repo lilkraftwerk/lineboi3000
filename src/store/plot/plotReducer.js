@@ -10,6 +10,7 @@ const initState = {
     paperHeight: 8.58,
     penUpHeight: 0.25,
     penDownHeight: 0.7,
+    optimizeLineOrder: true,
     scale: 50,
     center: true,
     isPlotBoundaryVisible: false,

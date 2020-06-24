@@ -56,5 +56,3 @@ export default {
     Component: RemoveLinesComponent,
     initSettings
 };
-
-RemoveLinesComponent.propTypes = {};

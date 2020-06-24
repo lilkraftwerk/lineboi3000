@@ -112,9 +112,6 @@ export const DistortFilter = ({ filterSettings, pointArrays }) => {
                 newY = y + xValueMap[flooredX.toString()];
             }
 
-            console.log(xValueMap);
-            console.log(yValueMap);
-
             return [newX, newY];
         });
     };
@@ -138,5 +135,3 @@ export default {
     Component: DistortComponent,
     initSettings
 };
-
-DistortComponent.propTypes = {};

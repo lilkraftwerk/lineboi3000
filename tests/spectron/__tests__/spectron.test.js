@@ -8,8 +8,15 @@ expect.extend({ toMatchImageSnapshot });
 
 const app = new Application({
     path: electronPath,
-    args: [path.join(__dirname, '..', '..')]
+    args: [path.join(__dirname, '..', '..', '..')]
 });
+
+const imageSnapshotOptions = {
+    failureThreshold: 0.02,
+    failureThresholdType: 'percent',
+    customSnapshotsDir: 'tests/screenshots',
+    customDiffDir: 'tmp/diffs'
+};
 
 describe('App Tests', () => {
     beforeEach(() => {
@@ -25,8 +32,7 @@ describe('App Tests', () => {
         await app.client.isExisting('#drawingContent');
         const photo = await app.browserWindow.capturePage();
         expect(photo).toMatchImageSnapshot({
-            failureThreshold: 0.1,
-            failureThresholdType: 'percent'
+            ...imageSnapshotOptions
         });
     });
 });

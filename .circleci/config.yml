@@ -1,6 +1,7 @@
 version: 2.1
 jobs:
   build:
+    working_directory: ~/lineboi3000
     docker:
       - image: circleci/node:12.17.0
     steps:
@@ -18,8 +19,14 @@ jobs:
           paths:
             - ~/.cache/yarn
       - run:
+          name: Creating Dummy Artifacts
+          command: mkdir /tmp/diffs;
+      - run:
           name: Run Tests
           command: yarn test:src
+      - store_artifacts:
+          path: tmp/diffs
+          destination: image_snapshot_diff
       - run:
           name: ESLint
           command: yarn eslint:check

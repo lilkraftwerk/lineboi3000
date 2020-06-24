@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import isPointInPolygon from 'point-in-polygon';
 import { Line, Circle, Point, intersections } from '@mathigon/fermat';
-import { getExtremePointsOfCoords } from '../plotting/plotUtils';
+import { getExtremePointsOfCoords } from './plotUtils';
 import id from './id';
 
 export const getPointArraysFromLine = (line) => {

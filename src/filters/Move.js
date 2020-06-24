@@ -63,5 +63,3 @@ export default {
     Component: MoveLinesComponent,
     initSettings
 };
-
-MoveLinesComponent.propTypes = {};

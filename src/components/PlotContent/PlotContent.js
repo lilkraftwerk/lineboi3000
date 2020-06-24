@@ -6,7 +6,7 @@ import { CanvasLayer } from 'components/common/SvgLayer';
 import {
     formatLayersForPlotDisplayTwo,
     generatePlotBoundaries
-} from 'plotting/plotUtils';
+} from '../../utils/plotUtils';
 import PaperCanvas from './PaperCanvas';
 
 import styles from './PlotContent.styles.css';
@@ -127,5 +127,3 @@ PlotContent.defaultProps = {
     lineCallback: null,
     lines: []
 };
-
-PlotContent.propTypes = {};

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { createCanvas } from 'canvas';
 import id from './id';
 
 export const createFakePoint = (
@@ -110,11 +111,17 @@ export const isLineValid = (line) => {
     return _.uniq(invalidReasons);
 };
 
-const getDrawingOptions = (drawingMode = 'pen') => {
-    return {
-        textContent: 'ab',
-        fontSize: 50,
-        fontName: 'VCR_OSD_MONO.ttf',
-        drawingMode
-    };
+export const createTestCanvas = () => {
+    const canvas = createCanvas(800, 600);
+    const context = canvas.getContext('2d');
+
+    context.beginPath();
+    context.lineWidth = '6';
+    context.fillStyle = 'white';
+    context.strokeStyle = 'black';
+    context.rect(0, 0, 800, 600);
+    context.stroke();
+    context.fill();
+
+    return { context, canvas };
 };

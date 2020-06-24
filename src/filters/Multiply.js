@@ -129,5 +129,3 @@ export default {
     Component: MultiplyComponent,
     initSettings
 };
-
-MultiplyComponent.propTypes = {};
