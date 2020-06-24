@@ -1,9 +1,7 @@
 import Frame from 'canvas-to-buffer';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 import { createTestCanvas } from '../testUtils';
-import {
-    drawLines
-} from '../drawingUtils';
+import { drawLines } from '../drawingUtils';
 
 import {
     sortLinesForPlotter,
@@ -13,6 +11,8 @@ import { drawnRandomLines } from '../../../tests/LineFixtures';
 import 'jest-canvas-mock';
 
 const imageSnapshotOptions = {
+    failureThreshold: 0.1,
+    failureThresholdType: 'percent',
     customSnapshotsDir: 'tests/screenshots',
     customDiffDir: 'tmp/diffs'
 };

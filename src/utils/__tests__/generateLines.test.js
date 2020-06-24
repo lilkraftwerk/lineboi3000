@@ -11,7 +11,9 @@ expect.extend({ toMatchImageSnapshot });
 
 const imageSnapshotOptions = {
     customSnapshotsDir: 'tests/screenshots',
-    customDiffDir: 'tmp/diffs'
+    customDiffDir: 'tmp/diffs',
+    failureThreshold: 0.1,
+    failureThresholdType: 'percent'
 };
 
 const testAngle = (angle) => {
@@ -40,9 +42,7 @@ const testAngle = (angle) => {
 
     context.fillStyle = 'black';
     context.font = 'bold 50px Arial';
-    const angleString = `angle: ${angle}`;
-    const textWidth = context.measureText(angleString);
-    context.fillText(`angle: ${angle}`, 400 - textWidth.width / 2, 500);
+    context.fillText(`angle: ${angle}`, 50, 50);
     return canvas;
 };
 
