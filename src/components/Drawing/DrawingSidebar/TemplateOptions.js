@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
 import { setOptionByKey } from 'store/drawing/drawingActions';
-import { SidebarItem } from 'components/common/SidebarContainer';
 import PercentClicker from 'components/common/PercentClicker';
 import { connect } from 'react-redux';
 
@@ -32,7 +31,7 @@ const TemplateOptionsComponent = (props) => {
     } = props;
 
     return (
-        <SidebarItem title="templates" height={2}>
+        <>
             {TEMPLATE_TYPES.map((templateType) => (
                 <button
                     style={{ gridColumn: 'span 2' }}
@@ -258,7 +257,7 @@ const TemplateOptionsComponent = (props) => {
             >
                 apply
             </button>
-        </SidebarItem>
+        </>
     );
 };
 

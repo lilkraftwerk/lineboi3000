@@ -1,6 +1,7 @@
 // gifmaker actions
 
 export const ADD_FRAME = 'ADD_FRAME';
+export const DELETE_LIBRARY_FRAME = 'DELETE_LIBRARY_FRAME';
 export const SET_TEMP_BLOB = 'SET_TEMP_BLOB';
 export const SAVE_TEMP_AS_FRAME = 'SAVE_TEMP_AS_FRAME';
 export const SET_GIFMAKER_LOADING = 'SET_GIFMAKER_LOADING';
@@ -9,10 +10,15 @@ export const ADD_ACTIVE_FRAME = 'ADD_ACTIVE_FRAME';
 export const SET_MASTER_GIF = 'SET_MASTER_GIF';
 export const MOVE_FRAME_UP = 'MOVE_FRAME_UP';
 export const MOVE_FRAME_DOWN = 'MOVE_FRAME_DOWN';
-export const DELETE_FRAME_FROM_GIF = 'DELETE_FRAME_FROM_GIF';
+export const DELETE_ACTIVE_FRAME = 'DELETE_ACTIVE_FRAME';
+export const SET_GIF_OPTION_BY_KEY = 'SET_GIF_OPTION_BY_KEY';
 
 export const addFrame = (frame) => {
     return { type: ADD_FRAME, value: frame };
+};
+
+export const deleteLibraryFrame = (frameID) => {
+    return { type: DELETE_LIBRARY_FRAME, value: frameID };
 };
 
 export const saveTempAsFrame = () => {
@@ -47,6 +53,13 @@ export const moveFrameDown = (id) => {
     return { type: MOVE_FRAME_DOWN, value: id };
 };
 
-export const deleteFrameFromGif = (id) => {
-    return { type: DELETE_FRAME_FROM_GIF, value: id };
+export const deleteActiveFrame = (id) => {
+    return { type: DELETE_ACTIVE_FRAME, value: id };
+};
+
+export const setGifOptionByKey = ({ key, value }) => {
+    return {
+        type: SET_GIF_OPTION_BY_KEY,
+        value: { key, value }
+    };
 };

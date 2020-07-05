@@ -33,7 +33,7 @@ import ShrinkCanvasOptions from './ShrinkCanvasOptions';
 import MultiplyCanvasOptions from './MultiplyCanvasOptions';
 import CircleOptions from './CircleOptions';
 
-const MAIN_MODES = ['draw', 'select', 'scale', 'template'];
+const MAIN_MODES = ['draw', 'scale', 'template'];
 const DRAWING_MODES = [
     'pen',
     'fill',
@@ -124,7 +124,7 @@ class DrawingSidebar extends React.Component {
 
         return (
             <SidebarContainer>
-                <SidebarItem title="drawing type" height={2}>
+                <SidebarItem title="drawing mode" height={2}>
                     {MAIN_MODES.map((modeKey) => {
                         return (
                             <button
@@ -141,24 +141,6 @@ class DrawingSidebar extends React.Component {
                         );
                     })}
                 </SidebarItem>
-                {mainMode === 'draw' && (
-                    <SidebarItem title="shiftdraw" height={2}>
-                        <EnabledToggleButton
-                            style={{ gridColumn: 'span 4' }}
-                            onClick={() => {
-                                dispatch(
-                                    setOptionByKey({
-                                        key: 'drawWithShift',
-                                        value: !drawWithShift
-                                    })
-                                );
-                            }}
-                            active={drawWithShift}
-                            labelActive="press shift to draw: on"
-                            labelInactive="press shift to draw: off"
-                        />
-                    </SidebarItem>
-                )}
                 <SidebarItem
                     title={`${_.lowerCase(mainMode)} options`}
                     height={2}
@@ -211,6 +193,13 @@ class DrawingSidebar extends React.Component {
                                 </button>
                             );
                         })}
+                    {mainMode === 'template' && (
+                        <TemplateOptions
+                            addTemplateToCurrentLayer={
+                                this.addTemplateToCurrentLayer
+                            }
+                        />
+                    )}
                 </SidebarItem>
                 {mainMode === 'draw' && mode === 'text' && (
                     <TextOptions {...this.props} />
@@ -326,6 +315,24 @@ class DrawingSidebar extends React.Component {
                             />
                         </SidebarItem>
                     )}
+                {mainMode === 'draw' && (
+                    <SidebarItem title="shiftdraw" height={2}>
+                        <EnabledToggleButton
+                            style={{ gridColumn: 'span 4' }}
+                            onClick={() => {
+                                dispatch(
+                                    setOptionByKey({
+                                        key: 'drawWithShift',
+                                        value: !drawWithShift
+                                    })
+                                );
+                            }}
+                            active={drawWithShift}
+                            labelActive="press shift to draw: on"
+                            labelInactive="press shift to draw: off"
+                        />
+                    </SidebarItem>
+                )}
                 {mainMode === 'select' && (
                     <SidebarItem title="select options" height={2}>
                         select options
@@ -484,13 +491,6 @@ class DrawingSidebar extends React.Component {
                     <ShrinkCanvasOptions
                         onShrinkCanvas={this.onShrinkCanvas}
                         {...this.props}
-                    />
-                )}
-                {mainMode === 'template' && (
-                    <TemplateOptions
-                        addTemplateToCurrentLayer={
-                            this.addTemplateToCurrentLayer
-                        }
                     />
                 )}
             </SidebarContainer>

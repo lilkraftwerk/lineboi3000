@@ -1,7 +1,7 @@
 .numberInput {
     display: block;
     font-size: 1.1em;
-    grid-column: 2;
+    grid-column: span 1;
     height: 20px;
     outline: 1px solid black;
     text-align: right;
@@ -10,20 +10,21 @@
 
 .suffix {
     align-self: center;
+    grid-column: span 1;
     justify-self: center;
     text-align: left;
 }
 
 .label {
     align-self: center;
-    grid-column: 1;
+    grid-column: span 2;
     justify-self: center;
-    text-align: right;
+    text-align: center;
 }
 
 .numberWrapper {
     display: grid;
-    grid-column: span 2;
-    grid-template-columns: .75fr 0.8fr 0.2fr;
+    grid-column: span 4;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     padding: 2px;
 }

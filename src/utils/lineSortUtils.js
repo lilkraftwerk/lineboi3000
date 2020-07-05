@@ -58,7 +58,6 @@ export const sortLinesForPlotter = (lines) => {
 
         const { id, reverse } = findNearestLine(lastLine, clonedLines);
 
-        // console.log(lastLine.id);
         const foundLine = _.find(clonedLines, (clonedLine) => {
             return clonedLine.id === id;
         });

@@ -84,6 +84,7 @@ export const LayerControls = ({ layers, currentLayerID, dispatch }) => {
         <div className={styles.layerContainer}>
             <div className={styles.layerControls}>
                 <Icon
+                    testID="addNewLayerIcon"
                     height={32}
                     width={32}
                     fileName="plus"

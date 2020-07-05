@@ -15,8 +15,8 @@ const NumberInput = ({
             <input
                 value={`${value}`}
                 type="text"
-                onChange={() => {
-                    onChange();
+                onChange={(e) => {
+                    onChange(e.target.value);
                 }}
                 disabled={disabled}
                 className={styles.numberInput}

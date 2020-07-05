@@ -1,20 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { ipcRenderer } from 'electron';
 import {
     setFrames,
     setGifmakerLoading,
-    addActiveFrame
+    addActiveFrame,
+    deleteLibraryFrame,
+    setGifOptionByKey
 } from 'store/gifmaker/gifmakerActions';
+
+import { getCurrentOptions } from 'store/onions/onionsSelectors';
+
+import ColorPicker from 'components/common/ColorPicker';
+import NumberInput from 'components/common/NumberInput';
+
 import {
     SidebarContainer,
     SidebarItem
 } from 'components/common/SidebarContainer';
+import ColorList from '../common/ColorList';
 
 import styles from './GifmakerSidebar.styles.css';
 
 class GifmakerSidebar extends React.Component {
     componentDidMount = async () => {
-        const { frames, dispatch } = this.props;
+        const { frames, dispatch, globalHeight, globalWidth } = this.props;
         const promises = frames.map(({ data }) => {
             return fetch(data);
         });
@@ -37,11 +47,47 @@ class GifmakerSidebar extends React.Component {
         });
 
         dispatch(setFrames(framesWithUrls));
+        // match height and width to global values
+        dispatch(
+            setGifOptionByKey({
+                key: 'gifHeight',
+                value: globalHeight
+            })
+        );
+        dispatch(
+            setGifOptionByKey({
+                key: 'gifWidth',
+                value: globalWidth
+            })
+        );
         dispatch(setGifmakerLoading(false));
     };
 
+    selectBackgroundColor = (color) => {
+        const { dispatch } = this.props;
+        dispatch(
+            setGifOptionByKey({
+                key: 'gifBackgroundColor',
+                value: color
+            })
+        );
+    };
+
+    addAllFrames = () => {
+        const { frames, dispatch } = this.props;
+        frames.forEach((frame) => {
+            dispatch(addActiveFrame(frame));
+        });
+    };
+
     render() {
-        const { loading, frames, dispatch } = this.props;
+        const {
+            loading,
+            frames,
+            gifFrameDelay,
+            gifBackgroundColor,
+            dispatch
+        } = this.props;
 
         if (loading) {
             return <SidebarContainer> LOADING </SidebarContainer>;
@@ -51,7 +97,11 @@ class GifmakerSidebar extends React.Component {
             const { id, objectUrl } = frame;
             return (
                 <div className={styles.singleFrame}>
-                    <img className={styles.framePic} src={objectUrl} />
+                    <img
+                        style={{ backgroundColor: gifBackgroundColor }}
+                        className={styles.framePic}
+                        src={objectUrl}
+                    />
                     <button
                         className={styles.button}
                         type="button"
@@ -59,13 +109,13 @@ class GifmakerSidebar extends React.Component {
                             dispatch(addActiveFrame(frame));
                         }}
                     >
-                        add
+                        add to gif
                     </button>
                     <button
                         className={styles.button}
                         type="button"
                         onClick={() => {
-                            console.log('delete', id);
+                            dispatch(deleteLibraryFrame(id));
                         }}
                     >
                         delete
@@ -76,7 +126,53 @@ class GifmakerSidebar extends React.Component {
 
         return (
             <SidebarContainer>
-                <SidebarItem title="frames">
+                {frames.length > 0 && (
+                    <SidebarItem title="gif options">
+                        <ColorPicker
+                            type="button"
+                            onColorSelect={(color) => {
+                                this.selectBackgroundColor(color);
+                            }}
+                            colorList={ColorList}
+                        />
+                        <div
+                            style={{ backgroundColor: gifBackgroundColor }}
+                            className={styles.backgroundColorDiv}
+                        />
+                        <button
+                            style={{ gridColumn: 'span 2' }}
+                            type="button"
+                            onClick={() => {
+                                this.addAllFrames();
+                            }}
+                        >
+                            add all frames
+                        </button>
+                        <button
+                            style={{ gridColumn: 'span 2' }}
+                            type="button"
+                            onClick={() => {
+                                ipcRenderer.send('main:saveGif');
+                            }}
+                        >
+                            save gif
+                        </button>
+                        <NumberInput
+                            value={gifFrameDelay}
+                            suffix="ms"
+                            label="frame delay"
+                            onChange={(value) => {
+                                dispatch(
+                                    setGifOptionByKey({
+                                        key: 'gifFrameDelay',
+                                        value
+                                    })
+                                );
+                            }}
+                        />
+                    </SidebarItem>
+                )}
+                <SidebarItem title="frame library">
                     {frames.length === 0 && (
                         <div className={styles.noFrames}>
                             add frames in efx mode
@@ -92,9 +188,13 @@ class GifmakerSidebar extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    const options = getCurrentOptions(state);
+
     return {
-        frames: state.gifmakerReducer.frames,
-        loading: state.gifmakerReducer.loading
+        globalSettings: options,
+        globalHeight: options.height,
+        globalWidth: options.width,
+        ...state.gifmakerReducer
     };
 };
 

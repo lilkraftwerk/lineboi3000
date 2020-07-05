@@ -9,6 +9,14 @@
     width: 75%;
 }
 
+.gifHeaderContainer {
+    display: grid;
+    grid-template-columns: repeat(10, 150px);
+    grid-template-rows: 100px;
+    max-width: 75%;
+    width: 75%;
+}
+
 .image {
     height: 60px;
     outline: 1px solid black;

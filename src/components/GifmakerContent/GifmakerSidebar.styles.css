@@ -13,6 +13,11 @@
     grid-column: span 2;
 }
 
+.backgroundColorDiv {
+    border: 1px solid black;
+    grid-column: span 1;
+}
+
 .noFrames {
     background-color: pink;
     border: 5px solid red;

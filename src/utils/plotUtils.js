@@ -140,7 +140,7 @@ export const centerLines = (
 // get center coords and move all lines
 // convert coords to percentages
 
-export const formatLayersForPlotDisplayTwo = ({
+export const formatLayersForPlotDisplay = ({
     layers = [],
     scale = 1,
     paperHeightInPixels,

@@ -567,7 +567,11 @@
                                             worker = new Worker(
                                                 _this.options.workerScript
                                             );
+                                            
                                             worker.onmessage = function(event) {
+                                                if (event.data.source === 'react-devtools-detector') {
+                                                    return;
+                                                }
                                                 _this.activeWorkers.splice(
                                                     _this.activeWorkers.indexOf(
                                                         worker
@@ -711,7 +715,13 @@
                                 this._canvas.height = this.options.height;
                             }
                             ctx = this._canvas.getContext('2d');
-                            ctx.setFill = this.options.background;
+                            ctx.clearRect(
+                                0,
+                                0,
+                                this.options.width,
+                                this.options.height
+                            );
+                            ctx.fillStyle = this.options.background;
                             ctx.fillRect(
                                 0,
                                 0,

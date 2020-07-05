@@ -7,7 +7,8 @@ const Icon = ({
     bgColor,
     onClick = () => {},
     height = 32,
-    width = 32
+    width = 32,
+    testID = ''
 }) => {
     const stylesClass = disabled
         ? styles.iconWrapperDisabled
@@ -18,6 +19,7 @@ const Icon = ({
 
     return (
         <div
+            id={testID}
             onClick={() => {
                 onClickFunc();
             }}

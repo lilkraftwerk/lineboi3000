@@ -9,6 +9,7 @@ npm-debug.log*
 # user-generated files
 ./userfiles/drawings/*
 ./userfiles/presets/*
+./userfiles
 
 #yarn error
 yarn-error.log

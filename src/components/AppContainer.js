@@ -63,6 +63,7 @@ class AppContainer extends React.Component {
                         {MODES.map((modeName) => {
                             return (
                                 <button
+                                    id={`modeButton-${modeName}`}
                                     key={modeName}
                                     type="button"
                                     onClick={() => {

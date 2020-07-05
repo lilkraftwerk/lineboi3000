@@ -1,9 +1,8 @@
 /* global GIF */
 import React from 'react';
+import { ipcRenderer } from 'electron';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import './gif';
-import './gif.worker';
 import {
     // setFrames,
     // setGifmakerLoading,
@@ -11,38 +10,81 @@ import {
 } from 'store/gifmaker/gifmakerActions';
 
 class GifmakerContent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            stateLoading: false
+        };
+    }
+
     componentDidUpdate(prevProps) {
-        const { activeFrames } = this.props;
+        const {
+            activeFrames,
+            gifBackgroundColor,
+            gifHeight,
+            gifFrameDelay,
+            gifWidth,
+            gifQuality
+        } = this.props;
         const justIds = (frames) => frames.map((frame) => frame.id);
 
         const prevIds = justIds(prevProps.activeFrames);
         const currentIds = justIds(activeFrames);
 
-        if (!_.isEqual(prevIds, currentIds)) {
-            this.updateGif();
+        if (
+            !_.isEqual(prevIds, currentIds) ||
+            !_.isEqual(gifBackgroundColor, prevProps.gifBackgroundColor) ||
+            !_.isEqual(gifHeight, prevProps.gifHeight) ||
+            !_.isEqual(gifWidth, prevProps.gifWidth) ||
+            !_.isEqual(gifQuality, prevProps.gifQuality) ||
+            !_.isEqual(gifFrameDelay, prevProps.gifFrameDelay)
+        ) {
+            this.startGifUpdate();
         }
     }
 
-    updateGif = async () => {
-        const { activeFrames, dispatch } = this.props;
-        const images = activeFrames.map((frame) => frame.objectUrl);
-        const gif = new GIF({
-            //eslint-disable-line
-            workers: 2,
-            quality: 2,
-            width: 800,
-            height: 600,
-            repeat: 0,
-            workerScript: './gif.worker.js'
+    startGifUpdate = () => {
+        this.setState({ stateLoading: true }, () => {
+            this.updateGif();
         });
-        images.forEach(async (img) => {
+    };
+
+    updateGif = async () => {
+        const {
+            activeFrames,
+            gifQuality,
+            gifFrameDelay,
+            gifBackgroundColor,
+            gifHeight,
+            gifWidth,
+            dispatch
+        } = this.props;
+        const images = activeFrames.map((frame) => frame.objectUrl);
+
+        const gif = new GIF({
+            workers: 2,
+            background: gifBackgroundColor,
+            quality: gifQuality,
+            width: gifWidth,
+            height: gifHeight,
+            repeat: 0,
+            workerScript: './gifjs/gif.worker.js'
+        });
+        images.forEach((img) => {
             const elem = document.createElement('img');
             elem.setAttribute('src', img);
-            gif.addFrame(elem, { delay: 100 });
+            gif.addFrame(elem, { delay: gifFrameDelay });
         });
         gif.on('finished', (blob) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = () => {
+                const base64data = reader.result;
+                ipcRenderer.send('main:sendGifBlob', base64data);
+            };
             const url = URL.createObjectURL(blob);
             dispatch(setMasterGif(url));
+            this.setState({ stateLoading: false });
         });
 
         gif.render();
@@ -50,13 +92,18 @@ class GifmakerContent extends React.Component {
 
     render() {
         const { loading, masterGif } = this.props;
+        const { stateLoading } = this.state;
 
-        if (loading) {
-            return <div>loading...</div>;
+        if (loading || stateLoading) {
+            return (
+                <div>
+                    <img src="./assets/loading.gif" />
+                </div>
+            );
         }
 
         return (
-            <div>
+            <div id="gifmakerContent">
                 <img src={masterGif} />
             </div>
         );
@@ -65,9 +112,7 @@ class GifmakerContent extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        loading: state.gifmakerReducer.loading,
-        activeFrames: state.gifmakerReducer.activeFrames,
-        masterGif: state.gifmakerReducer.masterGif
+        ...state.gifmakerReducer
     };
 };
 

@@ -3,7 +3,6 @@ import { allPointsBetweenTwoCoords } from '../../../utils/coordUtils';
 import { getFirstAndLastCoordsFromTempCoords } from '../../../utils/drawingUtils';
 
 const formatTempCoords = (coords) => {
-    console.log('coords in square', coords);
     const [startCoords, endCoords] = getFirstAndLastCoordsFromTempCoords(
         coords
     );

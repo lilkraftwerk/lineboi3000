@@ -14,7 +14,7 @@ import {
 import { getCurrentLayer, getLayers } from 'store/layer/layerSelectors';
 import { getCurrentOptions } from 'store/onions/onionsSelectors';
 import { setLayerEfxLines } from 'store/line/lineActions';
-import { saveTempAsFrame } from 'store/gifmaker/gifmakerActions';
+import { saveTempAsFrame, setTempBlob } from 'store/gifmaker/gifmakerActions';
 import { getOriginalLines } from 'store/line/lineSelectors';
 import idGenerator from 'utils/id';
 
@@ -44,7 +44,6 @@ import {
     getPointArraysFromLine
 } from '../../utils/lineUtils';
 
-import styles from './EfxSidebar.styles.css';
 import '../common/SidebarStyles.css';
 
 const CONSTANT_FILTERS = [
@@ -131,7 +130,9 @@ class EfxSidebar extends React.Component {
     };
 
     processCurrentLayer = () => {
-        const { currentLayerID } = this.props;
+        const { currentLayerID, dispatch } = this.props;
+        dispatch(setTempBlob(null));
+
         this.processEfxLinesForLayer(currentLayerID);
     };
 
@@ -141,7 +142,8 @@ class EfxSidebar extends React.Component {
     };
 
     processAllLayers = () => {
-        const { allOriginalLines } = this.props;
+        const { allOriginalLines, dispatch } = this.props;
+        dispatch(setTempBlob(null));
         const allLayerIds = Object.keys(allOriginalLines);
         // this might not work, make sure to remove deleted ones
         allLayerIds.forEach((layerID) => {
@@ -162,6 +164,7 @@ class EfxSidebar extends React.Component {
             allLayers,
             dispatch
         } = this.props;
+
         dispatch(updateLayerSetting(layerID, 'loading', true));
 
         const { filters } = allLayers.find((l) => l.id === layerID);
@@ -240,6 +243,7 @@ class EfxSidebar extends React.Component {
         const {
             filters,
             globalSettings,
+            tempBlobIsNull,
             currentLayerID,
             isLoading,
             dispatch
@@ -250,7 +254,7 @@ class EfxSidebar extends React.Component {
         return (
             <SidebarContainer>
                 <SidebarItem>
-                    {isLoading && (
+                    {/* {isLoading && (
                         <Fragment>
                             <div className={styles.loadingEmoji}>
                                 <div className={styles.emoji}>🌚</div>
@@ -262,12 +266,13 @@ class EfxSidebar extends React.Component {
                                 <div className={styles.emoji}>🌚</div>
                             </div>
                         </Fragment>
-                    )}
+                    )} */}
                     {!isLoading && (
                         <Fragment>
                             <button
                                 style={{ gridColumn: 'span 1' }}
                                 type="button"
+                                disabled={isLoading}
                                 onClick={this.processCurrentLayer}
                             >
                                 run current
@@ -275,6 +280,7 @@ class EfxSidebar extends React.Component {
                             <button
                                 style={{ gridColumn: 'span 1' }}
                                 type="button"
+                                disabled={isLoading}
                                 onClick={this.saveEfxToAllLayers}
                             >
                                 copy efx
@@ -282,6 +288,7 @@ class EfxSidebar extends React.Component {
                             <button
                                 style={{ gridColumn: 'span 1' }}
                                 type="button"
+                                disabled={isLoading}
                                 onClick={this.processAllLayers}
                             >
                                 run all layers
@@ -290,7 +297,7 @@ class EfxSidebar extends React.Component {
                                 style={{ gridColumn: 'span 1' }}
                                 type="button"
                                 onClick={this.saveFrame}
-                                disabled={isLoading}
+                                disabled={isLoading || tempBlobIsNull}
                             >
                                 save frame
                             </button>
@@ -439,6 +446,7 @@ const mapStateToProps = (state) => {
     const allLayers = getLayers(state);
     const options = getCurrentOptions(state);
     const isLoading = allLayers.map((layer) => layer.loading).includes(true);
+    const tempBlobIsNull = state.gifmakerReducer.tempBlob == null;
 
     return {
         globalSettings: options,
@@ -446,6 +454,7 @@ const mapStateToProps = (state) => {
         allOriginalLines,
         allLayers,
         filters,
+        tempBlobIsNull,
         isLoading
     };
 };

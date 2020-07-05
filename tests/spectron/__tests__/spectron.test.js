@@ -28,10 +28,31 @@ describe('App Tests', () => {
         return app.stop();
     });
 
-    it('Opens the main window', async () => {
+    it('Opens the main window and clicks around', async () => {
         await app.client.isExisting('#drawingContent');
-        const photo = await app.browserWindow.capturePage();
-        expect(photo).toMatchImageSnapshot({
+        const drawPhoto = await app.browserWindow.capturePage();
+        expect(drawPhoto).toMatchImageSnapshot({
+            ...imageSnapshotOptions
+        });
+
+        await app.client.click(`#modeButton-efx`);
+        await app.client.isExisting('#efxContent');
+        const efxPhoto = await app.browserWindow.capturePage();
+        expect(efxPhoto).toMatchImageSnapshot({
+            ...imageSnapshotOptions
+        });
+
+        await app.client.click(`#modeButton-plot`);
+        await app.client.isExisting('#plotContent');
+        const plotPhoto = await app.browserWindow.capturePage();
+        expect(plotPhoto).toMatchImageSnapshot({
+            ...imageSnapshotOptions
+        });
+
+        await app.client.click(`#modeButton-gifmaker`);
+        await app.client.isExisting('#gifmakerContent');
+        const gifPhoto = await app.browserWindow.capturePage();
+        expect(gifPhoto).toMatchImageSnapshot({
             ...imageSnapshotOptions
         });
     });

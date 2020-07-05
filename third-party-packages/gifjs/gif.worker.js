@@ -957,6 +957,9 @@
                     return self.postMessage(frame);
                 };
                 self.onmessage = function(event) {
+                    if (event.data.source === 'react-devtools-detector') {
+                        return;
+                    }
                     return renderFrame(event.data);
                 };
             },

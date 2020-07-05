@@ -8,8 +8,7 @@ module.exports = {
     devtool: 'source-map',
     entry: {
         main: './src/index.js',
-        background: './src/backgroundWindow/background.js',
-        filterPlayground: './src/filterPlayground/filterPlayground.js'
+        background: './src/backgroundWindow/background.js'
     },
     target: 'electron-renderer',
     module: {
@@ -86,14 +85,9 @@ module.exports = {
             template: 'src/backgroundWindow/background.html',
             chunks: ['background']
         }),
-        new HtmlWebPackPlugin({
-            filename: 'filterPlayground.html',
-            inject: true,
-            template: 'src/filterPlayground/filterPlayground.html',
-            chunks: ['filterPlayground']
-        }),
         new webpack.HotModuleReplacementPlugin(),
-        new CopyPlugin([{ from: 'src/assets', to: 'assets' }])
+        new CopyPlugin([{ from: 'src/assets', to: 'assets' }]),
+        new CopyPlugin([{ from: 'third-party-packages/gifjs', to: 'gifjs' }])
     ],
     devServer: {
         watchContentBase: true

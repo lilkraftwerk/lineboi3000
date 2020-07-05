@@ -149,7 +149,6 @@ export const SelectLayer = ({
     position = 'absolute'
 }) => {
     const pixelRatio = window.devicePixelRatio;
-    console.log('select coords', selectCoords);
     const canvas = useRef(null);
 
     useEffect(() => {

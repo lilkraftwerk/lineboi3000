@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
     moveFrameUp,
     moveFrameDown,
-    deleteFrameFromGif
+    deleteActiveFrame
 } from 'store/gifmaker/gifmakerActions';
 
 import SingleHeaderFrame from './SingleHeaderFrame';
@@ -12,7 +12,7 @@ import styles from './FrameHeader.styles.css';
 
 export const FrameHeader = ({ activeFrames, dispatch }) => {
     const onDeleteFrame = (id) => {
-        dispatch(deleteFrameFromGif(id));
+        dispatch(deleteActiveFrame(id));
     };
 
     const onMoveFrameUp = (id) => {
@@ -36,7 +36,7 @@ export const FrameHeader = ({ activeFrames, dispatch }) => {
         );
     });
 
-    return <div className={styles.layerContainer}>{mappedFrames}</div>;
+    return <div className={styles.gifHeaderContainer}>{mappedFrames}</div>;
 };
 
 const mapStateToProps = (state) => {

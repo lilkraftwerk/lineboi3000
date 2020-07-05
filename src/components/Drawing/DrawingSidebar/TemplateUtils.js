@@ -223,12 +223,6 @@ const squares = (options) => {
             currentWidth,
             currentHeight
         );
-        console.log({
-            currentX,
-            currentY,
-            currentWidth,
-            currentHeight
-        });
 
         if (currentWidth > 0 && currentHeight > 0) {
             result.push(rectangle);
