@@ -4,7 +4,7 @@ import { getAllEfxLines } from 'store/line/lineSelectors';
 import { getCurrentOptions } from 'store/onions/onionsSelectors';
 import { CanvasLayer } from 'components/common/SvgLayer';
 import {
-    formatLayersForPlotDisplayTwo,
+    formatLayersForPlotDisplay,
     generatePlotBoundaries
 } from '../../utils/plotUtils';
 import PaperCanvas from './PaperCanvas';
@@ -53,7 +53,7 @@ class PlotContent extends React.Component {
         // ).find(line => line.id === currentLineId);
 
         return (
-            <div className={styles.plotContentContainer}>
+            <div id="plotContent" className={styles.plotContentContainer}>
                 <PaperCanvas
                     width={paperWidthInPixels}
                     height={paperHeightInPixels}
@@ -96,7 +96,7 @@ const mapStateToProps = (state) => {
     const paperWidthInPixels = PIXELS_PER_INCH * paperWidth;
     const paperHeightInPixels = PIXELS_PER_INCH * paperHeight;
 
-    const formattedLayers = formatLayersForPlotDisplayTwo({
+    const formattedLayers = formatLayersForPlotDisplay({
         layers: allEfxLines,
         scale,
         paperHeightInPixels,

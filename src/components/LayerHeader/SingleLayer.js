@@ -64,12 +64,12 @@ const SingleLayer = ({
         </div>
     );
 
+    const classNames = `${
+        isSelected ? styles.singleLayerSelected : styles.singleLayer
+    } singleLayer`;
+
     return (
-        <div
-            className={
-                isSelected ? styles.singleLayerSelected : styles.singleLayer
-            }
-        >
+        <div className={classNames}>
             <div className={styles.nameContainer}>{nameContent}</div>
             <div className={styles.midControls}>
                 <Icon

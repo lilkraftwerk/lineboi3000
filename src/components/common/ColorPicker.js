@@ -71,13 +71,40 @@ const ColorPicker = ({ colorList, onColorSelect }) => {
     );
 };
 
-const ColorPickerWrapper = ({ onColorSelect, selectedColor = '#364B44' }) => {
+const ColorPickerWrapper = ({
+    type = 'icon',
+    onColorSelect,
+    selectedColor = '#364B44'
+}) => {
     const [visible, toggleVisible] = useState(false);
 
     const selectAndClose = (hexColor) => {
         toggleVisible(false);
         onColorSelect(hexColor);
     };
+
+    const iconToggle = (
+        <Icon
+            height={24}
+            width={24}
+            onClick={() => {
+                toggleVisible(!visible);
+            }}
+            bgColor={selectedColor}
+        />
+    );
+
+    const buttonToggle = (
+        <button
+            style={{ gridColumn: 'span 3' }}
+            type="button"
+            onClick={() => {
+                toggleVisible(!visible);
+            }}
+        >
+            background color
+        </button>
+    );
 
     return (
         <Fragment>
@@ -92,23 +119,17 @@ const ColorPickerWrapper = ({ onColorSelect, selectedColor = '#364B44' }) => {
                 transitionDuration={0.001}
                 content={() => {
                     return (
-                        <Fragment>
+                        <>
                             <ColorPicker
                                 onColorSelect={selectAndClose}
                                 colorList={ColorList}
                             />
-                        </Fragment>
+                        </>
                     );
                 }}
             >
-                <Icon
-                    height={24}
-                    width={24}
-                    onClick={() => {
-                        toggleVisible(!visible);
-                    }}
-                    bgColor={selectedColor}
-                />
+                {type === 'icon' && iconToggle}
+                {type === 'button' && buttonToggle}
             </Popover>
         </Fragment>
     );

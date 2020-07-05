@@ -44,7 +44,7 @@ export const drawLines = (
 export const drawCircles = (context, coords, radius = 10, color = 'black') => {
     context.fillStyle = color;
     context.lineWidth = 0;
-    context.strokeStyle = 'transparent';
+    context.strokeStyle = color;
     coords.forEach(([centerX, centerY]) => {
         context.beginPath();
         context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
@@ -53,15 +53,24 @@ export const drawCircles = (context, coords, radius = 10, color = 'black') => {
     });
 };
 
-export const drawPoints = (context, coords, fillStyle = 'black') => {
+export const drawPoints = (
+    context,
+    coords,
+    fillStyle = 'white',
+    strokeStyle = 'black'
+) => {
+    context.strokeStyle = strokeStyle;
     context.fillStyle = fillStyle;
     coords.forEach(([pointX, pointY]) => {
         context.fillRect(pointX, pointY, 1, 1);
     });
+    context.fill();
+    context.stroke();
 };
 
 export const drawSquares = (context, coords, fillStyle = 'black', radius) => {
     context.fillStyle = fillStyle;
+    context.strokeStyle = fillStyle;
     coords.forEach(([centerX, centerY]) => {
         const startX = centerX - radius;
         const startY = centerY - radius;
@@ -75,7 +84,8 @@ export const drawPointCircles = (
     color = 'black',
     radius = 1
 ) => {
-    context.strokeStyle = 'black';
+    context.fillStyle = 'white';
+    context.strokeStyle = color;
     const flatPoints = _.flatten(pointArrays);
     flatPoints.forEach(([pointX, pointY]) => {
         context.beginPath();

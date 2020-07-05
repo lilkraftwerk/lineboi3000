@@ -103,7 +103,7 @@ const ItemSelector = ({
                     }}
                     className={styles.confirm}
                 >
-                    go
+                    add
                 </button>
             )}
             {menuOpen && (

@@ -2,9 +2,7 @@ import {
     createLineFromPointArray,
     addIntermediatePointsToLine,
     isPointWithinCircle,
-    closestPointOnCircleFromCoords,
-    getPointArraysFromLine,
-    allPointsWithinRadiusOfCoord
+    getPointArraysFromLine
 } from '../lineUtils';
 import { isLineValid } from '../testUtils';
 
@@ -38,20 +36,6 @@ describe('line utils', () => {
             const line = createLineFromPointArray(pointArrayContainer);
 
             expect(isLineValid(line)).toBe(true);
-        });
-    });
-
-    describe.skip('allPointsWithinRadiusOfCoord', () => {
-        it('should generate every point within a given radius of a coordinate', () => {
-            const result = allPointsWithinRadiusOfCoord(50, 50, 5);
-            expect(result).toEqual(true);
-        });
-    });
-
-    describe.skip('closestPointFromCoordsToCircle', () => {
-        it('should work true when point is within circle', () => {
-            const result = closestPointOnCircleFromCoords(5, 5, 50, 50, 5);
-            expect(result).toEqual(true);
         });
     });
 

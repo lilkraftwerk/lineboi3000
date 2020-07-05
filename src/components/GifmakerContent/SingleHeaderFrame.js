@@ -8,7 +8,7 @@ const SingleHeaderFrame = ({
     objectUrl,
     onMoveFrameUp,
     onMoveFrameDown,
-    onDeleteActiveFrame
+    onDeleteFrame
     // canMoveFrameUp,
     // canMoveFrameDown
 }) => {
@@ -37,7 +37,7 @@ const SingleHeaderFrame = ({
                     width={24}
                     fileName="trash"
                     onClick={() => {
-                        onDeleteActiveFrame(id);
+                        onDeleteFrame(id);
                     }}
                 />
             </div>

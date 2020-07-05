@@ -259,7 +259,6 @@ export class DrawingContent extends React.Component {
 
         if (event.key === 'Shift' && drawWithShift) {
             this.shiftDown = false;
-            console.log(tempCoords);
             this.processFinalCoords(tempCoords);
         }
     };

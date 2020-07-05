@@ -9,8 +9,40 @@
 }
 
 button {
-    cursor: pointer;
+    background-color: rgba(205, 205, 205, 0.5);
+  border-radius: 3px;
+    color:black;
+    cursor:pointer;
+	display:inline-block;
+	outline: 3px solid black;
+    text-transform: uppercase;
+  user-select: none;
 }
+button:hover:enabled {
+	background-color: white;
+  outline: 3px dashed black;
+  transition: outline 1500ms infinite ease;
+}
+button:active {
+  background-color: lightgreen;
+	position:relative;
+	top:1px;
+}
+
+button:disabled {
+background-color: rgba(255, 255, 255, 1);
+background-image: repeating-linear-gradient(135deg, transparent, transparent 10px, rgba(205, 205, 205, 1) 10px, rgba(205, 205, 205, 1) 16px );
+    background-size: auto auto;
+        -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+           -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+                box-shadow: inset 0px 0px 5px #c1c1c1;
+}
+
+button:focus {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+    
 /* global styles go here */
 
 html, body {

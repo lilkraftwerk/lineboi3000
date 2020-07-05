@@ -2,33 +2,27 @@
     box-sizing: border-box;
   }
   .itemSelector {
-      border: 1px solid black;
       display: grid;
-      grid-template-columns: 30px 1fr 30px 30px;;
+      grid-column-gap: 8px;
+      grid-template-columns: 30px 1fr 30px 30px;
       grid-template-rows: auto;
   }
 
   .leftArrow {
       grid-column: 1;
-      height: 100%;
-      outline: 1px solid black;
-      width: 100%;
   }
 
   .rightArrow {
     grid-column: 3;
-    height: 100%;
-    outline: 1px solid black;
-    width: 100%;
 }
 
 .textBox {
     align-self: center;
     cursor: pointer;
     grid-column: 2;
-    height: 100%;
     justify-self: center;
     line-height: 32px;
+    outline: 3px solid black;
     text-align: center;
     width: 100%;
 }

@@ -1,12 +1,6 @@
 import { ipcRenderer } from 'electron';
 import EfxProcessingUnit from '../efxProcessing/EfxProcessingUnit';
 
-// // Send logs as messages to the main thread to show on the console
-// function log(value) {
-//     ipcRenderer.send('to-main', `${process.pid}: ${value}`);
-// }
-
-// let the main thread know this thread is ready to process something
 function ready() {
     ipcRenderer.send('bg:ready');
 }

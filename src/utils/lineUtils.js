@@ -298,13 +298,17 @@ export const closestPointOnCircleFromCoords = (
 
 export const splitLinesViaEraserCoords = ({
     lines,
-    eraseCoords,
+    eraseCoords = [],
     eraserRadius,
     smoothOriginalLines = false,
     smoothPasses = 1
 }) => {
     const splitLines = [];
     let tempPointArrays = [...lines];
+
+    if (!eraseCoords || !eraseCoords.length) {
+        return lines;
+    }
 
     if (smoothOriginalLines) {
         _.times(smoothPasses, () => {

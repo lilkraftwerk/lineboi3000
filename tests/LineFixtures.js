@@ -48,6 +48,18 @@ export const makeVerticalLinesPointArrays = (height, width, distance) => {
     return pointArrays;
 };
 
+export const makeHorizontalLinesPointArrays = (height, width, distance) => {
+    const pointArrays = [];
+    for (let y = 0; y < height; y += distance) {
+        const pointArrayContainer = [];
+        for (let x = 0; x < width; x += distance) {
+            pointArrayContainer.push([x, y]);
+        }
+        pointArrays.push(pointArrayContainer);
+    }
+    return pointArrays;
+};
+
 export const zShape = [
     [230, 111],
     [231, 111],

@@ -1,5 +1,6 @@
-const { app, BrowserWindow, ipcMain, Menu } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
 const fs = require('fs-jetpack');
+const base64ImageToFile = require('base64image-to-file');
 
 const {
     default: installExtension,
@@ -29,7 +30,7 @@ const { showSaveDialog } = require('./src/mainProcess/SaveAndLoad');
 
 function createWindow() {
     win = new BrowserWindow({
-        width: 1500,
+        width: 1200,
         height: 800,
         webPreferences: {
             nodeIntegration: true,
@@ -162,6 +163,43 @@ ipcMain.on('main:sendReduxStore', (_, reduxStore) => {
     console.log('receiving redux store');
     global.reduxStore = reduxStore;
     showSaveDialog();
+});
+
+// receive current gif blob
+ipcMain.on('main:sendGifBlob', (_, gifBlob) => {
+    console.log('receiving gif blob');
+    global.gifBlob = gifBlob;
+});
+
+// receive current gif blob
+ipcMain.on('main:saveGif', async () => {
+    const { filePath, canceled } = await dialog.showSaveDialog(win, {
+        title: 'save gif',
+        buttonLabel: 'save',
+        filters: [
+            {
+                name: 'gif',
+                extensions: ['gif']
+            }
+        ]
+    });
+
+    if (canceled) {
+        return;
+    }
+
+    const splitPath = filePath.split('/');
+    const fileName = splitPath.pop().replace('.gif', '');
+    const joinedPath = splitPath.join('/');
+
+    // create an image with the a given name ie 'image'
+    base64ImageToFile(global.gifBlob, joinedPath, fileName, (err) => {
+        if (err) {
+            return console.error(err);
+        }
+
+        return joinedPath;
+    });
 });
 
 // create settings directories if they don't exist

@@ -87,8 +87,6 @@ export const ExesFilter = ({ filterSettings, pointArrays }) => {
 
             points.push([x, y]);
         }
-        console.log('bang');
-        console.log([...points, points[0]]);
         return [...points];
     };
 

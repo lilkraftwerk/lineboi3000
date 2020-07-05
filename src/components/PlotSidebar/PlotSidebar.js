@@ -18,7 +18,7 @@ import {
     SidebarItem
 } from 'components/common/SidebarContainer';
 import {
-    formatLayersForPlotDisplayTwo,
+    formatLayersForPlotDisplay,
     addPercentageCoordinatesToLine,
     generatePlotBoundaries
 } from '../../utils/plotUtils';
@@ -62,10 +62,6 @@ class PlotSidebar extends React.Component {
             const penX = result.x;
             const penY = result.y;
 
-            // const buffer = await this.plotter.getPlotterBuffer();
-            // if (buffer.buffer != null) {
-            // console.log(buffer);
-            // }
             dispatch(setPenLocation([penX, penY]));
             const { simulation, state } = result;
             const isConnected = simulation != null && simulation === 0;
@@ -453,7 +449,7 @@ const mapStateToProps = (state) => {
     const paperWidthInPixels = PIXELS_PER_INCH * paperWidth;
     const paperHeightInPixels = PIXELS_PER_INCH * paperHeight;
 
-    const formattedLayers = formatLayersForPlotDisplayTwo({
+    const formattedLayers = formatLayersForPlotDisplay({
         layers: allEfxLines,
         scale,
         paperHeightInPixels,
@@ -472,7 +468,8 @@ const mapStateToProps = (state) => {
         scale,
         paperWidth,
         paperHeight,
-        formattedLayers
+        formattedLayers,
+        ...state.plotReducer
     };
 };
 
