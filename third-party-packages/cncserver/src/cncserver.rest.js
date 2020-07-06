@@ -2,7 +2,7 @@
  * @file Abstraction module for restful helper utilities createServerEndpoint.
  */
 
-module.exports = function(cncserver) {
+module.exports = function (cncserver) {
     const express = require('express'); // Express object (for static).
 
     /**
@@ -15,7 +15,7 @@ module.exports = function(cncserver) {
      * @param  {object} options
      *   options object for static serving of files.
      */
-    cncserver.createStaticEndpoint = function(userPath, sourcePath, options) {
+    cncserver.createStaticEndpoint = function (userPath, sourcePath, options) {
         cncserver.app.use(userPath, express.static(sourcePath, options));
     };
 
@@ -28,9 +28,9 @@ module.exports = function(cncserver) {
      * @param {function} callback
      *   Callback triggered on HTTP request
      */
-    cncserver.createServerEndpoint = function(path, callback) {
+    cncserver.createServerEndpoint = function (path, callback) {
         const what = Object.prototype.toString;
-        cncserver.app.all(path, function(req, res) {
+        cncserver.app.all(path, function (req, res) {
             res.set('Content-Type', 'application/json; charset=UTF-8');
             res.set(
                 'Access-Control-Allow-Origin',

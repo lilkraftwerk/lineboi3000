@@ -1,18 +1,20 @@
-import undoable, { includeAction } from 'redux-undo';
-import { SET_HEIGHT, SET_WIDTH } from './onionsActions';
+import { SET_GLOBAL_OPTION_BY_KEY } from './optionsActions';
 import { MULTIPLY_CANVAS, SHRINK_CANVAS } from '../line/lineActions';
 
 const initialState = {
     height: 600,
-    width: 800
+    width: 800,
+    pointShowRadius: 3,
+    pointShowColor: 'black'
 };
 
-const onionsReducer = (state = initialState, action) => {
+const optionsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_HEIGHT:
-            return { ...state, height: action.value };
-        case SET_WIDTH:
-            return { ...state, width: action.value };
+        case SET_GLOBAL_OPTION_BY_KEY:
+            return {
+                ...state,
+                [action.value.key]: action.value.value
+            };
         case MULTIPLY_CANVAS:
             return {
                 ...state,
@@ -30,8 +32,4 @@ const onionsReducer = (state = initialState, action) => {
     }
 };
 
-export const undoableOnionsReducer = undoable(onionsReducer, {
-    filter: includeAction(MULTIPLY_CANVAS, SHRINK_CANVAS)
-});
-
-export default onionsReducer;
+export default optionsReducer;

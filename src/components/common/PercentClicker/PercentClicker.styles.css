@@ -1,15 +1,15 @@
 * {
     box-sizing: border-box;
-  }
-  
-  .header {
+}
+
+.header {
     grid-column: 2;
     text-decoration: underline;
-  }
-  
-  .clickoContainer {
+}
+
+.clickoContainer {
     display: inline-grid;
-    font-size: .8em;
+    font-size: 0.8em;
     grid-column: span 4;
     grid-template-columns: 2fr 8fr 2fr;
     grid-template-rows: 0.5fr 1fr;
@@ -17,70 +17,70 @@
     padding: 5px;
     padding-top: 0;
     width: 100%;
-  }
-  
-  .title {
+}
+
+.title {
     grid-column: 2;
     grid-row: 1;
     height: 100%;
     text-align: center;
     width: 100%;
-  }
-  
-  .rangeContainerWithoutTitle {
+}
+
+.rangeContainerWithoutTitle {
     grid-column: span 3;
     grid-row: span 2;
-  }
-  
-  .rangeContainerWithTitle {
+}
+
+.rangeContainerWithTitle {
     grid-column: span 3;
     grid-row: 2;
-  }
-  
-  .extremeLabels {
+}
+
+.extremeLabels {
     cursor: pointer;
-  }
-  
-  .extremeLabels:hover {
+}
+
+.extremeLabels:hover {
     background-color: white;
-  }
-  
-  .minLabel {
+}
+
+.minLabel {
     grid-column: 1;
     text-align: left;
-  }
-  
-  .maxLabel {
+}
+
+.maxLabel {
     grid-column: 3;
     text-align: right;
-  }
-  
-  .rangeGrid {
+}
+
+.rangeGrid {
     display: grid;
     grid-column: span;
     grid-template-columns: 1fr 8fr 1fr;
     height: 100%;
     width: 100%;
-  }
-  
-  .innerRange {
-  }
-  
-  .rangeWithLabels {
+}
+
+.innerRange {
+}
+
+.rangeWithLabels {
     grid-column: 2;
     height: 100%;
     position: relative;
     width: 100%;
-  }
-  
-  .rangeWithoutLabels {
+}
+
+.rangeWithoutLabels {
     grid-column: span 3;
     height: 100%;
     position: relative;
     width: 100%;
-  }
-  
-  .clickGetter {
+}
+
+.clickGetter {
     background-color: transparent;
     cursor: pointer;
     height: 100%;
@@ -89,49 +89,49 @@
     top: 0;
     width: 100%;
     z-index: 10;
-  }
-  
-  .positive {
+}
+
+.positive {
     background-color: black;
     height: 100%;
     position: absolute;
     z-index: 8;
-  }
-  
-  .negative {
+}
+
+.negative {
     background: repeating-linear-gradient(
-      45deg,
-      white,
-      white 5px,
-      black 5px,
-      black 10px
+        45deg,
+        white,
+        white 5px,
+        black 5px,
+        black 10px
     );
     float: right;
     height: 100%;
     position: absolute;
     width: 100%;
     z-index: 4;
-  }
-  
-  input[type="range"] {
+}
+
+input[type='range'] {
     -webkit-appearance: none;
     background: transparent;
     height: 100%;
     user-select: none;
     width: 100%;
-  }
-  input[type="range"]:focus {
+}
+input[type='range']:focus {
     outline: none;
-  }
-  input[type="range"]::-webkit-slider-runnable-track {
+}
+input[type='range']::-webkit-slider-runnable-track {
     animate: 0.2s;
     background: black;
     cursor: pointer;
     height: 2px;
     width: 100%;
-  }
-  
-  input[type="range"]::-webkit-slider-thumb {
+}
+
+input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     background: #ffffff;
     border: 1px solid #000000;
@@ -140,7 +140,4 @@
     height: 15px;
     margin-top: -7.5px;
     width: 15px;
-  }
-  
-  
-  
+}

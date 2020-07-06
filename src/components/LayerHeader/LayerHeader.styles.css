@@ -1,4 +1,4 @@
-@value colors: "~components/common/colorVariables.css";
+@value colors: "~components/common/Colors/colorVariables.css";
 @value color-teal-light from colors;
 
 .layerContainer {

@@ -6,7 +6,7 @@
  *
  */
 
-module.exports = function(cncserver) {
+module.exports = function (cncserver) {
     const { spawn } = require('child_process'); // Process spawner.
     const ipc = require('node-ipc'); // Inter Process Comms for runner.
     let runnerInitCallback = null; // Placeholder for init set callback.
@@ -31,7 +31,7 @@ module.exports = function(cncserver) {
      *
      * @return {null}
      */
-    cncserver.ipc.sendMessage = function(command, data, socket) {
+    cncserver.ipc.sendMessage = function (command, data, socket) {
         if (typeof socket === 'undefined') {
             socket = cncserver.ipc.runnerSocket;
         }
@@ -55,11 +55,11 @@ module.exports = function(cncserver) {
      *
      * @return {null}
      */
-    cncserver.ipc.initServer = function(options, callback) {
+    cncserver.ipc.initServer = function (options, callback) {
         runnerInitCallback = callback;
 
         // Initialize and start the IPC Server...
-        ipc.serve(function() {
+        ipc.serve(function () {
             ipc.server.on('app.message', ipcGotMessage);
         });
 
@@ -88,18 +88,18 @@ module.exports = function(cncserver) {
                 `${__dirname}/../runner/cncserver.runner`
             ]);
 
-            cncserver.ipc.runner.process.stdout.on('data', function(data) {
+            cncserver.ipc.runner.process.stdout.on('data', function (data) {
                 data = data.toString().split('\n');
                 for (const i in data) {
                     if (data[i].length) console.log(`RUNNER:${data[i]}`);
                 }
             });
 
-            cncserver.ipc.runner.process.stderr.on('data', function(data) {
+            cncserver.ipc.runner.process.stderr.on('data', function (data) {
                 console.log(`RUNNER ERROR: ${data}`);
             });
 
-            cncserver.ipc.runner.process.on('exit', function(exitCode) {
+            cncserver.ipc.runner.process.on('exit', function (exitCode) {
                 // TODO: Restart it? Who knows.
                 console.log(`RUNNER EXITED: ${exitCode}`);
             });

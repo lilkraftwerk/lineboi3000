@@ -22,12 +22,12 @@ expect.extend({ toMatchImageSnapshot });
 describe('Sort Lines For Plotter', () => {
     it('should mark start and end of lines properly', () => {
         const { canvas, context } = createTestCanvas();
-        const justPoints = drawnRandomLines.map((x) => x.pointArrayContainer);
-        drawLines(context, justPoints, 4, 'black');
+        const pointArrays = drawnRandomLines.map((x) => x.pointArrayContainer);
+        drawLines({ context, pointArrays, strokeWidth: 4, color: 'black' });
 
         let counter = 0;
 
-        justPoints.forEach((pointArray) => {
+        pointArrays.forEach((pointArray) => {
             const { start, end } = getStartAndEndPointsOfCoords(pointArray);
             context.fillStyle = 'red';
             context.font = 'bold 25px Arial';
@@ -46,12 +46,12 @@ describe('Sort Lines For Plotter', () => {
         const { canvas, context } = createTestCanvas();
         const sortedLines = sortLinesForPlotter(drawnRandomLines);
 
-        const justPoints = sortedLines.map((x) => x.pointArrayContainer);
-        drawLines(context, justPoints, 4, 'black');
+        const pointArrays = sortedLines.map((x) => x.pointArrayContainer);
+        drawLines({ context, pointArrays, strokeWidth: 4, color: 'black' });
 
         let counter = 0;
 
-        justPoints.forEach((pointArray) => {
+        pointArrays.forEach((pointArray) => {
             const { start, end } = getStartAndEndPointsOfCoords(pointArray);
             context.fillStyle = 'red';
             context.font = 'bold 25px Arial';
@@ -72,8 +72,18 @@ describe('Sort Lines For Plotter', () => {
         const randomPoints = drawnRandomLines.map((x) => x.pointArrayContainer);
 
         const sortedPoints = sortedLines.map((x) => x.pointArrayContainer);
-        drawLines(context, randomPoints, 4, 'black');
-        drawLines(context, sortedPoints, 4, 'black');
+        drawLines({
+            context,
+            pointArrays: randomPoints,
+            strokeWidth: 4,
+            color: 'black'
+        });
+        drawLines({
+            context,
+            pointArrays: sortedPoints,
+            strokeWidth: 4,
+            color: 'black'
+        });
 
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();

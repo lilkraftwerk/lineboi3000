@@ -2,7 +2,7 @@
     padding: 10px;
 }
 
-.loadingMessage {;
+.loadingMessage {
     grid-column: span 2;
     line-height: 20px;
     text-align: center;
@@ -27,14 +27,18 @@
 }
 
 @-webkit-keyframes spin {
-    from { -webkit-transform: rotate(0deg); }
-    to { -webkit-transform: rotate(360deg); }
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
 }
 @keyframes spin {
     from {
-        transform:rotate(0deg);
+        transform: rotate(0deg);
     }
     to {
-        transform:rotate(360deg);
+        transform: rotate(360deg);
     }
 }

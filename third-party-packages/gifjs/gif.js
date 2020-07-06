@@ -1,6 +1,6 @@
 /* eslint-disable */
 // gif.js 0.2.0 - https://github.com/jnordberg/gif.js
-(function(f) {
+(function (f) {
     if (typeof exports === 'object' && typeof module !== 'undefined') {
         module.exports = f();
     } else if (typeof define === 'function' && define.amd) {
@@ -18,7 +18,7 @@
         }
         g.GIF = f();
     }
-})(function() {
+})(function () {
     let define;
     let module;
     let exports;
@@ -35,7 +35,7 @@
                 const l = (n[o] = { exports: {} });
                 t[o][0].call(
                     l.exports,
-                    function(e) {
+                    function (e) {
                         const n = t[o][1][e];
                         return s(n || e);
                     },
@@ -55,7 +55,7 @@
     })(
         {
             1: [
-                function(require, module, exports) {
+                function (require, module, exports) {
                     function EventEmitter() {
                         this._events = this._events || {};
                         this._maxListeners = this._maxListeners || undefined;
@@ -65,13 +65,13 @@
                     EventEmitter.prototype._events = undefined;
                     EventEmitter.prototype._maxListeners = undefined;
                     EventEmitter.defaultMaxListeners = 10;
-                    EventEmitter.prototype.setMaxListeners = function(n) {
+                    EventEmitter.prototype.setMaxListeners = function (n) {
                         if (!isNumber(n) || n < 0 || isNaN(n))
                             throw TypeError('n must be a positive number');
                         this._maxListeners = n;
                         return this;
                     };
-                    EventEmitter.prototype.emit = function(type) {
+                    EventEmitter.prototype.emit = function (type) {
                         let er;
                         let handler;
                         let len;
@@ -130,7 +130,7 @@
                         }
                         return true;
                     };
-                    EventEmitter.prototype.addListener = function(
+                    EventEmitter.prototype.addListener = function (
                         type,
                         listener
                     ) {
@@ -177,7 +177,7 @@
                     };
                     EventEmitter.prototype.on =
                         EventEmitter.prototype.addListener;
-                    EventEmitter.prototype.once = function(type, listener) {
+                    EventEmitter.prototype.once = function (type, listener) {
                         if (!isFunction(listener))
                             throw TypeError('listener must be a function');
                         let fired = false;
@@ -192,7 +192,7 @@
                         this.on(type, g);
                         return this;
                     };
-                    EventEmitter.prototype.removeListener = function(
+                    EventEmitter.prototype.removeListener = function (
                         type,
                         listener
                     ) {
@@ -237,7 +237,9 @@
                         }
                         return this;
                     };
-                    EventEmitter.prototype.removeAllListeners = function(type) {
+                    EventEmitter.prototype.removeAllListeners = function (
+                        type
+                    ) {
                         let key;
                         let listeners;
                         if (!this._events) return this;
@@ -269,7 +271,7 @@
                         delete this._events[type];
                         return this;
                     };
-                    EventEmitter.prototype.listeners = function(type) {
+                    EventEmitter.prototype.listeners = function (type) {
                         let ret;
                         if (!this._events || !this._events[type]) ret = [];
                         else if (isFunction(this._events[type]))
@@ -277,7 +279,7 @@
                         else ret = this._events[type].slice();
                         return ret;
                     };
-                    EventEmitter.prototype.listenerCount = function(type) {
+                    EventEmitter.prototype.listenerCount = function (type) {
                         if (this._events) {
                             const evlistener = this._events[type];
                             if (isFunction(evlistener)) return 1;
@@ -285,7 +287,7 @@
                         }
                         return 0;
                     };
-                    EventEmitter.listenerCount = function(emitter, type) {
+                    EventEmitter.listenerCount = function (emitter, type) {
                         return emitter.listenerCount(type);
                     };
                     function isFunction(arg) {
@@ -304,7 +306,7 @@
                 {}
             ],
             2: [
-                function(require, module, exports) {
+                function (require, module, exports) {
                     let UA;
                     let browser;
                     let mode;
@@ -342,11 +344,11 @@
                 {}
             ],
             3: [
-                function(require, module, exports) {
+                function (require, module, exports) {
                     let EventEmitter;
                     let GIF;
                     let browser;
-                    const extend = function(child, parent) {
+                    const extend = function (child, parent) {
                         for (const key in parent) {
                             if (hasProp.call(parent, key))
                                 child[key] = parent[key];
@@ -362,7 +364,7 @@
                     var hasProp = {}.hasOwnProperty;
                     const indexOf =
                         [].indexOf ||
-                        function(item) {
+                        function (item) {
                             for (let i = 0, l = this.length; i < l; i++) {
                                 if (i in this && this[i] === item) return i;
                             }
@@ -371,7 +373,7 @@
                     const { slice } = [];
                     EventEmitter = require('events').EventEmitter;
                     browser = require('./browser.coffee');
-                    GIF = (function(superClass) {
+                    GIF = (function (superClass) {
                         let defaults;
                         let frameDefaults;
                         extend(GIF, superClass);
@@ -405,7 +407,7 @@
                                 }
                             }
                         }
-                        GIF.prototype.setOption = function(key, value) {
+                        GIF.prototype.setOption = function (key, value) {
                             this.options[key] = value;
                             if (
                                 this._canvas != null &&
@@ -414,7 +416,7 @@
                                 return (this._canvas[key] = value);
                             }
                         };
-                        GIF.prototype.setOptions = function(options) {
+                        GIF.prototype.setOptions = function (options) {
                             let key;
                             let results;
                             let value;
@@ -426,7 +428,7 @@
                             }
                             return results;
                         };
-                        GIF.prototype.addFrame = function(image, options) {
+                        GIF.prototype.addFrame = function (image, options) {
                             let frame;
                             let key;
                             if (options == null) {
@@ -475,7 +477,7 @@
                             }
                             return this.frames.push(frame);
                         };
-                        GIF.prototype.render = function() {
+                        GIF.prototype.render = function () {
                             let i;
                             let j;
                             let numWorkers;
@@ -494,7 +496,7 @@
                             this.running = true;
                             this.nextFrame = 0;
                             this.finishedFrames = 0;
-                            this.imageParts = function() {
+                            this.imageParts = function () {
                                 let j;
                                 let ref;
                                 let results;
@@ -523,7 +525,7 @@
                             this.emit('start');
                             return this.emit('progress', 0);
                         };
-                        GIF.prototype.abort = function() {
+                        GIF.prototype.abort = function () {
                             let worker;
                             while (true) {
                                 worker = this.activeWorkers.shift();
@@ -536,7 +538,7 @@
                             this.running = false;
                             return this.emit('abort');
                         };
-                        GIF.prototype.spawnWorkers = function() {
+                        GIF.prototype.spawnWorkers = function () {
                             let j;
                             let numWorkers;
                             let ref;
@@ -545,7 +547,7 @@
                                 this.options.workers,
                                 this.frames.length
                             );
-                            (function() {
+                            (function () {
                                 results = [];
                                 for (
                                     let j = (ref = this.freeWorkers.length);
@@ -560,16 +562,21 @@
                             }
                                 .apply(this)
                                 .forEach(
-                                    (function(_this) {
-                                        return function(i) {
+                                    (function (_this) {
+                                        return function (i) {
                                             let worker;
                                             _this.log(`spawning worker ${i}`);
                                             worker = new Worker(
                                                 _this.options.workerScript
                                             );
-                                            
-                                            worker.onmessage = function(event) {
-                                                if (event.data.source === 'react-devtools-detector') {
+
+                                            worker.onmessage = function (
+                                                event
+                                            ) {
+                                                if (
+                                                    event.data.source ===
+                                                    'react-devtools-detector'
+                                                ) {
                                                     return;
                                                 }
                                                 _this.activeWorkers.splice(
@@ -591,7 +598,7 @@
                                 ));
                             return numWorkers;
                         };
-                        GIF.prototype.frameFinished = function(frame) {
+                        GIF.prototype.frameFinished = function (frame) {
                             let i;
                             let j;
                             let ref;
@@ -624,7 +631,7 @@
                             }
                             return this.finishRendering();
                         };
-                        GIF.prototype.finishRendering = function() {
+                        GIF.prototype.finishRendering = function () {
                             let data;
                             let frame;
                             let i;
@@ -678,7 +685,7 @@
                             image = new Blob([data], { type: 'image/gif' });
                             return this.emit('finished', image, data);
                         };
-                        GIF.prototype.renderNextFrame = function() {
+                        GIF.prototype.renderNextFrame = function () {
                             let frame;
                             let task;
                             let worker;
@@ -699,7 +706,7 @@
                             this.activeWorkers.push(worker);
                             return worker.postMessage(task);
                         };
-                        GIF.prototype.getContextData = function(ctx) {
+                        GIF.prototype.getContextData = function (ctx) {
                             return ctx.getImageData(
                                 0,
                                 0,
@@ -707,7 +714,7 @@
                                 this.options.height
                             ).data;
                         };
-                        GIF.prototype.getImageData = function(image) {
+                        GIF.prototype.getImageData = function (image) {
                             let ctx;
                             if (this._canvas == null) {
                                 this._canvas = document.createElement('canvas');
@@ -731,7 +738,7 @@
                             ctx.drawImage(image, 0, 0);
                             return this.getContextData(ctx);
                         };
-                        GIF.prototype.getTask = function(frame) {
+                        GIF.prototype.getTask = function (frame) {
                             let index;
                             let task;
                             index = this.frames.indexOf(frame);
@@ -759,7 +766,7 @@
                             }
                             return task;
                         };
-                        GIF.prototype.log = function() {
+                        GIF.prototype.log = function () {
                             let args;
                             args =
                                 arguments.length >= 1

@@ -1,6 +1,6 @@
 .paperCanvas {
     background: url('~assets/clean-gray-paper-bg.png');
-    -webkit-box-shadow: 5px 5px 3px 5px #000000; 
+    -webkit-box-shadow: 5px 5px 3px 5px #000000;
     box-shadow: 5px 5px 3px 5px #000000;
     left: 0;
     position: absolute;

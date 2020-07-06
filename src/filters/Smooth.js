@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import smoothPolyline from 'smooth-polyline';
 import chaikinSmooth from 'chaikin-smooth';
 
-import PercentClicker from '../components/common/PercentClicker';
+import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'smooth';
 const displayName = 'smooth';

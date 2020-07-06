@@ -1,0 +1,4 @@
+.backgroundColorDiv {
+    border: 1px solid black;
+    grid-column: span 1;
+}

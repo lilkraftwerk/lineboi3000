@@ -15,7 +15,7 @@ import {
 
 import { clearLayer } from 'store/line/lineActions';
 
-import Icon from 'components/common/Icon';
+import Icon from 'components/common/Icon/Icon';
 import SingleLayer from './SingleLayer';
 
 import styles from './LayerHeader.styles.css';

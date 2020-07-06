@@ -13,10 +13,10 @@ h1 {
     font-size: 1.5em;
     margin: 0;
     margin-bottom: 2px;
-    padding: 0
+    padding: 0;
 }
 
 .enabled {
     cursor: pointer;
-    outline: 1px solid black; 
+    outline: 1px solid black;
 }

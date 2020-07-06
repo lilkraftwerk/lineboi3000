@@ -1,6 +1,6 @@
 import React from 'react';
-import { SidebarItem } from '../components/common/SidebarContainer';
-import { EnabledToggleButton } from '../components/common/SidebarButton';
+import { SidebarItem } from '../components/common/SidebarContainer/SidebarContainer';
+import { EnabledToggleButton } from '../components/common/SidebarButton/SidebarButton';
 import './Filters.styles.css';
 
 const FilterWrapper = ({

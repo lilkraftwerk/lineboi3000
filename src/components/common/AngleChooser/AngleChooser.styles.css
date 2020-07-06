@@ -1,15 +1,15 @@
 * {
     box-sizing: border-box;
-  }
-  
-  .header {
+}
+
+.header {
     grid-column: 2;
     text-decoration: underline;
-  }
-  
-  .clickoContainer {
+}
+
+.clickoContainer {
     display: inline-grid;
-    font-size: .8em;
+    font-size: 0.8em;
     grid-column: span 4;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 2fr 2fr;
@@ -17,11 +17,11 @@
     padding: 5px;
     padding-top: 0;
     width: 100%;
-  }
+}
 
-  .leftAngle {
-      grid-column: span 1;
-  }
+.leftAngle {
+    grid-column: span 1;
+}
 
 .angleTitle {
     grid-column: span 2;
@@ -29,56 +29,55 @@
     text-align: center;
 }
 
-  .rightAngle {
+.rightAngle {
     grid-column: span 1;
-  }
-  
-  .button { 
-      grid-column: span 1;
-  }
-  
-  .inputWrapper {
-      grid-column: span 2;
-  }
-  
-  .extremeLabels {
+}
+
+.button {
+    grid-column: span 1;
+}
+
+.inputWrapper {
+    grid-column: span 2;
+}
+
+.extremeLabels {
     cursor: pointer;
-  }
-  
-  .extremeLabels:hover {
+}
+
+.extremeLabels:hover {
     background-color: white;
-  }
-  
-  .minLabel {
+}
+
+.minLabel {
     grid-column: 1;
     text-align: left;
-  }
-  
-  .maxLabel {
+}
+
+.maxLabel {
     grid-column: 2;
     text-align: right;
-  }
+}
 
-  
-  input[type="range"] {
+input[type='range'] {
     -webkit-appearance: none;
     background: transparent;
     height: 100%;
     user-select: none;
     width: 100%;
-  }
-  input[type="range"]:focus {
+}
+input[type='range']:focus {
     outline: none;
-  }
-  input[type="range"]::-webkit-slider-runnable-track {
+}
+input[type='range']::-webkit-slider-runnable-track {
     animate: 0.2s;
     background: black;
     cursor: pointer;
     height: 2px;
     width: 100%;
-  }
-  
-  input[type="range"]::-webkit-slider-thumb {
+}
+
+input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     background: #ffffff;
     border: 1px solid #000000;
@@ -87,7 +86,4 @@
     height: 15px;
     margin-top: -7.5px;
     width: 15px;
-  }
-  
-  
-  
+}

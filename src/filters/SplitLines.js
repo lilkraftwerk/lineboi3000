@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import PercentClicker from '../components/common/PercentClicker';
+import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'split linez';
 const displayName = 'split linez';

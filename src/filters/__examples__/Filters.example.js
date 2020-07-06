@@ -53,7 +53,12 @@ ALL_FILTERS.forEach(({ name, filter, initSettings }) => {
                 }
             });
 
-            drawLines(context, filtered, 5, 'black');
+            drawLines({
+                context,
+                pointArrays: filtered,
+                strokeWidth: 5,
+                color: 'black'
+            });
 
             const frame = new Frame(canvas);
             const buffer = frame.toBuffer();
@@ -75,7 +80,12 @@ ALL_FILTERS.forEach(({ name, filter, initSettings }) => {
                 }
             });
 
-            drawLines(context, filtered, 5, 'black');
+            drawLines({
+                context,
+                pointArrays: filtered,
+                strokeWidth: 5,
+                color: 'black'
+            });
 
             const frame = new Frame(canvas);
             const buffer = frame.toBuffer();
@@ -98,7 +108,12 @@ ALL_FILTERS.forEach(({ name, filter, initSettings }) => {
             }
         });
 
-        drawLines(context, filtered, 5, 'black');
+        drawLines({
+            context,
+            pointArrays: filtered,
+            strokeWidth: 5,
+            color: 'black'
+        });
 
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();

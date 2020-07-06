@@ -6,7 +6,7 @@
 }
 
 label {
-    display: block; 
+    display: block;
     grid-column: span 2;
     line-height: 20px;
     text-align: center;

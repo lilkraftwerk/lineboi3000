@@ -2,7 +2,7 @@
  * @file Abstraction module for generic util helper functions for CNC Server!
  */
 
-module.exports = function(cncserver) {
+module.exports = function (cncserver) {
     const crypto = require('crypto'); // Crypto library for hashing.
 
     cncserver.utils = {
@@ -16,7 +16,7 @@ module.exports = function(cncserver) {
      *
      * @return {null}
      */
-    cncserver.utils.sanityCheckAbsoluteCoord = function(point) {
+    cncserver.utils.sanityCheckAbsoluteCoord = function (point) {
         const { maxArea } = cncserver.bot;
         point.x = point.x > maxArea.width ? maxArea.width : point.x;
         point.y = point.y > maxArea.height ? maxArea.height : point.y;
@@ -34,7 +34,7 @@ module.exports = function(cncserver) {
      *   16 char hash of data and current time in ms.
      */
     let hashSequence = 0;
-    cncserver.utils.getHash = function(data) {
+    cncserver.utils.getHash = function (data) {
         const md5sum = crypto.createHash('md5');
         md5sum.update(JSON.stringify(data) + hashSequence);
         hashSequence++;
@@ -54,7 +54,7 @@ module.exports = function(cncserver) {
      * @returns {number}
      *   Millisecond duration of how long the move should take
      */
-    cncserver.utils.getDurationFromDistance = function(distance, min, inPen) {
+    cncserver.utils.getDurationFromDistance = function (distance, min, inPen) {
         if (typeof min === 'undefined') min = 1;
 
         const minSpeed = parseFloat(cncserver.botConf.get('speed:min'));
@@ -89,7 +89,7 @@ module.exports = function(cncserver) {
      *   Object containing the change amount in steps for x & y, along with the
      *   duration in milliseconds.
      */
-    cncserver.utils.getPosChangeData = function(src, dest) {
+    cncserver.utils.getPosChangeData = function (src, dest) {
         let change = {
             x: Math.round(dest.x - src.x),
             y: Math.round(dest.y - src.y)
@@ -140,7 +140,7 @@ module.exports = function(cncserver) {
      *   Object containing the change amount in steps for x & y, along with the
      *   duration in milliseconds.
      */
-    cncserver.utils.getHeightChangeData = function(src, dest) {
+    cncserver.utils.getHeightChangeData = function (src, dest) {
         const sd = cncserver.botConf.get('servo:duration');
 
         // Get the amount of change from difference between actualPen and absolute
@@ -165,7 +165,7 @@ module.exports = function(cncserver) {
      * @returns {Boolean}
      *   False if pen is considered up, true if pen is considered down.
      */
-    cncserver.utils.penDown = function(inPen) {
+    cncserver.utils.penDown = function (inPen) {
         if (!inPen || !inPen.state) inPen = cncserver.pen;
 
         if (inPen.state === 'up' || inPen.state < 0.5) {
@@ -186,7 +186,7 @@ module.exports = function(cncserver) {
      * @returns {{x: number, y: number}}
      *   Converted coordinate in steps.
      */
-    cncserver.utils.centToSteps = function(point, inMaxArea) {
+    cncserver.utils.centToSteps = function (point, inMaxArea) {
         const { bot } = cncserver;
         if (!inMaxArea) {
             // Calculate based on workArea
@@ -210,7 +210,7 @@ module.exports = function(cncserver) {
      * @returns {number}
      *   Length (in steps) of the given vector point
      */
-    cncserver.utils.getVectorLength = function(vector) {
+    cncserver.utils.getVectorLength = function (vector) {
         return Math.sqrt(Math.pow(vector.x, 2) + Math.pow(vector.y, 2));
     };
 
@@ -224,7 +224,7 @@ module.exports = function(cncserver) {
      *   Object containing normalized state, and numeric height value. As:
      *   {state: [integer|string], height: [float]}
      */
-    cncserver.utils.stateToHeight = function(state) {
+    cncserver.utils.stateToHeight = function (state) {
         // Whether to use the full min/max range (used for named presets only)
         let fullRange = false;
         let min = parseInt(cncserver.botConf.get('servo:min'));

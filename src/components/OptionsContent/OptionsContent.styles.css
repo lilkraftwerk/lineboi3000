@@ -11,7 +11,7 @@
     border: 4px solid black;
     box-shadow: black 3px 3px 10px;
     display: grid;
-    grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px ;
+    grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
     height: 900px;
     margin: 50px 20%;
     position: relative;
@@ -42,43 +42,44 @@
     grid-gap: 10px 10px;
     grid-row: 2;
     grid-template-columns: 1fr 1fr 1fr;
-  }
-  
-  .input, .button, .label {
+}
+
+.input,
+.button,
+.label {
     grid-column: span 0.5;
     margin: 0;
     width: auto;
-  }
+}
 
-  .inputRow {
-      align-items: center;
-      color: black;
-      display: grid;
-      grid-column: span 2;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      justify-items: center;
-  }
+.inputRow {
+    align-items: center;
+    color: black;
+    display: grid;
+    grid-column: span 2;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+}
 
 .saveRow {
     grid-column: 3;
 }
 
-.inputColumn { 
+.inputColumn {
     grid-column: span 1;
 }
 
-  .input {
-      display: block;
-      font-size: 1.5em;
-      grid-column: span 0.5;
-      margin: 10px 0px;
-      outline: 1px solid black;
-      padding: 10px;
-      padding: 5px;
-  }
+.input {
+    display: block;
+    font-size: 1.5em;
+    grid-column: span 0.5;
+    margin: 10px 0px;
+    outline: 1px solid black;
+    padding: 10px;
+    padding: 5px;
+}
 
-  .input:disabled {
-      background-color: lightgray;
-      color: black;
-  }
-
+.input:disabled {
+    background-color: lightgray;
+    color: black;
+}

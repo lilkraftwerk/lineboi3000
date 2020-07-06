@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import simplify from 'simplify-js';
-import PercentClicker from '../components/common/PercentClicker';
+import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'simplify';
 const displayName = 'simplify lines';

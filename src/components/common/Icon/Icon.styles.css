@@ -1,7 +1,7 @@
-@value colors: "./colorVariables.css";
+@value colors: "../Colors/colorVariables.css";
 @value color-blackish, color-gray, color-cream, color-teal-light from colors;
 
-  .iconWrapper {
+.iconWrapper {
     background-color: color-cream;
     border: 2px solid color-blackish;
     border-radius: 25%;
@@ -25,7 +25,7 @@
 .iconWrapperDisabled {
     background-color: color-gray;
     composes: iconWrapper;
-    cursor: default; 
+    cursor: default;
 }
 
 .iconWrapperDisabled:hover {

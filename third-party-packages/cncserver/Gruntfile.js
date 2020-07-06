@@ -1,6 +1,6 @@
 /* jslint node: true */
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     grunt.initConfig({
         mochaTest: {
             test: {

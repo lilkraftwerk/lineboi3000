@@ -1,38 +1,38 @@
 version: 2.1
 jobs:
-  build:
-    working_directory: ~/lineboi3000
-    docker:
-      - image: circleci/node:12.17.0
-    steps:
-      - checkout
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: yarn install --frozen-lockfile
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-      - run:
-          name: Creating Dummy Artifacts
-          command: mkdir /tmp/diffs;
-      - run:
-          name: Run Tests
-          command: yarn test:src
-      - store_artifacts:
-          path: tmp/diffs
-          destination: image_snapshot_diff
-      - run:
-          name: ESLint
-          command: yarn eslint:check
-      - run:
-          name: CSS Files Lint
-          command: yarn style:check
-      - run:
-          name: Prettier
-          command: yarn prettier:check
+    build:
+        working_directory: ~/lineboi3000
+        docker:
+            - image: circleci/node:12.17.0
+        steps:
+            - checkout
+            - restore_cache:
+                  name: Restore Yarn Package Cache
+                  keys:
+                      - yarn-packages-{{ checksum "yarn.lock" }}
+            - run:
+                  name: Install Dependencies
+                  command: yarn install --frozen-lockfile
+            - save_cache:
+                  name: Save Yarn Package Cache
+                  key: yarn-packages-{{ checksum "yarn.lock" }}
+                  paths:
+                      - ~/.cache/yarn
+            - run:
+                  name: Creating Dummy Artifacts
+                  command: mkdir /tmp/diffs;
+            - run:
+                  name: Run Tests
+                  command: yarn test:src
+            - store_artifacts:
+                  path: tmp/diffs
+                  destination: image_snapshot_diff
+            - run:
+                  name: ESLint
+                  command: yarn eslint:check
+            - run:
+                  name: CSS Files Lint
+                  command: yarn style:check
+            - run:
+                  name: Prettier
+                  command: yarn prettier:check

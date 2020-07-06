@@ -12,7 +12,7 @@ import {
     updateLayerSetting
 } from 'store/layer/layerActions';
 import { getCurrentLayer, getLayers } from 'store/layer/layerSelectors';
-import { getCurrentOptions } from 'store/onions/onionsSelectors';
+import { getCurrentOptions } from 'store/options/optionsSelectors';
 import { setLayerEfxLines } from 'store/line/lineActions';
 import { saveTempAsFrame, setTempBlob } from 'store/gifmaker/gifmakerActions';
 import { getOriginalLines } from 'store/line/lineSelectors';
@@ -21,8 +21,8 @@ import idGenerator from 'utils/id';
 import {
     SidebarContainer,
     SidebarItem
-} from 'components/common/SidebarContainer';
-import ItemSelector from 'components/common/ItemSelector';
+} from 'components/common/SidebarContainer/SidebarContainer';
+import ItemSelector from 'components/common/ItemSelector/ItemSelector';
 
 import FilterWrapper from 'filters/FilterWrapper';
 import Multiply from 'filters/Multiply';
@@ -44,7 +44,7 @@ import {
     getPointArraysFromLine
 } from '../../utils/lineUtils';
 
-import '../common/SidebarStyles.css';
+import '../common/SidebarContainer/SidebarStyles.css';
 
 const CONSTANT_FILTERS = [
     Move,

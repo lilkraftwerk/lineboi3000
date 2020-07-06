@@ -8,7 +8,7 @@
  */
 const SerialPort = require('serialport');
 
-module.exports = function(cncserver) {
+module.exports = function (cncserver) {
     cncserver.serial = {
         callbacks: {}, // Hold global serial connection/error callbacks.
         connectPath: '{auto}'
@@ -25,7 +25,7 @@ module.exports = function(cncserver) {
      *     disconnect: Callback for close/unexpected disconnect
      *     complete: Callback for general completion
      */
-    cncserver.serial.connect = function(options) {
+    cncserver.serial.connect = function (options) {
         // Apply any passed callbacks to a new serial callbacks object.
         cncserver.serial.callbacks = {
             connect: options.connect,
@@ -37,7 +37,7 @@ module.exports = function(cncserver) {
         // Run everything through the callback as port list is async.
         console.log('Finding available serial ports...');
         const botController = cncserver.botConf.get('controller');
-        cncserver.serial.autoDetectPort(botController, function(ports) {
+        cncserver.serial.autoDetectPort(botController, function (ports) {
             // Give some console feedback on ports.
             if (cncserver.gConf.get('debug')) {
                 console.log('Full Available Port Data:', ports.full);
@@ -109,7 +109,7 @@ module.exports = function(cncserver) {
      *     names {array}: Clean flat array of all available comm paths/port names.
      *     full {array}: Array of all valid serial port objects for debugging.
      */
-    cncserver.serial.autoDetectPort = function(botControllerConf, callback) {
+    cncserver.serial.autoDetectPort = function (botControllerConf, callback) {
         const botMaker = botControllerConf.manufacturer.toLowerCase();
         const botProductId = parseInt(
             botControllerConf.productId.toLowerCase()
@@ -121,9 +121,9 @@ module.exports = function(cncserver) {
         const portNames = [];
         const cleanList = [];
 
-        SerialPort.list().then(ports => {
+        SerialPort.list().then((ports) => {
             // TODO: Catch errors thrown here.
-            ports.forEach(function(port) {
+            ports.forEach(function (port) {
                 const portMaker = (port.manufacturer || '').toLowerCase();
                 // Convert reported product ID from hex string to decimal.
                 const portProductId = parseInt(
@@ -166,19 +166,19 @@ module.exports = function(cncserver) {
     };
 
     // Cheap wrapper!
-    cncserver.serial.command = function(cmd) {
+    cncserver.serial.command = function (cmd) {
         cncserver.ipc.sendMessage('serial.direct.write', cmd);
     };
 
     // Util function to just get the full port output from exports.
-    cncserver.serial.getPorts = function(cb) {
-        SerialPort.list().then(ports => {
+    cncserver.serial.getPorts = function (cb) {
+        SerialPort.list().then((ports) => {
             cb(ports);
         });
     };
 
     // Local triggers.
-    cncserver.serial.localTrigger = function(event) {
+    cncserver.serial.localTrigger = function (event) {
         switch (event) {
             case 'simulationStart':
                 console.log(
@@ -256,7 +256,7 @@ module.exports = function(cncserver) {
      * @param {integer} value
      *   Value to set to
      */
-    cncserver.serial.sendEBBSetup = function(id, value) {
+    cncserver.serial.sendEBBSetup = function (id, value) {
         cncserver.run('custom', `SC,${id},${value}`);
     };
 

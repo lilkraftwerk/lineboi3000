@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Fragment } from 'react';
 import { allPointsBetweenTwoCoords } from '../utils/coordUtils';
-import PercentClicker from '../components/common/PercentClicker';
+import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'exes';
 const displayName = 'exes';
