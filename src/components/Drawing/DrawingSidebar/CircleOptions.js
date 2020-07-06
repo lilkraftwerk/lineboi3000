@@ -1,7 +1,7 @@
 import React from 'react';
 import { setOptionByKey } from 'store/drawing/drawingActions';
-import { SidebarItem } from 'components/common/SidebarContainer';
-import PercentClicker from 'components/common/PercentClicker';
+import { SidebarItem } from 'components/common/SidebarContainer/SidebarContainer';
+import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 
 const CircleOptions = (props) => {
     const { pointsOnCircle, dispatch } = props;

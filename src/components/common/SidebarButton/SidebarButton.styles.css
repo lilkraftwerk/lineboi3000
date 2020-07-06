@@ -3,13 +3,13 @@
     border: 1px solid black;
     font-size: 1.1em;
     grid-column: span 1;
-    height: 25px;
+    height: 100%;
     justify-self: center;
     line-height: 10px;
     outline: 0;
     text-transform: uppercase;
     -webkit-user-select: none;
-    user-select: none;  /* Chrome all / Safari all */
+    user-select: none; /* Chrome all / Safari all */
     width: 100%;
 }
 
@@ -22,7 +22,7 @@
 .sidebarButton:hover {
     background-color: lightpink;
     outline: 0;
-    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -webkit-user-select: none; /* Chrome all / Safari all */
 }
 
 .enabledToggleButton {
@@ -34,7 +34,7 @@
     outline: 0;
     text-transform: uppercase;
     -webkit-user-select: none;
-    user-select: none;  /* Chrome all / Safari all */
+    user-select: none; /* Chrome all / Safari all */
     width: 100%;
 }
 
@@ -62,7 +62,6 @@
     grid-column: span 4;
 }
 
-
 .enabledToggleButton:active {
     filter: saturate(150%);
     outline: 0;
@@ -71,5 +70,5 @@
 
 .enabledToggleButton:hover {
     outline: 0;
-    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -webkit-user-select: none; /* Chrome all / Safari all */
 }

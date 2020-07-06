@@ -11,7 +11,8 @@ import PlotContent from './PlotContent/PlotContent';
 import GifmakerContent from './GifmakerContent/GifmakerContent';
 import GifmakerSidebar from './GifmakerContent/GifmakerSidebar';
 import PlotSidebar from './PlotSidebar/PlotSidebar';
-import OnionContent from './OnionContent/OnionContent';
+import OptionsSidebar from './OptionsSidebar/OptionsSidebar';
+import OptionsContent from './OptionsContent/OptionsContent';
 import LayerControls from './LayerHeader/LayerHeader';
 import GridContent from './GridContent/GridContent';
 import EfxContent from './EfxContent/EfxContent';
@@ -24,7 +25,7 @@ import Listener from './Listener';
 
 import styles from './AppContainer.styles.css';
 
-const MODES = ['draw', 'efx', 'plot', 'onions', 'gifmaker'];
+const MODES = ['draw', 'efx', 'plot', 'gifmaker', 'options'];
 
 class AppContainer extends React.Component {
     componentDidMount() {
@@ -49,13 +50,14 @@ class AppContainer extends React.Component {
     render() {
         const { mode } = this.props;
         const showGrid = ['efx', 'draw'].includes(mode);
+        const showHeader = ['draw', 'efx', 'plot'].includes(mode);
 
         return (
             <div className={styles.wholeApp}>
                 <Listener />
                 <div className={styles.headerLeft}>lineboi3000</div>
                 <div className={styles.headerRight}>
-                    {mode !== 'gifmaker' && <LayerControls />}
+                    {showHeader && <LayerControls />}
                     {mode === 'gifmaker' && <GifmakerHeader />}
                 </div>
                 <div className={styles.sidebar}>
@@ -82,6 +84,7 @@ class AppContainer extends React.Component {
                     {mode === 'efx' && <EfxSidebar />}
                     {mode === 'draw' && <DrawingSidebar />}
                     {mode === 'plot' && <PlotSidebar />}
+                    {mode === 'options' && <OptionsSidebar />}
                     {mode === 'gifmaker' && <GifmakerSidebar />}
                 </div>
                 <div className={styles.content}>
@@ -89,7 +92,7 @@ class AppContainer extends React.Component {
                     {mode === 'draw' && <DrawingContent />}
                     {mode === 'efx' && <EfxContent />}
                     {mode === 'plot' && <PlotContent />}
-                    {mode === 'onions' && <OnionContent />}
+                    {mode === 'options' && <OptionsContent />}
                     {mode === 'gifmaker' && <GifmakerContent />}
                 </div>
             </div>

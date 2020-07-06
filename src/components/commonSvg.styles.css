@@ -7,7 +7,7 @@
     background: url('~assets/clean-gray-paper-bg.png');
     background-color: #b3b3b3;
     box-shadow: black 2px 2px 1px;
-    cursor: crosshair; 
+    cursor: crosshair;
     position: relative;
 }
 
@@ -27,7 +27,6 @@
     display: inline-block;
     width: 30px;
 }
-
 
 .whole {
     border: 1px solid black;

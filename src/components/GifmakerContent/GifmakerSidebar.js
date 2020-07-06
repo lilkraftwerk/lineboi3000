@@ -9,16 +9,16 @@ import {
     setGifOptionByKey
 } from 'store/gifmaker/gifmakerActions';
 
-import { getCurrentOptions } from 'store/onions/onionsSelectors';
+import { getCurrentOptions } from 'store/options/optionsSelectors';
 
-import ColorPicker from 'components/common/ColorPicker';
-import NumberInput from 'components/common/NumberInput';
+import ColorPicker from 'components/common/Colors/ColorPicker';
+import NumberInput from 'components/common/NumberInput/NumberInput';
 
 import {
     SidebarContainer,
     SidebarItem
-} from 'components/common/SidebarContainer';
-import ColorList from '../common/ColorList';
+} from 'components/common/SidebarContainer/SidebarContainer';
+import ColorList from '../common/Colors/ColorList';
 
 import styles from './GifmakerSidebar.styles.css';
 

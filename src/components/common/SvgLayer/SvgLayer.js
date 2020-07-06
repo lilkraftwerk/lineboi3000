@@ -3,7 +3,7 @@ import {
     prepareLines,
     drawLines,
     drawPointCircles
-} from '../../utils/drawingUtils';
+} from '../../../utils/drawingUtils';
 
 import styles from './SvgLayer.styles.css';
 
@@ -14,7 +14,9 @@ export const CanvasLayer = ({
     height = 600,
     strokeWidth,
     position = 'absolute',
-    showPoints = false
+    showPoints = false,
+    pointShowColor = 'black',
+    pointShowRadius = 3
 }) => {
     const pixelRatio = window.devicePixelRatio;
 
@@ -31,16 +33,21 @@ export const CanvasLayer = ({
             offScreenContext.strokeStyle = color;
 
             const formattedPointArrays = prepareLines(lines);
-            drawLines(
-                offScreenContext,
-                formattedPointArrays,
+            drawLines({
+                context: offScreenContext,
+                pointArrays: formattedPointArrays,
                 strokeWidth,
                 color
-            );
+            });
 
             // show points
             if (showPoints) {
-                drawPointCircles(offScreenContext, formattedPointArrays, 3);
+                drawPointCircles({
+                    context: offScreenContext,
+                    pointArrays: formattedPointArrays,
+                    radius: pointShowRadius,
+                    color: pointShowColor
+                });
             }
 
             offScreenContext.restore();
@@ -74,7 +81,9 @@ export const CombinedLayer = ({
     height = 600,
     blobCallback = () => {},
     position = 'absolute',
-    showPoints = false
+    showPoints = false,
+    pointShowColor = 'black',
+    pointShowRadius = 3
 }) => {
     const pixelRatio = window.devicePixelRatio;
     const canvas = useRef(null);
@@ -87,18 +96,24 @@ export const CombinedLayer = ({
 
             offScreenContext.save();
             offScreenContext.clearRect(0, 0, width, height);
-
             if (layers.length >= 0) {
                 layers.forEach(({ efxLines, color }) => {
                     const formattedLines = prepareLines(efxLines);
-                    drawLines(offScreenContext, formattedLines, 3, color);
+                    drawLines({
+                        context: offScreenContext,
+                        pointArrays: formattedLines,
+                        strokeWidth: 3,
+                        color
+                    });
+
+                    // show points
                     if (showPoints) {
-                        drawPointCircles(
-                            offScreenContext,
-                            formattedLines,
-                            'black',
-                            3
-                        );
+                        drawPointCircles({
+                            context: offScreenContext,
+                            pointArrays: formattedLines,
+                            radius: pointShowRadius,
+                            color: pointShowColor
+                        });
                     }
                 });
             }
@@ -163,7 +178,12 @@ export const SelectLayer = ({
 
             if (hullCoords.length > 2) {
                 offScreenContext.fillStyle = 'rgba(255, 255, 255, 0.25)';
-                drawLines(offScreenContext, hullCoords, 3, 'red');
+                drawLines({
+                    context: offScreenContext,
+                    pointArrays: hullCoords,
+                    strokeWidth: 3,
+                    color: 'red'
+                });
             }
 
             offScreenContext.closePath();
@@ -174,7 +194,12 @@ export const SelectLayer = ({
             offScreenContext.fillStyle = 'none';
 
             if (fillLines.length > 0) {
-                drawLines(offScreenContext, fillLines, 1, 'black');
+                drawLines({
+                    context: offScreenContext,
+                    pointArrays: fillLines,
+                    strokeWidth: 1,
+                    color: 'black'
+                });
             }
 
             offScreenContext.restore();

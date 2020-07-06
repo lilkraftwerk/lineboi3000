@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Fragment } from 'react';
-import PercentClicker from '../components/common/PercentClicker';
+import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'remove lines';
 const displayName = 'remove lines';

@@ -3,7 +3,7 @@
  *
  */
 
-module.exports = function(cncserver) {
+module.exports = function (cncserver) {
     const express = require('express'); // Express Webserver Requires
     const slashes = require('connect-slashes'); // Middleware to manage URI slashes
     cncserver.app = express(); // Create router (app).
@@ -23,7 +23,7 @@ module.exports = function(cncserver) {
     /**
      * Attempt to start the server.
      */
-    cncserver.srv.start = function() {
+    cncserver.srv.start = function () {
         // Only run start server once...
         if (serverStarted) return;
         serverStarted = true;
@@ -33,10 +33,10 @@ module.exports = function(cncserver) {
             : null;
 
         // Catch Addr in Use Error
-        cncserver.server.on('error', function(e) {
+        cncserver.server.on('error', function (e) {
             if (e.code === 'EADDRINUSE') {
                 console.log('Address in use, retrying...');
-                setTimeout(function() {
+                setTimeout(function () {
                     cncserver.srv.close();
                     cncserver.server.listen(
                         cncserver.gConf.get('httpPort'),
@@ -49,9 +49,9 @@ module.exports = function(cncserver) {
         cncserver.server.listen(
             cncserver.gConf.get('httpPort'),
             hostname,
-            function() {
+            function () {
                 // Properly close down server on fail/close
-                process.on('SIGTERM', function(err) {
+                process.on('SIGTERM', function (err) {
                     console.log(err);
                     cncserver.srv.close();
                 });
@@ -62,7 +62,7 @@ module.exports = function(cncserver) {
     /**
      * Attempt to close down the server.
      */
-    cncserver.srv.close = function() {
+    cncserver.srv.close = function () {
         try {
             cncserver.server.close();
         } catch (e) {

@@ -6,7 +6,7 @@ import {
     efxLinesReducer,
     undoableOriginalLinesReducer
 } from './line/lineReducers';
-import { undoableOnionsReducer } from './onions/onionsReducer';
+import optionsReducer from './options/optionsReducer';
 import drawingReducer from './drawing/drawingReducer';
 import plotReducer from './plot/plotReducer';
 import gifmakerReducer from './gifmaker/gifmakerReducer';
@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
     globalReducer,
     originalLinesReducer: undoableOriginalLinesReducer,
     efxLinesReducer,
-    onionsReducer: undoableOnionsReducer,
+    optionsReducer,
     drawingReducer,
     plotReducer,
     gifmakerReducer

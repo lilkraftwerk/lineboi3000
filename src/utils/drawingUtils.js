@@ -15,12 +15,12 @@ export const prepareLines = (lines = []) => {
     return pointArraysWithoutZeroLength;
 };
 
-export const drawLines = (
+export const drawLines = ({
     context,
     pointArrays,
     strokeWidth = 3,
     color = 'black'
-) => {
+}) => {
     pointArrays.forEach((pointArray) => {
         context.strokeStyle = color;
         context.beginPath();
@@ -41,7 +41,12 @@ export const drawLines = (
     });
 };
 
-export const drawCircles = (context, coords, radius = 10, color = 'black') => {
+export const drawCircles = ({
+    context,
+    coords,
+    radius = 10,
+    color = 'black'
+}) => {
     context.fillStyle = color;
     context.lineWidth = 0;
     context.strokeStyle = color;
@@ -53,12 +58,12 @@ export const drawCircles = (context, coords, radius = 10, color = 'black') => {
     });
 };
 
-export const drawPoints = (
+export const drawPoints = ({
     context,
     coords,
     fillStyle = 'white',
     strokeStyle = 'black'
-) => {
+}) => {
     context.strokeStyle = strokeStyle;
     context.fillStyle = fillStyle;
     coords.forEach(([pointX, pointY]) => {
@@ -68,7 +73,12 @@ export const drawPoints = (
     context.stroke();
 };
 
-export const drawSquares = (context, coords, fillStyle = 'black', radius) => {
+export const drawSquares = ({
+    context,
+    coords,
+    fillStyle = 'black',
+    radius = 10
+}) => {
     context.fillStyle = fillStyle;
     context.strokeStyle = fillStyle;
     coords.forEach(([centerX, centerY]) => {
@@ -78,12 +88,12 @@ export const drawSquares = (context, coords, fillStyle = 'black', radius) => {
     });
 };
 
-export const drawPointCircles = (
+export const drawPointCircles = ({
     context,
     pointArrays,
     color = 'black',
     radius = 1
-) => {
+}) => {
     context.fillStyle = 'white';
     context.strokeStyle = color;
     const flatPoints = _.flatten(pointArrays);

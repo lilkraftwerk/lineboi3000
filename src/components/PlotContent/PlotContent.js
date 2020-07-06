@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getAllEfxLines } from 'store/line/lineSelectors';
-import { getCurrentOptions } from 'store/onions/onionsSelectors';
-import { CanvasLayer } from 'components/common/SvgLayer';
+import { getCurrentOptions } from 'store/options/optionsSelectors';
+import { CanvasLayer } from 'components/common/SvgLayer/SvgLayer';
 import {
     formatLayersForPlotDisplay,
     generatePlotBoundaries

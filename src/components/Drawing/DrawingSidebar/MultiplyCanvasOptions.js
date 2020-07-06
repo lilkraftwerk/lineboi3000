@@ -1,8 +1,8 @@
 import React from 'react';
 import { setMultiplyCanvasOptions } from 'store/drawing/drawingActions';
 import { multiplyCanvas } from 'store/line/lineActions';
-import { SidebarItem } from 'components/common/SidebarContainer';
-import PercentClicker from 'components/common/PercentClicker';
+import { SidebarItem } from 'components/common/SidebarContainer/SidebarContainer';
+import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 
 import styles from './ShrinkCanvasOptions.styles.css';
 

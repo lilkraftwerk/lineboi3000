@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { getShowPoints } from 'store/global/globalSelectors';
 import { getVisibleOriginalLines } from 'store/line/lineSelectors';
-import { getCurrentOptions } from 'store/onions/onionsSelectors';
+import { getCurrentOptions } from 'store/options/optionsSelectors';
 import { setFillLines } from 'store/drawing/drawingActions';
 
 import {
@@ -12,7 +12,7 @@ import {
     getCurrentLayerID,
     getVisibleLayers
 } from 'store/layer/layerSelectors';
-import { CanvasLayer, SelectLayer } from 'components/common/SvgLayer';
+import { CanvasLayer, SelectLayer } from 'components/common/SvgLayer/SvgLayer';
 import { printLinesViaFillCoords } from '../../../utils/lineUtils';
 import generateFillLines from '../../../utils/fillLineUtils';
 import DrawingModes from '../modes';
@@ -431,7 +431,9 @@ export class DrawingContent extends React.Component {
             visibleLayers,
             fillLines,
             mainMode,
-            showPoints
+            showPoints,
+            pointShowRadius,
+            pointShowColor
         } = this.props;
 
         return (
@@ -477,6 +479,8 @@ export class DrawingContent extends React.Component {
                                 color={color}
                                 strokeWidth={3}
                                 showPoints={showPoints}
+                                pointShowColor={pointShowColor}
+                                pointShowRadius={pointShowRadius}
                             />
                         );
                     }

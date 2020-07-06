@@ -15,30 +15,6 @@ export const createLineFromPointArray = (pointArrays) => {
     };
 };
 
-export const generateVerticalLines = ({
-    minX,
-    maxX,
-    minY,
-    maxY,
-    distanceBetweenLines,
-    distanceBetweenPoints,
-    offset = 20
-}) => {
-    const allLines = [];
-    for (let x = minX - offset; x <= maxX + offset; x += distanceBetweenLines) {
-        const thisLine = [];
-        for (
-            let y = minY - offset;
-            y <= maxY + offset;
-            y += distanceBetweenPoints
-        ) {
-            thisLine.push([x, y]);
-        }
-        allLines.push(thisLine);
-    }
-    return allLines;
-};
-
 export const generateLinesAtAngle = ({
     minX,
     maxX,

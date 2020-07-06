@@ -46,12 +46,17 @@ describe('Split Lines', () => {
         ].flat();
 
         const testLines = makeVerticalLinesPointArrays(600, 800, 20);
-        drawLines(
+        drawLines({
             context,
-            [eraseLine, eraseLineThree, eraseLineTwo, eraseLineFour],
-            eraserRadius,
-            'red'
-        );
+            pointArrays: [
+                eraseLine,
+                eraseLineThree,
+                eraseLineTwo,
+                eraseLineFour
+            ],
+            strokeWidth: eraserRadius,
+            color: 'red'
+        });
 
         const splitLines = splitLinesViaEraserCoords({
             lines: testLines,
@@ -61,7 +66,7 @@ describe('Split Lines', () => {
             smoothPasses: 1
         });
 
-        drawLines(context, splitLines);
+        drawLines({ context, pointArrays: splitLines });
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
@@ -78,7 +83,7 @@ describe('isPointWithinCircle', () => {
             [500, 500]
         ];
 
-        const circleRadius = 30;
+        const radius = 30;
 
         const allPoints = [];
         for (let x = 0; x < 800; x += 10) {
@@ -96,7 +101,7 @@ describe('isPointWithinCircle', () => {
                     return isPointWithinCircle(
                         circleX,
                         circleY,
-                        circleRadius,
+                        radius,
                         currentX,
                         currentY,
                         true
@@ -108,8 +113,8 @@ describe('isPointWithinCircle', () => {
             }
         });
 
-        drawCircles(context, circleLocations, circleRadius, 'red');
-        drawPoints(context, finalPoints);
+        drawCircles({ context, coords: circleLocations, radius, color: 'red' });
+        drawPoints({ context, coords: finalPoints });
 
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
@@ -125,7 +130,7 @@ describe('isPointWithinCircle', () => {
             [500, 500]
         ];
 
-        const circleRadius = 30;
+        const radius = 30;
 
         const allPoints = [];
         for (let x = 0; x < 800; x += 10) {
@@ -143,7 +148,7 @@ describe('isPointWithinCircle', () => {
                     return isPointWithinCircle(
                         circleX,
                         circleY,
-                        circleRadius,
+                        radius,
                         currentX,
                         currentY,
                         false
@@ -154,9 +159,8 @@ describe('isPointWithinCircle', () => {
                 finalPoints.push([currentX, currentY]);
             }
         });
-
-        drawCircles(context, circleLocations, circleRadius, 'red');
-        drawPoints(context, finalPoints);
+        drawCircles({ context, coords: circleLocations, radius, color: 'red' });
+        drawPoints({ context, coords: finalPoints });
 
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();

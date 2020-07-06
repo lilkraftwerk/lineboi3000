@@ -3,9 +3,9 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import Plotter from 'plotting/Plotter';
 import { getAllEfxLines } from 'store/line/lineSelectors';
-import { getCurrentOptions } from 'store/onions/onionsSelectors';
-import PercentClicker from 'components/common/PercentClicker';
-import { EnabledToggleButton } from 'components/common/SidebarButton';
+import { getCurrentOptions } from 'store/options/optionsSelectors';
+import PercentClicker from 'components/common/PercentClicker/PercentClicker';
+import { EnabledToggleButton } from 'components/common/SidebarButton/SidebarButton';
 
 import {
     setPlotSettingByKey,
@@ -16,7 +16,7 @@ import {
 import {
     SidebarContainer,
     SidebarItem
-} from 'components/common/SidebarContainer';
+} from 'components/common/SidebarContainer/SidebarContainer';
 import {
     formatLayersForPlotDisplay,
     addPercentageCoordinatesToLine,

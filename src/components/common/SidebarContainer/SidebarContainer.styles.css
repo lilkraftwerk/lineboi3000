@@ -1,4 +1,5 @@
-.sidebar, .body {
+.sidebar,
+.body {
     box-sizing: border-box;
     display: grid;
     grid-gap: 8px;
@@ -12,7 +13,7 @@
 }
 
 .sidebarItem {
-    font-size: .8em;
+    font-size: 0.8em;
     outline: 2px solid black;
     padding-bottom: 3px;
 }
@@ -35,4 +36,3 @@
     text-align: center;
     width: 100%;
 }
-

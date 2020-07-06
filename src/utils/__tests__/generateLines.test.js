@@ -37,8 +37,8 @@ const testAngle = (angle) => {
         angle
     });
 
-    drawLines(context, lines, 1, 'black');
-    drawLines(context, [square], 2, 'red');
+    drawLines({ context, pointArrays: lines, strokeWidth: 1, color: 'black' });
+    drawLines({ context, pointArrays: [square], strokeWidth: 2, color: 'red' });
 
     context.fillStyle = 'black';
     context.font = 'bold 50px Arial';

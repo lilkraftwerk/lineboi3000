@@ -9,11 +9,14 @@ import {
     setMasterGif
 } from 'store/gifmaker/gifmakerActions';
 
+import styles from './GifmakerContent.styles.css';
+
 class GifmakerContent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            stateLoading: false
+            stateLoading: false,
+            progress: 0
         };
     }
 
@@ -75,6 +78,9 @@ class GifmakerContent extends React.Component {
             elem.setAttribute('src', img);
             gif.addFrame(elem, { delay: gifFrameDelay });
         });
+        gif.on('progress', (progress) => {
+            this.setState({ progress });
+        });
         gif.on('finished', (blob) => {
             const reader = new FileReader();
             reader.readAsDataURL(blob);
@@ -92,12 +98,22 @@ class GifmakerContent extends React.Component {
 
     render() {
         const { loading, masterGif } = this.props;
-        const { stateLoading } = this.state;
+        const { stateLoading, progress } = this.state;
+
+        const progressInPercentage = Math.round(Number(progress) * 100);
 
         if (loading || stateLoading) {
             return (
-                <div>
-                    <img src="./assets/loading.gif" />
+                <div className={styles.loadingContainer}>
+                    <div className={styles.loadingBarContainer}>
+                        <div className={styles.progressContainer}>
+                            {`processing: ${progressInPercentage}%`}
+                        </div>
+                        <div
+                            style={{ width: `${progressInPercentage}%` }}
+                            className={styles.loading}
+                        />
+                    </div>
                 </div>
             );
         }

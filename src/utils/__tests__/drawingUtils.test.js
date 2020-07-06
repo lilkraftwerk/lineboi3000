@@ -4,6 +4,7 @@ import {
     drawLines,
     drawCircles,
     drawPoints,
+    drawPointCircles,
     drawSquares
 } from '../drawingUtils';
 import 'jest-canvas-mock';
@@ -23,7 +24,7 @@ describe('drawing utils', () => {
     describe('drawLines', () => {
         it('should draw lines properly', () => {
             const { canvas, context } = createTestCanvas();
-            drawLines(context, [zShape]);
+            drawLines({ context, pointArrays: [zShape] });
             const frame = new Frame(canvas);
             const buffer = frame.toBuffer();
             expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
@@ -33,7 +34,7 @@ describe('drawing utils', () => {
     describe('drawCircles', () => {
         it('should draw circles properly', () => {
             const { canvas, context } = createTestCanvas();
-            drawCircles(context, zShape, 5);
+            drawCircles({ context, coords: zShape, radius: 5 });
             const frame = new Frame(canvas);
             const buffer = frame.toBuffer();
             expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
@@ -43,7 +44,7 @@ describe('drawing utils', () => {
     describe('drawPoints', () => {
         it('should draw points properly', () => {
             const { canvas, context } = createTestCanvas();
-            drawPoints(context, [zShape]);
+            drawPoints({ context, coords: [zShape] });
             const frame = new Frame(canvas);
             const buffer = frame.toBuffer();
             expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
@@ -52,7 +53,7 @@ describe('drawing utils', () => {
     describe('drawSquares', () => {
         it('should draw squares properly', () => {
             const { canvas, context } = createTestCanvas();
-            drawSquares(context, zShape);
+            drawSquares({ context, coords: [zShape] });
             const frame = new Frame(canvas);
             const buffer = frame.toBuffer();
             expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
@@ -62,7 +63,7 @@ describe('drawing utils', () => {
     describe('drawPointCircles', () => {
         it('should draw point circles properly', () => {
             const { canvas, context } = createTestCanvas();
-            drawSquares(context, [zShape]);
+            drawPointCircles({ context, coords: [zShape] });
             const frame = new Frame(canvas);
             const buffer = frame.toBuffer();
             expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);

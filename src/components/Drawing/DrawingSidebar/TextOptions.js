@@ -6,10 +6,10 @@ import {
     setSelectOptionByKey,
     setOptionByKey
 } from 'store/drawing/drawingActions';
-import { SidebarItem } from 'components/common/SidebarContainer';
-import ItemSelector from 'components/common/ItemSelector';
-import PercentClicker from 'components/common/PercentClicker';
-import AngleChooser from 'components/common/AngleChooser';
+import { SidebarItem } from 'components/common/SidebarContainer/SidebarContainer';
+import ItemSelector from 'components/common/ItemSelector/ItemSelector';
+import PercentClicker from 'components/common/PercentClicker/PercentClicker';
+import AngleChooser from 'components/common/AngleChooser/AngleChooser';
 
 const FONT_NAMES = [
     'VCR_OSD_MONO.ttf',

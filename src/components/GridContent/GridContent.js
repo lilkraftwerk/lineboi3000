@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getCurrentOptions } from 'store/onions/onionsSelectors';
-import { CanvasLayer } from '../common/SvgLayer';
+import { getCurrentOptions } from 'store/options/optionsSelectors';
+import { CanvasLayer } from '../common/SvgLayer/SvgLayer';
 
 import styles from './GridContent.styles.css';
 

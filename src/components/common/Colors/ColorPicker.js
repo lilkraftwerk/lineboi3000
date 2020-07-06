@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import _ from 'lodash';
 import Popover from 'react-tiny-popover';
-import Icon from 'components/common/Icon';
+import Icon from 'components/common/Icon/Icon';
 import ColorList from './ColorList';
 
 import styles from './ColorPicker.styles.css';
@@ -74,7 +74,8 @@ const ColorPicker = ({ colorList, onColorSelect }) => {
 const ColorPickerWrapper = ({
     type = 'icon',
     onColorSelect,
-    selectedColor = '#364B44'
+    selectedColor = '#364B44',
+    title = 'background color'
 }) => {
     const [visible, toggleVisible] = useState(false);
 
@@ -102,7 +103,7 @@ const ColorPickerWrapper = ({
                 toggleVisible(!visible);
             }}
         >
-            background color
+            {title}
         </button>
     );
 

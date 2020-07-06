@@ -84,7 +84,7 @@ cncserver.cmd = {
     run() {
         if (typeof arguments[0] === 'object') {
             cncserver.cmd.process.max += arguments.length;
-            $.each(arguments[0], function(i, args) {
+            $.each(arguments[0], function (i, args) {
                 cncserver.cmd.buffer.unshift(args);
             });
         } else {
@@ -101,7 +101,7 @@ cncserver.cmd = {
 
 // Wait around for the buffer to contain elements, and for us to not be
 // currently processing the buffer queue
-setInterval(function() {
+setInterval(function () {
     if (
         !cncserver.cmd.process.busy &&
         cncserver.cmd.buffer.length &&

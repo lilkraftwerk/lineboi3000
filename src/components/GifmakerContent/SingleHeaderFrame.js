@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from 'components/common/Icon';
+import Icon from 'components/common/Icon/Icon';
 
 import styles from './FrameHeader.styles.css';
 

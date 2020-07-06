@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { setOptionByKey } from 'store/drawing/drawingActions';
-import PercentClicker from 'components/common/PercentClicker';
+import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 import { connect } from 'react-redux';
 
 const TEMPLATE_TYPES = [

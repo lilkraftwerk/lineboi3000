@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SidebarItem } from 'components/common/SidebarContainer';
+import { SidebarItem } from 'components/common/SidebarContainer/SidebarContainer';
 import styles from './ShrinkCanvasOptions.styles.css';
 
 const ShrinkCanvasOptions = (props) => {

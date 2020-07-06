@@ -1,0 +1,59 @@
+.loadingContainer {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.loadingContainer::before {
+    background-image: url('~assets/loading.gif');
+    background-size: 200px;
+    content: '';
+    height: 200%;
+    left: -50%;
+    position: absolute;
+    top: -50%;
+    transform: rotate(-30deg);
+    width: 200%;
+    z-index: -1;
+}
+
+.loadingBarContainer {
+    height: 30px;
+    left: 50%;
+    margin-left: -200px;
+    outline: 10px solid black;
+    position: absolute;
+    top: 50%;
+    width: 400px;
+}
+
+.loading {
+    background-image: linear-gradient(
+        135deg,
+        #cc93a2 18.75%,
+        #ffffff 18.75%,
+        #ffffff 50%,
+        #cc93a2 50%,
+        #cc93a2 68.75%,
+        #ffffff 68.75%,
+        #ffffff 100%
+    );
+    background-size: 45.25px 45.25px;
+    height: 100%;
+}
+
+.loading::before {
+    content: '';
+}
+
+.progressContainer {
+    height: 100%;
+    left: 0;
+    line-height: 30px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 300;
+}

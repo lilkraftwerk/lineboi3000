@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
-import ColorPicker from 'components/common/ColorPicker';
-import Icon from 'components/common/Icon';
+import ColorPicker from 'components/common/Colors/ColorPicker';
+import Icon from 'components/common/Icon/Icon';
 
 import styles from './LayerHeader.styles.css';
 

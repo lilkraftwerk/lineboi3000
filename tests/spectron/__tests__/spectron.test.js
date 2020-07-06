@@ -11,6 +11,8 @@ const app = new Application({
     args: [path.join(__dirname, '..', '..', '..')]
 });
 
+const LOAD_DELAY = 1200;
+
 const imageSnapshotOptions = {
     failureThreshold: 0.02,
     failureThresholdType: 'percent',
@@ -30,29 +32,42 @@ describe('App Tests', () => {
 
     it('Opens the main window and clicks around', async () => {
         await app.client.isExisting('#drawingContent');
+        await app.client.waitForVisible('#drawingContent');
+        await new Promise((resolve) => setTimeout(resolve, LOAD_DELAY));
         const drawPhoto = await app.browserWindow.capturePage();
         expect(drawPhoto).toMatchImageSnapshot({
             ...imageSnapshotOptions
         });
 
         await app.client.click(`#modeButton-efx`);
-        await app.client.isExisting('#efxContent');
+        await app.client.waitForVisible('#efxContent');
+        await new Promise((resolve) => setTimeout(resolve, LOAD_DELAY));
         const efxPhoto = await app.browserWindow.capturePage();
         expect(efxPhoto).toMatchImageSnapshot({
             ...imageSnapshotOptions
         });
 
         await app.client.click(`#modeButton-plot`);
-        await app.client.isExisting('#plotContent');
+        await app.client.waitForVisible('#plotContent');
+        await new Promise((resolve) => setTimeout(resolve, LOAD_DELAY));
         const plotPhoto = await app.browserWindow.capturePage();
         expect(plotPhoto).toMatchImageSnapshot({
             ...imageSnapshotOptions
         });
 
         await app.client.click(`#modeButton-gifmaker`);
-        await app.client.isExisting('#gifmakerContent');
+        await app.client.waitForVisible('#gifmakerContent');
+        await new Promise((resolve) => setTimeout(resolve, LOAD_DELAY));
         const gifPhoto = await app.browserWindow.capturePage();
         expect(gifPhoto).toMatchImageSnapshot({
+            ...imageSnapshotOptions
+        });
+
+        await app.client.click(`#modeButton-options`);
+        await app.client.waitForVisible('#optionsContent');
+        await new Promise((resolve) => setTimeout(resolve, LOAD_DELAY));
+        const optionsPhoto = await app.browserWindow.capturePage();
+        expect(optionsPhoto).toMatchImageSnapshot({
             ...imageSnapshotOptions
         });
     });

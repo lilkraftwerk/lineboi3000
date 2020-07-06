@@ -10,7 +10,7 @@ import {
     setOptionByKey,
     setSelectCoords
 } from 'store/drawing/drawingActions';
-import { getCurrentOptions } from 'store/onions/onionsSelectors';
+import { getCurrentOptions } from 'store/options/optionsSelectors';
 import { getCurrentLayerID } from 'store/layer/layerSelectors';
 import {
     shrinkCanvas,
@@ -20,10 +20,10 @@ import {
 import {
     SidebarContainer,
     SidebarItem
-} from 'components/common/SidebarContainer';
-import PercentClicker from 'components/common/PercentClicker';
-import AngleChooser from 'components/common/AngleChooser';
-import { EnabledToggleButton } from 'components/common/SidebarButton';
+} from 'components/common/SidebarContainer/SidebarContainer';
+import PercentClicker from 'components/common/PercentClicker/PercentClicker';
+import AngleChooser from 'components/common/AngleChooser/AngleChooser';
+import { EnabledToggleButton } from 'components/common/SidebarButton/SidebarButton';
 import { applyTemplate } from './TemplateUtils';
 
 import TemplateOptions from './TemplateOptions';

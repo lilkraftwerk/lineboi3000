@@ -2,9 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { getVisibleEfxLines } from 'store/line/lineSelectors';
-import { getCurrentOptions } from 'store/onions/onionsSelectors';
+import { getCurrentOptions } from 'store/options/optionsSelectors';
 import { setTempBlob } from 'store/gifmaker/gifmakerActions';
-import { CombinedLayer } from 'components/common/SvgLayer';
+import { CombinedLayer } from 'components/common/SvgLayer/SvgLayer';
 import { getShowPoints } from 'store/global/globalSelectors';
 
 import styles from './EfxContent.styles.css';
@@ -31,6 +31,8 @@ class EfxContainer extends React.Component {
             width,
             visibleEfxLines,
             showPoints,
+            pointShowRadius,
+            pointShowColor,
             dispatch
         } = this.props;
         return (
@@ -45,6 +47,8 @@ class EfxContainer extends React.Component {
                     width={width}
                     shouldSaveFrame
                     showPoints={showPoints}
+                    pointShowColor={pointShowColor}
+                    pointShowRadius={pointShowRadius}
                     blobCallback={(blob) => {
                         dispatch(setTempBlob(blob));
                     }}

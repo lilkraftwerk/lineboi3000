@@ -36,7 +36,7 @@ let config = {
 };
 
 // Catch any uncaught error.
-process.on('uncaughtException', function(err) {
+process.on('uncaughtException', function (err) {
     // Assume Disconnection and kill the process.
     disconnectSerial(err);
     console.error('Uncaught error, disconnected from server, shutting down');
@@ -44,18 +44,18 @@ process.on('uncaughtException', function(err) {
     process.exit(0);
 });
 
-ipc.connectTo('cncserver', function() {
-    ipc.of.cncserver.on('connect', function() {
+ipc.connectTo('cncserver', function () {
+    ipc.of.cncserver.on('connect', function () {
         console.log('Connected to CNCServer!');
         sendMessage('runner.ready');
     });
 
-    ipc.of.cncserver.on('disconnect', function() {
+    ipc.of.cncserver.on('disconnect', function () {
         // ipc.log('Disconnected from server, shutting down'.notice);
         // process.exit(0);
     });
 
-    ipc.of.cncserver.on('destroy', function() {
+    ipc.of.cncserver.on('destroy', function () {
         console.log('All Retries failed or disconnected, shutting down');
         process.exit(0);
     });
@@ -116,7 +116,7 @@ function gotMessage(packet) {
             // queue/buffer to manage it would be... a frightening mess.
             if (!bufferDirectBusy) {
                 bufferDirectBusy = true;
-                executeCommands(data.commands, function() {
+                executeCommands(data.commands, function () {
                     bufferDirectBusy = false;
                 });
             }
@@ -145,7 +145,7 @@ function gotMessage(packet) {
                 executeNext();
                 console.log('BUFFER CLEARED');
             } else {
-                port.flush(function() {
+                port.flush(function () {
                     executeNext();
                     console.log('BUFFER CLEARED');
                 });
@@ -158,7 +158,7 @@ function gotMessage(packet) {
 function connectSerial(options) {
     if (config.debug) console.log(`Connect to:${JSON.stringify(options)}`);
     try {
-        port = new SerialPort(options.port, options, function(err) {
+        port = new SerialPort(options.port, options, function (err) {
             if (!err) {
                 simulation = false;
                 sendMessage('serial.connected');
@@ -219,7 +219,7 @@ function executeCommands(commands, callback, index) {
     }
 
     // Run the command at the index.
-    serialWrite(commands[index], function() {
+    serialWrite(commands[index], function () {
         index++; // Increment the index.
 
         // Now that the serial command has drained to the bot, run the next, or end?
@@ -253,7 +253,7 @@ function executeNext() {
 
         // Some items don't have any rendered commands, only run those that do!
         if (item.commands.length) {
-            executeCommands(item.commands, function() {
+            executeCommands(item.commands, function () {
                 if (config.debug) console.log(`ITEM DONE: ${item.hash}`);
                 sendMessage('buffer.item.done', item.hash);
                 bufferExecuting = false;
@@ -276,7 +276,7 @@ function executeNext() {
 }
 
 // Buffer interval catcher, starts running as soon as items exist in the buffer.
-setInterval(function() {
+setInterval(function () {
     if (buffer.length && !bufferRunning && !bufferPaused) {
         bufferRunning = true;
         sendMessage('buffer.running', bufferRunning);
@@ -296,7 +296,7 @@ function serialWrite(command, callback) {
     if (simulation) {
         if (config.showSerial)
             console.info(`Simulating serial write: ${command}`);
-        setTimeout(function() {
+        setTimeout(function () {
             serialReadline(config.ack);
             if (callback) callback();
         }, 1);
@@ -306,14 +306,14 @@ function serialWrite(command, callback) {
         if (config.debug) console.time('SerialSendtoDrain');
         try {
             // It should realistically never take longer than half a second to send.
-            const writeTimeout = setTimeout(function() {
+            const writeTimeout = setTimeout(function () {
                 console.error('WRITE TIMEOUT, COMMAND FAILED:', command);
             }, 500);
 
-            port.write(`${command}\r`, 'ascii', function() {
+            port.write(`${command}\r`, 'ascii', function () {
                 clearTimeout(writeTimeout);
-                port.drain(function() {
-                    port.flush(function() {
+                port.drain(function () {
+                    port.flush(function () {
                         if (config.debug) console.timeEnd('SerialSendtoDrain');
                         if (callback) callback();
                     });

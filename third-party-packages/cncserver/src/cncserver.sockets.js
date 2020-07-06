@@ -3,20 +3,20 @@
  *
  */
 
-module.exports = function(cncserver) {
+module.exports = function (cncserver) {
     // Central Socket.io object for streaming state data
     const io = require('socket.io')(cncserver.server);
     cncserver.io = {};
 
     // SOCKET DATA STREAM ========================================================
-    io.on('connection', function(socket) {
+    io.on('connection', function (socket) {
         // Send buffer and pen updates on user connect
         cncserver.io.sendPenUpdate();
 
         // TODO: this likely needs to be sent ONLY to new connections
         cncserver.io.sendBufferComplete();
 
-        socket.on('disconnect', function() {
+        socket.on('disconnect', function () {
             // console.log('user disconnected');
         });
 
@@ -30,7 +30,7 @@ module.exports = function(cncserver) {
      * Called whenever actualPen object has been changed, E.G.: right before
      * a serial command is run, or internal state changes.
      */
-    cncserver.io.sendPenUpdate = function() {
+    cncserver.io.sendPenUpdate = function () {
         if (cncserver.exports.penUpdateTrigger) {
             cncserver.exports.penUpdateTrigger(cncserver.actualPen);
         }
@@ -41,7 +41,7 @@ module.exports = function(cncserver) {
      * Send an update to all stream clients when something is added to the buffer.
      * Includes only the item added to the buffer, expects the client to handle.
      */
-    cncserver.io.sendBufferAdd = function(item, hash) {
+    cncserver.io.sendBufferAdd = function (item, hash) {
         const data = {
             type: 'add',
             item,
@@ -58,7 +58,7 @@ module.exports = function(cncserver) {
      * Send an update to all stream clients when something is removed from the
      * buffer. Assumes the client knows where to remove from.
      */
-    cncserver.io.sendBufferRemove = function() {
+    cncserver.io.sendBufferRemove = function () {
         const data = {
             type: 'remove'
         };
@@ -73,7 +73,7 @@ module.exports = function(cncserver) {
      * Send an update to all stream clients when something is added to the buffer.
      * Includes only the item added to the buffer, expects the client to handle.
      */
-    cncserver.io.sendBufferVars = function() {
+    cncserver.io.sendBufferVars = function () {
         const data = {
             type: 'vars',
             bufferRunning: cncserver.buffer.running,
@@ -91,7 +91,7 @@ module.exports = function(cncserver) {
      * Send an update to all stream clients about everything buffer related.
      * Called only during connection inits.
      */
-    cncserver.io.sendBufferComplete = function() {
+    cncserver.io.sendBufferComplete = function () {
         const data = {
             type: 'complete',
             bufferList: cncserver.buffer.data,
@@ -114,7 +114,7 @@ module.exports = function(cncserver) {
      * @param {string} message
      *   Message to send out to all clients.
      */
-    cncserver.io.sendMessageUpdate = function(message) {
+    cncserver.io.sendMessageUpdate = function (message) {
         io.emit('message update', {
             message,
             timestamp: new Date().toString()
@@ -127,7 +127,7 @@ module.exports = function(cncserver) {
      * @param {string} name
      *   Machine name of callback to send to clients
      */
-    cncserver.io.sendCallbackUpdate = function(name) {
+    cncserver.io.sendCallbackUpdate = function (name) {
         io.emit('callback update', {
             name,
             timestamp: new Date().toString()
@@ -140,7 +140,7 @@ module.exports = function(cncserver) {
      * @param {int} vIndex
      *   Virtual index of manual swap
      */
-    cncserver.io.manualSwapTrigger = function(vIndex) {
+    cncserver.io.manualSwapTrigger = function (vIndex) {
         io.emit('manualswap trigger', {
             index: vIndex
         });
@@ -150,7 +150,7 @@ module.exports = function(cncserver) {
     cncserver.io.shortcut = {
         move(data) {
             data.ignoreTimeout = 1;
-            cncserver.control.setPen(data, function() {
+            cncserver.control.setPen(data, function () {
                 if (data.returnData) io.emit('move', cncserver.pen);
             });
         },
@@ -158,7 +158,7 @@ module.exports = function(cncserver) {
         height(data) {
             cncserver.control.setPen(
                 { ignoreTimeout: 1, state: data.state },
-                function() {
+                function () {
                     if (data.returnData) io.emit('height', cncserver.pen);
                 }
             );

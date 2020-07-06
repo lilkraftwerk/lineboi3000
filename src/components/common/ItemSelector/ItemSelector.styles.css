@@ -1,18 +1,18 @@
 * {
     box-sizing: border-box;
-  }
-  .itemSelector {
-      display: grid;
-      grid-column-gap: 8px;
-      grid-template-columns: 30px 1fr 30px 30px;
-      grid-template-rows: auto;
-  }
+}
+.itemSelector {
+    display: grid;
+    grid-column-gap: 8px;
+    grid-template-columns: 30px 1fr 30px 30px;
+    grid-template-rows: auto;
+}
 
-  .leftArrow {
-      grid-column: 1;
-  }
+.leftArrow {
+    grid-column: 1;
+}
 
-  .rightArrow {
+.rightArrow {
     grid-column: 3;
 }
 
@@ -48,7 +48,7 @@
 
 .confirm {
     cursor: pointer;
-    grid-column: 4; 
+    grid-column: 4;
     grid-row: 1;
 }
 
@@ -58,7 +58,7 @@
 
 .cancel {
     cursor: pointer;
-    grid-column: 4; 
+    grid-column: 4;
     grid-row: 1;
 }
 
@@ -69,4 +69,3 @@
 .dropdownContainer {
     grid-column: span 3;
 }
-

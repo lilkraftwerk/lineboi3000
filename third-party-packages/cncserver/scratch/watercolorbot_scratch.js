@@ -5,7 +5,7 @@
  * Scratch 2 Offline extension.
  */
 
-(function(ext) {
+(function (ext) {
     // Initialize the default server location
     const cncserver = {
         api: {
@@ -18,11 +18,11 @@
     };
 
     // Cleanup function when the extension is unloaded
-    ext._shutdown = function() {};
+    ext._shutdown = function () {};
 
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
-    ext._getStatus = function() {
+    ext._getStatus = function () {
         return { status: 2, msg: 'Ready' };
     };
 
@@ -82,89 +82,89 @@
     // ===========================================================================
     // Convert all the function endpoint wrappers into something real!
     // ===========================================================================
-    ext.park = function() {
+    ext.park = function () {
         _get('park');
     };
-    ext.pen_wash = function() {
+    ext.pen_wash = function () {
         _get('pen.wash');
     };
-    ext.pen_up = function() {
+    ext.pen_up = function () {
         _get('pen.up');
     };
-    ext.pen_down = function() {
+    ext.pen_down = function () {
         _get('pen.down');
     };
-    ext.penreink = function(d) {
+    ext.penreink = function (d) {
         _get(`penreink/${d}`);
     };
-    ext.penstopreink = function() {
+    ext.penstopreink = function () {
         _get('penstopreink');
     };
-    ext.move_wait = function(w) {
+    ext.move_wait = function (w) {
         _get(`move.wait./${w}`);
     };
-    ext.coord = function(x, y) {
+    ext.coord = function (x, y) {
         _get(`coord/${[x, y].join('/')}`);
     };
-    ext.tool_color = function(c) {
+    ext.tool_color = function (c) {
         _get(`tool.color./${c}`);
     };
-    ext.tool_water = function(c) {
+    ext.tool_water = function (c) {
         _get(`tool.water./${c}`);
     };
-    ext.move_forward = function(d) {
+    ext.move_forward = function (d) {
         _get(`move.forward./${d}`);
     };
-    ext.move_nudge_x = function(d) {
+    ext.move_nudge_x = function (d) {
         _get(`move.nudge.x./${d}`);
     };
-    ext.move_nudge_y = function(d) {
+    ext.move_nudge_y = function (d) {
         _get(`move.nudge.y./${d}`);
     };
-    ext.move_right = function(d) {
+    ext.move_right = function (d) {
         _get(`move.right./${d}`);
     };
-    ext.move_left = function(d) {
+    ext.move_left = function (d) {
         _get(`move.left./${d}`);
     };
-    ext.move_absturn = function(d) {
+    ext.move_absturn = function (d) {
         _get(`move.absturn./${d}`);
     };
-    ext.move_toward = function(x, y) {
+    ext.move_toward = function (x, y) {
         _get(`move.toward./${[x, y].join('/')}`);
     };
-    ext.move_speed = function(s) {
+    ext.move_speed = function (s) {
         _get(`move.speed./${s}`);
     };
-    ext.pen_off = function() {
+    ext.pen_off = function () {
         _get('pen.off');
     };
-    ext.pen_resetDistance = function() {
+    ext.pen_resetDistance = function () {
         _get('pen.resetDistance');
     };
-    ext.pen_sleep_1 = function() {
+    ext.pen_sleep_1 = function () {
         _get('pen.sleep.1');
     };
-    ext.pen_sleep_0 = function() {
+    ext.pen_sleep_0 = function () {
         _get('pen.sleep.0');
     };
 
-    ext.get_x = function(cb) {
+    ext.get_x = function (cb) {
         _report('x', cb);
     };
-    ext.get_y = function(cb) {
+    ext.get_y = function (cb) {
         _report('y', cb);
     };
-    ext.get_z = function(cb) {
+    ext.get_z = function (cb) {
         _report('z', cb);
     };
-    ext.get_distanceCounter = function(cb) {
+    ext.get_distanceCounter = function (cb) {
         _report('distanceCounter', cb);
     };
-    ext.get_sleeping = function(cb) {
+    ext.get_sleeping = function (cb) {
         _report('sleeping', cb);
     };
-    ext.get_angle = function(cb) {
+    ext.get_angle = function (cb) {
         _report('angle', cb);
     };
 

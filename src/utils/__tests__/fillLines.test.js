@@ -16,6 +16,8 @@ const imageSnapshotOptions = {
 
 expect.extend({ toMatchImageSnapshot });
 
+const radius = 30;
+
 describe('Fill Lines', () => {
     it('should fill lines horizontally', () => {
         const { canvas, context } = createTestCanvas();
@@ -29,7 +31,12 @@ describe('Fill Lines', () => {
             distanceBetweenPoints: 1,
             angle: 0
         });
-        drawLines(context, resultingLines, 1, 'black');
+        drawLines({
+            context,
+            pointArrays: resultingLines,
+            strokeWidth: 1,
+            color: 'black'
+        });
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
@@ -37,7 +44,6 @@ describe('Fill Lines', () => {
 
     it('should fill lines vertically, with circle shape', () => {
         const { canvas, context } = createTestCanvas();
-        const radius = 30;
 
         const resultingLines = printLinesViaFillCoords({
             fillCoords: zShape,
@@ -48,8 +54,13 @@ describe('Fill Lines', () => {
             angle: 90
         });
 
-        drawCircles(context, zShape, radius, 'red');
-        drawLines(context, resultingLines, 1, 'black');
+        drawCircles({ context, coords: zShape, radius, color: 'red' });
+        drawLines({
+            context,
+            pointArrays: resultingLines,
+            strokeWidth: 1,
+            color: 'black'
+        });
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
@@ -57,7 +68,6 @@ describe('Fill Lines', () => {
 
     it('should fill lines vertically, with square shape', () => {
         const { canvas, context } = createTestCanvas();
-        const radius = 30;
 
         const resultingLines = printLinesViaFillCoords({
             fillCoords: zShape,
@@ -68,8 +78,13 @@ describe('Fill Lines', () => {
             angle: 90
         });
 
-        drawSquares(context, zShape, 'red', radius);
-        drawLines(context, resultingLines, 1, 'black');
+        drawSquares({ context, coords: zShape, fillStyle: 'red', radius });
+        drawLines({
+            context,
+            pointArrays: resultingLines,
+            strokeWidth: 1,
+            color: 'black'
+        });
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
@@ -77,9 +92,8 @@ describe('Fill Lines', () => {
 
     it('should fill lines at an angle with square shape', () => {
         const { canvas, context } = createTestCanvas();
-        const radius = 30;
 
-        const resultingLines = printLinesViaFillCoords({
+        const linesToUse = printLinesViaFillCoords({
             fillCoords: zShape,
             fillCircle: false,
             radius,
@@ -88,36 +102,46 @@ describe('Fill Lines', () => {
             angle: 111
         });
 
-        drawSquares(context, zShape, 'red', radius);
-        drawLines(context, resultingLines, 1, 'black');
+        drawSquares({ context, coords: zShape, fillStyle: 'red', radius });
+        drawLines({
+            context,
+            pointArrays: linesToUse,
+            strokeWidth: 1,
+            color: 'black'
+        });
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 });
 
+const testLinesAtAngle = (context, angle) => {
+    const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(zShape, radius);
+
+    const linesToUse = generateLinesAtAngle({
+        minX,
+        maxX,
+        minY,
+        maxY,
+        distanceBetweenLines: 5,
+        distanceBetweenPoints: 1,
+        angle
+    });
+
+    drawCircles({ context, coords: zShape, radius, color: 'red' });
+    drawLines({
+        context,
+        pointArrays: linesToUse,
+        strokeWidth: 1,
+        color: 'black'
+    });
+};
+
 describe('Draw Lines At Angle', () => {
     it('should work with angles less than 44', () => {
         const { canvas, context } = createTestCanvas();
-        const radius = 30;
         const angle = 44;
-
-        const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(
-            zShape,
-            radius
-        );
-        const linesToUse = generateLinesAtAngle({
-            minX,
-            maxX,
-            minY,
-            maxY,
-            distanceBetweenLines: 5,
-            distanceBetweenPoints: 1,
-            angle
-        });
-
-        drawCircles(context, zShape, radius, 'red');
-        drawLines(context, linesToUse, 1, 'black');
+        testLinesAtAngle(context, angle);
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
@@ -125,25 +149,8 @@ describe('Draw Lines At Angle', () => {
 
     it('should work with angles less than 89', () => {
         const { canvas, context } = createTestCanvas();
-        const radius = 30;
         const angle = 85;
-
-        const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(
-            zShape,
-            radius
-        );
-        const linesToUse = generateLinesAtAngle({
-            minX,
-            maxX,
-            minY,
-            maxY,
-            distanceBetweenLines: 5,
-            distanceBetweenPoints: 1,
-            angle
-        });
-
-        drawCircles(context, zShape, radius, 'red');
-        drawLines(context, linesToUse, 1, 'black');
+        testLinesAtAngle(context, angle);
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
@@ -152,24 +159,7 @@ describe('Draw Lines At Angle', () => {
     it('should work with angles less than 134', () => {
         const { canvas, context } = createTestCanvas();
         const angle = 120;
-        const radius = 30;
-
-        const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(
-            zShape,
-            radius
-        );
-        const linesToUse = generateLinesAtAngle({
-            minX,
-            maxX,
-            minY,
-            maxY,
-            distanceBetweenLines: 5,
-            distanceBetweenPoints: 1,
-            angle
-        });
-
-        drawCircles(context, zShape, radius, 'red');
-        drawLines(context, linesToUse, 1, 'black');
+        testLinesAtAngle(context, angle);
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
@@ -177,25 +167,8 @@ describe('Draw Lines At Angle', () => {
 
     it('should work with angles less than 180', () => {
         const { canvas, context } = createTestCanvas();
-        const radius = 30;
         const angle = 175;
-
-        const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(
-            zShape,
-            radius
-        );
-        const linesToUse = generateLinesAtAngle({
-            minX,
-            maxX,
-            minY,
-            maxY,
-            distanceBetweenLines: 5,
-            distanceBetweenPoints: 1,
-            angle
-        });
-
-        drawCircles(context, zShape, radius, 'red');
-        drawLines(context, linesToUse, 1, 'black');
+        testLinesAtAngle(context, angle);
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);

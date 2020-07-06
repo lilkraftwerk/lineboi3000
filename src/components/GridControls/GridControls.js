@@ -5,11 +5,11 @@ import { getShowPoints } from 'store/global/globalSelectors';
 import {
     SidebarItem,
     SidebarContainer
-} from 'components/common/SidebarContainer';
+} from 'components/common/SidebarContainer/SidebarContainer';
 import {
     EnabledToggleButton,
     SidebarButton
-} from 'components/common/SidebarButton';
+} from 'components/common/SidebarButton/SidebarButton';
 
 import {
     toggleGridVisibility,
@@ -17,7 +17,7 @@ import {
     setGridOptions
 } from 'store/global/globalActions';
 
-import { getCurrentOptions } from 'store/onions/onionsSelectors';
+import { getCurrentOptions } from 'store/options/optionsSelectors';
 
 const GridControls = ({
     gridVisible,

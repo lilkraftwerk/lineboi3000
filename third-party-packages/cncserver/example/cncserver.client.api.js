@@ -65,7 +65,7 @@ cncserver.api = {
                 const data = { state: value, returnData: !!callback };
                 cncserver.global.socket.emit('height', data);
                 if (callback) {
-                    var catchMove = function(d) {
+                    var catchMove = function (d) {
                         callback(d);
                         cncserver.global.socket.removeListener(
                             'height',
@@ -221,7 +221,7 @@ cncserver.api = {
                     if (!point.returnData) {
                         callback({});
                     } else {
-                        var catchMove = function(d) {
+                        var catchMove = function (d) {
                             callback(d);
                             cncserver.global.socket.removeListener(
                                 'move',
@@ -465,7 +465,7 @@ if (isNode) {
     var request = require('request');
 
     // As a node module, just pass your cncserver object, and the api.server obj.
-    module.exports = function(cncmain, server) {
+    module.exports = function (cncmain, server) {
         cncmain.api = cncserver.api;
         cncmain.api.server = server;
         cncserver.global = cncmain;
@@ -510,7 +510,7 @@ function _request(method, path, options) {
                 body: options.data,
                 timeout: 1000
             },
-            function(error, response, body) {
+            function (error, response, body) {
                 if (error) {
                     console.error(error);
                     if (options.error) options.error(error, response, body);
