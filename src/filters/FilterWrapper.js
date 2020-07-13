@@ -5,6 +5,7 @@ import './Filters.styles.css';
 
 const FilterWrapper = ({
     displayName = '',
+    helpText = '',
     filterSettings: { enabled },
     updateOptions,
     deleteFilter,
@@ -14,7 +15,7 @@ const FilterWrapper = ({
     moveFilterDown,
     children
 }) => (
-    <SidebarItem title={displayName}>
+    <SidebarItem title={displayName} helpText={helpText}>
         <button
             type="button"
             style={{ gridColumn: 'span 1' }}

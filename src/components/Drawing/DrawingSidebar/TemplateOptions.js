@@ -1,16 +1,32 @@
 import _ from 'lodash';
 import React from 'react';
 import { setOptionByKey } from 'store/drawing/drawingActions';
+import { EmojiButton } from 'components/common/SidebarButton/SidebarButton';
 import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 import { connect } from 'react-redux';
 
-const TEMPLATE_TYPES = [
-    'frame',
-    'circleFrame',
-    'manyCircles',
-    'squares',
-    'rain'
-];
+const TEMPLATE_TYPES = {
+    frame: {
+        displayName: 'frame',
+        emoji: 'framedpicture'
+    },
+    circleFrame: {
+        displayName: 'one circle',
+        emoji: 'redcircle'
+    },
+    manyCircles: {
+        displayName: 'many circles',
+        emoji: 'manycircles'
+    },
+    squares: {
+        displayName: 'many squares',
+        emoji: 'manysquares'
+    },
+    rain: {
+        displayName: 'rain',
+        emoji: 'rain'
+    }
+};
 
 const TemplateOptionsComponent = (props) => {
     const {
@@ -32,24 +48,27 @@ const TemplateOptionsComponent = (props) => {
 
     return (
         <>
-            {TEMPLATE_TYPES.map((templateType) => (
-                <button
-                    style={{ gridColumn: 'span 2' }}
-                    key={templateType}
-                    type="button"
-                    disabled={selectedTemplate === templateType}
-                    onClick={() => {
-                        dispatch(
-                            setOptionByKey({
-                                key: 'selectedTemplate',
-                                value: templateType
-                            })
-                        );
-                    }}
-                >
-                    {_.lowerCase(templateType)}
-                </button>
-            ))}
+            {Object.keys(TEMPLATE_TYPES).map((templateType) => {
+                const { displayName, emoji } = TEMPLATE_TYPES[templateType];
+
+                return (
+                    <EmojiButton
+                        text={displayName}
+                        key={displayName}
+                        disabled={selectedTemplate === templateType}
+                        style={{ gridColumn: 'span 2' }}
+                        emoji={emoji}
+                        onClick={() => {
+                            dispatch(
+                                setOptionByKey({
+                                    key: 'selectedTemplate',
+                                    value: templateType
+                                })
+                            );
+                        }}
+                    />
+                );
+            })}
             <PercentClicker
                 setValue={(value) => {
                     dispatch(

@@ -44,15 +44,22 @@ const GridControls = ({
 
     return (
         <SidebarContainer>
-            <SidebarItem title="grid/point display" height={2}>
+            <SidebarItem
+                title="grid/point display"
+                height={2}
+                styleOverride={{
+                    gridTemplateColumns: '1fr 1fr 30px 30px',
+                    fontSize: '.75em'
+                }}
+            >
                 <EnabledToggleButton
                     style={{ gridColumn: 'span 1' }}
                     onClick={() => {
                         dispatch(togglePointVisibility());
                     }}
                     active={showPoints}
-                    labelActive="points on"
-                    labelInactive="points off"
+                    labelActive="points on 📍"
+                    labelInactive="points off 📍"
                 />
 
                 <EnabledToggleButton
@@ -61,8 +68,8 @@ const GridControls = ({
                         dispatch(toggleGridVisibility());
                     }}
                     active={gridVisible}
-                    labelActive="grid on"
-                    labelInactive="grid off"
+                    labelActive="grid on 📏"
+                    labelInactive="grid off 📏"
                 />
                 <SidebarButton
                     span={1}

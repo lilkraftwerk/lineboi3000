@@ -7,6 +7,8 @@ import {
     SidebarItem
 } from 'components/common/SidebarContainer/SidebarContainer';
 
+import { EnabledToggleButton } from 'components/common/SidebarButton/SidebarButton';
+
 import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 import ColorPicker from 'components/common/Colors/ColorPicker';
 import NumberInput from 'components/common/NumberInput/NumberInput';
@@ -19,14 +21,16 @@ const initialState = {
     tempHeight: null,
     tempWidth: null,
     tempPointShowRadius: null,
-    tempPointShowColor: null
+    tempPointShowColor: null,
+    tempShiftToDraw: null
 };
 
 const tempKeyValueMap = {
     tempHeight: 'height',
     tempWidth: 'width',
     tempPointShowRadius: 'pointShowRadius',
-    tempPointShowColor: 'pointShowColor'
+    tempPointShowColor: 'pointShowColor',
+    tempShiftToDraw: 'shiftToDraw'
 };
 
 class OptionsSidebar extends React.Component {
@@ -57,12 +61,19 @@ class OptionsSidebar extends React.Component {
     };
 
     isDirty = () => {
-        const { height, width, pointShowRadius, pointShowColor } = this.props;
+        const {
+            height,
+            width,
+            pointShowRadius,
+            pointShowColor,
+            shiftToDraw
+        } = this.props;
         const {
             tempHeight,
             tempWidth,
             tempPointShowRadius,
-            tempPointShowColor
+            tempPointShowColor,
+            tempShiftToDraw
         } = this.state;
 
         if (
@@ -71,7 +82,9 @@ class OptionsSidebar extends React.Component {
             (tempPointShowRadius &&
                 !_.isEqual(pointShowRadius, tempPointShowRadius)) ||
             (tempPointShowColor &&
-                !_.isEqual(pointShowColor, tempPointShowColor))
+                !_.isEqual(pointShowColor, tempPointShowColor)) ||
+            (tempShiftToDraw != null &&
+                !_.isEqual(shiftToDraw, tempShiftToDraw))
         ) {
             return true;
         }
@@ -79,15 +92,24 @@ class OptionsSidebar extends React.Component {
     };
 
     render() {
-        const { height, width, pointShowRadius, pointShowColor } = this.props;
+        const {
+            height,
+            width,
+            pointShowRadius,
+            pointShowColor,
+            shiftToDraw
+        } = this.props;
         const {
             tempHeight,
             tempWidth,
             tempPointShowColor,
-            tempPointShowRadius
+            tempPointShowRadius,
+            tempShiftToDraw
         } = this.state;
 
         const isDirty = this.isDirty();
+        const currentShiftToDraw =
+            tempShiftToDraw != null ? tempShiftToDraw : shiftToDraw;
 
         return (
             <SidebarContainer>
@@ -136,6 +158,17 @@ class OptionsSidebar extends React.Component {
                                 tempPointShowColor || pointShowColor
                         }}
                         className={styles.backgroundColorDiv}
+                    />
+                    <EnabledToggleButton
+                        style={{ gridColumn: 'span 4' }}
+                        onClick={() => {
+                            this.setState({
+                                tempShiftToDraw: !currentShiftToDraw
+                            });
+                        }}
+                        active={currentShiftToDraw}
+                        labelActive="press shift to draw: on"
+                        labelInactive="press shift to draw: off"
                     />
                     <button
                         style={{ gridColumn: 'span 2' }}

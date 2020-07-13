@@ -2,6 +2,7 @@ import MoveFilter from '../filters/Move';
 import MultiplyFilter from '../filters/Multiply';
 import SimplifyFilter from '../filters/Simplify';
 import ExperimentalFilter from '../filters/Experimental';
+import ConnectLinesFilter from '../filters/ConnectLines';
 import DotsFilter from '../filters/Dots';
 import WiggleFilter from '../filters/Wiggle';
 import DistortFilter from '../filters/Distort';
@@ -21,8 +22,10 @@ const FILTERS = [
     SplitLinesFilter,
     SplitLinesRandomFilter,
     ExesFilter,
+    ConnectLinesFilter,
     ExperimentalFilter,
     DotsFilter,
+    ConnectLinesFilter,
     WiggleFilter,
     SimplifyFilter,
     SmoothFilter

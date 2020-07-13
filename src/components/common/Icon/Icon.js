@@ -4,6 +4,7 @@ import styles from './Icon.styles.css';
 const Icon = ({
     disabled = false,
     fileName,
+    emoji,
     bgColor,
     onClick = () => {},
     height = 32,
@@ -16,6 +17,9 @@ const Icon = ({
 
     const bgStyles = bgColor ? { backgroundColor: bgColor } : {};
     const onClickFunc = disabled ? () => {} : onClick;
+    const imgStyles = disabled
+        ? `${styles.img} ${styles.imgDisabled}`
+        : styles.img;
 
     return (
         <div
@@ -26,9 +30,13 @@ const Icon = ({
             style={{ height: `${height}px`, width: `${width}px`, ...bgStyles }}
             className={stylesClass}
         >
+            {' '}
+            {emoji && (
+                <img className={imgStyles} src={`assets/emojis/${emoji}.png`} />
+            )}
             {fileName && (
                 <img
-                    className={styles.img}
+                    className={imgStyles}
                     src={`assets/icons/${fileName}.png`}
                 />
             )}

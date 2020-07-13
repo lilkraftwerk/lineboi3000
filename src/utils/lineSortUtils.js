@@ -79,3 +79,35 @@ export const sortLinesForPlotter = (lines) => {
     }
     return sortedLines;
 };
+
+export const connectAllLinesIntoOne = (lines) => {
+    let clonedLines = _.clone(lines);
+    const firstLine = clonedLines.shift();
+    const sortedLines = [firstLine];
+
+    while (sortedLines.length < lines.length) {
+        const lastLine = _.last(sortedLines);
+
+        const { id, reverse } = findNearestLine(lastLine, clonedLines);
+
+        const foundLine = _.find(clonedLines, (clonedLine) => {
+            return clonedLine.id === id;
+        });
+
+        clonedLines = clonedLines.filter((clonedLine) => {
+            return clonedLine.id !== id;
+        });
+
+        if (foundLine) {
+            if (reverse) {
+                sortedLines.push({
+                    id: foundLine.id,
+                    pointArrayContainer: foundLine.pointArrayContainer.reverse()
+                });
+            } else {
+                sortedLines.push(foundLine);
+            }
+        }
+    }
+    return _.flatten(sortedLines);
+};

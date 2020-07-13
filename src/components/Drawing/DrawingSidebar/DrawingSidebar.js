@@ -6,45 +6,78 @@ import { ActionCreators } from 'redux-undo';
 import {
     selectMainMode,
     selectDrawMode,
-    setSelectOptionByKey,
-    setOptionByKey,
-    setSelectCoords
+    setOptionByKey
 } from 'store/drawing/drawingActions';
 import { getCurrentOptions } from 'store/options/optionsSelectors';
 import { getCurrentLayerID } from 'store/layer/layerSelectors';
-import {
-    shrinkCanvas,
-    addMultipleLinesToLayerByID,
-    deleteFillLinesFromLayerByID
-} from 'store/line/lineActions';
 import {
     SidebarContainer,
     SidebarItem
 } from 'components/common/SidebarContainer/SidebarContainer';
 import PercentClicker from 'components/common/PercentClicker/PercentClicker';
-import AngleChooser from 'components/common/AngleChooser/AngleChooser';
-import { EnabledToggleButton } from 'components/common/SidebarButton/SidebarButton';
+import {
+    EnabledToggleButton,
+    EmojiButton
+} from 'components/common/SidebarButton/SidebarButton';
 import { applyTemplate } from './TemplateUtils';
 
 import TemplateOptions from './TemplateOptions';
+import FillOptions from './FillOptions';
+import SelectOptions from './SelectOptions';
 import TextOptions from './TextOptions';
 import EraserOptions from './EraserOptions';
 import ShrinkCanvasOptions from './ShrinkCanvasOptions';
 import MultiplyCanvasOptions from './MultiplyCanvasOptions';
 import CircleOptions from './CircleOptions';
 
-const MAIN_MODES = ['draw', 'scale', 'template'];
-const DRAWING_MODES = [
-    'pen',
-    'fill',
-    'eraser',
-    'straightLine',
-    'square',
-    'circle',
-    'text'
-];
-const SELECT_MODES = ['pen', 'square', 'circle'];
-const SCALE_MODES = ['shrinkCanvas', 'multiplyCanvas'];
+const MAIN_MODES = {
+    draw: {
+        displayName: 'tool',
+        emoji: 'palette'
+    },
+    scale: {
+        displayName: 'scale',
+        emoji: 'magnifyingglass'
+    },
+    template: {
+        displayName: 'template',
+        emoji: 'fax'
+    }
+};
+
+const DRAWING_MODES = {
+    pen: {
+        displayName: 'pen',
+        emoji: 'fountainpen'
+    },
+    fill: {
+        displayName: 'fill brush',
+        emoji: 'brush'
+    },
+    eraser: {
+        displayName: 'eraser',
+        emoji: 'prohibited'
+    },
+    straightLine: {
+        displayName: 'line shape',
+        emoji: 'minus'
+    },
+    square: {
+        displayName: 'square shape',
+        emoji: 'blacksquare'
+    },
+    circle: {
+        displayName: 'circle shape',
+        emoji: 'blackcircle'
+    },
+    text: {
+        displayName: 'text',
+        emoji: 'letters'
+    }
+};
+
+// unavailable for now
+// const SELECT_MODES = ['pen', 'square', 'circle'];
 
 class DrawingSidebar extends React.Component {
     componentDidMount() {
@@ -59,85 +92,42 @@ class DrawingSidebar extends React.Component {
         ipcRenderer.removeAllListeners('keystroke:undo');
     }
 
-    printFillLines = () => {
-        const { fillLines, currentLayerID, dispatch } = this.props;
-        dispatch(addMultipleLinesToLayerByID(currentLayerID, fillLines));
-        this.clearSelection();
-    };
-
-    deleteLinesInSelection = () => {
-        const { selectCoords, currentLayerID, dispatch } = this.props;
-        dispatch(
-            deleteFillLinesFromLayerByID(currentLayerID, selectCoords, true)
-        );
-        this.clearSelection();
-    };
-
-    deleteLinesOutsideSelection = () => {
-        const { selectCoords, currentLayerID, dispatch } = this.props;
-        dispatch(
-            deleteFillLinesFromLayerByID(currentLayerID, selectCoords, false)
-        );
-        this.clearSelection();
-    };
-
     addTemplateToCurrentLayer = (templateName) => {
         const { dispatch } = this.props;
         applyTemplate({ templateName, options: this.props, dispatch });
-    };
-
-    clearSelection = () => {
-        const { dispatch } = this.props;
-        dispatch(
-            setSelectCoords({
-                selectCoords: [],
-                hullCoords: []
-            })
-        );
-    };
-
-    onShrinkCanvas = (factor) => {
-        const { dispatch } = this.props;
-        dispatch(
-            shrinkCanvas({
-                factor
-            })
-        );
     };
 
     render() {
         const {
             mainMode,
             mode,
-            distanceBetweenLines,
-            distanceBetweenPoints,
-            lineMode,
-            randomLineDensity,
-            showPreviewLines,
             pointsOnEachLine,
-            drawWithShift,
-            fillAngle,
-            fillRadius,
-            fillCircle,
+            fillSquareAndCircle,
             dispatch
         } = this.props;
+
+        const showFillOptions =
+            (mainMode === 'draw' && mode === 'fill') ||
+            (mainMode === 'draw' &&
+                (mode === 'square' || mode === 'circle') &&
+                fillSquareAndCircle);
 
         return (
             <SidebarContainer>
                 <SidebarItem title="drawing mode" height={2}>
-                    {MAIN_MODES.map((modeKey) => {
+                    {_.keys(MAIN_MODES).map((modeKey) => {
+                        const { displayName, emoji } = MAIN_MODES[modeKey];
                         return (
-                            <button
-                                style={{ gridColumn: 'span 1' }}
+                            <EmojiButton
                                 key={modeKey}
-                                type="button"
+                                style={{ gridColumn: 'span 2' }}
+                                text={displayName}
                                 disabled={mainMode === modeKey}
+                                emoji={emoji}
                                 onClick={() => {
                                     dispatch(selectMainMode(modeKey));
                                 }}
-                            >
-                                {modeKey}
-                            </button>
+                            />
                         );
                     })}
                 </SidebarItem>
@@ -146,53 +136,46 @@ class DrawingSidebar extends React.Component {
                     height={2}
                 >
                     {mainMode === 'draw' &&
-                        DRAWING_MODES.map((modeKey) => {
+                        _.keys(DRAWING_MODES).map((modeKey) => {
+                            const { displayName, emoji } = DRAWING_MODES[
+                                modeKey
+                            ];
                             return (
-                                <button
-                                    style={{ gridColumn: 'span 2' }}
+                                <EmojiButton
                                     key={modeKey}
-                                    type="button"
+                                    style={{ gridColumn: 'span 2' }}
+                                    text={displayName}
+                                    emoji={emoji}
                                     disabled={mode === modeKey}
                                     onClick={() => {
                                         dispatch(selectDrawMode(modeKey));
                                     }}
-                                >
-                                    {_.lowerCase(modeKey)}
-                                </button>
+                                />
                             );
                         })}
-                    {mainMode === 'select' &&
-                        SELECT_MODES.map((modeKey) => {
-                            return (
-                                <button
-                                    style={{ gridColumn: 'span 2' }}
-                                    key={modeKey}
-                                    type="button"
-                                    disabled={mode === modeKey}
-                                    onClick={() => {
-                                        dispatch(selectDrawMode(modeKey));
-                                    }}
-                                >
-                                    {modeKey}
-                                </button>
-                            );
-                        })}
-                    {mainMode === 'scale' &&
-                        SCALE_MODES.map((modeKey) => {
-                            return (
-                                <button
-                                    style={{ gridColumn: 'span 2' }}
-                                    key={modeKey}
-                                    type="button"
-                                    disabled={mode === modeKey}
-                                    onClick={() => {
-                                        dispatch(selectDrawMode(modeKey));
-                                    }}
-                                >
-                                    {_.lowerCase(modeKey)}
-                                </button>
-                            );
-                        })}
+                    {mainMode === 'scale' && (
+                        <>
+                            <EmojiButton
+                                style={{ gridColumn: 'span 2' }}
+                                text="shrink"
+                                emoji="chartdecreasing"
+                                disabled={mode === 'shrinkCanvas'}
+                                onClick={() => {
+                                    dispatch(selectDrawMode('shrinkCanvas'));
+                                }}
+                            />
+
+                            <EmojiButton
+                                style={{ gridColumn: 'span 2' }}
+                                text="multiply"
+                                emoji="chartincreasing"
+                                disabled={mode === 'multiplyCanvas'}
+                                onClick={() => {
+                                    dispatch(selectDrawMode('shrinkCanvas'));
+                                }}
+                            />
+                        </>
+                    )}
                     {mainMode === 'template' && (
                         <TemplateOptions
                             addTemplateToCurrentLayer={
@@ -202,96 +185,33 @@ class DrawingSidebar extends React.Component {
                     )}
                 </SidebarItem>
                 {mainMode === 'draw' && mode === 'text' && (
-                    <TextOptions {...this.props} />
+                    <>
+                        <TextOptions {...this.props} />
+                        <FillOptions />
+                    </>
                 )}
                 {mainMode === 'draw' && mode === 'eraser' && (
                     <EraserOptions {...this.props} />
                 )}
-                {mainMode === 'draw' && mode === 'fill' && (
-                    <SidebarItem title="fill options" height={2}>
-                        <AngleChooser
-                            setValue={(value) => {
-                                dispatch(
-                                    setOptionByKey({
-                                        key: 'fillAngle',
-                                        value
-                                    })
-                                );
-                            }}
-                            title="fill angle"
-                            minLabel="1"
-                            maxLabel="180"
-                            minValue={1}
-                            maxValue={180}
-                            currentValue={fillAngle}
-                        />
-                        <PercentClicker
-                            setValue={(value) => {
-                                dispatch(
-                                    setOptionByKey({
-                                        key: 'fillRadius',
-                                        value
-                                    })
-                                );
-                            }}
-                            float={false}
-                            title="fill radius"
-                            minLabel="1"
-                            maxLabel="250"
-                            minValue={1}
-                            maxValue={250}
-                            currentValue={fillRadius}
-                        />
-                        <button
+                {['square', 'circle'].includes(mode) && (
+                    <SidebarItem title="shape options" height={2}>
+                        <EnabledToggleButton
                             style={{ gridColumn: 'span 4' }}
-                            type="button"
                             onClick={() => {
                                 dispatch(
                                     setOptionByKey({
-                                        key: 'fillCircle',
-                                        value: !fillCircle
+                                        key: 'fillSquareAndCircle',
+                                        value: !fillSquareAndCircle
                                     })
                                 );
                             }}
-                        >
-                            {fillCircle ? 'circle' : 'square'}
-                        </button>
-                        <PercentClicker
-                            setValue={(value) => {
-                                dispatch(
-                                    setSelectOptionByKey({
-                                        key: 'distanceBetweenLines',
-                                        value
-                                    })
-                                );
-                            }}
-                            float={false}
-                            title="distance between lines"
-                            minLabel="1"
-                            maxLabel="15"
-                            minValue={1}
-                            maxValue={15}
-                            currentValue={distanceBetweenLines}
-                        />
-                        <PercentClicker
-                            setValue={(value) => {
-                                dispatch(
-                                    setSelectOptionByKey({
-                                        key: 'distanceBetweenPoints',
-                                        value
-                                    })
-                                );
-                            }}
-                            float={false}
-                            title="distance between points"
-                            minLabel="1"
-                            maxLabel="15"
-                            minValue={1}
-                            maxValue={15}
-                            currentValue={distanceBetweenPoints}
+                            active={fillSquareAndCircle}
+                            labelActive="Fill Shape On"
+                            labelInactive="Fill Shape Off"
                         />
                     </SidebarItem>
                 )}
+                {showFillOptions && <FillOptions />}
                 {mode === 'circle' && <CircleOptions {...this.props} />}
                 {mainMode === 'draw' &&
                     (mode === 'straightLine' || mode === 'square') && (
@@ -315,184 +235,14 @@ class DrawingSidebar extends React.Component {
                             />
                         </SidebarItem>
                     )}
-                {mainMode === 'draw' && (
-                    <SidebarItem title="shiftdraw" height={2}>
-                        <EnabledToggleButton
-                            style={{ gridColumn: 'span 4' }}
-                            onClick={() => {
-                                dispatch(
-                                    setOptionByKey({
-                                        key: 'drawWithShift',
-                                        value: !drawWithShift
-                                    })
-                                );
-                            }}
-                            active={drawWithShift}
-                            labelActive="press shift to draw: on"
-                            labelInactive="press shift to draw: off"
-                        />
-                    </SidebarItem>
-                )}
-                {mainMode === 'select' && (
-                    <SidebarItem title="select options" height={2}>
-                        select options
-                        <PercentClicker
-                            setValue={(value) => {
-                                dispatch(
-                                    setSelectOptionByKey({
-                                        key: 'distanceBetweenLines',
-                                        value
-                                    })
-                                );
-                            }}
-                            float={false}
-                            title="distance between lines"
-                            minLabel="1"
-                            maxLabel="15"
-                            minValue={1}
-                            maxValue={15}
-                            currentValue={distanceBetweenLines}
-                        />
-                        <PercentClicker
-                            setValue={(value) => {
-                                dispatch(
-                                    setSelectOptionByKey({
-                                        key: 'distanceBetweenPoints',
-                                        value
-                                    })
-                                );
-                            }}
-                            float={false}
-                            title="distance between points"
-                            minLabel="1"
-                            maxLabel="15"
-                            minValue={1}
-                            maxValue={15}
-                            currentValue={distanceBetweenPoints}
-                        />
-                        <PercentClicker
-                            setValue={(value) => {
-                                dispatch(
-                                    setSelectOptionByKey({
-                                        key: 'randomLineDensity',
-                                        value
-                                    })
-                                );
-                            }}
-                            float={false}
-                            title="random line density"
-                            minLabel="1"
-                            maxLabel="10"
-                            minValue={1}
-                            maxValue={10}
-                            currentValue={randomLineDensity}
-                        />
-                        <EnabledToggleButton
-                            style={{ gridColumn: 'span 2' }}
-                            onClick={() => {
-                                dispatch(
-                                    setSelectOptionByKey({
-                                        key: 'showPreviewLines',
-                                        value: !showPreviewLines
-                                    })
-                                );
-                            }}
-                            active={showPreviewLines}
-                            labelActive="ON"
-                            labelInactive="OFF"
-                        />
-                        <button
-                            style={{ gridColumn: 'span 2' }}
-                            type="button"
-                            disabled={lineMode === 'vertical'}
-                            onClick={() => {
-                                dispatch(
-                                    setSelectOptionByKey({
-                                        key: 'lineMode',
-                                        value: 'vertical'
-                                    })
-                                );
-                            }}
-                        >
-                            vertical
-                        </button>
-                        <button
-                            style={{ gridColumn: 'span 2' }}
-                            type="button"
-                            disabled={lineMode === 'horizontal'}
-                            onClick={() => {
-                                dispatch(
-                                    setSelectOptionByKey({
-                                        key: 'lineMode',
-                                        value: 'horizontal'
-                                    })
-                                );
-                            }}
-                        >
-                            horizontal
-                        </button>
-                        <button
-                            style={{ gridColumn: 'span 2' }}
-                            type="button"
-                            disabled={lineMode === 'random'}
-                            onClick={() => {
-                                dispatch(
-                                    setSelectOptionByKey({
-                                        key: 'lineMode',
-                                        value: 'random'
-                                    })
-                                );
-                            }}
-                        >
-                            random
-                        </button>
-                        <button
-                            style={{ gridColumn: 'span 2' }}
-                            type="button"
-                            onClick={() => {
-                                this.clearSelection();
-                            }}
-                        >
-                            clear selection
-                        </button>
-                        <button
-                            style={{ gridColumn: 'span 2' }}
-                            type="button"
-                            onClick={() => {
-                                this.printFillLines();
-                            }}
-                        >
-                            print selection
-                        </button>
-                        <button
-                            style={{ gridColumn: 'span 4' }}
-                            type="button"
-                            onClick={() => {
-                                this.deleteLinesInSelection();
-                            }}
-                        >
-                            delete points outside selection
-                        </button>
-                        <button
-                            style={{ gridColumn: 'span 4' }}
-                            type="button"
-                            onClick={() => {
-                                this.deleteLinesOutsideSelection();
-                            }}
-                        >
-                            delete points inside selection
-                        </button>
-                    </SidebarItem>
-                )}
                 {mainMode === 'scale' && mode === 'multiplyCanvas' && (
                     <MultiplyCanvasOptions {...this.props} />
                 )}
                 {mainMode === 'scale' && mode === 'shrinkCanvas' && (
-                    <ShrinkCanvasOptions
-                        onShrinkCanvas={this.onShrinkCanvas}
-                        {...this.props}
-                    />
+                    <ShrinkCanvasOptions {...this.props} />
                 )}
+                {/* unavailable for now */}
+                {mainMode === 'select' && <SelectOptions />}
             </SidebarContainer>
         );
     }
@@ -508,8 +258,7 @@ const mapStateToProps = (state) => {
         globalSettings: options,
         globalHeight: options.height,
         globalWidth: options.width,
-        ...state.drawingReducer,
-        ...state.drawingReducer.selectOptions
+        ...state.drawingReducer
     };
 };
 

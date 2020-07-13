@@ -13,7 +13,11 @@ import {
     getVisibleLayers
 } from 'store/layer/layerSelectors';
 import { CanvasLayer, SelectLayer } from 'components/common/SvgLayer/SvgLayer';
-import { printLinesViaFillCoords } from '../../../utils/lineUtils';
+import {
+    printLinesViaFillCoords,
+    printFillLinesForSquare,
+    printFillLinesForCircle
+} from '../../../utils/lineUtils';
 import generateFillLines from '../../../utils/fillLineUtils';
 import DrawingModes from '../modes';
 import {
@@ -50,12 +54,12 @@ export class DrawingContent extends React.Component {
             distanceBetweenPoints,
             lineMode,
             randomLineDensity,
-            drawWithShift
+            shiftToDraw
         } = this.props;
 
         const { shiftDown } = this;
 
-        if (drawWithShift === false && shiftDown) {
+        if (shiftToDraw === false && shiftDown) {
             this.shiftDown = false;
         }
 
@@ -82,9 +86,9 @@ export class DrawingContent extends React.Component {
     };
 
     handleKeyDown = () => {
-        const { drawWithShift } = this.props;
+        const { shiftToDraw } = this.props;
         this.shiftDown = true;
-        if (!drawWithShift) {
+        if (!shiftToDraw) {
             return;
         }
         this.setTempCoords([]);
@@ -92,9 +96,9 @@ export class DrawingContent extends React.Component {
 
     handleKeyUp = () => {
         const { tempCoords } = this;
-        const { drawWithShift } = this.props;
+        const { shiftToDraw } = this.props;
         this.shiftDown = false;
-        if (!drawWithShift) {
+        if (!shiftToDraw) {
             return;
         }
 
@@ -174,7 +178,8 @@ export class DrawingContent extends React.Component {
             fillCircle,
             fillAngle,
             distanceBetweenLines,
-            distanceBetweenPoints
+            distanceBetweenPoints,
+            fillSquareAndCircle
         } = this.props;
 
         const endProcessor = this.getDrawingEndProcessor();
@@ -214,9 +219,39 @@ export class DrawingContent extends React.Component {
             return;
         }
 
-        dispatch(addMultipleLinesToLayerByID(currentLayerID, [processedLines]));
+        if (drawingMode === 'square' && fillSquareAndCircle) {
+            const fillLines = printFillLinesForSquare({
+                squareLine: processedLines,
+                distanceBetweenLines,
+                distanceBetweenPoints,
+                angle: fillAngle
+            });
+            dispatch(
+                addMultipleLinesToLayerByID(currentLayerID, [
+                    processedLines,
+                    ...fillLines
+                ])
+            );
+            return;
+        }
 
-        this.setTempCoords(null);
+        if (drawingMode === 'circle' && fillSquareAndCircle) {
+            const fillLines = printFillLinesForCircle({
+                circleLine: processedLines,
+                distanceBetweenLines,
+                distanceBetweenPoints,
+                angle: fillAngle
+            });
+            dispatch(
+                addMultipleLinesToLayerByID(currentLayerID, [
+                    processedLines,
+                    ...fillLines
+                ])
+            );
+            return;
+        }
+
+        dispatch(addMultipleLinesToLayerByID(currentLayerID, [processedLines]));
     };
 
     getDrawingEndProcessor = () => {
@@ -245,19 +280,19 @@ export class DrawingContent extends React.Component {
     };
 
     handleKeyDown = (event) => {
-        const { drawWithShift } = this.props;
+        const { shiftToDraw } = this.props;
 
-        if (event.key === 'Shift' && drawWithShift) {
+        if (event.key === 'Shift' && shiftToDraw) {
             this.shiftDown = true;
             this.setTempCoords([]);
         }
     };
 
     handleKeyUp = (event) => {
-        const { drawWithShift } = this.props;
+        const { shiftToDraw } = this.props;
         const { tempCoords } = this;
 
-        if (event.key === 'Shift' && drawWithShift) {
+        if (event.key === 'Shift' && shiftToDraw) {
             this.shiftDown = false;
             this.processFinalCoords(tempCoords);
         }
@@ -505,7 +540,6 @@ const mapStateToProps = (state) => {
         visibleLayers,
         visibleOriginalLines,
         ...state.drawingReducer,
-        ...state.drawingReducer.selectOptions,
         drawingMode: state.drawingReducer.mode,
         showPoints
     };

@@ -4,12 +4,10 @@
 .iconWrapper {
     background-color: color-cream;
     border: 2px solid color-blackish;
-    border-radius: 25%;
+    border-radius: 8px;
     cursor: pointer;
     display: inline-block;
     justify-self: center;
-    margin: 2px;
-    padding: 1px;
 }
 
 .iconWrapper:hover {
@@ -41,7 +39,10 @@
 }
 
 .img {
-    height: 95%;
-    margin: 2.5%;
-    width: 95%;
+    height: 100%;
+    width: 100%;
+}
+
+.imgDisabled {
+    opacity: 0.5;
 }

@@ -3,9 +3,13 @@ import Frame from 'canvas-to-buffer';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 import { drawLines, drawCircles, drawSquares } from '../drawingUtils';
 import { createTestCanvas } from '../testUtils';
-import { printLinesViaFillCoords, generateLinesAtAngle } from '../lineUtils';
+import {
+    printLinesViaFillCoords,
+    generateLinesAtAngle,
+    printFillLinesForCircle
+} from '../lineUtils';
 import { getExtremePointsOfCoords } from '../plotUtils';
-import { zShape } from '../../../tests/LineFixtures';
+import { zShape, circleLine } from '../../../tests/LineFixtures';
 
 const imageSnapshotOptions = {
     failureThreshold: 0.02,
@@ -137,40 +141,67 @@ const testLinesAtAngle = (context, angle) => {
     });
 };
 
+const ANGLES = [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180
+];
+
 describe('Draw Lines At Angle', () => {
-    it('should work with angles less than 44', () => {
-        const { canvas, context } = createTestCanvas();
-        const angle = 44;
-        testLinesAtAngle(context, angle);
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
+    ANGLES.forEach((angle) => {
+        it(`should draw lines at angle ${angle}`, () => {
+            const { canvas, context } = createTestCanvas();
+            testLinesAtAngle(context, angle);
+            const frame = new Frame(canvas);
+            const buffer = frame.toBuffer();
+            expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
+        });
     });
+});
 
-    it('should work with angles less than 89', () => {
-        const { canvas, context } = createTestCanvas();
-        const angle = 85;
-        testLinesAtAngle(context, angle);
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
-    });
+const circleOptions = {
+    circleLine,
+    distanceBetweenPoints: 1,
+    distanceBetweenLines: 10
+};
 
-    it('should work with angles less than 134', () => {
-        const { canvas, context } = createTestCanvas();
-        const angle = 120;
-        testLinesAtAngle(context, angle);
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
-    });
+const lineOptions = {
+    strokeWidth: 1,
+    color: 'black'
+};
 
-    it('should work with angles less than 180', () => {
-        const { canvas, context } = createTestCanvas();
-        const angle = 175;
-        testLinesAtAngle(context, angle);
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
-        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
+describe('printFillLinesForCircle', () => {
+    ANGLES.forEach((angle) => {
+        it(`should fill circle at angle ${angle}`, () => {
+            const { canvas, context } = createTestCanvas();
+            const lines = printFillLinesForCircle({
+                angle,
+                ...circleOptions
+            });
+            drawLines({
+                context,
+                pointArrays: lines,
+                ...lineOptions
+            });
+            const frame = new Frame(canvas);
+            const buffer = frame.toBuffer();
+            expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
+        });
     });
 });

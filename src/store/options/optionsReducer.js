@@ -5,7 +5,8 @@ const initialState = {
     height: 600,
     width: 800,
     pointShowRadius: 3,
-    pointShowColor: 'black'
+    pointShowColor: 'black',
+    shiftToDraw: true
 };
 
 const optionsReducer = (state = initialState, action) => {

@@ -21,12 +21,12 @@ const SingleLayer = ({
     const [isNameEditable, toggleNameEdit] = useState(false);
 
     const selectLayerIcon = isSelected ? (
-        <Icon height={24} width={24} fileName="checkmark" disabled />
+        <Icon height={24} width={24} emoji="greencheck" disabled />
     ) : (
         <Icon
             height={24}
             width={24}
-            fileName="checkmark"
+            emoji="check"
             onClick={() => {
                 onSelectLayer(layer.id);
             }}
@@ -50,7 +50,7 @@ const SingleLayer = ({
                 onClick={() => {
                     toggleNameEdit(!isNameEditable);
                 }}
-                fileName="floppy"
+                emoji="floppy"
             />
         </Fragment>
     ) : (
@@ -75,7 +75,7 @@ const SingleLayer = ({
                 <Icon
                     height={24}
                     width={24}
-                    fileName="arrow-left"
+                    emoji="leftarrow"
                     disabled={!canMoveDown}
                     onClick={() => {
                         onMoveLayerDown(layer.id);
@@ -84,7 +84,7 @@ const SingleLayer = ({
                 <Icon
                     height={24}
                     width={24}
-                    fileName="arrow-right"
+                    emoji="rightarrow"
                     disabled={!canMoveUp}
                     onClick={() => {
                         onMoveLayerUp(layer.id);
@@ -93,7 +93,7 @@ const SingleLayer = ({
                 <Icon
                     height={24}
                     width={24}
-                    fileName="duplicate"
+                    emoji="repeat"
                     onClick={() => {
                         onDuplicateLayer(layer.id);
                     }}
@@ -101,7 +101,7 @@ const SingleLayer = ({
                 <Icon
                     height={24}
                     width={24}
-                    fileName="trash"
+                    emoji="trashperson"
                     disabled={!canDelete}
                     onClick={() => {
                         onDeleteLayer(layer.id);
@@ -113,7 +113,7 @@ const SingleLayer = ({
                 <Icon
                     height={24}
                     width={24}
-                    fileName={layer.visible ? 'eye-open' : 'eye-closed'}
+                    emoji={layer.visible ? 'eye' : 'closedeye'}
                     onClick={() => {
                         onUpdateLayerSetting(
                             layer.id,
@@ -131,7 +131,7 @@ const SingleLayer = ({
                 <Icon
                     height={24}
                     width={24}
-                    fileName="cleanpaper"
+                    emoji="recycling"
                     onClick={() => {
                         onClearLayer(layer.id);
                     }}

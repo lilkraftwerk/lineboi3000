@@ -133,5 +133,6 @@ export default {
     displayName,
     filter: DistortFilter,
     Component: DistortComponent,
-    initSettings
+    initSettings,
+    helpText: 'move points horizontally or vertically'
 };

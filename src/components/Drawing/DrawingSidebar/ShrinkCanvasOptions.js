@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { SidebarItem } from 'components/common/SidebarContainer/SidebarContainer';
+import { EmojiButton } from 'components/common/SidebarButton/SidebarButton';
+import { shrinkCanvas } from 'store/line/lineActions';
+
 import styles from './ShrinkCanvasOptions.styles.css';
 
 const ShrinkCanvasOptions = (props) => {
-    const { globalHeight, globalWidth, onShrinkCanvas } = props;
+    const { globalHeight, globalWidth, dispatch } = props;
     const [shrinkFactorIndex, setShrinkFactorIndex] = useState(3);
     const factors = [
         [0.1, '1/10'],
@@ -15,6 +18,14 @@ const ShrinkCanvasOptions = (props) => {
     const [selectedFactor] = factors[shrinkFactorIndex];
     const finalHeight = globalHeight * selectedFactor;
     const finalWidth = globalWidth * selectedFactor;
+
+    const onShrinkCanvas = (factor) => {
+        dispatch(
+            shrinkCanvas({
+                factor
+            })
+        );
+    };
 
     return (
         <SidebarItem title="shrink canvas options" height={2}>
@@ -36,15 +47,14 @@ const ShrinkCanvasOptions = (props) => {
             <div className={styles.finalOutputTitle}>
                 {finalHeight}H X {finalWidth}W
             </div>
-            <button
+            <EmojiButton
                 style={{ gridColumn: 'span 4' }}
-                type="button"
+                text="shrink canvas"
+                emoji="chartdecreasing"
                 onClick={() => {
                     onShrinkCanvas(selectedFactor);
                 }}
-            >
-                shrink canvas
-            </button>
+            />
         </SidebarItem>
     );
 };

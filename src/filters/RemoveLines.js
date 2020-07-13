@@ -54,5 +54,6 @@ export default {
     displayName,
     filter: RemoveLinesFilter,
     Component: RemoveLinesComponent,
-    initSettings
+    initSettings,
+    helpText: 'delete a certain percentage of lines on a layer'
 };
