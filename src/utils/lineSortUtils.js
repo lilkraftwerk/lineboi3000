@@ -81,8 +81,6 @@ export const sortLinesForPlotter = (lines) => {
 };
 
 export const connectAllLinesIntoOne = (lines) => {
-    console.log(lines);
-    console.log('fuck');
     let clonedLines = _.clone(lines);
     const firstLine = clonedLines.shift();
     const sortedLines = [firstLine];
@@ -111,6 +109,5 @@ export const connectAllLinesIntoOne = (lines) => {
             }
         }
     }
-    console.log('sortedlines', sortedLines);
     return _.flatten(sortedLines);
 };

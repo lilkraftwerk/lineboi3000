@@ -1,7 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
 .header {
     grid-column: 2;
     text-decoration: underline;
