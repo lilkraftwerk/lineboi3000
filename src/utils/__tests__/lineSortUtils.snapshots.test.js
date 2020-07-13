@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Frame from 'canvas-to-buffer';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 import { createTestCanvas } from '../testUtils';
@@ -85,6 +86,24 @@ describe('Sort Lines For Plotter', () => {
             color: 'black'
         });
 
+        const frame = new Frame(canvas);
+        const buffer = frame.toBuffer();
+        expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
+    });
+});
+
+describe('Connect Lines Into One', () => {
+    it('should sort many lines into a single one by connecting the ends', () => {
+        const { canvas, context } = createTestCanvas();
+        const sortedLines = sortLinesForPlotter(drawnRandomLines);
+        const pointArrays = sortedLines.map((x) => x.pointArrayContainer);
+        const oneLine = _.flatten(pointArrays);
+        drawLines({
+            context,
+            pointArrays: [oneLine],
+            strokeWidth: 4,
+            color: 'black'
+        });
         const frame = new Frame(canvas);
         const buffer = frame.toBuffer();
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);

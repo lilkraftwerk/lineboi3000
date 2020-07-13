@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
 
@@ -25,7 +26,28 @@ import Listener from './Listener';
 
 import styles from './AppContainer.styles.css';
 
-const MODES = ['draw', 'efx', 'plot', 'gifmaker', 'options'];
+const MODES = {
+    draw: {
+        displayName: 'draw',
+        emoji: 'fountainpen'
+    },
+    efx: {
+        displayName: 'efx',
+        emoji: 'toolbox'
+    },
+    plot: {
+        displayName: 'plot',
+        emoji: 'pagecurl'
+    },
+    gifmaker: {
+        displayName: 'gif',
+        emoji: 'moviecamera'
+    },
+    options: {
+        displayName: 'options',
+        emoji: 'gear'
+    }
+};
 
 class AppContainer extends React.Component {
     componentDidMount() {
@@ -60,9 +82,10 @@ class AppContainer extends React.Component {
                     {showHeader && <LayerControls />}
                     {mode === 'gifmaker' && <GifmakerHeader />}
                 </div>
-                <div className={styles.sidebar}>
+                <div className={styles.sidebarContainer}>
                     <div className={styles.permanentOptions}>
-                        {MODES.map((modeName) => {
+                        {_.keys(MODES).map((modeName) => {
+                            const { displayName, emoji } = MODES[modeName];
                             return (
                                 <button
                                     id={`modeButton-${modeName}`}
@@ -74,18 +97,24 @@ class AppContainer extends React.Component {
                                     disabled={mode === modeName}
                                     className={styles.buttonHalf}
                                 >
-                                    {modeName}
+                                    {displayName}{' '}
+                                    <img
+                                        className={styles.mainModeButtonImg}
+                                        src={`assets/emojis/${emoji}.png`}
+                                    />
                                 </button>
                             );
                         })}
                         <PointCounter />
                     </div>
-                    {showGrid && <GridControls />}
-                    {mode === 'efx' && <EfxSidebar />}
-                    {mode === 'draw' && <DrawingSidebar />}
-                    {mode === 'plot' && <PlotSidebar />}
-                    {mode === 'options' && <OptionsSidebar />}
-                    {mode === 'gifmaker' && <GifmakerSidebar />}
+                    <div className={styles.sidebar}>
+                        {showGrid && <GridControls />}
+                        {mode === 'efx' && <EfxSidebar />}
+                        {mode === 'draw' && <DrawingSidebar />}
+                        {mode === 'plot' && <PlotSidebar />}
+                        {mode === 'options' && <OptionsSidebar />}
+                        {mode === 'gifmaker' && <GifmakerSidebar />}
+                    </div>
                 </div>
                 <div className={styles.content}>
                     {showGrid && <GridContent />}

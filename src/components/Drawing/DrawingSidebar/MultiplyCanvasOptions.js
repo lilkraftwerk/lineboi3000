@@ -59,7 +59,7 @@ const MultiplyCanvasOptions = (props) => {
                     );
                 }}
             >
-                multiply canvas
+                multiply canvas 📈
             </button>
         </SidebarItem>
     );

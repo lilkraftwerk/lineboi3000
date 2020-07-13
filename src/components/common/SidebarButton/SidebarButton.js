@@ -23,6 +23,32 @@ export const SidebarButton = ({
     );
 };
 
+export const EmojiButton = ({
+    onClick = () => {},
+    disabled = false,
+    style = {},
+    text = '',
+    emoji = ''
+}) => {
+    return (
+        <button
+            style={style}
+            className={styles.emojiButton}
+            type="button"
+            onClick={() => {
+                onClick();
+            }}
+            disabled={disabled}
+        >
+            <img
+                className={styles.emojiButtonEmoji}
+                src={`assets/emojis/${emoji}.png`}
+            />
+            <div className={styles.emojiButtonText}>{text}</div>
+        </button>
+    );
+};
+
 export const EnabledToggleButton = ({
     labelActive,
     labelInactive,

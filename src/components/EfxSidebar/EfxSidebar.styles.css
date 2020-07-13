@@ -1,44 +1,48 @@
-.optionsContainer {
-    padding: 10px;
-}
-
-.loadingMessage {
-    grid-column: span 2;
-    line-height: 20px;
+.loadingContainer {
+    grid-column: span 4;
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+    position: relative;
     text-align: center;
+    width: 100%;
 }
 
-.loadingEmoji {
-    grid-column: span 1;
-    height: 20px;
-    margin: 0 auto;
-    width: 20px;
+.loadingText {
+    height: 36px;
+    left: 0px;
+    position: absolute;
+    text-align: center;
+    top: 0px;
+    width: 100%;
 }
 
-.emoji {
-    -webkit-animation-duration: 1000ms;
-    animation-duration: 1000ms;
-    -webkit-animation-iteration-count: infinite;
+.loadingBackground {
+    animation-duration: 0.6s;
     animation-iteration-count: infinite;
-    -webkit-animation-name: spin;
-    animation-name: spin;
-    -webkit-animation-timing-function: linear;
+    animation-name: MOVE-BG;
     animation-timing-function: linear;
+
+    background: repeating-linear-gradient(
+        135deg,
+        transparent,
+        transparent 10px,
+        rgba(205, 205, 205, 1) 10px,
+        rgba(205, 205, 205, 1) 16px
+    );
+    bottom: 0;
+    left: -46px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
 }
 
-@-webkit-keyframes spin {
+@keyframes MOVE-BG {
     from {
-        -webkit-transform: rotate(0deg);
+        -webkit-transform: translateX(0);
     }
     to {
-        -webkit-transform: rotate(360deg);
-    }
-}
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
+        -webkit-transform: translateX(46px);
     }
 }

@@ -72,3 +72,19 @@
     outline: 0;
     -webkit-user-select: none; /* Chrome all / Safari all */
 }
+
+.emojiButton {
+    position: relative;
+}
+
+.emojiButtonEmoji {
+    height: 16px;
+    left: 5px;
+    position: absolute;
+    top: 3px;
+    width: 16px;
+}
+
+.emojiButtonText {
+    margin-left: 8px;
+}

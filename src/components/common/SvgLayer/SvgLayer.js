@@ -24,6 +24,7 @@ export const CanvasLayer = ({
 
     useEffect(() => {
         try {
+            if (lines.length === 0) return;
             const context = canvas.current.getContext('bitmaprenderer');
             const offScreenCanvas = new OffscreenCanvas(width, height);
             const offScreenContext = offScreenCanvas.getContext('2d');
@@ -98,6 +99,7 @@ export const CombinedLayer = ({
             offScreenContext.clearRect(0, 0, width, height);
             if (layers.length >= 0) {
                 layers.forEach(({ efxLines, color }) => {
+                    if (efxLines.length === 0) return;
                     const formattedLines = prepareLines(efxLines);
                     drawLines({
                         context: offScreenContext,

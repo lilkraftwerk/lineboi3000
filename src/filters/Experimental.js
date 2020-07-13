@@ -66,5 +66,6 @@ export default {
     displayName,
     filter: ExperimentalFilter,
     Component: ExperimentalComponent,
-    initSettings
+    initSettings,
+    helpText: "i can't remember what this one does"
 };

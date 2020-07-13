@@ -4,7 +4,7 @@
 .layerContainer {
     display: grid;
     grid-template-columns: 50px repeat(10, 150px);
-    grid-template-rows: 100px;
+    grid-template-rows: 95px;
     max-width: 75%;
     width: 75%;
 }
@@ -15,7 +15,7 @@
     display: grid;
     grid-column: span 1;
     grid-row: span 1;
-    grid-template-rows: 30px 25px 25px;
+    grid-template-rows: 1fr 1fr 1fr;
     margin: 3px;
     padding: 5px;
 }

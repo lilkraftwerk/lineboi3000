@@ -8,14 +8,13 @@
 }
 
 .clickoContainer {
-    display: inline-grid;
+    display: grid;
     font-size: 0.8em;
     grid-column: span 4;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: inherit;
+    grid-template-columns: inherit;
     grid-template-rows: 2fr 2fr;
     height: 100%;
-    padding: 5px;
-    padding-top: 0;
     width: 100%;
 }
 
@@ -34,11 +33,11 @@
 }
 
 .button {
-    grid-column: span 1;
+    grid-column: span 2;
 }
 
 .inputWrapper {
-    grid-column: span 2;
+    grid-column: span 4;
 }
 
 .extremeLabels {

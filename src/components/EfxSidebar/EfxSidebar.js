@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
@@ -26,6 +27,7 @@ import ItemSelector from 'components/common/ItemSelector/ItemSelector';
 
 import FilterWrapper from 'filters/FilterWrapper';
 import Multiply from 'filters/Multiply';
+import ConnectLines from 'filters/ConnectLines';
 import Wiggle from 'filters/Wiggle';
 import Distort from 'filters/Distort';
 import RemoveLines from 'filters/RemoveLines';
@@ -45,6 +47,7 @@ import {
 } from '../../utils/lineUtils';
 
 import '../common/SidebarContainer/SidebarStyles.css';
+import styles from './EfxSidebar.styles.css';
 
 const CONSTANT_FILTERS = [
     Move,
@@ -52,6 +55,7 @@ const CONSTANT_FILTERS = [
     ShortenLines,
     SplitLines,
     SplitLinesRandom,
+    ConnectLines,
     RemoveLines,
     Exes,
     Multiply,
@@ -66,13 +70,26 @@ const INIT_STATE = {
     savingPreset: false,
     savePresetName: '',
     selectedPresetName: null,
-    presets: []
+    presets: [],
+    loadingMessage: ''
 };
+
+const LOADING_MESSAGES = [
+    'processing',
+    'calculating',
+    'combobulating',
+    'converting',
+    'transforming',
+    'concocting',
+    'preparing'
+];
 
 class EfxSidebar extends React.Component {
     constructor(props) {
         super(props);
         this.state = INIT_STATE;
+
+        this.state.loadingMessage = _.sample(LOADING_MESSAGES);
 
         this.listAllPresets();
         ipcRenderer.on('preset:list:reply', (event, receivedPresets) => {
@@ -85,6 +102,19 @@ class EfxSidebar extends React.Component {
             this.onReceiveWorkerResults(arg);
         });
     }
+
+    componentDidUpdate(prevProps) {
+        const { isLoading } = this.props;
+        if (prevProps.isLoading !== isLoading) {
+            this.updateLoadingMessage();
+        }
+    }
+
+    updateLoadingMessage = () => {
+        this.setState({
+            loadingMessage: _.sample(LOADING_MESSAGES)
+        });
+    };
 
     onReceiveWorkerResults = (results) => {
         const { dispatch } = this.props;
@@ -132,7 +162,6 @@ class EfxSidebar extends React.Component {
     processCurrentLayer = () => {
         const { currentLayerID, dispatch } = this.props;
         dispatch(setTempBlob(null));
-
         this.processEfxLinesForLayer(currentLayerID);
     };
 
@@ -165,10 +194,14 @@ class EfxSidebar extends React.Component {
             dispatch
         } = this.props;
 
-        dispatch(updateLayerSetting(layerID, 'loading', true));
-
         const { filters } = allLayers.find((l) => l.id === layerID);
         const linesForThisLayer = allOriginalLines[layerID];
+
+        if (linesForThisLayer == null) {
+            return;
+        }
+
+        dispatch(updateLayerSetting(layerID, 'loading', true));
         const pointArrays = linesForThisLayer.map((line) =>
             getPointArraysFromLine(line)
         );
@@ -245,45 +278,40 @@ class EfxSidebar extends React.Component {
             globalSettings,
             tempBlobIsNull,
             currentLayerID,
+            currentLayerHasLines,
             isLoading,
             dispatch
         } = this.props;
 
-        const { savingPreset, savePresetName, presets } = this.state;
+        const {
+            savingPreset,
+            savePresetName,
+            presets,
+            loadingMessage
+        } = this.state;
 
         return (
             <SidebarContainer>
                 <SidebarItem>
-                    {/* {isLoading && (
-                        <Fragment>
-                            <div className={styles.loadingEmoji}>
-                                <div className={styles.emoji}>🌚</div>
+                    {isLoading && (
+                        <>
+                            <div className={styles.loadingContainer}>
+                                <div className={styles.loadingText}>
+                                    {loadingMessage}...
+                                </div>
+                                <div className={styles.loadingBackground} />
                             </div>
-                            <div className={styles.loadingMessage}>
-                                processing...
-                            </div>
-                            <div className={styles.loadingEmoji}>
-                                <div className={styles.emoji}>🌚</div>
-                            </div>
-                        </Fragment>
-                    )} */}
+                        </>
+                    )}
                     {!isLoading && (
                         <Fragment>
                             <button
                                 style={{ gridColumn: 'span 1' }}
                                 type="button"
-                                disabled={isLoading}
+                                disabled={isLoading || !currentLayerHasLines}
                                 onClick={this.processCurrentLayer}
                             >
                                 run current
-                            </button>
-                            <button
-                                style={{ gridColumn: 'span 1' }}
-                                type="button"
-                                disabled={isLoading}
-                                onClick={this.saveEfxToAllLayers}
-                            >
-                                copy efx
                             </button>
                             <button
                                 style={{ gridColumn: 'span 1' }}
@@ -296,10 +324,18 @@ class EfxSidebar extends React.Component {
                             <button
                                 style={{ gridColumn: 'span 1' }}
                                 type="button"
+                                disabled={isLoading}
+                                onClick={this.saveEfxToAllLayers}
+                            >
+                                copy efx to all layers
+                            </button>
+                            <button
+                                style={{ gridColumn: 'span 1' }}
+                                type="button"
                                 onClick={this.saveFrame}
                                 disabled={isLoading || tempBlobIsNull}
                             >
-                                save frame
+                                save frame to gif
                             </button>
                         </Fragment>
                     )}
@@ -397,7 +433,7 @@ class EfxSidebar extends React.Component {
                     if (!foundFilter) {
                         return null;
                     }
-                    const { Component, displayName } = foundFilter;
+                    const { Component, displayName, helpText } = foundFilter;
 
                     const updateOptions = (valueObj) => {
                         this.updateSettingForCurrentLayerFilterById(
@@ -410,6 +446,7 @@ class EfxSidebar extends React.Component {
                         <FilterWrapper
                             key={id}
                             displayName={displayName}
+                            helpText={`${displayName}: ${helpText}`}
                             filterSettings={filterSetting}
                             updateOptions={updateOptions}
                             deleteFilter={() => {
@@ -447,6 +484,7 @@ const mapStateToProps = (state) => {
     const options = getCurrentOptions(state);
     const isLoading = allLayers.map((layer) => layer.loading).includes(true);
     const tempBlobIsNull = state.gifmakerReducer.tempBlob == null;
+    const currentLayerHasLines = allOriginalLines[id];
 
     return {
         globalSettings: options,
@@ -455,7 +493,8 @@ const mapStateToProps = (state) => {
         allLayers,
         filters,
         tempBlobIsNull,
-        isLoading
+        isLoading,
+        currentLayerHasLines
     };
 };
 

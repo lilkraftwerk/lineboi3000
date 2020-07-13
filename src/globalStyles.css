@@ -8,6 +8,11 @@
     src: url('./assets/fonts/linebeam.ttf');
 }
 
+@font-face {
+    font-family: 'wellbutrin';
+    src: url('./assets/fonts/wellbutrin.ttf');
+}
+
 button {
     background-color: rgba(205, 205, 205, 0.5);
     border-radius: 3px;
@@ -67,4 +72,15 @@ input {
 
 button:focus {
     outline: none;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }

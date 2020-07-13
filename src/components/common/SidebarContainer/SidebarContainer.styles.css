@@ -26,6 +26,27 @@
     padding: 0px 7px;
 }
 
+.sidebarPopover {
+    align-items: center;
+    background: #eceff1;
+    border: 5px solid black;
+    border-radius: 50px;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    height: 120px;
+    justify-content: center;
+    width: 350px;
+    zindex: 100;
+}
+
+.helpButton {
+    cursor: pointer;
+    float: left;
+    outline: 1px solid black;
+    overflow: visible;
+    padding: 0px 7px;
+}
+
 .title {
     align-self: center;
     border-bottom: 2px solid black;

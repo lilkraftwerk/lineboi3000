@@ -87,7 +87,7 @@ export const LayerControls = ({ layers, currentLayerID, dispatch }) => {
                     testID="addNewLayerIcon"
                     height={32}
                     width={32}
-                    fileName="plus"
+                    emoji="plus"
                     onClick={() => {
                         dispatch(addLayer());
                     }}
@@ -95,7 +95,7 @@ export const LayerControls = ({ layers, currentLayerID, dispatch }) => {
                 <Icon
                     height={32}
                     width={32}
-                    fileName={showAll ? 'eye-open' : 'eye-closed'}
+                    emoji={showAll ? 'eye' : 'closedeye'}
                     onClick={() => {
                         toggleShowAll(!showAll);
                         dispatch(setVisibilityForAllLayers(!showAll));

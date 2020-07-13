@@ -71,5 +71,6 @@ export default {
     displayName,
     filter: DotsFilter,
     Component: DotsComponent,
-    initSettings
+    initSettings,
+    helpText: 'turn points on lines into dots or exes'
 };

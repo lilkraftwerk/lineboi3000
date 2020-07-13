@@ -24,6 +24,8 @@ export const generateLinesAtAngle = ({
     distanceBetweenPoints,
     angle
 }) => {
+    const offset = 500;
+
     const findNewPoint = (x, y, multiAngle, distance) => {
         const newX = Math.cos((multiAngle * Math.PI) / 180) * distance + x;
         const newY = Math.sin((multiAngle * Math.PI) / 180) * distance + y;
@@ -34,7 +36,7 @@ export const generateLinesAtAngle = ({
         return testX <= maxX && testX >= minX && testY >= minY && testY <= maxY;
     };
 
-    const maxDistance = Math.hypot(maxX - minX, maxY - minY);
+    const maxDistance = Math.hypot(maxX - minX, maxY - minY) + offset;
 
     const lines = [];
     if (angle <= 44) {
@@ -108,8 +110,8 @@ export const generateLinesAtAngle = ({
 
     if (angle <= 180) {
         for (
-            let currentY = maxY + maxDistance;
-            currentY >= minY - minY;
+            let currentY = maxY + offset;
+            currentY >= minY - offset;
             currentY -= distanceBetweenLines
         ) {
             const thisLine = [];
@@ -402,6 +404,111 @@ export const printLinesViaFillCoords = ({
             }
 
             if (coordsAreWithinFillRadius) {
+                currentTempLine.push([currentX, currentY]);
+
+                if (index === currentLine.length - 1) {
+                    splitLines.push([...currentTempLine]);
+                }
+            } else if (currentTempLine.length > 0) {
+                splitLines.push([...currentTempLine]);
+                currentTempLine = [];
+            }
+        });
+    });
+
+    return splitLines;
+};
+
+export const printFillLinesForSquare = ({
+    squareLine,
+    distanceBetweenLines,
+    distanceBetweenPoints,
+    angle = 30
+}) => {
+    const newSquareLine = [...squareLine];
+
+    const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(newSquareLine);
+
+    const linesToUse = generateLinesAtAngle({
+        minX,
+        maxX,
+        minY,
+        maxY,
+        distanceBetweenLines,
+        distanceBetweenPoints,
+        angle
+    });
+
+    const splitLines = [];
+    linesToUse.forEach((currentLine) => {
+        let currentTempLine = [];
+        currentLine.forEach(([currentX, currentY], index) => {
+            const leftX = minX;
+            const rightX = maxX;
+            const topY = minY;
+            const bottomY = maxY;
+            const polygonCoords = [
+                [leftX, topY],
+                [rightX, topY],
+                [rightX, bottomY],
+                [leftX, bottomY]
+            ];
+
+            const pointIsInside = isPointInPolygon(
+                [currentX, currentY],
+                polygonCoords
+            );
+
+            if (pointIsInside) {
+                currentTempLine.push([currentX, currentY]);
+
+                if (index === currentLine.length - 1) {
+                    splitLines.push([...currentTempLine]);
+                }
+            } else if (currentTempLine.length > 0) {
+                splitLines.push([...currentTempLine]);
+                currentTempLine = [];
+            }
+        });
+    });
+
+    return splitLines;
+};
+
+export const printFillLinesForCircle = ({
+    circleLine,
+    distanceBetweenLines,
+    distanceBetweenPoints,
+    angle = 30
+}) => {
+    const { minX, minY, maxX, maxY } = getExtremePointsOfCoords(circleLine);
+    const radius = Math.round((maxX - minX) / 2);
+    const centerX = Math.round(maxX - radius);
+    const centerY = Math.round(maxY - radius);
+
+    const linesToUse = generateLinesAtAngle({
+        minX,
+        maxX,
+        minY,
+        maxY,
+        distanceBetweenLines,
+        distanceBetweenPoints,
+        angle
+    });
+
+    const splitLines = [];
+    linesToUse.forEach((currentLine) => {
+        let currentTempLine = [];
+        currentLine.forEach(([currentX, currentY], index) => {
+            const pointIsInside = isPointWithinCircle(
+                centerX,
+                centerY,
+                radius,
+                currentX,
+                currentY
+            );
+
+            if (pointIsInside) {
                 currentTempLine.push([currentX, currentY]);
 
                 if (index === currentLine.length - 1) {

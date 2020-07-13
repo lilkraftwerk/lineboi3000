@@ -1,4 +1,5 @@
 import React from 'react';
+import { EmojiButton } from 'components/common/SidebarButton/SidebarButton';
 
 import styles from './AngleChooser.styles.css';
 
@@ -33,24 +34,23 @@ const AngleChooser = ({ currentValue = 50, setValue = () => {} }) => {
                 />
             </div>
 
-            <button
-                type="button"
+            <EmojiButton
+                style={{ gridColumn: 'span 2' }}
+                text="vertical"
+                emoji="updownarrow"
                 onClick={() => {
                     setValue(90);
                 }}
-                className={styles.button}
-            >
-                vertical
-            </button>
-            <button
-                type="button"
+            />
+
+            <EmojiButton
+                style={{ gridColumn: 'span 2' }}
+                text="horizontal"
+                emoji="leftrightarrow"
                 onClick={() => {
                     setValue(0);
                 }}
-                className={styles.button}
-            >
-                horizontal
-            </button>
+            />
         </div>
     );
 };

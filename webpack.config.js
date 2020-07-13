@@ -1,7 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 const CopyPlugin = require('copy-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -87,7 +89,12 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new CopyPlugin([{ from: 'src/assets', to: 'assets' }]),
-        new CopyPlugin([{ from: 'third-party-packages/gifjs', to: 'gifjs' }])
+        new CopyPlugin([{ from: 'third-party-packages/gifjs', to: 'gifjs' }]),
+        new WebpackBuildNotifierPlugin({
+            title: 'webpack built',
+            showDuration: true
+        }),
+        new ProgressBarPlugin()
     ],
     devServer: {
         watchContentBase: true

@@ -66,13 +66,6 @@ export const setOptionByKey = ({ key, value }) => {
     };
 };
 
-export const setSelectOptionByKey = ({ key, value }) => {
-    return {
-        type: SET_SELECT_OPTION_BY_KEY,
-        value: { key, value }
-    };
-};
-
 export const setFillLines = ({ fillLines }) => {
     return {
         type: SET_FILL_LINES,

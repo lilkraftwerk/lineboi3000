@@ -61,5 +61,6 @@ export default {
     displayName,
     filter: MoveFilter,
     Component: MoveLinesComponent,
-    initSettings
+    initSettings,
+    helpText: 'move lines on layer by a certain number of pixels'
 };
