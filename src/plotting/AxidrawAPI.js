@@ -93,7 +93,7 @@ class AxidrawAPI {
     }
 }
 
-export default async function () {
+export default async () => {
     const axidraw = new AxidrawAPI();
     return axidraw;
-}
+};

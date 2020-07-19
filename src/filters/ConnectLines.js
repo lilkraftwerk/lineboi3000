@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import _ from 'lodash';
 import id from '../utils/id';
 
@@ -8,7 +8,7 @@ const filterName = 'connect';
 const displayName = 'connect lines';
 
 const ConnectLinesComponent = () => {
-    return <Fragment>connect</Fragment>;
+    return <>connect</>;
 };
 
 export const ConnectLinesFilter = ({ filterSettings, pointArrays }) => {

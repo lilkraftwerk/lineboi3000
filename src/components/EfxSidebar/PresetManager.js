@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const { ipcRenderer } = window.require('electron');
 
@@ -68,7 +68,7 @@ export default class PresetManager extends React.Component {
 
     render() {
         return (
-            <Fragment>
+            <>
                 <button type="button" onClick={this.savePreset}>
                     save preset
                 </button>
@@ -87,7 +87,7 @@ export default class PresetManager extends React.Component {
                         onChange={this.handleChange}
                     />
                 </label>
-            </Fragment>
+            </>
         );
     }
 }

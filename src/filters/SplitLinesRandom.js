@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Fragment } from 'react';
+import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'split linez random';
@@ -8,7 +8,7 @@ const displayName = 'split linez random';
 const SplitLinesRandomComponent = ({ filterSettings, updateOptions }) => {
     const { maxOn, maxOff } = filterSettings;
     return (
-        <Fragment>
+        <>
             <PercentClicker
                 setValue={(value) => {
                     updateOptions({ maxOn: Number(value) });
@@ -31,7 +31,7 @@ const SplitLinesRandomComponent = ({ filterSettings, updateOptions }) => {
                 maxValue={20}
                 currentValue={maxOff}
             />
-        </Fragment>
+        </>
     );
 };
 

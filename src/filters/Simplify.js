@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import simplify from 'simplify-js';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
@@ -9,7 +9,7 @@ const SimplifyComponent = ({ filterSettings, updateOptions }) => {
     const { tolerance, highQuality } = filterSettings;
 
     return (
-        <Fragment>
+        <>
             <PercentClicker
                 setValue={(value) => {
                     updateOptions({ tolerance: Number(value) });
@@ -32,7 +32,7 @@ const SimplifyComponent = ({ filterSettings, updateOptions }) => {
                     }}
                 />
             </label>
-        </Fragment>
+        </>
     );
 };
 
