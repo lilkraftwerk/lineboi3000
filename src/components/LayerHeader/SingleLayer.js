@@ -34,7 +34,7 @@ const SingleLayer = ({
     );
 
     const nameContent = isNameEditable ? (
-        <Fragment>
+        <>
             <input
                 type="text"
                 maxLength="20"
@@ -52,7 +52,7 @@ const SingleLayer = ({
                 }}
                 emoji="floppy"
             />
-        </Fragment>
+        </>
     ) : (
         <div
             onClick={() => {

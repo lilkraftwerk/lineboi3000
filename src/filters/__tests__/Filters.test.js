@@ -3,7 +3,6 @@ import {
     createFakePointArrayContainer
 } from '../../utils/testUtils';
 
-import Multiply from '../Multiply';
 import Wiggle from '../Wiggle';
 import Distort from '../Distort';
 import RemoveLines from '../RemoveLines';
@@ -18,7 +17,6 @@ import Exes from '../Exes';
 import Smooth from '../Smooth';
 
 const ALL_FILTERS = [
-    Multiply,
     Wiggle,
     Distort,
     RemoveLines,

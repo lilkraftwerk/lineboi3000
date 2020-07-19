@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Fragment } from 'react';
+import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'experimental';
@@ -8,7 +8,7 @@ const displayName = 'xxxperimental';
 const ExperimentalComponent = ({ filterSettings, updateOptions }) => {
     const { chunkMin, chunkMax } = filterSettings;
     return (
-        <Fragment>
+        <>
             <PercentClicker
                 setValue={(value) => {
                     updateOptions({ chunkMin: Number(value) });
@@ -33,15 +33,11 @@ const ExperimentalComponent = ({ filterSettings, updateOptions }) => {
                 maxValue={15}
                 currentValue={chunkMax}
             />
-        </Fragment>
+        </>
     );
 };
 
-export const ExperimentalFilter = ({
-    globalSettings,
-    filterSettings,
-    pointArrays
-}) => {
+export const ExperimentalFilter = ({ filterSettings, pointArrays }) => {
     if (!filterSettings || !filterSettings.enabled) return pointArrays;
 
     const { chunkMin, chunkMax } = filterSettings;

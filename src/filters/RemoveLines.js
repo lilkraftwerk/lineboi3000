@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Fragment } from 'react';
+import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'remove lines';
@@ -9,7 +9,7 @@ const RemoveLinesComponent = ({ filterSettings, updateOptions }) => {
     const { linePercentToRemove } = filterSettings;
 
     return (
-        <Fragment>
+        <>
             <PercentClicker
                 setValue={(value) => {
                     updateOptions({ linePercentToRemove: value });
@@ -22,7 +22,7 @@ const RemoveLinesComponent = ({ filterSettings, updateOptions }) => {
                 maxValue={100}
                 currentValue={linePercentToRemove}
             />
-        </Fragment>
+        </>
     );
 };
 

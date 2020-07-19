@@ -11,12 +11,6 @@ const globalSettings = {
 
 const filterSettings = (enabled = true) => [
     {
-        filterName: 'multiply',
-        enabled,
-        rectWidth: 200,
-        rectHeight: 150
-    },
-    {
         filterName: 'wiggle',
         enabled,
         percentAffect: 50,

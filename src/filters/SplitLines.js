@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'split linez';
@@ -7,7 +7,7 @@ const displayName = 'split linez';
 const SplitLinesComponent = ({ filterSettings, updateOptions }) => {
     const { pointsOn, pointsOff } = filterSettings;
     return (
-        <Fragment>
+        <>
             <PercentClicker
                 setValue={(value) => {
                     updateOptions({ pointsOn: Number(value) });
@@ -30,7 +30,7 @@ const SplitLinesComponent = ({ filterSettings, updateOptions }) => {
                 maxValue={20}
                 currentValue={pointsOff}
             />
-        </Fragment>
+        </>
     );
 };
 

@@ -88,8 +88,12 @@ module.exports = {
             chunks: ['background']
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new CopyPlugin([{ from: 'src/assets', to: 'assets' }]),
-        new CopyPlugin([{ from: 'third-party-packages/gifjs', to: 'gifjs' }]),
+        new CopyPlugin({
+            patterns: [
+                { from: 'src/assets', to: 'assets' },
+                { from: 'third-party-packages/gifjs', to: 'gifjs' }
+            ]
+        }),
         new WebpackBuildNotifierPlugin({
             title: 'webpack built',
             showDuration: true

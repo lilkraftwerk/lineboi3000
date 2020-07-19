@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'move';
@@ -8,7 +8,7 @@ const MoveLinesComponent = ({ filterSettings, updateOptions }) => {
     const { xMove, yMove } = filterSettings;
 
     return (
-        <Fragment>
+        <>
             <PercentClicker
                 setValue={(value) => {
                     updateOptions({ xMove: Number(value) });
@@ -32,7 +32,7 @@ const MoveLinesComponent = ({ filterSettings, updateOptions }) => {
                 maxValue={20}
                 currentValue={yMove}
             />
-        </Fragment>
+        </>
     );
 };
 

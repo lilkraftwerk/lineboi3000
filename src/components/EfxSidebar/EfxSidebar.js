@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
 import {
@@ -26,7 +26,6 @@ import {
 import ItemSelector from 'components/common/ItemSelector/ItemSelector';
 
 import FilterWrapper from 'filters/FilterWrapper';
-import Multiply from 'filters/Multiply';
 import ConnectLines from 'filters/ConnectLines';
 import Wiggle from 'filters/Wiggle';
 import Distort from 'filters/Distort';
@@ -58,7 +57,6 @@ const CONSTANT_FILTERS = [
     ConnectLines,
     RemoveLines,
     Exes,
-    Multiply,
     Wiggle,
     Experimental,
     Dots,
@@ -304,7 +302,7 @@ class EfxSidebar extends React.Component {
                         </>
                     )}
                     {!isLoading && (
-                        <Fragment>
+                        <>
                             <button
                                 style={{ gridColumn: 'span 1' }}
                                 type="button"
@@ -337,7 +335,7 @@ class EfxSidebar extends React.Component {
                             >
                                 save frame to gif
                             </button>
-                        </Fragment>
+                        </>
                     )}
                 </SidebarItem>
                 <SidebarItem title="presets" height={1} half startOpen={false}>
@@ -379,7 +377,7 @@ class EfxSidebar extends React.Component {
                         </button>
                     )}
                     {savingPreset && (
-                        <Fragment>
+                        <>
                             <button
                                 style={{ gridColumn: 'span 2' }}
                                 type="button"
@@ -398,7 +396,7 @@ class EfxSidebar extends React.Component {
                             >
                                 cancel
                             </button>
-                        </Fragment>
+                        </>
                     )}
                     {!savingPreset && (
                         <button

@@ -206,8 +206,8 @@ export const isPointWithinCircle = (
     circleY,
     circleRadius,
     pointX,
-    pointY,
-    includeEdge = false
+    pointY
+    // includeEdge = false
 ) => {
     const squareDist = (circleX - pointX) ** 2 + (circleY - pointY) ** 2;
     return squareDist <= circleRadius ** 2;

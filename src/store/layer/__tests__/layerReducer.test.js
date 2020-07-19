@@ -19,7 +19,7 @@ describe('layer reducer', () => {
             const initLayerState = [
                 {
                     id: 'xyz',
-                    filters: [{ name: 'multiply', enabled: true }]
+                    filters: [{ name: 'distort', enabled: true }]
                 },
                 {
                     id: 'cat',

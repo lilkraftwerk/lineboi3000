@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Fragment } from 'react';
+import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'distort';
@@ -14,7 +14,7 @@ const DistortComponent = ({ filterSettings, updateOptions }) => {
     } = filterSettings;
 
     return (
-        <Fragment>
+        <>
             <PercentClicker
                 setValue={(value) => {
                     updateOptions({ percentToAffect: value });
@@ -59,7 +59,7 @@ const DistortComponent = ({ filterSettings, updateOptions }) => {
                     }}
                 />
             </label>
-        </Fragment>
+        </>
     );
 };
 

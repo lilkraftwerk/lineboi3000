@@ -250,13 +250,13 @@ class PlotSidebar extends React.Component {
         // 0 is up/off, 1 is down/on
 
         return (
-            <React.Fragment>
+            <>
                 <div className={`${styles.plotterHeightBox}`}>height</div>
                 <div className={`${styles.plotterHeightDisplay}`} />
                 <div className={`${styles.plotterHeightBox}`}>
                     {penStateString}
                 </div>
-            </React.Fragment>
+            </>
         );
     };
 

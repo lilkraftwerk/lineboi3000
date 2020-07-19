@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Fragment } from 'react';
+import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'shorten lines';
@@ -9,7 +9,7 @@ const ShortenLineComponent = ({ filterSettings, updateOptions }) => {
     const { lineLength, startAtBeginning } = filterSettings;
 
     return (
-        <Fragment>
+        <>
             <PercentClicker
                 setValue={(value) => {
                     updateOptions({ lineLength: value });
@@ -31,7 +31,7 @@ const ShortenLineComponent = ({ filterSettings, updateOptions }) => {
             >
                 {startAtBeginning ? 'start at beginning' : 'start mid line'}
             </button>
-        </Fragment>
+        </>
     );
 };
 

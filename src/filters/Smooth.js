@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Fragment } from 'react';
+import React from 'react';
 import smoothPolyline from 'smooth-polyline';
 import chaikinSmooth from 'chaikin-smooth';
 
@@ -12,7 +12,7 @@ const SmoothComponent = ({ filterSettings, updateOptions }) => {
     const { algo, passes } = filterSettings;
 
     return (
-        <Fragment>
+        <>
             <PercentClicker
                 setValue={(value) => {
                     updateOptions({ algo: Number(value) });
@@ -37,7 +37,7 @@ const SmoothComponent = ({ filterSettings, updateOptions }) => {
                 maxValue={10}
                 currentValue={passes}
             />
-        </Fragment>
+        </>
     );
 };
 

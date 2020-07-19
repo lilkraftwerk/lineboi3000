@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Fragment } from 'react';
+import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'dots';
@@ -9,7 +9,7 @@ const DotsComponent = ({ filterSettings, updateOptions }) => {
     const { additionalDots, distance } = filterSettings;
 
     return (
-        <Fragment>
+        <>
             <PercentClicker
                 setValue={(value) => {
                     updateOptions({ additionalDots: value });
@@ -34,7 +34,7 @@ const DotsComponent = ({ filterSettings, updateOptions }) => {
                 maxValue={30}
                 currentValue={distance}
             />
-        </Fragment>
+        </>
     );
 };
 

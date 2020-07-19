@@ -1,5 +1,4 @@
 import MoveFilter from '../filters/Move';
-import MultiplyFilter from '../filters/Multiply';
 import SimplifyFilter from '../filters/Simplify';
 import ExperimentalFilter from '../filters/Experimental';
 import ConnectLinesFilter from '../filters/ConnectLines';
@@ -15,7 +14,6 @@ import SmoothFilter from '../filters/Smooth';
 
 const FILTERS = [
     MoveFilter,
-    MultiplyFilter,
     DistortFilter,
     RemoveLinesFilter,
     ShortenLinesFilter,

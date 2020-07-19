@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Fragment } from 'react';
+import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'wiggle';
@@ -9,7 +9,7 @@ const WiggleLinesComponent = ({ filterSettings, updateOptions }) => {
     const { percentAffect, pixelOffset } = filterSettings;
 
     return (
-        <Fragment>
+        <>
             <PercentClicker
                 setValue={(value) => {
                     updateOptions({ percentAffect: Number(value) });
@@ -33,7 +33,7 @@ const WiggleLinesComponent = ({ filterSettings, updateOptions }) => {
                 maxValue={30}
                 currentValue={pixelOffset}
             />
-        </Fragment>
+        </>
     );
 };
 

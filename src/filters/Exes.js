@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { allPointsBetweenTwoCoords } from '../utils/coordUtils';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
@@ -9,7 +9,7 @@ const displayName = 'exes';
 const ExesComponent = ({ filterSettings, updateOptions }) => {
     const { length, percentToAffect, shape } = filterSettings;
     return (
-        <Fragment>
+        <>
             <PercentClicker
                 setValue={(value) => {
                     updateOptions({ length: Number(value) });
@@ -45,7 +45,7 @@ const ExesComponent = ({ filterSettings, updateOptions }) => {
             >
                 {shape}
             </button>
-        </Fragment>
+        </>
     );
 };
 
