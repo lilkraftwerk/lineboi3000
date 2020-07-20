@@ -25,6 +25,19 @@ class EfxContainer extends React.Component {
         return shouldUpdate;
     }
 
+    hasEfxLinesToShow = () => {
+        const { visibleEfxLines } = this.props;
+
+        if (visibleEfxLines.length === 0) {
+            return false;
+        }
+
+        const hasLines = visibleEfxLines
+            .map((line) => line.efxLines && line.efxLines.length)
+            .reduce((sum, currentValue) => sum + currentValue);
+        return hasLines;
+    };
+
     render() {
         const {
             height,
@@ -41,6 +54,13 @@ class EfxContainer extends React.Component {
                 id="efxContent"
                 className={styles.container}
             >
+                {!this.hasEfxLinesToShow() && (
+                    <div className={styles.noLineContainer}>
+                        <div className={styles.noLineMessage}>
+                            run efx on layers with lines
+                        </div>
+                    </div>
+                )}
                 <CombinedLayer
                     layers={visibleEfxLines}
                     height={height}

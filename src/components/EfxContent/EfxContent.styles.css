@@ -5,3 +5,27 @@
     cursor: crosshair;
     position: relative;
 }
+
+.noLineContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     background: repeating-linear-gradient(
+        135deg,
+        transparent,
+        transparent 10px,
+        rgba(205, 205, 205, 1) 10px,
+        rgba(205, 205, 205, 1) 16px
+    );
+}
+
+.noLineMessage {
+    background: white;
+    border-radius: 5px;
+    border: 3px solid black;
+    padding: 10px;
+    font-size: 1.5em;
+    width: 50%;
+}
