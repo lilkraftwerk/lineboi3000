@@ -15,6 +15,7 @@ module.exports = {
     },
     rules: {
         'react/prop-types': ['off'],
+        'react/jsx-props-no-spreading': ['off'],
         'import/no-extraneous-dependencies': ['off'],
         'import/no-named-as-default': ['off'],
         'import/prefer-default-export': ['off'],
@@ -26,8 +27,6 @@ module.exports = {
         'jsx-a11y/label-has-for': ['off'],
         'jsx-a11y/click-events-have-key-events': ['off'],
         'jsx-a11y/no-static-element-interactions': ['off'],
-        'jsx-a11y/alt-text -': ['off'],
-        'jsx-a11y/label-has-for': ['off'],
         'jsx-a11y/accessible-emoji': ['off'],
         'jsx-a11y/label-has-associated-control': ['off'],
         'react/jsx-filename-extension': [
