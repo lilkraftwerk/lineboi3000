@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import { setOptionByKey } from 'store/drawing/drawingActions';
 import { EmojiButton } from 'components/common/SidebarButton/SidebarButton';

@@ -1,0 +1,61 @@
+@value colors: "~components/common/Colors/colorVariables.css";
+@value color-teal-light from colors;
+
+.singleLayer {
+    border: 2px solid black;
+    border-radius: 2px;
+    display: grid;
+    grid-column: span 1;
+    grid-row: span 1;
+    grid-row-gap: 1px;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin: 3px;
+    padding: 5px;
+}
+
+.singleLayerSelected {
+    background-color: color-teal-light;
+    composes: singleLayer;
+}
+
+.midControls {
+    align-items: center;
+    display: grid;
+    grid-row: 2;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+}
+
+.lowerControls {
+    align-items: center;
+    display: grid;
+    grid-row: 3;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+}
+
+.nameContainer {
+    display: grid;
+    grid-row: 1;
+    grid-template-columns: 1fr 1fr;
+}
+
+.nameInput {
+    border: 3px solid black;
+    border-radius: 3px;
+    font-size: 14px;
+    grid-column: 1;
+    max-width: 90px;
+    padding: 3px;
+}
+
+.name {
+    font-size: 16px;
+    grid-column: span 2;
+    padding: 3px;
+    text-align: center;
+}
+
+.name:hover {
+    border: 1px solid black;
+}

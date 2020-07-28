@@ -27,11 +27,17 @@ import id from '../../utils/id';
 
 import styles from './PlotSidebar.styles.css';
 
+const INIT_STATE = {
+    isConnected: null,
+    penState: null
+};
+
 class PlotSidebar extends React.Component {
-    state = {
-        isConnected: null,
-        penState: null
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = INIT_STATE;
+    }
 
     componentDidMount() {
         this.setupAxidraw();
@@ -290,74 +296,37 @@ class PlotSidebar extends React.Component {
                         labelActive="optimize line order on"
                         labelInactive="optimize line order off"
                     />
-                    <button
-                        className={styles.button}
-                        type="button"
-                        onClick={this.penUp}
-                    >
+                    <button type="button" onClick={this.penUp}>
                         pen up
                     </button>
-                    <button
-                        className={styles.button}
-                        type="button"
-                        onClick={this.penDown}
-                    >
+                    <button type="button" onClick={this.penDown}>
                         pen down
                     </button>
-                    <button
-                        className={styles.button}
-                        type="button"
-                        onClick={this.setPenHeights}
-                    >
+                    <button type="button" onClick={this.setPenHeights}>
                         set heights
                     </button>
-                    <button
-                        className={styles.button}
-                        type="button"
-                        onClick={this.parkPen}
-                    >
+                    <button type="button" onClick={this.parkPen}>
                         park pen
                     </button>
-                    <button
-                        className={styles.button}
-                        type="button"
-                        onClick={this.returnToStart}
-                    >
+                    <button type="button" onClick={this.returnToStart}>
                         return pen to start
                     </button>
                 </SidebarItem>
                 <SidebarItem title="plot stuff" cols={2}>
-                    <button
-                        className={styles.button}
-                        type="button"
-                        onClick={this.plotFullBounds}
-                    >
+                    <button type="button" onClick={this.plotFullBounds}>
                         plot bounds
                     </button>
 
-                    <button
-                        className={styles.button}
-                        type="button"
-                        onClick={this.plotCoords}
-                    >
+                    <button type="button" onClick={this.plotCoords}>
                         plot
                     </button>
-                    <button
-                        className={styles.button}
-                        type="button"
-                        onClick={this.testPlotCoords}
-                    >
+                    <button type="button" onClick={this.testPlotCoords}>
                         test plot
                     </button>
-                    <button
-                        className={styles.button}
-                        type="button"
-                        onClick={this.abort}
-                    >
+                    <button type="button" onClick={this.abort}>
                         abort
                     </button>
                     <button
-                        className={styles.button}
                         type="button"
                         onClick={() => {
                             dispatch(togglePlotBoundary());
@@ -366,7 +335,6 @@ class PlotSidebar extends React.Component {
                         toggle plot boundary
                     </button>
                     <button
-                        className={styles.button}
                         type="button"
                         onClick={() => {
                             this.plotPlotBoundary();

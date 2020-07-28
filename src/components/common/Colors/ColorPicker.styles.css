@@ -1,17 +1,6 @@
 @value colors: "./colorVariables.css";
 @value color-cream, color-blackish from colors;
 
-.page {
-    background-color: gray;
-    height: 100vh;
-    width: 100vw;
-}
-
-.visibleIcon {
-    height: 30px;
-    width: 30px;
-}
-
 .wrapper {
     border: 2px dashed black;
     box-shadow: #000 5px 5px 1px;
@@ -83,10 +72,4 @@
 .colorDisplay {
     height: 100%;
     width: 100%;
-}
-
-.click {
-    left: 50%;
-    position: absolute;
-    top: 50%;
 }

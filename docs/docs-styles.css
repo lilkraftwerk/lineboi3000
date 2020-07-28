@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'VCR';
+    src: url('./_media/VCR_OSD_MONO.ttf');
+}
+
+:root {
+    --base-font-family: 'VCR', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol';
+    --base-font-size: 1.1em;
+    --theme-color: turquoise;
+}
+
+.docsImg {
+    outline: 3px solid black;
+    padding: 20px;
+    background: white;
+    border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
+    color: white;
+    box-shadow: 8px 8px rgba(0, 0, 0, 0.15);
+}

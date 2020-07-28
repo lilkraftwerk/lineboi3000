@@ -1,8 +1,8 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import ColorPicker from 'components/common/Colors/ColorPicker';
 import Icon from 'components/common/Icon/Icon';
 
-import styles from './LayerHeader.styles.css';
+import styles from './SingleLayer.styles.css';
 
 const SingleLayer = ({
     layer,

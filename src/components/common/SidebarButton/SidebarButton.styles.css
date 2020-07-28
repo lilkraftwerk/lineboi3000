@@ -54,14 +54,6 @@
     background-color: rgb(227, 83, 83);
 }
 
-.half {
-    grid-column: span 2;
-}
-
-.full {
-    grid-column: span 4;
-}
-
 .enabledToggleButton:active {
     filter: saturate(150%);
     outline: 0;

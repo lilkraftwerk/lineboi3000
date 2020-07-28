@@ -8,7 +8,7 @@ import {
 
 import SingleHeaderFrame from './SingleHeaderFrame';
 
-import styles from './FrameHeader.styles.css';
+import styles from './GifmakerHeader.styles.css';
 
 export const FrameHeader = ({ activeFrames, dispatch }) => {
     const onDeleteFrame = (id) => {
