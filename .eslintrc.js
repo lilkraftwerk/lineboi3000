@@ -4,7 +4,8 @@ module.exports = {
         'plugin:prettier/recommended',
         'prettier/react',
         'plugin:import/errors',
-        'plugin:import/warnings'
+        'plugin:import/warnings',
+        'plugin:css-modules/recommended'
     ],
     env: {
         browser: true,
@@ -48,7 +49,7 @@ module.exports = {
             }
         ]
     },
-    plugins: ['class-property'],
+    plugins: ['class-property', 'css-modules'],
     parser: 'babel-eslint',
     settings: {
         'import/resolver': {

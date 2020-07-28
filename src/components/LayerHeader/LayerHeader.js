@@ -102,7 +102,9 @@ export const LayerControls = ({ layers, currentLayerID, dispatch }) => {
                     }}
                 />
             </div>
-            {mappedLayers}
+            <div className={styles.individualLayersContainer}>
+                {mappedLayers}
+            </div>
         </div>
     );
 };

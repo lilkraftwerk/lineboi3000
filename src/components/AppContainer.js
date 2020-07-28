@@ -72,17 +72,22 @@ class AppContainer extends React.Component {
     render() {
         const { mode } = this.props;
         const showGrid = ['efx', 'draw'].includes(mode);
-        const showHeader = ['draw', 'efx', 'plot'].includes(mode);
+        const showLayerHeader = ['draw', 'efx'].includes(mode);
+        const showGifHeader = mode === 'gifmaker';
+        const headerRightClass =
+            mode === 'plot' || mode === 'options'
+                ? styles.headerRightDisabled
+                : styles.headerRight;
 
         return (
             <div className={styles.wholeApp}>
                 <Listener />
                 <div className={styles.headerLeft}>lineboi3000</div>
-                <div className={styles.headerRight}>
-                    {showHeader && <LayerControls />}
-                    {mode === 'gifmaker' && <GifmakerHeader />}
+                <div className={headerRightClass}>
+                    {showLayerHeader && <LayerControls />}
+                    {showGifHeader && <GifmakerHeader />}
                 </div>
-                <div className={styles.sidebarContainer}>
+                <div>
                     <div className={styles.permanentOptions}>
                         {_.keys(MODES).map((modeName) => {
                             const { displayName, emoji } = MODES[modeName];

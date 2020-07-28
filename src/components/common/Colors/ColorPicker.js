@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import _ from 'lodash';
 import Popover from 'react-tiny-popover';
 import Icon from 'components/common/Icon/Icon';
@@ -108,7 +108,7 @@ const ColorPickerWrapper = ({
     );
 
     return (
-        <Fragment>
+        <>
             <Popover
                 isOpen={visible}
                 position={['bottom', 'right', 'left', 'top']}
@@ -132,7 +132,7 @@ const ColorPickerWrapper = ({
                 {type === 'icon' && iconToggle}
                 {type === 'button' && buttonToggle}
             </Popover>
-        </Fragment>
+        </>
     );
 };
 

@@ -1,8 +1,3 @@
-.header {
-    grid-column: 2;
-    text-decoration: underline;
-}
-
 .clickoContainer {
     display: grid;
     font-size: 0.8em;
@@ -28,30 +23,8 @@
     grid-column: span 1;
 }
 
-.button {
-    grid-column: span 2;
-}
-
 .inputWrapper {
     grid-column: span 4;
-}
-
-.extremeLabels {
-    cursor: pointer;
-}
-
-.extremeLabels:hover {
-    background-color: white;
-}
-
-.minLabel {
-    grid-column: 1;
-    text-align: left;
-}
-
-.maxLabel {
-    grid-column: 2;
-    text-align: right;
 }
 
 input[type='range'] {
@@ -64,6 +37,7 @@ input[type='range'] {
 input[type='range']:focus {
     outline: none;
 }
+
 input[type='range']::-webkit-slider-runnable-track {
     animate: 0.2s;
     background: black;

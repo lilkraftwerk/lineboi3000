@@ -1,0 +1,10 @@
+@value colors: "~components/common/Colors/colorVariables.css";
+@value color-teal-light from colors;
+
+.gifHeaderContainer {
+    display: grid;
+    grid-template-columns: repeat(10, 150px);
+    grid-template-rows: 100px;
+    max-width: 75%;
+    width: 75%;
+}

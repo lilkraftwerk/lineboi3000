@@ -1,7 +1,6 @@
 import React from 'react';
 import Icon from 'components/common/Icon/Icon';
-
-import styles from './FrameHeader.styles.css';
+import styles from './SingleHeaderFrame.styles.css';
 
 const SingleHeaderFrame = ({
     id,
@@ -19,7 +18,7 @@ const SingleHeaderFrame = ({
                 <Icon
                     height={24}
                     width={24}
-                    fileName="arrow-left"
+                    emoji="leftarrow"
                     onClick={() => {
                         onMoveFrameDown(id);
                     }}
@@ -27,7 +26,7 @@ const SingleHeaderFrame = ({
                 <Icon
                     height={24}
                     width={24}
-                    fileName="arrow-right"
+                    emoji="rightarrow"
                     onClick={() => {
                         onMoveFrameUp(id);
                     }}
@@ -35,7 +34,7 @@ const SingleHeaderFrame = ({
                 <Icon
                     height={24}
                     width={24}
-                    fileName="trash"
+                    emoji="trashperson"
                     onClick={() => {
                         onDeleteFrame(id);
                     }}

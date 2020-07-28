@@ -1,0 +1,26 @@
+@value colors: "~components/common/Colors/colorVariables.css";
+@value color-teal-light from colors;
+
+.image {
+    height: 60px;
+    outline: 1px solid black;
+}
+
+.singleFrame {
+    border: 2px solid black;
+    border-radius: 2px;
+    display: grid;
+    grid-column: span 1;
+    grid-row: span 1;
+    grid-template-rows: 50px 50px;
+    margin: 3px;
+    padding: 5px;
+}
+
+.controls {
+    align-items: center;
+    display: grid;
+    grid-row: 2;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}

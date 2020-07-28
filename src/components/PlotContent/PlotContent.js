@@ -44,13 +44,7 @@ class PlotContent extends React.Component {
             paperHeightInPixels,
             formattedLayers,
             isPlotBoundaryVisible
-            // scale,
-            // currentLineId
         } = this.props;
-
-        // const currentLine = _.flatten(
-        //     formattedLayers.map(layer => layer.efxLines)
-        // ).find(line => line.id === currentLineId);
 
         return (
             <div id="plotContent" className={styles.plotContentContainer}>
@@ -59,7 +53,7 @@ class PlotContent extends React.Component {
                     height={paperHeightInPixels}
                 />
 
-                <div style={{ paperWidth }} className={styles.container}>
+                <div style={{ paperWidth }}>
                     {isPlotBoundaryVisible && this.renderPlotBoundary()}
                     {formattedLayers.map((layer) => {
                         return (

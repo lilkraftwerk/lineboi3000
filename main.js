@@ -2,6 +2,11 @@ const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
 const fs = require('fs-jetpack');
 const base64ImageToFile = require('base64image-to-file');
 
+let onProd = false;
+if (process.argv[2] && process.argv[2] === 'true') {
+    onProd = true;
+}
+
 const {
     default: installExtension,
     REACT_DEVELOPER_TOOLS
@@ -31,12 +36,13 @@ const { showSaveDialog } = require('./src/mainProcess/SaveAndLoad');
 function createWindow() {
     win = new BrowserWindow({
         width: 1200,
-        height: 800,
+        height: 850,
         backgroundColor: '#FFF',
         webPreferences: {
             nodeIntegration: true,
             nodeIntegrationInWorker: true
         },
+        resizable: false,
         show: testEnv
     });
 
@@ -44,7 +50,7 @@ function createWindow() {
     const mainUrl = `file://${__dirname}/dist/index.html`;
     win.loadURL(mainUrl);
 
-    if (!testEnv) {
+    if (!testEnv && !onProd) {
         win.webContents.once('dom-ready', () => {
             win.webContents.openDevTools();
         });
@@ -60,14 +66,15 @@ function createWindow() {
 
     const menu = Menu.buildFromTemplate(menuTemplateGenerator(win));
     Menu.setApplicationMenu(menu);
-
-    installExtension(REACT_DEVELOPER_TOOLS)
-        .then((name) => {
-            console.log(`Added Extension:  ${name}`);
-        })
-        .catch((err) => {
-            console.log('An error occurred: ', err);
-        });
+    if (!onProd) {
+        installExtension(REACT_DEVELOPER_TOOLS)
+            .then((name) => {
+                console.log(`Added Extension:  ${name}`);
+            })
+            .catch((err) => {
+                console.log('An error occurred: ', err);
+            });
+    }
 
     return win;
 }

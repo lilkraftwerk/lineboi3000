@@ -25,7 +25,7 @@ const move = (array, oldIndex, newIndex) => {
     return arrayMove(array, oldIndex, newIndex);
 };
 
-const getNewLayerState = () => ({
+const getNewLayerState = (count = 0) => ({
     id: id(),
     filters: [],
     color: _.sample([
@@ -38,7 +38,7 @@ const getNewLayerState = () => ({
         'white',
         'pink'
     ]),
-    name: `layer-${Math.random().toString(36).substring(3, 6)}`,
+    name: `layer ${count + 1}`,
     visible: true,
     loading: false
 });
@@ -233,7 +233,7 @@ const updateFilterSettings = (
 const layerReducer = (state = getInitialState(), action) => {
     switch (action.type) {
         case ADD_LAYER:
-            const newLayer = getNewLayerState(); // eslint-disable-line
+            const newLayer = getNewLayerState(state.layers.length); // eslint-disable-line
             return {
                 ...state,
                 layers: [...state.layers, newLayer],

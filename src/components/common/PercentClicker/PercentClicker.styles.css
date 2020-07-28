@@ -2,11 +2,6 @@
     box-sizing: border-box;
 }
 
-.header {
-    grid-column: 2;
-    text-decoration: underline;
-}
-
 .clickoContainer {
     display: inline-grid;
     font-size: 0.8em;
@@ -63,54 +58,11 @@
     width: 100%;
 }
 
-.innerRange {
-}
-
-.rangeWithLabels {
-    grid-column: 2;
-    height: 100%;
-    position: relative;
-    width: 100%;
-}
-
 .rangeWithoutLabels {
     grid-column: span 3;
     height: 100%;
     position: relative;
     width: 100%;
-}
-
-.clickGetter {
-    background-color: transparent;
-    cursor: pointer;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 10;
-}
-
-.positive {
-    background-color: black;
-    height: 100%;
-    position: absolute;
-    z-index: 8;
-}
-
-.negative {
-    background: repeating-linear-gradient(
-        45deg,
-        white,
-        white 5px,
-        black 5px,
-        black 10px
-    );
-    float: right;
-    height: 100%;
-    position: absolute;
-    width: 100%;
-    z-index: 4;
 }
 
 input[type='range'] {
@@ -120,9 +72,11 @@ input[type='range'] {
     user-select: none;
     width: 100%;
 }
+
 input[type='range']:focus {
     outline: none;
 }
+
 input[type='range']::-webkit-slider-runnable-track {
     animate: 0.2s;
     background: black;

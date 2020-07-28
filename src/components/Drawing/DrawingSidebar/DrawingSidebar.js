@@ -132,7 +132,9 @@ class DrawingSidebar extends React.Component {
                     })}
                 </SidebarItem>
                 <SidebarItem
-                    title={`${_.lowerCase(mainMode)} options`}
+                    title={`${_.lowerCase(
+                        MAIN_MODES[mainMode].displayName
+                    )} options`}
                     height={2}
                 >
                     {mainMode === 'draw' &&
@@ -171,7 +173,7 @@ class DrawingSidebar extends React.Component {
                                 emoji="chartincreasing"
                                 disabled={mode === 'multiplyCanvas'}
                                 onClick={() => {
-                                    dispatch(selectDrawMode('shrinkCanvas'));
+                                    dispatch(selectDrawMode('multiplyCanvas'));
                                 }}
                             />
                         </>

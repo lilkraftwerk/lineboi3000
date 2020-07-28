@@ -1,11 +1,9 @@
-import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 
 import { getShowPoints } from 'store/global/globalSelectors';
 import { getVisibleOriginalLines } from 'store/line/lineSelectors';
 import { getCurrentOptions } from 'store/options/optionsSelectors';
-import { setFillLines } from 'store/drawing/drawingActions';
 
 import {
     getCurrentLayer,
@@ -18,7 +16,6 @@ import {
     printFillLinesForSquare,
     printFillLinesForCircle
 } from '../../../utils/lineUtils';
-import generateFillLines from '../../../utils/fillLineUtils';
 import DrawingModes from '../modes';
 import {
     addMultipleLinesToLayerByID,
@@ -45,34 +42,12 @@ export class DrawingContent extends React.Component {
         this.addKeyHandlers();
     }
 
-    componentDidUpdate(prevProps) {
-        const {
-            angle,
-            showPreviewLines,
-            distanceBetweenLines,
-            hullCoords,
-            distanceBetweenPoints,
-            lineMode,
-            randomLineDensity,
-            shiftToDraw
-        } = this.props;
-
+    componentDidUpdate() {
+        const { shiftToDraw } = this.props;
         const { shiftDown } = this;
 
         if (shiftToDraw === false && shiftDown) {
             this.shiftDown = false;
-        }
-
-        if (
-            prevProps.angle !== angle ||
-            prevProps.lineMode !== lineMode ||
-            prevProps.randomLineDensity !== randomLineDensity ||
-            prevProps.distanceBetweenPoints !== distanceBetweenPoints ||
-            prevProps.showPreviewLines !== showPreviewLines ||
-            prevProps.distanceBetweenLines !== distanceBetweenLines ||
-            !_.isEqual(prevProps.hullCoords, hullCoords)
-        ) {
-            this.setFillLines();
         }
     }
 
@@ -167,7 +142,6 @@ export class DrawingContent extends React.Component {
         this.textStart = null;
     };
 
-    // switch everything in here
     processFinalCoords = (finalCoords) => {
         const {
             drawingMode,
@@ -265,18 +239,6 @@ export class DrawingContent extends React.Component {
         }
 
         return formatTempCoords;
-    };
-
-    setFillLines = () => {
-        const { showPreviewLines, dispatch } = this.props;
-
-        if (!showPreviewLines) {
-            dispatch(setFillLines({ fillLines: [] }));
-            return;
-        }
-
-        const fillLines = generateFillLines(this.props);
-        dispatch(setFillLines({ fillLines }));
     };
 
     handleKeyDown = (event) => {

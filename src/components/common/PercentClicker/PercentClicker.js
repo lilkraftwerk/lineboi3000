@@ -70,9 +70,8 @@ const PercentClicker = ({
                 </div>
             )}
             <div className={`${rangeContainerClass} ${styles.rangeGrid}`}>
-                <div className={`${innerRangeClass} ${styles.innerRange}`}>
+                <div className={innerRangeClass}>
                     <input
-                        className={styles.rangeInput}
                         onChange={(e) => {
                             handleChange(e);
                         }}
