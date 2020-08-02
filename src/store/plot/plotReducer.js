@@ -2,7 +2,8 @@ import {
     SET_CURRENT_LINE_ID,
     SET_PLOT_SETTING_BY_KEY,
     TOGGLE_PLOT_BOUNDARY,
-    SET_PEN_LOCATION
+    SET_PEN_LOCATION,
+    SET_CURRENT_PLOT_PERCENTAGE
 } from './plotActions';
 
 const initState = {
@@ -14,8 +15,12 @@ const initState = {
     scale: 50,
     center: true,
     isPlotBoundaryVisible: false,
+    plotting: false,
     penLocation: [0, 0],
-    currentLineId: null
+    currentLineId: null,
+    currentPlotPercentage: null,
+    totalPlotLineCount: null,
+    currentPlotLineIndex: null
 };
 
 const plotReducer = (state = initState, action) => {
@@ -39,6 +44,11 @@ const plotReducer = (state = initState, action) => {
             return {
                 ...state,
                 currentLineId: action.value
+            };
+        case SET_CURRENT_PLOT_PERCENTAGE:
+            return {
+                ...state,
+                currentPlotPercentage: action.value
             };
         default:
             return state;

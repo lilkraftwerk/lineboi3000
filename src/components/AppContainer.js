@@ -9,6 +9,7 @@ import { setGifmakerLoading } from 'store/gifmaker/gifmakerActions';
 import DrawingContent from './Drawing/DrawingContent/DrawingContent';
 import DrawingSidebar from './Drawing/DrawingSidebar/DrawingSidebar';
 import PlotContent from './PlotContent/PlotContent';
+import PlotHeader from './PlotHeader/PlotHeader';
 import GifmakerContent from './GifmakerContent/GifmakerContent';
 import GifmakerSidebar from './GifmakerContent/GifmakerSidebar';
 import PlotSidebar from './PlotSidebar/PlotSidebar';
@@ -73,9 +74,10 @@ class AppContainer extends React.Component {
         const { mode } = this.props;
         const showGrid = ['efx', 'draw'].includes(mode);
         const showLayerHeader = ['draw', 'efx'].includes(mode);
+        const showPlotHeader = mode === 'plot';
         const showGifHeader = mode === 'gifmaker';
         const headerRightClass =
-            mode === 'plot' || mode === 'options'
+            mode === 'options'
                 ? styles.headerRightDisabled
                 : styles.headerRight;
 
@@ -85,6 +87,7 @@ class AppContainer extends React.Component {
                 <div className={styles.headerLeft}>lineboi3000</div>
                 <div className={headerRightClass}>
                     {showLayerHeader && <LayerControls />}
+                    {showPlotHeader && <PlotHeader />}
                     {showGifHeader && <GifmakerHeader />}
                 </div>
                 <div>

@@ -9,9 +9,10 @@ import { EnabledToggleButton } from 'components/common/SidebarButton/SidebarButt
 
 import {
     setPlotSettingByKey,
-    togglePlotBoundary,
+    // togglePlotBoundary,
     setPenLocation,
-    setCurrentLineId
+    setCurrentLineId,
+    setCurrentPlotPercentage
 } from 'store/plot/plotActions';
 import {
     SidebarContainer,
@@ -28,14 +29,13 @@ import id from '../../utils/id';
 import styles from './PlotSidebar.styles.css';
 
 const INIT_STATE = {
-    isConnected: null,
+    connectionStatus: 'searching',
     penState: null
 };
 
 class PlotSidebar extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = INIT_STATE;
     }
 
@@ -48,8 +48,15 @@ class PlotSidebar extends React.Component {
     }
 
     setupAxidraw = async () => {
+        const { dispatch } = this.props;
         this.plotter = new Plotter();
         await this.plotter.createAxidraw();
+
+        this.plotter.setResultCallback((result) => {
+            const { x, y } = result;
+            dispatch(setPenLocation([x, y]));
+        });
+
         this.setPenHeights();
         this.setPlotterCheckInterval();
     };
@@ -61,29 +68,77 @@ class PlotSidebar extends React.Component {
     };
 
     checkPlotterConnection = async () => {
-        const { dispatch } = this.props;
-
         try {
             const result = await this.plotter.getPlotterStatus();
-            const penX = result.x;
-            const penY = result.y;
 
-            dispatch(setPenLocation([penX, penY]));
-            const { simulation, state } = result;
-            const isConnected = simulation != null && simulation === 0;
+            if (result.connectionStatus === 'disconnected') {
+                this.setState({
+                    connectionStatus: 'disconnected'
+                });
+                return;
+            }
+
+            const { connectionStatus, state } = result;
 
             this.setState({
-                isConnected,
+                connectionStatus,
                 penState: state
             });
         } catch {
             this.setState({
-                isConnected: false
+                connectionStatus: 'off'
             });
         }
     };
 
+    setPlottingStatus = (value) => {
+        const { dispatch } = this.props;
+        dispatch(setPlotSettingByKey('plotting', value));
+    };
+
+    setTotalLineCount = (count) => {
+        const { dispatch } = this.props;
+        dispatch(setPlotSettingByKey('totalPlotLineCount', count));
+    };
+
+    setCurrentLineIndex = (index) => {
+        const { dispatch } = this.props;
+        dispatch(setPlotSettingByKey('currentPlotLineIndex', index));
+    };
+
+    startPlot = async (lines) => {
+        const { dispatch } = this.props;
+        this.setTotalLineCount(lines.length);
+        this.setCurrentLineIndex(0);
+        dispatch(setCurrentPlotPercentage(0));
+
+        const lineDrawCallback = (response) => {
+            const {
+                currentLineId,
+                currentLineCount,
+                totalLineCount
+            } = response;
+
+            dispatch(setCurrentLineId(currentLineId));
+            this.setCurrentLineIndex(currentLineCount);
+
+            const finishedPercentage =
+                (currentLineCount / totalLineCount) * 100;
+
+            dispatch(setCurrentPlotPercentage(finishedPercentage));
+        };
+
+        this.setPlottingStatus(true);
+        this.plotter.setLines(lines);
+        await this.plotter.print((response) => {
+            lineDrawCallback(response);
+        });
+        this.setPlottingStatus(false);
+    };
+
     plotFullBounds = () => {
+        const { paperHeightInPixels, paperWidthInPixels } = this.props;
+
         const fullBounds = [
             [0, 0],
             [100, 0],
@@ -91,13 +146,44 @@ class PlotSidebar extends React.Component {
             [0, 100],
             [0, 0]
         ];
-
-        const boundsAsLine = {
+        const plotBoundsLine = {
             id: id(),
             pointArrayContainer: fullBounds
         };
-        this.plotter.setLines([boundsAsLine]);
-        this.plotter.print();
+
+        const withCoords = addPercentageCoordinatesToLine(
+            plotBoundsLine,
+            paperWidthInPixels,
+            paperHeightInPixels
+        );
+        this.startPlot([withCoords]);
+    };
+
+    plotTestLines = () => {
+        const { paperHeightInPixels, paperWidthInPixels } = this.props;
+
+        const lines = [];
+        for (let i = 0; i < 10; i += 1) {
+            const points = [];
+            for (let p = 0; p < 5; p += 1) {
+                const randoX = _.random(300, 350);
+                const randoY = _.random(250, 300);
+                points.push([randoX, randoY]);
+            }
+            const formattedLine = {
+                id: id(),
+                pointArrayContainer: points
+            };
+
+            const withPercentage = addPercentageCoordinatesToLine(
+                formattedLine,
+                paperWidthInPixels,
+                paperHeightInPixels
+            );
+            lines.push(withPercentage);
+        }
+
+        this.startPlot(lines);
     };
 
     plotPlotBoundary = () => {
@@ -108,13 +194,13 @@ class PlotSidebar extends React.Component {
             width: paperWidthInPixels,
             scale
         });
+
         const withCoords = addPercentageCoordinatesToLine(
             plotBoundaryLine,
             paperWidthInPixels,
             paperHeightInPixels
         );
-        this.plotter.setLines([withCoords]);
-        this.plotter.print();
+        this.startPlot([withCoords]);
     };
 
     plotCoords = () => {
@@ -122,8 +208,7 @@ class PlotSidebar extends React.Component {
             formattedLayers,
             paperHeightInPixels,
             paperWidthInPixels,
-            optimizeLineOrder,
-            dispatch
+            optimizeLineOrder
         } = this.props;
 
         this.parkPen();
@@ -141,49 +226,11 @@ class PlotSidebar extends React.Component {
             )
         );
 
-        // to do make linecallback work
-        this.plotter.setLines(mappedRelativeLines);
-        this.plotter.print((currentLineId) => {
-            dispatch(setCurrentLineId(currentLineId));
-        });
+        this.startPlot(mappedRelativeLines);
     };
 
-    // testPlotCoords = () => {
-    //     const {
-    //         formattedLayers,
-    //         paperHeightInPixels,
-    //         paperWidthInPixels
-    //     } = this.props;
-
-    //     const justLines = _.flatten(formattedLayers.map((x) => x.lines));
-    //     const originalLines = _.flatten(formattedLayers.map((x) => x.lines));
-    //     const sortedLines = sortLinesForPlotter(justLines);
-
-    //     const mappedSorted = sortedLines.map((line) =>
-    //         addPercentageCoordinatesToLine(
-    //             line,
-    //             paperWidthInPixels,
-    //             paperHeightInPixels
-    //         )
-    //     );
-
-    //     const mappedOriginal = originalLines.map((line) =>
-    //         addPercentageCoordinatesToLine(
-    //             line,
-    //             paperWidthInPixels,
-    //             paperHeightInPixels
-    //         )
-    //     );
-
-    //     const flatOriginalPercent = _.flatten(
-    //         mappedOriginal.map((x) => x.percentageCoordinates)
-    //     );
-    //     const flatSorted = _.flatten(
-    //         mappedSorted.map((x) => x.percentageCoordinates)
-    //     );
-    // };
-
     abort = () => {
+        this.setPlottingStatus(false);
         this.plotter.abort();
     };
 
@@ -213,33 +260,20 @@ class PlotSidebar extends React.Component {
     };
 
     connectionStatusDisplay = () => {
-        const { isConnected } = this.state;
+        const { connectionStatus } = this.state;
 
-        if (isConnected == null) {
-            return (
-                <div
-                    className={`${styles.plotterStatusBox} ${styles.checking}`}
-                >
-                    SEARCHING...
-                </div>
-            );
-        }
+        const statuses = {
+            searching: ['SEARCHING', styles.searching],
+            connected: ['CONNECTED', styles.connected],
+            simulated: ['SIMULATED', styles.simulation],
+            disconnected: ['DISCONNECTED', styles.disconnected]
+        };
 
-        if (isConnected === true) {
-            return (
-                <div
-                    className={`${styles.plotterStatusBox} ${styles.connected}`}
-                >
-                    CONNECTED
-                </div>
-            );
-        }
+        const [statusString, statusClass] = statuses[connectionStatus];
 
         return (
-            <div
-                className={`${styles.plotterStatusBox} ${styles.disconnected}`}
-            >
-                DISCONNECTED
+            <div className={`${styles.plotterStatusBox} ${statusClass}`}>
+                {statusString}
             </div>
         );
     };
@@ -248,7 +282,7 @@ class PlotSidebar extends React.Component {
         const { penState } = this.state;
         let penStateString;
         if (penState == null) {
-            penStateString = 'hi';
+            penStateString = '0';
         } else {
             penStateString = penState.toString();
         }
@@ -271,6 +305,7 @@ class PlotSidebar extends React.Component {
             penUpHeight,
             penDownHeight,
             scale,
+            plotting,
             optimizeLineOrder,
             dispatch
         } = this.props;
@@ -281,7 +316,84 @@ class PlotSidebar extends React.Component {
                     {this.connectionStatusDisplay()}
                     {this.penHeightStatusDisplay()}
                 </SidebarItem>
-                <SidebarItem cols={2} title="pen controls">
+
+                <SidebarItem title="plot control" cols={4}>
+                    {!plotting ? (
+                        <button type="button" onClick={this.plotCoords}>
+                            plot
+                        </button>
+                    ) : (
+                        <button type="button" onClick={this.abort}>
+                            abort
+                        </button>
+                    )}
+                </SidebarItem>
+                {/* <SidebarItem title="utils" cols={4}>
+                // testing utils - don't show for now
+                    <button type="button" onClick={this.plotFullBounds}>
+                        plot bounds
+                    </button>
+                    <button
+                        type="button"
+                        style={{ gridColumn: 'span 2' }}
+                        onClick={() => {
+                            dispatch(togglePlotBoundary());
+                        }}
+                    >
+                        show plot boundary
+                    </button>
+                    <button
+                        style={{ gridColumn: 'span 2' }}
+                        type="button"
+                        onClick={() => {
+                            this.plotPlotBoundary();
+                        }}
+                    >
+                        plot plot boundary
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            this.plotTestLines();
+                        }}
+                    >
+                        plot test
+                    </button>
+                </SidebarItem> */}
+                <SidebarItem cols={4} title="pen controls">
+                    <button
+                        style={{ gridColumn: 'span 2' }}
+                        type="button"
+                        onClick={this.penUp}
+                    >
+                        pen up
+                    </button>
+                    <button
+                        style={{ gridColumn: 'span 2' }}
+                        type="button"
+                        onClick={this.penDown}
+                    >
+                        pen down
+                    </button>
+                    <button
+                        style={{ gridColumn: 'span 2' }}
+                        type="button"
+                        onClick={this.setPenHeights}
+                    >
+                        set heights
+                    </button>
+                    <button
+                        style={{ gridColumn: 'span 2' }}
+                        type="button"
+                        onClick={this.parkPen}
+                    >
+                        park pen
+                    </button>
+                    <button type="button" onClick={this.returnToStart}>
+                        return pen to start
+                    </button>
+                </SidebarItem>
+                <SidebarItem title="controls" cols={4}>
                     <EnabledToggleButton
                         style={{ gridColumn: 'span 4' }}
                         onClick={() => {
@@ -296,54 +408,6 @@ class PlotSidebar extends React.Component {
                         labelActive="optimize line order on"
                         labelInactive="optimize line order off"
                     />
-                    <button type="button" onClick={this.penUp}>
-                        pen up
-                    </button>
-                    <button type="button" onClick={this.penDown}>
-                        pen down
-                    </button>
-                    <button type="button" onClick={this.setPenHeights}>
-                        set heights
-                    </button>
-                    <button type="button" onClick={this.parkPen}>
-                        park pen
-                    </button>
-                    <button type="button" onClick={this.returnToStart}>
-                        return pen to start
-                    </button>
-                </SidebarItem>
-                <SidebarItem title="plot stuff" cols={2}>
-                    <button type="button" onClick={this.plotFullBounds}>
-                        plot bounds
-                    </button>
-
-                    <button type="button" onClick={this.plotCoords}>
-                        plot
-                    </button>
-                    <button type="button" onClick={this.testPlotCoords}>
-                        test plot
-                    </button>
-                    <button type="button" onClick={this.abort}>
-                        abort
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => {
-                            dispatch(togglePlotBoundary());
-                        }}
-                    >
-                        toggle plot boundary
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => {
-                            this.plotPlotBoundary();
-                        }}
-                    >
-                        plot plot boundary
-                    </button>
-                </SidebarItem>
-                <SidebarItem title="controls" cols={4}>
                     <PercentClicker
                         setValue={(value) => {
                             dispatch(
