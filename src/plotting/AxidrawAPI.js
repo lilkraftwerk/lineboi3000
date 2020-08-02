@@ -9,19 +9,35 @@ const headers = {
     'cache-control': 'no-cache'
 };
 
+const PLOTTER_CONNECTION_STATES = {
+    0: 'connected',
+    1: 'simulated',
+    2: 'disconnected'
+};
+
 class AxidrawAPI {
     constructor() {
         this.penUpHeight = 0.5;
         this.penDownHeight = 0.7;
+        this.resultCallback = () => {};
     }
 
     async getStatus() {
-        const result = await fetch(`${API_URL}/pen/`, {
-            method: 'GET',
-            headers
-        });
-        const json = await result.json();
-        return json;
+        try {
+            const result = await fetch(`${API_URL}/pen/`, {
+                method: 'GET',
+                headers
+            });
+            const json = await result.json();
+            return {
+                ...json,
+                connectionStatus: PLOTTER_CONNECTION_STATES[json.simulation]
+            };
+        } catch {
+            return {
+                connectionStatus: PLOTTER_CONNECTION_STATES[2]
+            };
+        }
     }
 
     async getBuffer() {
@@ -36,17 +52,17 @@ class AxidrawAPI {
     async drawPath(path) {
         const { penUpHeight = 0, penDownHeight = 1 } = this;
         await this.setPenState(`state=${penUpHeight}`);
-
         for (let i = 0; i < path.length; i += 1) {
             const [x, y] = path[i];
-            await this.setPenState(`x=${x}&y=${y}`);
+            const result = await this.setPenState(`x=${x}&y=${y}`);
+
+            this.resultCallback(result);
 
             if (i === 0) {
                 await this.setPenState(`state=${penDownHeight}`);
             }
         }
         await this.setPenState(`state=${penUpHeight}`);
-        await this.timeout(100);
         return Promise.resolve();
     }
 
@@ -55,13 +71,15 @@ class AxidrawAPI {
     }
 
     async setPenState(state) {
-        await fetch(`${API_URL}/pen`, {
+        const result = await fetch(`${API_URL}/pen`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: state
         });
+        const json = result.json();
+        return Promise.resolve(json);
     }
 
     async resetMotor() {

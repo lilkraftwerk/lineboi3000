@@ -10,6 +10,10 @@ export default class Plotter {
         this.axidraw = await axidrawAPI();
     }
 
+    setResultCallback(resultCallback) {
+        this.axidraw.resultCallback = resultCallback;
+    }
+
     async getPlotterStatus() {
         const result = await this.axidraw.getStatus();
         return result;
@@ -64,8 +68,12 @@ export default class Plotter {
                 return;
             }
             const line = this.lines[i];
-            lineCallback(line.id);
             await this.axidraw.drawPath(line.percentageCoordinates);
+            lineCallback({
+                currentLineId: line.id,
+                currentLineCount: i + 1,
+                totalLineCount: this.lines.length
+            });
         }
 
         await this.axidraw.parkPen();

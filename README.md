@@ -1,7 +1,25 @@
-![logo](_media/lineboi-logo.png)
+![logo](docs/_media/lineboi-logo.png)
 
-### **lineboi3000 is a way cool graphical interface for drawing, painting, adding EFX, and then sending your designs to a pen plotter or creating animations.** {docsify-ignore}
+### **lineboi3000 is a way cool graphical interface for drawing, painting, adding EFX, and then sending your designs to a pen plotter or creating animations.** 
 
-BETA - click here for known issues and caveats
+![logo](docs/_media/lineboi-main-example.png)
 
-\*\*\* For full documentation, visit the [Docs Page](http://username.github.io/repository)
+## Getting Started
+
+### Install
+
+`yarn` or `npm i` to install all dependencies
+
+### Run The App
+
+`yarn dev` or `npm dev` to run the dev server (devtools open, and Webpack rebuilds on changes to files)
+
+## Full documentation lives [HERE](http://username.github.io/repository)
+
+![logo](docs/_media/lineboi-main-example-2.png)
+
+![logo](docs/_media/gif-mode-example-two.gif)
+
+![logo](docs/_media/gif-mode-example.gif)
+
+

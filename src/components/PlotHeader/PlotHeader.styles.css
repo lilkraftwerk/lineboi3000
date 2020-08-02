@@ -1,0 +1,109 @@
+@value colors: "~components/common/Colors/colorVariables.css";
+@value color-teal-light from colors;
+
+.plotHeaderContainer {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.plotMessage {
+    display: grid;
+    grid-column-gap: 3px;
+    grid-row: 1;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    height: 50px;
+    left: 0;
+    outline: 3px solid black;
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 30;
+}
+
+.plotInfo {
+    display: grid;
+    grid-template-rows: 20px 30px;
+    outline: 3px solid black;
+}
+
+.plotInfoTitle {
+    align-items: center;
+    display: flex;
+    grid-row: 1;
+    justify-content: center;
+    outline: 3px solid black;
+}
+
+.plotInfoBody {
+    align-items: center;
+    display: flex;
+    grid-row: 2;
+    justify-content: center;
+}
+
+.currentlyPlotting {
+    align-items: center;
+    background-color: lightgreen;
+    display: flex;
+    grid-column: span 1;
+    justify-content: center;
+    outline: 3px solid black;
+}
+
+.notCurrentlyPlotting {
+    align-items: center;
+    background-color: lightyellow;
+    display: flex;
+    grid-column: span 1;
+    justify-content: center;
+    outline: 3px solid black;
+}
+
+.finishedPlot {
+    background-color: lightgreen;
+    height: 100%;
+    width: 100%;
+}
+
+.loadingContainer {
+    grid-row: 2;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+}
+
+.loadingBackground {
+    animation-duration: 0.6s;
+    animation-iteration-count: infinite;
+    animation-name: MOVE-BG;
+    animation-timing-function: linear;
+
+    background: repeating-linear-gradient(
+        135deg,
+        transparent,
+        transparent 10px,
+        rgba(205, 205, 205, 1) 10px,
+        rgb(36, 167, 153) 16px
+    );
+
+    bottom: 0;
+    left: -46px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+@keyframes MOVE-BG {
+    from {
+        -webkit-transform: translateX(0);
+    }
+    to {
+        -webkit-transform: translateX(46px);
+    }
+}

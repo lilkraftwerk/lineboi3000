@@ -2,7 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getAllEfxLines } from 'store/line/lineSelectors';
 import { getCurrentOptions } from 'store/options/optionsSelectors';
-import { CanvasLayer } from 'components/common/SvgLayer/SvgLayer';
+import {
+    CanvasLayer,
+    PenPositionLayer
+} from 'components/common/SvgLayer/SvgLayer';
 import {
     formatLayersForPlotDisplay,
     generatePlotBoundaries
@@ -13,6 +16,8 @@ import styles from './PlotContent.styles.css';
 
 // to do make configurable
 const PIXELS_PER_INCH = 75;
+const AXIDRAW_WIDTH_IN_STEPS = 12000;
+const AXIDRAW_HEIGHT_IN_STEPS = 8720;
 
 class PlotContent extends React.Component {
     componentDidMount() {}
@@ -24,6 +29,7 @@ class PlotContent extends React.Component {
             height: paperHeightInPixels,
             scale
         });
+
         return (
             <CanvasLayer
                 key="plotBoundary"
@@ -43,8 +49,16 @@ class PlotContent extends React.Component {
             paperWidthInPixels,
             paperHeightInPixels,
             formattedLayers,
-            isPlotBoundaryVisible
+            isPlotBoundaryVisible,
+            plotting,
+            penX,
+            penY
         } = this.props;
+
+        const penWidthAsPercent = penX / AXIDRAW_WIDTH_IN_STEPS;
+        const penHeightAsPercent = penY / AXIDRAW_HEIGHT_IN_STEPS;
+        const penXInPixels = paperWidthInPixels * penWidthAsPercent;
+        const penYInPixels = paperHeightInPixels * penHeightAsPercent;
 
         return (
             <div id="plotContent" className={styles.plotContentContainer}>
@@ -52,14 +66,21 @@ class PlotContent extends React.Component {
                     width={paperWidthInPixels}
                     height={paperHeightInPixels}
                 />
-
                 <div style={{ paperWidth }}>
+                    {plotting && (
+                        <PenPositionLayer
+                            height={paperHeightInPixels}
+                            width={paperWidthInPixels}
+                            penX={penXInPixels}
+                            penY={penYInPixels}
+                        />
+                    )}
                     {isPlotBoundaryVisible && this.renderPlotBoundary()}
                     {formattedLayers.map((layer) => {
                         return (
                             <CanvasLayer
-                                key={layer.layerID}
-                                id={layer.layerID}
+                                key={layer.id}
+                                id={layer.id}
                                 height={paperHeightInPixels}
                                 width={paperWidthInPixels}
                                 color={layer.color}
@@ -81,7 +102,9 @@ const mapStateToProps = (state) => {
         scale,
         isPlotBoundaryVisible,
         penLocation,
-        currentLineId
+        currentLineId,
+        currentPlotPercentage,
+        plotting
     } = state.plotReducer;
 
     const { height, width } = getCurrentOptions(state);
@@ -105,13 +128,15 @@ const mapStateToProps = (state) => {
         penX,
         penY,
         currentLineId,
+        currentPlotPercentage,
         paperWidthInPixels,
         paperHeightInPixels,
         scale,
         paperWidth,
         paperHeight,
         formattedLayers,
-        isPlotBoundaryVisible
+        isPlotBoundaryVisible,
+        plotting
     };
 };
 

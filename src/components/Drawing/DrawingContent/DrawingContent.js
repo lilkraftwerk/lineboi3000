@@ -283,6 +283,10 @@ export class DrawingContent extends React.Component {
             fillRadius,
             fillCircle
         } = this.props;
+        if (!tempLinesRef || !tempLinesRef.current) {
+            return;
+        }
+
         const context = tempLinesRef.current.getContext('bitmaprenderer');
         const offScreenCanvas = new OffscreenCanvas(width, height);
         const offScreenContext = offScreenCanvas.getContext('2d');

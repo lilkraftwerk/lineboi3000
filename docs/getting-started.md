@@ -4,11 +4,15 @@ I haven't set up Electron app packaging yet, so you can run locally via `npm` or
 
 ## Quick Start
 
+### Install
+
 `yarn` or `npm i` to install all dependencies
 
-`yarn start` or `npm start` to run the dev server
+### Run The App
 
 `yarn dev` or `npm dev` to run the dev server (devtools open, and Webpack rebuilds on changes to files)
+
+`yarn start` or `npm start` to run the dev server
 
 ## Useful Yarn/NPM Commands
 

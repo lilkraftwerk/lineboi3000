@@ -76,6 +76,55 @@ export const CanvasLayer = ({
     );
 };
 
+export const PenPositionLayer = ({
+    penX = 0,
+    penY = 0,
+    width = 800,
+    height = 600,
+    position = 'absolute'
+}) => {
+    const pixelRatio = window.devicePixelRatio;
+
+    const canvas = useRef(null);
+
+    useEffect(() => {
+        try {
+            const context = canvas.current.getContext('bitmaprenderer');
+            const offScreenCanvas = new OffscreenCanvas(width, height);
+            const offScreenContext = offScreenCanvas.getContext('2d');
+
+            offScreenContext.save();
+            offScreenContext.clearRect(0, 0, width, height);
+            offScreenContext.strokeStyle = 'black';
+            offScreenContext.fillStyle = 'red';
+
+            offScreenContext.fillRect(penX - 10, penY - 10, 20, 20);
+            offScreenContext.strokeRect(penX - 10, penY - 10, 20, 20);
+
+            offScreenContext.restore();
+            const offscreenBitmap = offScreenCanvas.transferToImageBitmap();
+            context.transferFromImageBitmap(offscreenBitmap);
+        } catch (e) {
+            console.error('***** line error *****');
+            console.error('***** line error *****');
+        }
+    }, [penX, penY]);
+
+    const dw = Math.floor(pixelRatio * width);
+    const dh = Math.floor(pixelRatio * height);
+    const style = { width, height, position, zIndex: 50 };
+
+    return (
+        <canvas
+            className={styles.svgLayer}
+            ref={canvas}
+            width={dw}
+            height={dh}
+            style={style}
+        />
+    );
+};
+
 export const CombinedLayer = ({
     layers,
     width = 800,

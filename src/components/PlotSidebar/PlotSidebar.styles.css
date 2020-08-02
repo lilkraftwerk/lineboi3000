@@ -34,7 +34,17 @@ button {
     text-align: center;
 }
 
-.checking {
+.searching {
+    background: repeating-linear-gradient(
+        135deg,
+        transparent,
+        transparent 10px,
+        rgba(205, 205, 205, 1) 10px,
+        rgba(205, 205, 205, 1) 16px
+    );
+}
+
+.simulation {
     background-color: lightyellow;
 }
 
