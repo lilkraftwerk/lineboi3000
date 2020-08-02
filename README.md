@@ -4,17 +4,23 @@
 
 ![logo](docs/_media/lineboi-main-example.png)
 
-## Getting Started
+# **[Click Here For Full Documentation](https://lilkraftwerk.github.io/lineboi3000/)**
+
+## Quick Start
 
 ### Install
 
-`yarn` or `npm i` to install all dependencies
+Clone the repo, CD to the dir, and then `yarn` or `npm i` to install all dependencies
 
 ### Run The App
 
 `yarn dev` or `npm dev` to run the dev server (devtools open, and Webpack rebuilds on changes to files)
 
-## Full documentation lives [HERE](https://lilkraftwerk.github.io/lineboi3000/)
+## Questions, Comments, Etc.
+
+Open an issue or tweet me: [@nah_solo](https://twitter.com/nah_solo)
+
+## Examples
 
 ![logo](docs/_media/lineboi-main-example-2.png)
 
