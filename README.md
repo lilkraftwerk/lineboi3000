@@ -14,7 +14,7 @@
 
 `yarn dev` or `npm dev` to run the dev server (devtools open, and Webpack rebuilds on changes to files)
 
-## Full documentation lives [HERE](http://username.github.io/repository)
+## Full documentation lives [HERE](https://lilkraftwerk.github.io/lineboi3000/)
 
 ![logo](docs/_media/lineboi-main-example-2.png)
 

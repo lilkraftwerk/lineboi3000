@@ -6,8 +6,6 @@ BETA
 
 ![logo](_media/lineboi-main-example-2.png)
 
-
-
 ## Table O' Contents
 
 -   [Getting Started](getting-started.md)
