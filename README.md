@@ -1,6 +1,6 @@
 ![logo](docs/_media/lineboi-logo.png)
 
-### **lineboi3000 is a way cool graphical interface for drawing, painting, adding EFX, and then sending your designs to a pen plotter or creating animations.** 
+### **lineboi3000 is a way cool graphical interface for drawing, painting, adding EFX, and then sending your designs to a pen plotter or creating animations.**
 
 ![logo](docs/_media/lineboi-main-example.png)
 
@@ -21,5 +21,3 @@
 ![logo](docs/_media/gif-mode-example-two.gif)
 
 ![logo](docs/_media/gif-mode-example.gif)
-
-
