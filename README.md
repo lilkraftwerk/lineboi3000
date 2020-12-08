@@ -20,6 +20,18 @@ Clone the repo, CD to the dir, and then `yarn` or `npm i` to install all depende
 
 Open an issue or tweet me: [@nah_solo](https://twitter.com/nah_solo)
 
+## Finished Plotted Artwork
+
+All of these postcards were 100% created in and plotted from lineboi3000, on an Axidraw pen plotter.
+
+![overview](docs/_media/plotted-overview.jpg)
+
+![example_one](docs/_media/plotted-one.jpg)
+
+![example_two](docs/_media/plotted-two.jpg)
+
+![example_three](docs/_media/plotted-three.jpg)
+
 ## Examples
 
 ![logo](docs/_media/lineboi-main-example-2.png)
