@@ -62,7 +62,8 @@ module.exports = {
         ]
     },
     output: {
-        globalObject: 'this'
+        globalObject: 'this',
+        hashFunction: 'sha256'
     },
     resolve: {
         alias: {
