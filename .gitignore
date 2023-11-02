@@ -18,3 +18,5 @@ yarn-error.log
 
 # keep diff folder for CI but don't check diffs in locally
 tmp/diffs/*.png
+
+package-lock.json
