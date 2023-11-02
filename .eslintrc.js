@@ -57,5 +57,6 @@ module.exports = {
                 paths: ['src']
             }
         }
-    }
+    },
+    ignorePatterns: ['node_modules/', 'build/', 'dist/', 'third-party-packages']
 };
