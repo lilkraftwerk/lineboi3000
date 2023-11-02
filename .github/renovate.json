@@ -23,6 +23,10 @@
         {
             "matchPackagePatterns": ["pre-commit"],
             "automerge": true
+        },
+        {
+            "matchPackagePatterns": ["webpack", "-loader"],
+            "groupName": "webpack"
         }
     ]
 }
