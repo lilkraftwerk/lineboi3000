@@ -133,7 +133,7 @@
         "prettier": "^2.0.4",
         "progress-bar-webpack-plugin": "^2.1.0",
         "raw-loader": "^4.0.1",
-        "rimraf": "^3.0.2",
+        "rimraf": "^5.0.0",
         "spectron": "^13.0.0",
         "style-loader": "^3.0.0",
         "stylelint": "^13.6.1",
