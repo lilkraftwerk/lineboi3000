@@ -18,7 +18,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loaders: ['babel-loader'],
+                use: ['babel-loader'],
                 include: path.join(__dirname, 'src')
             },
             {
@@ -31,16 +31,11 @@ module.exports = {
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {}
-                    }
-                ]
+                type: 'asset/resource'
             },
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
-                loader: 'file-loader'
+                type: 'asset/resource'
             },
             {
                 test: /\.css$/,
