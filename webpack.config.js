@@ -49,10 +49,6 @@ module.exports = {
                         localIdentName: '[name]__[local]--[hash:base64:5]'
                     }
                 }
-            },
-            {
-                test: /\.worker\.js$/,
-                use: { loader: 'worker-loader' }
             }
         ]
     },
@@ -85,10 +81,7 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new CopyPlugin({
-            patterns: [
-                { from: 'src/assets', to: 'assets' },
-                { from: 'third-party-packages/gifjs', to: 'gifjs' }
-            ]
+            patterns: [{ from: 'src/assets', to: 'assets' }]
         }),
         new WebpackBuildNotifierPlugin({
             title: 'webpack built',
