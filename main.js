@@ -13,8 +13,9 @@ const {
 } = require('electron-devtools-installer');
 
 const debugBackgroundWindow = false;
-const cpus = debugBackgroundWindow ? 1 : require('os').cpus().length;
+const detectedCpus = require('os').cpus().length;
 
+const cpus = debugBackgroundWindow || detectedCpus === 0 ? 1 : detectedCpus;
 console.log(`num available cpus: ${cpus}`);
 
 const testEnv = process.env.NODE_ENV === 'test';
