@@ -1,19 +1,21 @@
-const SerialPort = require('serialport');
+const { autoDetect } = require('@serialport/bindings-cpp');
 
 const BOT_MANUFACTURER = 'SchmalzHaus';
 
-SerialPort.list().then(
-    (ports) => {
+async function findSerialPort() {
+    try {
+        const Binding = autoDetect();
+        const ports = await Binding.list();
         const port = ports.find((p) => p.manufacturer === BOT_MANUFACTURER);
 
         if (port) {
-            process.stdout.write(port.comName);
-            return;
+            process.stdout.write(`${port.path}`);
+        } else {
+            process.stdout.write('{auto}');
         }
-
-        process.stdout.write('{auto}');
-    },
-    (err) => {
+    } catch (err) {
         console.error('Error listing ports', err);
     }
-);
+}
+
+findSerialPort();
