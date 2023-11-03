@@ -41,7 +41,8 @@ function createWindow() {
         backgroundColor: '#FFF',
         webPreferences: {
             nodeIntegration: true,
-            nodeIntegrationInWorker: true
+            nodeIntegrationInWorker: true,
+            contextIsolation: false
         },
         resizable: false,
         show: testEnv
@@ -92,7 +93,8 @@ function createBgWindow() {
     const result = new BrowserWindow({
         show: debugBackgroundWindow,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false
         }
     });
     const url = `file://${__dirname}/dist/background.html`;
