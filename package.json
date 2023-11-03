@@ -70,9 +70,10 @@
         "base64image-to-file": "^1.2.0",
         "bresenham-js": "^0.0.0",
         "chaikin-smooth": "^1.0.4",
-        "cncserver": "file:./third-party-packages/cncserver",
+        "cncserver": "^2.9.0",
         "concurrently": "^5.0.0",
         "fs-jetpack": "^2.2.3",
+        "gif.js.optimized": "^1.0.1",
         "hull.js": "^1.0.0",
         "lodash": "^4.17.15",
         "node-fetch": "^3.0.0",
@@ -143,7 +144,6 @@
         "webpack-cli": "^5.0.0",
         "webpack-dev-middleware": "^6.0.0",
         "webpack-dev-server": "^4.0.0",
-        "webpack-hot-middleware": "^2.25.0",
-        "worker-loader": "^3.0.0"
+        "webpack-hot-middleware": "^2.25.0"
     }
 }
