@@ -118,7 +118,6 @@
         "eslint-config-airbnb": "^18.2.0",
         "eslint-config-prettier": "^6.9.0",
         "eslint-loader": "4.0.2",
-        "eslint-plugin-class-property": "^1.1.0",
         "eslint-plugin-css-modules": "^2.11.0",
         "eslint-plugin-import": "^2.18.2",
         "eslint-plugin-jsx-a11y": "^6.2.3",
