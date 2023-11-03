@@ -1406,7 +1406,15 @@
   resolved "https://registry.yarnpkg.com/@mathigon/core/-/core-1.1.13.tgz#9cb8ff18dd5ed042616c94a7734821f9efd71afa"
   integrity sha512-5flk0MbajXeIQx9yjEHgMcJP5PTewT7tQhnUf3pmogg4EqZnDfHCMxmI4g0EP2b4LXHbZQFFS4qarDI3E3pLSg==
 
-"@mathigon/fermat@^1.0.0":
+"@mathigon/euclid@^1.1.15":
+  version "1.1.15"
+  resolved "https://registry.yarnpkg.com/@mathigon/euclid/-/euclid-1.1.15.tgz#910c663c145af31267878bc172642e654c33bc06"
+  integrity sha512-wJomO8Y9Aj5vtkLqR4WoYP9tNHtG8+dYvumO6XZzVVUaTLk1WZ18zRl1V9HdcnLwa29pRWERACkwNtBN35I0vA==
+  dependencies:
+    "@mathigon/core" "1.1.13"
+    "@mathigon/fermat" "1.1.12"
+
+"@mathigon/fermat@1.1.12":
   version "1.1.12"
   resolved "https://registry.yarnpkg.com/@mathigon/fermat/-/fermat-1.1.12.tgz#b9329ebbbb9b265d1c66125efa70f544ef97ae42"
   integrity sha512-XmxqmQHQM5liOu5HzU/4jLeDEAckM9ZGvl2X0AZYq11DkAgR+F0G6FFgt5vU4z85SCCVpbq44pdnbBn60MSexA==

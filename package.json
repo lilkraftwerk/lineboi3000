@@ -65,7 +65,7 @@
     "author": "lilkraftwerk",
     "license": "ISC",
     "dependencies": {
-        "@mathigon/fermat": "^1.0.0",
+        "@mathigon/euclid": "^1.1.15",
         "array-move": "^3.0.0",
         "base64image-to-file": "^1.2.0",
         "bresenham-js": "^0.0.0",
