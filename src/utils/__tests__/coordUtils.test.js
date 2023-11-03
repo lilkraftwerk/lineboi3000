@@ -167,20 +167,22 @@ describe('isPointOnLineBetweenTwoCoords()', () => {
     it('should return true when point is on line', () => {
         const startCoords = [0, 0];
         const endCoords = [100, 100];
-        const result = isPointOnLineBetweenTwoCoords(startCoords, endCoords, [
-            10,
-            10
-        ]);
+        const result = isPointOnLineBetweenTwoCoords(
+            startCoords,
+            endCoords,
+            [10, 10]
+        );
         expect(result).toBe(true);
     });
 
     it('should return false when point is not on line', () => {
         const startCoords = [0, 0];
         const endCoords = [100, 100];
-        const result = isPointOnLineBetweenTwoCoords(startCoords, endCoords, [
-            10,
-            50
-        ]);
+        const result = isPointOnLineBetweenTwoCoords(
+            startCoords,
+            endCoords,
+            [10, 50]
+        );
         expect(result).toBe(false);
     });
 });

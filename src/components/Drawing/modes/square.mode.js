@@ -3,9 +3,8 @@ import { allPointsBetweenTwoCoords } from '../../../utils/coordUtils';
 import { getFirstAndLastCoordsFromTempCoords } from '../../../utils/drawingUtils';
 
 const formatTempCoords = (coords) => {
-    const [startCoords, endCoords] = getFirstAndLastCoordsFromTempCoords(
-        coords
-    );
+    const [startCoords, endCoords] =
+        getFirstAndLastCoordsFromTempCoords(coords);
     const [startX, startY] = startCoords;
     const [endX, endY] = endCoords;
     const fourCorners = _.clone([
@@ -21,9 +20,8 @@ const formatTempCoords = (coords) => {
 
 const formatFinalCoords = (coords, options) => {
     const { pointsOnEachLine } = options;
-    const [startCoords, endCoords] = getFirstAndLastCoordsFromTempCoords(
-        coords
-    );
+    const [startCoords, endCoords] =
+        getFirstAndLastCoordsFromTempCoords(coords);
     const [startX, startY] = startCoords;
     const [endX, endY] = endCoords;
 

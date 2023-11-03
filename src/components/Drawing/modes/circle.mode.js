@@ -14,9 +14,8 @@ const makeCircle = (centerX, centerY, radius, pointsOnCircle = 50) => {
 };
 
 const formatTempCoords = (tempCoords, { pointsOnCircle }) => {
-    const [startCoords, endCoords] = getFirstAndLastCoordsFromTempCoords(
-        tempCoords
-    );
+    const [startCoords, endCoords] =
+        getFirstAndLastCoordsFromTempCoords(tempCoords);
 
     const [x1, y1] = startCoords;
     const [x2, y2] = endCoords;

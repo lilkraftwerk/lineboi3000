@@ -15,9 +15,8 @@ export const findNearestLine = (currentLine, remainingLines) => {
     ).end;
 
     remainingLines.forEach(({ id, pointArrayContainer }) => {
-        const { start, end } = getStartAndEndPointsOfCoords(
-            pointArrayContainer
-        );
+        const { start, end } =
+            getStartAndEndPointsOfCoords(pointArrayContainer);
 
         const startDistance = distanceBetweenTwoCoords(currentLineEnd, start);
         const endDistance = distanceBetweenTwoCoords(currentLineEnd, end);

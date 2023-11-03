@@ -185,12 +185,8 @@ class EfxSidebar extends React.Component {
     };
 
     processEfxLinesForLayer = (layerID) => {
-        const {
-            allOriginalLines,
-            globalSettings,
-            allLayers,
-            dispatch
-        } = this.props;
+        const { allOriginalLines, globalSettings, allLayers, dispatch } =
+            this.props;
 
         const { filters } = allLayers.find((l) => l.id === layerID);
         const linesForThisLayer = allOriginalLines[layerID];
@@ -281,12 +277,8 @@ class EfxSidebar extends React.Component {
             dispatch
         } = this.props;
 
-        const {
-            savingPreset,
-            savePresetName,
-            presets,
-            loadingMessage
-        } = this.state;
+        const { savingPreset, savePresetName, presets, loadingMessage } =
+            this.state;
 
         return (
             <SidebarContainer>
