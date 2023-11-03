@@ -1401,17 +1401,17 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@mathigon/core@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@mathigon/core/-/core-0.5.2.tgz#d794983ab0ff10a2b8930b5c2646171f6f35d709"
-  integrity sha512-A2UUp0HOJWv0QlnppBjnEW9ujkokkO+EWlqIunOIqV6cU1Ns9Gs6nLr/392Fi1FhzPZFIK04qwHA5xCgPj6XRQ==
+"@mathigon/core@1.1.13":
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/@mathigon/core/-/core-1.1.13.tgz#9cb8ff18dd5ed042616c94a7734821f9efd71afa"
+  integrity sha512-5flk0MbajXeIQx9yjEHgMcJP5PTewT7tQhnUf3pmogg4EqZnDfHCMxmI4g0EP2b4LXHbZQFFS4qarDI3E3pLSg==
 
-"@mathigon/fermat@^0.5.0":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@mathigon/fermat/-/fermat-0.5.5.tgz#120096d09e32a3c55f8cd384f9c19233865ab401"
-  integrity sha512-wVB0Uh1wjKRli2rUjEtYJkfZAvLSp7MYMn3zC1NkYcY8B/9CVTjq4ZwXKorhq4AnmC8sSNy/Z0V1MQA9hZ0NzA==
+"@mathigon/fermat@^1.0.0":
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/@mathigon/fermat/-/fermat-1.1.12.tgz#b9329ebbbb9b265d1c66125efa70f544ef97ae42"
+  integrity sha512-XmxqmQHQM5liOu5HzU/4jLeDEAckM9ZGvl2X0AZYq11DkAgR+F0G6FFgt5vU4z85SCCVpbq44pdnbBn60MSexA==
   dependencies:
-    "@mathigon/core" "^0.5.2"
+    "@mathigon/core" "1.1.13"
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
