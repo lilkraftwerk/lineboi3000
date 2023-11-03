@@ -109,7 +109,7 @@
         "canvas": "^2.11.0",
         "canvas-to-buffer": "^1.1.0",
         "copy-webpack-plugin": "^11.0.0",
-        "css-declaration-sorter": "^5.1.2",
+        "css-declaration-sorter": "^7.0.0",
         "css-loader": "^6.0.0",
         "electron": "^11.0.0",
         "electron-devtools-installer": "^2.2.4",
