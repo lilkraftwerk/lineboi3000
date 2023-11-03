@@ -50,7 +50,7 @@ module.exports = {
         ]
     },
     plugins: ['class-property', 'css-modules'],
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
     settings: {
         'import/resolver': {
             node: {
