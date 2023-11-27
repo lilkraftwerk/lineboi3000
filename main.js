@@ -1,16 +1,15 @@
 const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
 const fs = require('fs-jetpack');
 const base64ImageToFile = require('base64image-to-file');
+const {
+    installExtension,
+    REACT_DEVELOPER_TOOLS
+} = require('electron-extension-installer');
 
 let onProd = false;
 if (process.argv[2] && process.argv[2] === 'true') {
     onProd = true;
 }
-
-const {
-    default: installExtension,
-    REACT_DEVELOPER_TOOLS
-} = require('electron-devtools-installer');
 
 const debugBackgroundWindow = false;
 const detectedCpus = require('os').cpus().length;
@@ -68,15 +67,6 @@ function createWindow() {
 
     const menu = Menu.buildFromTemplate(menuTemplateGenerator(win));
     Menu.setApplicationMenu(menu);
-    if (!onProd) {
-        installExtension(REACT_DEVELOPER_TOOLS)
-            .then((name) => {
-                console.log(`Added Extension:  ${name}`);
-            })
-            .catch((err) => {
-                console.log('An error occurred: ', err);
-            });
-    }
 
     return win;
 }
@@ -115,6 +105,19 @@ app.on('ready', () => {
     createWindow();
     for (let i = 0; i < cpus; i += 1) {
         backgroundWindows.push(createBgWindow());
+    }
+    if (!onProd) {
+        installExtension(REACT_DEVELOPER_TOOLS, {
+            loadExtensionOptions: {
+                allowFileAccess: true
+            }
+        })
+            .then((name) => {
+                console.log(`Added Extension:  ${name}`);
+            })
+            .catch((err) => {
+                console.log('An error occurred: ', err);
+            });
     }
 });
 
