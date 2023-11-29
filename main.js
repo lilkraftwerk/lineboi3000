@@ -79,6 +79,10 @@ function performTasks() {
     }
 }
 
+function closedHandler() {
+    console.log('background window closed');
+}
+
 function createBgWindow() {
     const result = new BrowserWindow({
         show: debugBackgroundWindow,
@@ -89,9 +93,7 @@ function createBgWindow() {
     });
     const url = `file://${__dirname}/dist/background.html`;
     result.loadURL(url);
-    result.on('closed', () => {
-        console.log('background window closed');
-    });
+    result.on('closed', closedHandler);
 
     console.group('creating background window');
     if (debugBackgroundWindow) {
@@ -125,6 +127,12 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
     }
+});
+
+app.on('before-quit', () => {
+    backgroundWindows.forEach((window) =>
+        window.removeListener('closed', closedHandler)
+    );
 });
 
 const reloadBackgroundWindows = () => {
