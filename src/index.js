@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { ipcRenderer } from 'electron';
 
 import { Provider } from 'react-redux';
@@ -26,9 +26,10 @@ const logger = createLogger({
 const middleware = applyMiddleware(logger, sendToMainProcessMiddleware, thunk);
 const store = createStore(rootReducer, middleware);
 
-render(
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(
     <Provider store={store}>
         <AppContainer />
-    </Provider>,
-    document.getElementById('root')
+    </Provider>
 );

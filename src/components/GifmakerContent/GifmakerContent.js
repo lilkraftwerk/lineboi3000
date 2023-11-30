@@ -1,8 +1,8 @@
-/* global GIF */
 import React from 'react';
 import { ipcRenderer } from 'electron';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import GIF from 'gif.js.optimized';
 import {
     // setFrames,
     // setGifmakerLoading,
@@ -70,8 +70,8 @@ class GifmakerContent extends React.Component {
             quality: gifQuality,
             width: gifWidth,
             height: gifHeight,
-            repeat: 0,
-            workerScript: './gifjs/gif.worker.js'
+            workerScript: 'gif.worker.worker.js',
+            repeat: 0
         });
         images.forEach((img) => {
             const elem = document.createElement('img');

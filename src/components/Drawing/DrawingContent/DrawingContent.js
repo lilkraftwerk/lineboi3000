@@ -229,10 +229,8 @@ export class DrawingContent extends React.Component {
     };
 
     getDrawingEndProcessor = () => {
-        const {
-            formatTempCoords,
-            formatFinalCoords
-        } = this.getActiveModeHandlers();
+        const { formatTempCoords, formatFinalCoords } =
+            this.getActiveModeHandlers();
 
         if (formatFinalCoords != null) {
             return formatFinalCoords;

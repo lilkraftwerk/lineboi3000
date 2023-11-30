@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import isPointInPolygon from 'point-in-polygon';
-import { Line, Circle, Point, intersections } from '@mathigon/fermat';
+import { Line, Circle, Point, intersections } from '@mathigon/euclid';
 import { getExtremePointsOfCoords } from './plotUtils';
 import id from './id';
 

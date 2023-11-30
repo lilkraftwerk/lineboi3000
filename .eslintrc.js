@@ -2,7 +2,6 @@ module.exports = {
     extends: [
         'airbnb',
         'plugin:prettier/recommended',
-        'prettier/react',
         'plugin:import/errors',
         'plugin:import/warnings',
         'plugin:css-modules/recommended'
@@ -49,13 +48,14 @@ module.exports = {
             }
         ]
     },
-    plugins: ['class-property', 'css-modules'],
-    parser: 'babel-eslint',
+    plugins: ['css-modules'],
+    parser: '@babel/eslint-parser',
     settings: {
         'import/resolver': {
             node: {
                 paths: ['src']
             }
         }
-    }
+    },
+    ignorePatterns: ['node_modules/', 'build/', 'dist/', 'third-party-packages']
 };

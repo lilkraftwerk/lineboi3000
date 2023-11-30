@@ -1,20 +1,20 @@
 const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
 const fs = require('fs-jetpack');
 const base64ImageToFile = require('base64image-to-file');
+const {
+    installExtension,
+    REACT_DEVELOPER_TOOLS
+} = require('electron-extension-installer');
 
 let onProd = false;
 if (process.argv[2] && process.argv[2] === 'true') {
     onProd = true;
 }
 
-const {
-    default: installExtension,
-    REACT_DEVELOPER_TOOLS
-} = require('electron-devtools-installer');
-
 const debugBackgroundWindow = false;
-const cpus = debugBackgroundWindow ? 1 : require('os').cpus().length;
+const detectedCpus = require('os').cpus().length;
 
+const cpus = debugBackgroundWindow || detectedCpus === 0 ? 1 : detectedCpus;
 console.log(`num available cpus: ${cpus}`);
 
 const testEnv = process.env.NODE_ENV === 'test';
@@ -40,7 +40,8 @@ function createWindow() {
         backgroundColor: '#FFF',
         webPreferences: {
             nodeIntegration: true,
-            nodeIntegrationInWorker: true
+            nodeIntegrationInWorker: true,
+            contextIsolation: false
         },
         resizable: false,
         show: testEnv
@@ -66,15 +67,6 @@ function createWindow() {
 
     const menu = Menu.buildFromTemplate(menuTemplateGenerator(win));
     Menu.setApplicationMenu(menu);
-    if (!onProd) {
-        installExtension(REACT_DEVELOPER_TOOLS)
-            .then((name) => {
-                console.log(`Added Extension:  ${name}`);
-            })
-            .catch((err) => {
-                console.log('An error occurred: ', err);
-            });
-    }
 
     return win;
 }
@@ -87,18 +79,21 @@ function performTasks() {
     }
 }
 
+function closedHandler() {
+    console.log('background window closed');
+}
+
 function createBgWindow() {
     const result = new BrowserWindow({
         show: debugBackgroundWindow,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false
         }
     });
     const url = `file://${__dirname}/dist/background.html`;
     result.loadURL(url);
-    result.on('closed', () => {
-        console.log('background window closed');
-    });
+    result.on('closed', closedHandler);
 
     console.group('creating background window');
     if (debugBackgroundWindow) {
@@ -113,12 +108,31 @@ app.on('ready', () => {
     for (let i = 0; i < cpus; i += 1) {
         backgroundWindows.push(createBgWindow());
     }
+    if (!onProd) {
+        installExtension(REACT_DEVELOPER_TOOLS, {
+            loadExtensionOptions: {
+                allowFileAccess: true
+            }
+        })
+            .then((name) => {
+                console.log(`Added Extension:  ${name}`);
+            })
+            .catch((err) => {
+                console.log('An error occurred: ', err);
+            });
+    }
 });
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
     }
+});
+
+app.on('before-quit', () => {
+    backgroundWindows.forEach((window) =>
+        window.removeListener('closed', closedHandler)
+    );
 });
 
 const reloadBackgroundWindows = () => {

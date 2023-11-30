@@ -1,0 +1,32 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": ["config:recommended"],
+    "timezone": "America/Chicago",
+    "pre-commit": {
+        "enabled": true
+    },
+    "packageRules": [
+        {
+            "matchManagers": ["github-actions"],
+            "automerge": true
+        },
+        {
+            "extends": "packages:linters",
+            "groupName": "linters",
+            "automerge": true
+        },
+        {
+            "extends": "packages:jsTest",
+            "groupName": "JS test packages",
+            "automerge": true
+        },
+        {
+            "matchPackagePatterns": ["pre-commit"],
+            "automerge": true
+        },
+        {
+            "matchPackagePatterns": ["webpack", "-loader"],
+            "groupName": "webpack"
+        }
+    ]
+}

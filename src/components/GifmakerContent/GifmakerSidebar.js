@@ -81,13 +81,8 @@ class GifmakerSidebar extends React.Component {
     };
 
     render() {
-        const {
-            loading,
-            frames,
-            gifFrameDelay,
-            gifBackgroundColor,
-            dispatch
-        } = this.props;
+        const { loading, frames, gifFrameDelay, gifBackgroundColor, dispatch } =
+            this.props;
 
         if (loading) {
             return <SidebarContainer> LOADING </SidebarContainer>;

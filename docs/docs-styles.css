@@ -12,10 +12,10 @@
 }
 
 .docsImg {
-    outline: 3px solid black;
-    padding: 20px;
     background: white;
     border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
-    color: white;
     box-shadow: 8px 8px rgba(0, 0, 0, 0.15);
+    color: white;
+    outline: 3px solid black;
+    padding: 20px;
 }

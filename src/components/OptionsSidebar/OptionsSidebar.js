@@ -61,13 +61,8 @@ class OptionsSidebar extends React.Component {
     };
 
     isDirty = () => {
-        const {
-            height,
-            width,
-            pointShowRadius,
-            pointShowColor,
-            shiftToDraw
-        } = this.props;
+        const { height, width, pointShowRadius, pointShowColor, shiftToDraw } =
+            this.props;
         const {
             tempHeight,
             tempWidth,
@@ -92,13 +87,8 @@ class OptionsSidebar extends React.Component {
     };
 
     render() {
-        const {
-            height,
-            width,
-            pointShowRadius,
-            pointShowColor,
-            shiftToDraw
-        } = this.props;
+        const { height, width, pointShowRadius, pointShowColor, shiftToDraw } =
+            this.props;
         const {
             tempHeight,
             tempWidth,

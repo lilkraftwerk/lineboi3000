@@ -7,12 +7,8 @@ import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 import styles from './ShrinkCanvasOptions.styles.css';
 
 const MultiplyCanvasOptions = (props) => {
-    const {
-        multiplyCanvasOptions,
-        globalHeight,
-        globalWidth,
-        dispatch
-    } = props;
+    const { multiplyCanvasOptions, globalHeight, globalWidth, dispatch } =
+        props;
 
     const { x, y } = multiplyCanvasOptions;
     const finalHeight = globalHeight * y;

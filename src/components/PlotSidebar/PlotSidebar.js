@@ -113,11 +113,8 @@ class PlotSidebar extends React.Component {
         dispatch(setCurrentPlotPercentage(0));
 
         const lineDrawCallback = (response) => {
-            const {
-                currentLineId,
-                currentLineCount,
-                totalLineCount
-            } = response;
+            const { currentLineId, currentLineCount, totalLineCount } =
+                response;
 
             dispatch(setCurrentLineId(currentLineId));
             this.setCurrentLineIndex(currentLineCount);

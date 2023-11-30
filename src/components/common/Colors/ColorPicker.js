@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import _ from 'lodash';
-import Popover from 'react-tiny-popover';
+import { Popover } from 'react-tiny-popover';
 import Icon from 'components/common/Icon/Icon';
 import ColorList from './ColorList';
 
@@ -84,7 +84,7 @@ const ColorPickerWrapper = ({
         onColorSelect(hexColor);
     };
 
-    const iconToggle = (
+    const IconToggle = React.forwardRef(() => (
         <Icon
             height={24}
             width={24}
@@ -93,9 +93,9 @@ const ColorPickerWrapper = ({
             }}
             bgColor={selectedColor}
         />
-    );
+    ));
 
-    const buttonToggle = (
+    const ButtonToggle = React.forwardRef(() => (
         <button
             style={{ gridColumn: 'span 3' }}
             type="button"
@@ -105,16 +105,15 @@ const ColorPickerWrapper = ({
         >
             {title}
         </button>
-    );
-
+    ));
     return (
         <>
             <Popover
                 isOpen={visible}
-                position={['bottom', 'right', 'left', 'top']}
+                positions={['bottom', 'right', 'left', 'top']}
                 padding={25}
                 onClickOutside={() => {
-                    toggleVisible(!visible);
+                    toggleVisible(true);
                 }}
                 containerStyle={{ zIndex: 100, boxShadow: 'black 3px 3px 1px' }}
                 transitionDuration={0.001}
@@ -129,8 +128,7 @@ const ColorPickerWrapper = ({
                     );
                 }}
             >
-                {type === 'icon' && iconToggle}
-                {type === 'button' && buttonToggle}
+                {type === 'icon' ? <IconToggle /> : <ButtonToggle />}
             </Popover>
         </>
     );

@@ -6,12 +6,8 @@ const filterName = 'distort';
 const displayName = 'dist0rt';
 
 const DistortComponent = ({ filterSettings, updateOptions }) => {
-    const {
-        percentToAffect,
-        distortionAmount,
-        horizontal,
-        vertical
-    } = filterSettings;
+    const { percentToAffect, distortionAmount, horizontal, vertical } =
+        filterSettings;
 
     return (
         <>
@@ -66,12 +62,8 @@ const DistortComponent = ({ filterSettings, updateOptions }) => {
 export const DistortFilter = ({ filterSettings, pointArrays }) => {
     if (!filterSettings || !filterSettings.enabled) return pointArrays;
 
-    const {
-        percentToAffect,
-        distortionAmount,
-        horizontal,
-        vertical
-    } = filterSettings;
+    const { percentToAffect, distortionAmount, horizontal, vertical } =
+        filterSettings;
 
     const yValueMap = {};
     const xValueMap = {};

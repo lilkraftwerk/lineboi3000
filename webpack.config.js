@@ -18,7 +18,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loaders: ['babel-loader'],
+                use: ['babel-loader'],
                 include: path.join(__dirname, 'src')
             },
             {
@@ -31,16 +31,11 @@ module.exports = {
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {}
-                    }
-                ]
+                type: 'asset/resource'
             },
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
-                loader: 'file-loader'
+                type: 'asset/resource'
             },
             {
                 test: /\.css$/,
@@ -54,15 +49,12 @@ module.exports = {
                         localIdentName: '[name]__[local]--[hash:base64:5]'
                     }
                 }
-            },
-            {
-                test: /\.worker\.js$/,
-                use: { loader: 'worker-loader' }
             }
         ]
     },
     output: {
-        globalObject: 'this'
+        globalObject: 'this',
+        hashFunction: 'sha256'
     },
     resolve: {
         alias: {
@@ -89,10 +81,7 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new CopyPlugin({
-            patterns: [
-                { from: 'src/assets', to: 'assets' },
-                { from: 'third-party-packages/gifjs', to: 'gifjs' }
-            ]
+            patterns: [{ from: 'src/assets', to: 'assets' }]
         }),
         new WebpackBuildNotifierPlugin({
             title: 'webpack built',
