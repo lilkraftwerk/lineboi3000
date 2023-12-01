@@ -1455,25 +1455,25 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@mathigon/core@1.1.13":
-  version "1.1.13"
-  resolved "https://registry.yarnpkg.com/@mathigon/core/-/core-1.1.13.tgz#9cb8ff18dd5ed042616c94a7734821f9efd71afa"
-  integrity sha512-5flk0MbajXeIQx9yjEHgMcJP5PTewT7tQhnUf3pmogg4EqZnDfHCMxmI4g0EP2b4LXHbZQFFS4qarDI3E3pLSg==
+"@mathigon/core@1.1.14":
+  version "1.1.14"
+  resolved "https://registry.yarnpkg.com/@mathigon/core/-/core-1.1.14.tgz#eca0f40f2ae89ffc1dcff625a1a58c983fb7f30f"
+  integrity sha512-x5y8TlR48xi9jMiceoWLEIdH9yCpJRs4MgabRdaDY6F+UY7rrNihyITsdoCsQYF/pQaIkYFtbTeTsnnRX9m3hQ==
 
 "@mathigon/euclid@^1.1.15":
-  version "1.1.15"
-  resolved "https://registry.yarnpkg.com/@mathigon/euclid/-/euclid-1.1.15.tgz#910c663c145af31267878bc172642e654c33bc06"
-  integrity sha512-wJomO8Y9Aj5vtkLqR4WoYP9tNHtG8+dYvumO6XZzVVUaTLk1WZ18zRl1V9HdcnLwa29pRWERACkwNtBN35I0vA==
+  version "1.1.16"
+  resolved "https://registry.yarnpkg.com/@mathigon/euclid/-/euclid-1.1.16.tgz#76968fafccf7d8de84d548fbe1521ee9ad3851cd"
+  integrity sha512-UqhLsR3n+RLhVmETtaScd5tP86BflhVHmnc132DHtDW5dX+03OTGoL5HlVaE9i+kS3iL5L5IXcALq0pOsF2y/A==
   dependencies:
-    "@mathigon/core" "1.1.13"
-    "@mathigon/fermat" "1.1.12"
+    "@mathigon/core" "1.1.14"
+    "@mathigon/fermat" "1.1.13"
 
-"@mathigon/fermat@1.1.12":
-  version "1.1.12"
-  resolved "https://registry.yarnpkg.com/@mathigon/fermat/-/fermat-1.1.12.tgz#b9329ebbbb9b265d1c66125efa70f544ef97ae42"
-  integrity sha512-XmxqmQHQM5liOu5HzU/4jLeDEAckM9ZGvl2X0AZYq11DkAgR+F0G6FFgt5vU4z85SCCVpbq44pdnbBn60MSexA==
+"@mathigon/fermat@1.1.13":
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/@mathigon/fermat/-/fermat-1.1.13.tgz#51b04eada53acd97583e3aada12196ed4affa4e1"
+  integrity sha512-YjQBI+3cgrgD7OaRqOnqk3tffK4zIwHRj1f8oyuYU0rf07UbVa1h6ZFlimqI2FV1N7fDqMkOyx3osQUhPSBYEQ==
   dependencies:
-    "@mathigon/core" "1.1.13"
+    "@mathigon/core" "1.1.14"
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
