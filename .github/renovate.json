@@ -27,6 +27,10 @@
         {
             "matchPackagePatterns": ["webpack", "-loader"],
             "groupName": "webpack"
+        },
+        {
+            "matchPackagePatterns": ["redux", "reselect"],
+            "groupName": "redux"
         }
     ]
 }
