@@ -83,7 +83,7 @@
         "react-dom": "^18.0.0",
         "react-redux": "^8.0.0",
         "react-tiny-popover": "^8.0.0",
-        "redux": "^4.0.4",
+        "redux": "^5.0.0",
         "redux-logger": "^3.0.6",
         "redux-thunk": "^2.3.0",
         "redux-undo": "1.1.0",
