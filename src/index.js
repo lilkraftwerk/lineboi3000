@@ -5,7 +5,7 @@ import { ipcRenderer } from 'electron';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 
-import thunk from 'redux-thunk';
+import { thunk } from 'redux-thunk';
 import rootReducer from 'store/rootReducer';
 import { createLogger } from 'redux-logger';
 import AppContainer from './components/AppContainer';
