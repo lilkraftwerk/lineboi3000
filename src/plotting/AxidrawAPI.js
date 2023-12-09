@@ -78,8 +78,8 @@ class AxidrawAPI {
             },
             body: state
         });
-        const json = result.json();
-        return Promise.resolve(json);
+        const json = await result.json();
+        return json;
     }
 
     async resetMotor() {
