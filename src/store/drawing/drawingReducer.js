@@ -13,7 +13,7 @@ import {
 
 const initState = {
     mainMode: 'draw',
-    mode: 'eraser',
+    mode: 'pen',
     textContent: 'L',
     textSize: 150,
     textFill: true,
