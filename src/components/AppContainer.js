@@ -90,8 +90,8 @@ class AppContainer extends React.Component {
                     {showPlotHeader && <PlotHeader />}
                     {showGifHeader && <GifmakerHeader />}
                 </div>
-                <div>
-                    <div className={styles.permanentOptions}>
+                <div className={styles.sidebar}>
+                    <div className={styles.sidebarHeader}>
                         {_.keys(MODES).map((modeName) => {
                             const { displayName, emoji } = MODES[modeName];
                             return (
@@ -115,7 +115,7 @@ class AppContainer extends React.Component {
                         })}
                         <PointCounter />
                     </div>
-                    <div className={styles.sidebar}>
+                    <div className={styles.sidebarContent}>
                         {showGrid && <GridControls />}
                         {mode === 'efx' && <EfxSidebar />}
                         {mode === 'draw' && <DrawingSidebar />}

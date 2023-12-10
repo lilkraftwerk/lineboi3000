@@ -43,7 +43,7 @@ function createWindow() {
             nodeIntegrationInWorker: true,
             contextIsolation: false
         },
-        resizable: false,
+        resizable: true,
         show: testEnv
     });
 

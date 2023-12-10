@@ -2,10 +2,10 @@
     display: grid;
     grid-column-gap: 2px;
     grid-row-gap: 2px;
-    grid-template-columns: 300px 800px;
-    grid-template-rows: 110px 740px;
-    height: 850px;
-    width: 1200px;
+    grid-template-columns: 300px minmax(0, 1fr);
+    grid-template-rows: 110px minmax(0, 1fr);
+    height: 100vh;
+    width: 100vw;
 }
 
 .headerLeft {
@@ -22,6 +22,7 @@
 .headerRight {
     border: 2px solid black;
     grid-column: 2;
+    grid-row: 1;
 }
 
 .headerRightDisabled {
@@ -38,15 +39,23 @@
 }
 
 .sidebar {
-    height: 625px;
+    grid-column: 1;
+    grid-row: 2;
+    max-height: 100%;
+}
+
+.sidebarContent {
+    max-height: 100%;
+    min-height: 625px;
     overflow: scroll;
 }
 
-.permanentOptions {
+.sidebarHeader {
     display: grid;
     grid-column-gap: 8px;
     grid-row-gap: 3px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    height: 80px;
     margin: 3px 0;
     padding: 0 5px;
 }
@@ -63,5 +72,6 @@
 .content {
     grid-column: 2;
     grid-row: 2;
+    overflow: auto;
     position: relative;
 }

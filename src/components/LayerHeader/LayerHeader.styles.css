@@ -4,15 +4,14 @@
 .layerContainer {
     display: grid;
     grid-template-columns: 50px 1fr;
-    max-width: 100%;
     overflow: hidden;
     width: 100%;
 }
 
 .individualLayersContainer {
     display: grid;
-    grid-template-columns: repeat(100, 150px);
-    overflow: auto;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fill, 150px);
     overflow: auto;
 }
 
