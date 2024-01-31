@@ -2040,9 +2040,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "20.11.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.11.5.tgz#be10c622ca7fcaa3cf226cf80166abc31389d86e"
-  integrity sha512-g557vgQjUUfN76MZAN/dt1z3dzcUsimuysco0KeluHgrPdJXkP/XdAURgyO2W9fZWHRtRBiVKzKn8vyOAwlG+w==
+  version "20.11.14"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.11.14.tgz#9fdc9c2550c2f6693508ca4530f821474c4ee3bb"
+  integrity sha512-w3yWCcwULefjP9DmDDsgUskrMoOy5Z8MiwKHr1FvqGPtx7CvJzQvxD7eKpxNtklQxLruxSXWddyeRtyud0RcXQ==
   dependencies:
     undici-types "~5.26.4"
 
@@ -2059,9 +2059,9 @@
   integrity sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==
 
 "@types/node@^18.11.18":
-  version "18.19.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.8.tgz#c1e42b165e5a526caf1f010747e0522cb2c9c36a"
-  integrity sha512-g1pZtPhsvGVTwmeVoexWZLTQaOvXwoSq//pTL0DHeNzUDrFnir4fgETdhjhIxjVnN+hKOuh98+E1eMLnUXstFg==
+  version "18.19.12"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.12.tgz#21c85d96a30ee5327621b36fe82e3d049048333d"
+  integrity sha512-uLcpWEAvatBEubmgCMzWforZbAu1dT9syweWnU3/DNwbeUBq2miP5nG8Y4JL9MDMKWt+7Yv1CSvA8xELdEl54w==
   dependencies:
     undici-types "~5.26.4"
 
@@ -4071,9 +4071,9 @@ electron-to-chromium@^1.4.535:
   integrity sha512-KD6CWjf1BnQG+NsXuyiTDDT1eV13sKuYsOUioXkQweYTQIbgHkXPry9K7M+7cKtYHnSUPitVaLrXYB1jTkkYrw==
 
 electron@^27.0.0:
-  version "27.2.4"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-27.2.4.tgz#82a56e118645a35828652e86caacdebdfb93b016"
-  integrity sha512-oxzd4Aba5N1NrAEubGgRLaYJqA9atmq8Kn61pH7Jc87IXlWaw/G9/Fy6pxZFlGovhZiyjj5WeD7FBWev4ZErmQ==
+  version "27.3.1"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-27.3.1.tgz#b64ae70410b657c911d8c7665605c02695722fd3"
+  integrity sha512-hDAeaTJvXHu3vCmR6l6/muPGaKRlEp6v471yyqOju9xhLKUaGOAdMN46F0V+SCABZq2nWr9DTwqHsJ0b4hUZLQ==
   dependencies:
     "@electron/get" "^2.0.0"
     "@types/node" "^18.11.18"
