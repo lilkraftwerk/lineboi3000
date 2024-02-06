@@ -109,7 +109,7 @@
         "body-parser": "^1.19.0",
         "canvas": "^2.11.0",
         "canvas-to-buffer": "^1.1.0",
-        "copy-webpack-plugin": "^11.0.0",
+        "copy-webpack-plugin": "^12.0.0",
         "css-declaration-sorter": "^7.0.0",
         "css-loader": "^6.0.0",
         "electron": "^28.0.0",
@@ -122,7 +122,7 @@
         "eslint-plugin-jsx-a11y": "^6.2.3",
         "eslint-plugin-prettier": "^3.1.0",
         "eslint-plugin-react": "^7.14.3",
-        "html-loader": "^4.0.0",
+        "html-loader": "^5.0.0",
         "html-webpack-plugin": "^5.0.0",
         "jest": "^29.0.0",
         "jest-canvas-mock": "^2.2.0",
@@ -141,7 +141,7 @@
         "webpack": "^5.0.0",
         "webpack-build-notifier": "^2.1.0",
         "webpack-cli": "^5.0.0",
-        "webpack-dev-middleware": "^6.0.0",
+        "webpack-dev-middleware": "^7.0.0",
         "webpack-dev-server": "^4.0.0",
         "webpack-hot-middleware": "^2.25.0"
     }
