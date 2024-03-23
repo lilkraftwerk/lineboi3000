@@ -3171,13 +3171,13 @@ caniuse-lite@^1.0.30001580:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001584.tgz#5e3ea0625d048d5467670051687655b1f7bf7dfd"
   integrity sha512-LOz7CCQ9M1G7OjJOF9/mzmqmj3jE/7VOmrfw6Mgs0E8cjOsbRXQJHsPBfmBOXDskXKrHLyyW3n7kpDW/4BsfpQ==
 
-canvas-to-buffer@^1.1.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/canvas-to-buffer/-/canvas-to-buffer-1.1.1.tgz#3adceeb0a56c1583f3cf0cffc7b3ac08c1a1b4a1"
-  integrity sha512-AIc/EjM5cPkUDBPic+r1OPdD6WO95GatRulDV5ue1SXq6SmUtG6Myc7PeMfg8BdO/rhUrT5PtpQu+pK6sDBhsg==
+canvas-to-buffer@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/canvas-to-buffer/-/canvas-to-buffer-3.0.1.tgz#0f31c1bf597ec17831f3f8c9103f11e83be63c48"
+  integrity sha512-36ugYshUz7CvzSDc6imIxDMbGfjwN0EQ+NkbA7CBRJ1DM1dVyNg+kXQLZruEGeg/4TIPHL81U+POVOE6706zbA==
   dependencies:
     atob "2.1.2"
-    typedarray-to-buffer "3.1.5"
+    typedarray-to-buffer "4.0.0"
 
 canvas@^2.11.0:
   version "2.11.2"
@@ -5874,7 +5874,7 @@ is-typed-array@^1.1.10, is-typed-array@^1.1.12, is-typed-array@^1.1.9:
   dependencies:
     which-typed-array "^1.1.11"
 
-is-typedarray@^1.0.0, is-typedarray@~1.0.0:
+is-typedarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha512-cyA56iCMHAh5CdzjJIa4aohJyeO1YbwLi3Jc35MmRU6poroFjIGZzUzupGiRPOjgHg9TLu43xbpwXk523fMxKA==
@@ -9507,12 +9507,10 @@ typed-array-length@^1.0.4:
     for-each "^0.3.3"
     is-typed-array "^1.1.9"
 
-typedarray-to-buffer@3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/typedarray-to-buffer/-/typedarray-to-buffer-3.1.5.tgz#a97ee7a9ff42691b9f783ff1bc5112fe3fca9080"
-  integrity sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
-  dependencies:
-    is-typedarray "^1.0.0"
+typedarray-to-buffer@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/typedarray-to-buffer/-/typedarray-to-buffer-4.0.0.tgz#cdd2933c61dd3f5f02eda5d012d441f95bfeb50a"
+  integrity sha512-6dOYeZfS3O9RtRD1caom0sMxgK59b27+IwoNy8RDPsmslSGOyU+mpTamlaIW7aNKi90ZQZ9DFaZL3YRoiSCULQ==
 
 ua-parser-js@^1.0.1:
   version "1.0.37"
