@@ -2053,9 +2053,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "20.11.16"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.11.16.tgz#4411f79411514eb8e2926f036c86c9f0e4ec6708"
-  integrity sha512-gKb0enTmRCzXSSUJDq6/sPcqrfCv2mkkG6Jt/clpn5eiCbKTY+SgZUxo+p8ZKMof5dCp9vHQUAB7wOUTod22wQ==
+  version "20.12.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.12.2.tgz#9facdd11102f38b21b4ebedd9d7999663343d72e"
+  integrity sha512-zQ0NYO87hyN6Xrclcqp7f8ZbXNbRfoGWNcMvHTPQp9UUrwI0mI7XBz+cu7/W6/VClYo2g63B0cjull/srU7LgQ==
   dependencies:
     undici-types "~5.26.4"
 
@@ -2072,9 +2072,9 @@
   integrity sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==
 
 "@types/node@^18.11.18":
-  version "18.19.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.8.tgz#c1e42b165e5a526caf1f010747e0522cb2c9c36a"
-  integrity sha512-g1pZtPhsvGVTwmeVoexWZLTQaOvXwoSq//pTL0DHeNzUDrFnir4fgETdhjhIxjVnN+hKOuh98+E1eMLnUXstFg==
+  version "18.19.28"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.28.tgz#c64a2c992c8ebbf61100a4570e4eebc1934ae030"
+  integrity sha512-J5cOGD9n4x3YGgVuaND6khm5x07MMdAKkRyXnjVR6KFhLMNh2yONGiP7Z+4+tBOt5mK+GvDTiacTOVGGpqiecw==
   dependencies:
     undici-types "~5.26.4"
 
@@ -4155,9 +4155,9 @@ electron-to-chromium@^1.4.648:
   integrity sha512-On2ymeleg6QbRuDk7wNgDdXtNqlJLM2w4Agx1D/RiTmItiL+a9oq5p7HUa2ZtkAtGBe/kil2dq/7rPfkbe0r5w==
 
 electron@^28.0.0:
-  version "28.1.4"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-28.1.4.tgz#3e1772521d19a8c70162c6c86deb3e57bb28721f"
-  integrity sha512-WE6go611KOhtH6efRPMnVC7FE7DCKnQ3ZyHFeI1DbaCy8OU4UjZ8/CZGcuZmZgRdxSBEHoHdgaJkWRHZzF0FOg==
+  version "28.2.9"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-28.2.9.tgz#7c94a4901b1cb40993906f060a14a108039ac817"
+  integrity sha512-6b6G6jq4ypKxdCRNjULmqWEott4GJe2kaAykLonaTaeFqoFFHbzOu4k6pAzurseFhv452aUob9DAH6eI7UlOUw==
   dependencies:
     "@electron/get" "^2.0.0"
     "@types/node" "^18.11.18"
@@ -8622,14 +8622,14 @@ semver@^6.0.0, semver@^6.2.0, semver@^6.3.0, semver@^6.3.1:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.1.tgz#556d2ef8689146e46dcea4bfdd095f3434dffcb4"
   integrity sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==
 
-semver@^7.2.1, semver@^7.3.2, semver@^7.3.4, semver@^7.3.5, semver@^7.5.3:
+semver@^7.2.1, semver@^7.3.4, semver@^7.3.5, semver@^7.5.3:
   version "7.5.4"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.4.tgz#483986ec4ed38e1c6c48c34894a9182dbff68a6e"
   integrity sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==
   dependencies:
     lru-cache "^6.0.0"
 
-semver@^7.5.4:
+semver@^7.3.2, semver@^7.5.4:
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.6.0.tgz#1a46a4db4bffcccd97b743b5005c8325f23d4e2d"
   integrity sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==
