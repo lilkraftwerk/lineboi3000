@@ -112,7 +112,7 @@
         "copy-webpack-plugin": "^12.0.0",
         "css-declaration-sorter": "^7.0.0",
         "css-loader": "^6.0.0",
-        "electron": "^28.0.0",
+        "electron": "^29.0.0",
         "electron-extension-installer": "^1.2.0",
         "eslint": "^7.4.0",
         "eslint-config-airbnb": "^18.2.0",
