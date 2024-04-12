@@ -230,7 +230,7 @@ const updateFilterSettings = (
     });
 };
 
-const layerReducer = (state, action) => {
+const layerReducer = (state = getInitialState(), action) => {
     switch (action.type) {
         case ADD_LAYER: {
             const newLayer = getNewLayerState(state.layers.length); // eslint-disable-line
