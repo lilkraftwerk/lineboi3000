@@ -125,7 +125,7 @@
         "rimraf": "^5.0.0",
         "spectron": "^19.0.0",
         "style-loader": "^3.0.0",
-        "stylelint": "^15.0.0",
+        "stylelint": "^16.0.0",
         "stylelint-order": "^6.0.0",
         "webpack": "^5.0.0",
         "webpack-build-notifier": "^2.1.0",
