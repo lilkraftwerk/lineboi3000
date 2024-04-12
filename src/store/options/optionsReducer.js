@@ -1,5 +1,5 @@
-import { SET_GLOBAL_OPTION_BY_KEY } from './optionsActions';
 import { MULTIPLY_CANVAS, SHRINK_CANVAS } from '../line/lineActions';
+import { SET_GLOBAL_OPTION_BY_KEY } from './optionsActions';
 
 const initialState = {
     height: 600,

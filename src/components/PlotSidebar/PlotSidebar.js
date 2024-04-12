@@ -1,30 +1,30 @@
-import React from 'react';
-import _ from 'lodash';
-import { connect } from 'react-redux';
-import Plotter from 'plotting/Plotter';
-import { getAllEfxLines } from 'store/line/lineSelectors';
-import { getCurrentOptions } from 'store/options/optionsSelectors';
 import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 import { EnabledToggleButton } from 'components/common/SidebarButton/SidebarButton';
+import _ from 'lodash';
+import Plotter from 'plotting/Plotter';
+import React from 'react';
+import { connect } from 'react-redux';
+import { getAllEfxLines } from 'store/line/lineSelectors';
+import { getCurrentOptions } from 'store/options/optionsSelectors';
 
-import {
-    setPlotSettingByKey,
-    // togglePlotBoundary,
-    setPenLocation,
-    setCurrentLineId,
-    setCurrentPlotPercentage
-} from 'store/plot/plotActions';
 import {
     SidebarContainer,
     SidebarItem
 } from 'components/common/SidebarContainer/SidebarContainer';
 import {
-    formatLayersForPlotDisplay,
+    setCurrentLineId,
+    setCurrentPlotPercentage,
+    // togglePlotBoundary,
+    setPenLocation,
+    setPlotSettingByKey
+} from 'store/plot/plotActions';
+import id from '../../utils/id';
+import { sortLinesForPlotter } from '../../utils/lineSortUtils';
+import {
     addPercentageCoordinatesToLine,
+    formatLayersForPlotDisplay,
     generatePlotBoundaries
 } from '../../utils/plotUtils';
-import { sortLinesForPlotter } from '../../utils/lineSortUtils';
-import id from '../../utils/id';
 
 import styles from './PlotSidebar.styles.css';
 

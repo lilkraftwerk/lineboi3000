@@ -1,11 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { getAllEfxLines } from 'store/line/lineSelectors';
-import { getCurrentOptions } from 'store/options/optionsSelectors';
 import {
     CanvasLayer,
     PenPositionLayer
 } from 'components/common/SvgLayer/SvgLayer';
+import React from 'react';
+import { connect } from 'react-redux';
+import { getAllEfxLines } from 'store/line/lineSelectors';
+import { getCurrentOptions } from 'store/options/optionsSelectors';
 import {
     formatLayersForPlotDisplay,
     generatePlotBoundaries

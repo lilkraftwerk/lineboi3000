@@ -1,10 +1,10 @@
 import {
-    SWITCH_MODE,
-    switchMode,
-    TOGGLE_GRID_VISIBILITY,
-    toggleGridVisibility,
     SET_GRID_OPTIONS,
-    setGridOptions
+    SWITCH_MODE,
+    TOGGLE_GRID_VISIBILITY,
+    setGridOptions,
+    switchMode,
+    toggleGridVisibility
 } from '../globalActions';
 
 describe('global actions', () => {

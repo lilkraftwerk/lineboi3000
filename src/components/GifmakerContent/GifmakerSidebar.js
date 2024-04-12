@@ -1,12 +1,12 @@
+import { ipcRenderer } from 'electron';
 import React from 'react';
 import { connect } from 'react-redux';
-import { ipcRenderer } from 'electron';
 import {
-    setFrames,
-    setGifmakerLoading,
     addActiveFrame,
     deleteLibraryFrame,
-    setGifOptionByKey
+    setFrames,
+    setGifOptionByKey,
+    setGifmakerLoading
 } from 'store/gifmaker/gifmakerActions';
 
 import { getCurrentOptions } from 'store/options/optionsSelectors';

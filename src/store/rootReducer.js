@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
+import drawingReducer from './drawing/drawingReducer';
+import gifmakerReducer from './gifmaker/gifmakerReducer';
 import globalReducer from './global/globalReducer';
 import layerReducer from './layer/layerReducer';
 import {
@@ -7,9 +9,7 @@ import {
     undoableOriginalLinesReducer
 } from './line/lineReducers';
 import optionsReducer from './options/optionsReducer';
-import drawingReducer from './drawing/drawingReducer';
 import plotReducer from './plot/plotReducer';
-import gifmakerReducer from './gifmaker/gifmakerReducer';
 
 import { LOAD_PROJECT, NEW_PROJECT } from './rootActions';
 
@@ -27,11 +27,9 @@ const rootReducer = combineReducers({
 const loadReducer = (state, action) => {
     switch (action.type) {
         case NEW_PROJECT:
-            state = undefined; // eslint-disable-line
-            return rootReducer(state, action);
+            return rootReducer(undefined, action);
         case LOAD_PROJECT:
-            state = action.value; // eslint-disable-line
-            return rootReducer(state, action);
+            return rootReducer(action.value, action);
         default:
             return rootReducer(state, action);
     }

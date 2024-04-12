@@ -1,7 +1,7 @@
-import { originalLinesReducer, efxLinesReducer } from '../lineReducers';
+import { efxLinesReducer, originalLinesReducer } from '../lineReducers';
 
-import * as actions from '../lineActions';
 import { duplicateLayer } from '../../layer/layerActions';
+import * as actions from '../lineActions';
 
 describe('originalLinesReducer', () => {
     describe('ADD_LINE_TO_LAYER_BY_ID', () => {

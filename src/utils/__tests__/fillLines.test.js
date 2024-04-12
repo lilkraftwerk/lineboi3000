@@ -1,15 +1,15 @@
-import 'jest-canvas-mock';
 import Frame from 'canvas-to-buffer';
+import 'jest-canvas-mock';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
-import { drawLines, drawCircles, drawSquares } from '../drawingUtils';
-import { createTestCanvas } from '../testUtils';
+import { circleLine, zShape } from '../../../tests/LineFixtures';
+import { drawCircles, drawLines, drawSquares } from '../drawingUtils';
 import {
-    printLinesViaFillCoords,
     generateLinesAtAngle,
-    printFillLinesForCircle
+    printFillLinesForCircle,
+    printLinesViaFillCoords
 } from '../lineUtils';
 import { getExtremePointsOfCoords } from '../plotUtils';
-import { zShape, circleLine } from '../../../tests/LineFixtures';
+import { createTestCanvas } from '../testUtils';
 
 const imageSnapshotOptions = {
     failureThreshold: 0.02,

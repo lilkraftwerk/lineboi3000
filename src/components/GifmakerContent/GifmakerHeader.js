@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-    moveFrameUp,
+    deleteActiveFrame,
     moveFrameDown,
-    deleteActiveFrame
+    moveFrameUp
 } from 'store/gifmaker/gifmakerActions';
 
 import SingleHeaderFrame from './SingleHeaderFrame';

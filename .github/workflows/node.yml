@@ -36,9 +36,7 @@ jobs:
             # - store_artifacts:
             #       path: tmp/diffs
             #       destination: image_snapshot_diff
-            - name: ESLint
-              run: yarn eslint:check
+            - name: Biome linting and formatting
+              run: yarn biome:check
             - name: CSS Files Lint
               run: yarn style:check
-            - name: Prettier
-              run: yarn prettier:check

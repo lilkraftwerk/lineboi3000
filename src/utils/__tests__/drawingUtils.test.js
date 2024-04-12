@@ -1,15 +1,15 @@
 import Frame from 'canvas-to-buffer';
+import 'jest-canvas-mock';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
+import { zShape } from '../../../tests/LineFixtures';
 import {
-    drawLines,
     drawCircles,
-    drawPoints,
+    drawLines,
     drawPointCircles,
+    drawPoints,
     drawSquares
 } from '../drawingUtils';
-import 'jest-canvas-mock';
 import { createTestCanvas } from '../testUtils';
-import { zShape } from '../../../tests/LineFixtures';
 
 const imageSnapshotOptions = {
     failureThreshold: 0.02,

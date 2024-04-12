@@ -1,8 +1,8 @@
-import React from 'react';
 import { ipcRenderer } from 'electron';
-import _ from 'lodash';
-import { connect } from 'react-redux';
 import GIF from 'gif.js.optimized';
+import _ from 'lodash';
+import React from 'react';
+import { connect } from 'react-redux';
 import {
     // setFrames,
     // setGifmakerLoading,

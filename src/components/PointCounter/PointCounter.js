@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-    getVisibleOriginalLines,
-    getVisibleEfxLines
+    getVisibleEfxLines,
+    getVisibleOriginalLines
 } from 'store/line/lineSelectors';
 
 import styles from './PointCounter.styles.css';

@@ -1,17 +1,17 @@
+import _ from 'lodash';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import idGenerator from 'utils/id';
-import _ from 'lodash';
 import {
     addLayer,
+    deleteLayer,
+    duplicateLayer,
+    moveLayerDown,
+    moveLayerUp,
     selectCurrentLayer,
     setVisibilityForAllLayers,
-    updateLayerSetting,
-    moveLayerUp,
-    moveLayerDown,
-    deleteLayer,
-    duplicateLayer
+    updateLayerSetting
 } from 'store/layer/layerActions';
+import idGenerator from 'utils/id';
 
 import { clearLayer } from 'store/line/lineActions';
 

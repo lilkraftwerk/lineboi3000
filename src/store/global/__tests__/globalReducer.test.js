@@ -1,5 +1,5 @@
-import globalReducer from '../globalReducer';
 import * as actions from '../globalActions';
+import globalReducer from '../globalReducer';
 
 describe('global reducer', () => {
     describe('SWITCH_MODE', () => {

@@ -4,9 +4,9 @@ import {
     createFakePoint,
     createFakePointArray,
     createFakePointArrayContainer,
-    isPointArrayValid,
+    isLineValid,
     isPointArrayContainerValid,
-    isLineValid
+    isPointArrayValid
 } from '../testUtils';
 
 describe('Test Utils', () => {

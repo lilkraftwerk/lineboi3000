@@ -1,15 +1,15 @@
-import _ from 'lodash';
 import Frame from 'canvas-to-buffer';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
-import { createTestCanvas } from '../testUtils';
+import _ from 'lodash';
 import { drawLines } from '../drawingUtils';
+import { createTestCanvas } from '../testUtils';
 
-import {
-    sortLinesForPlotter,
-    getStartAndEndPointsOfCoords
-} from '../lineSortUtils';
-import { drawnRandomLines } from '../../../tests/LineFixtures';
 import 'jest-canvas-mock';
+import { drawnRandomLines } from '../../../tests/LineFixtures';
+import {
+    getStartAndEndPointsOfCoords,
+    sortLinesForPlotter
+} from '../lineSortUtils';
 
 const imageSnapshotOptions = {
     failureThreshold: 0.02,

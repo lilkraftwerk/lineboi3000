@@ -1,5 +1,5 @@
-import layerReducer from '../layerReducer';
 import * as actions from '../layerActions';
+import layerReducer from '../layerReducer';
 
 describe('layer reducer', () => {
     describe('ADD_LAYER', () => {

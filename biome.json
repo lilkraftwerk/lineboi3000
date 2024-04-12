@@ -1,0 +1,40 @@
+{
+	"organizeImports": { "enabled": true },
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"suspicious": {
+				"noDuplicateClassMembers": "warn",
+				"noAssignInExpressions": "off"
+			},
+			"style": {
+				"useDefaultParameterLast": "warn"
+			},
+			"a11y": {
+				"useAltText": "off",
+				"useKeyWithClickEvents": "warn"
+			},
+			"complexity": {
+				"noForEach": "off"
+			},
+			"correctness": {
+				"useExhaustiveDependencies": "warn"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"enabled": true,
+			"attributePosition": "auto",
+			"indentStyle": "space",
+			"indentWidth": 4,
+			"lineEnding": "lf",
+			"lineWidth": 80,
+			"quoteStyle": "single",
+			"trailingComma": "none"
+		}
+	},
+	"files": {
+		"include": ["src/**/*.js", "tests/**/*.js"]
+	}
+}

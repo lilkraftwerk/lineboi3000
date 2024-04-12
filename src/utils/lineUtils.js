@@ -1,8 +1,8 @@
+import { Circle, Line, Point, intersections } from '@mathigon/euclid';
 import _ from 'lodash';
 import isPointInPolygon from 'point-in-polygon';
-import { Line, Circle, Point, intersections } from '@mathigon/euclid';
-import { getExtremePointsOfCoords } from './plotUtils';
 import id from './id';
+import { getExtremePointsOfCoords } from './plotUtils';
 
 export const getPointArraysFromLine = (line) => {
     return line.pointArrayContainer;

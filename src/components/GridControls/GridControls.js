@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { getShowPoints } from 'store/global/globalSelectors';
-import {
-    SidebarItem,
-    SidebarContainer
-} from 'components/common/SidebarContainer/SidebarContainer';
 import {
     EnabledToggleButton,
     SidebarButton
 } from 'components/common/SidebarButton/SidebarButton';
+import {
+    SidebarContainer,
+    SidebarItem
+} from 'components/common/SidebarContainer/SidebarContainer';
+import { getShowPoints } from 'store/global/globalSelectors';
 
 import {
+    setGridOptions,
     toggleGridVisibility,
-    togglePointVisibility,
-    setGridOptions
+    togglePointVisibility
 } from 'store/global/globalActions';
 
 import { getCurrentOptions } from 'store/options/optionsSelectors';

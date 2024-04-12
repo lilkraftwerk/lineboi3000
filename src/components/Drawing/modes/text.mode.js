@@ -1,12 +1,12 @@
 import _ from 'lodash';
-import TextToSVG from 'text-to-svg';
 import { pathDataToPolys } from 'svg-path-to-polygons';
-import { getExtremePointsOfCoords } from '../../../utils/plotUtils';
-import {
-    removePointsOutsidePolygons,
-    generateLinesAtAngle
-} from '../../../utils/lineUtils';
+import TextToSVG from 'text-to-svg';
 import { getFirstAndLastCoordsFromTempCoords } from '../../../utils/drawingUtils';
+import {
+    generateLinesAtAngle,
+    removePointsOutsidePolygons
+} from '../../../utils/lineUtils';
+import { getExtremePointsOfCoords } from '../../../utils/plotUtils';
 
 const getMinMaxValues = (polygon) => {
     const xValues = polygon.map((arr) => arr[0]);
@@ -24,7 +24,7 @@ const getMinMaxValues = (polygon) => {
     };
 };
 
-const createTextCoords = (coords, textContent = 'no text', options) => {
+const createTextCoords = (coords, textContent, options) => {
     const [currentX, currentY] = coords;
     const {
         textFill,

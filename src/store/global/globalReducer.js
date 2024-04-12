@@ -1,8 +1,8 @@
 import {
+    SET_GRID_OPTIONS,
     SWITCH_MODE,
     TOGGLE_GRID_VISIBILITY,
-    TOGGLE_POINT_VISIBILITY,
-    SET_GRID_OPTIONS
+    TOGGLE_POINT_VISIBILITY
 } from './globalActions';
 
 const initialState = {

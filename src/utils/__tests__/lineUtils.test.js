@@ -1,8 +1,8 @@
 import {
-    createLineFromPointArray,
     addIntermediatePointsToLine,
-    isPointWithinCircle,
-    getPointArraysFromLine
+    createLineFromPointArray,
+    getPointArraysFromLine,
+    isPointWithinCircle
 } from '../lineUtils';
 import { isLineValid } from '../testUtils';
 

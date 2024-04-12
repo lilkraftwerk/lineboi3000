@@ -1,7 +1,7 @@
+import chaikinSmooth from 'chaikin-smooth';
 import _ from 'lodash';
 import React from 'react';
 import smoothPolyline from 'smooth-polyline';
-import chaikinSmooth from 'chaikin-smooth';
 
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 

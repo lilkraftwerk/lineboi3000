@@ -1,14 +1,14 @@
 import _ from 'lodash';
 
 import {
-    getStartAndEndPointsOfCoords,
     findNearestLine,
+    getStartAndEndPointsOfCoords,
     sortLinesForPlotter
 } from '../lineSortUtils';
 
 import { addPercentageCoordinatesToLine } from '../plotUtils';
 
-import { zShape, drawnRandomLines } from '../../../tests/LineFixtures';
+import { drawnRandomLines, zShape } from '../../../tests/LineFixtures';
 
 describe('getStartAndEndPointsOfLine', () => {
     it('should get the start and end of a set of coords properly', () => {
