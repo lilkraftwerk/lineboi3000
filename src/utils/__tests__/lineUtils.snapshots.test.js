@@ -1,12 +1,12 @@
-import _ from 'lodash';
 import Frame from 'canvas-to-buffer';
 import 'jest-canvas-mock';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
-import { drawLines, drawCircles, drawPoints } from '../drawingUtils';
-import { createTestCanvas } from '../testUtils';
-import { allPointsBetweenTwoCoords } from '../coordUtils';
-import { splitLinesViaEraserCoords, isPointWithinCircle } from '../lineUtils';
+import _ from 'lodash';
 import { makeVerticalLinesPointArrays } from '../../../tests/LineFixtures';
+import { allPointsBetweenTwoCoords } from '../coordUtils';
+import { drawCircles, drawLines, drawPoints } from '../drawingUtils';
+import { isPointWithinCircle, splitLinesViaEraserCoords } from '../lineUtils';
+import { createTestCanvas } from '../testUtils';
 
 const imageSnapshotOptions = {
     failureThreshold: 0.02,

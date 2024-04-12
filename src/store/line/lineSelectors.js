@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import { createSelector } from 'reselect';
 import {
+    getLayers,
     getVisibleLayerIDs,
-    getVisibleLayers,
-    getLayers
+    getVisibleLayers
 } from '../layer/layerSelectors';
 
 export const getOriginalLines = (state) => state.originalLinesReducer.present;

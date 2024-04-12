@@ -1,21 +1,21 @@
 import _ from 'lodash';
 import undoable, { includeAction } from 'redux-undo';
-import {
-    deletePointsViaSelection,
-    splitLinesViaEraserCoords,
-    createLineFromPointArray
-} from '../../utils/lineUtils';
 import idGenerator from '../../utils/id';
+import {
+    createLineFromPointArray,
+    deletePointsViaSelection,
+    splitLinesViaEraserCoords
+} from '../../utils/lineUtils';
 
 import {
     ADD_LINE_TO_LAYER_BY_ID,
     ADD_MULTIPLE_LINES_TO_LAYER_BY_ID,
-    SET_LAYER_EFX_LINES,
-    MULTIPLY_CANVAS,
-    SHRINK_CANVAS,
+    CLEAR_LAYER,
     DELETE_FILL_LINES_FROM_LAYER_BY_ID,
     ERASE_POINTS_WITHIN_ERASER_COORDS,
-    CLEAR_LAYER
+    MULTIPLY_CANVAS,
+    SET_LAYER_EFX_LINES,
+    SHRINK_CANVAS
 } from './lineActions';
 
 import { DUPLICATE_LAYER } from '../layer/layerActions';

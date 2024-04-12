@@ -1,7 +1,7 @@
+import { ipcRenderer } from 'electron';
 import React from 'react';
 import { connect } from 'react-redux';
-import { ipcRenderer } from 'electron';
-import { newProject, loadProject } from 'store/rootActions';
+import { loadProject, newProject } from 'store/rootActions';
 
 class Listener extends React.Component {
     componentDidMount() {

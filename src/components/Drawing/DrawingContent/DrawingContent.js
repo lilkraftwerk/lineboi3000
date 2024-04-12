@@ -5,22 +5,22 @@ import { getShowPoints } from 'store/global/globalSelectors';
 import { getVisibleOriginalLines } from 'store/line/lineSelectors';
 import { getCurrentOptions } from 'store/options/optionsSelectors';
 
+import { CanvasLayer, SelectLayer } from 'components/common/SvgLayer/SvgLayer';
 import {
     getCurrentLayer,
     getCurrentLayerID,
     getVisibleLayers
 } from 'store/layer/layerSelectors';
-import { CanvasLayer, SelectLayer } from 'components/common/SvgLayer/SvgLayer';
-import {
-    printLinesViaFillCoords,
-    printFillLinesForSquare,
-    printFillLinesForCircle
-} from '../../../utils/lineUtils';
-import DrawingModes from '../modes';
 import {
     addMultipleLinesToLayerByID,
     erasePointsAtCoords
 } from '../../../store/line/lineActions';
+import {
+    printFillLinesForCircle,
+    printFillLinesForSquare,
+    printLinesViaFillCoords
+} from '../../../utils/lineUtils';
+import DrawingModes from '../modes';
 
 import styles from './DrawingContent.styles.css';
 
@@ -353,7 +353,7 @@ export class DrawingContent extends React.Component {
             offScreenContext.stroke();
         }
 
-        if (tempCoords && tempCoords.length && drawingMode === 'eraser') {
+        if (tempCoords?.length && drawingMode === 'eraser') {
             offScreenContext.strokeStyle = 'rgba(255, 255, 255, 0.5)';
             offScreenContext.beginPath();
             // add strokewidth to lines
@@ -374,7 +374,7 @@ export class DrawingContent extends React.Component {
             offScreenContext.stroke();
         }
 
-        if (tempCoords && tempCoords.length && drawingMode === 'fill') {
+        if (tempCoords?.length && drawingMode === 'fill') {
             offScreenContext.strokeStyle = 'rgba(255, 255, 255, 0.5)';
             offScreenContext.beginPath();
             // add strokewidth to lines

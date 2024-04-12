@@ -1,13 +1,13 @@
-import React from 'react';
-import {
-    setTextContent,
-    setTextSize,
-    setFontName,
-    setOptionByKey
-} from 'store/drawing/drawingActions';
-import { SidebarItem } from 'components/common/SidebarContainer/SidebarContainer';
 import ItemSelector from 'components/common/ItemSelector/ItemSelector';
 import PercentClicker from 'components/common/PercentClicker/PercentClicker';
+import { SidebarItem } from 'components/common/SidebarContainer/SidebarContainer';
+import React from 'react';
+import {
+    setFontName,
+    setOptionByKey,
+    setTextContent,
+    setTextSize
+} from 'store/drawing/drawingActions';
 
 const FONT_NAMES = [
     'VCR_OSD_MONO.ttf',

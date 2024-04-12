@@ -1,34 +1,34 @@
-import _ from 'lodash';
-import React from 'react';
-import { connect } from 'react-redux';
-import { ipcRenderer } from 'electron';
-import { ActionCreators } from 'redux-undo';
+import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 import {
-    selectMainMode,
-    selectDrawMode,
-    setOptionByKey
-} from 'store/drawing/drawingActions';
-import { getCurrentOptions } from 'store/options/optionsSelectors';
-import { getCurrentLayerID } from 'store/layer/layerSelectors';
+    EmojiButton,
+    EnabledToggleButton
+} from 'components/common/SidebarButton/SidebarButton';
 import {
     SidebarContainer,
     SidebarItem
 } from 'components/common/SidebarContainer/SidebarContainer';
-import PercentClicker from 'components/common/PercentClicker/PercentClicker';
+import { ipcRenderer } from 'electron';
+import _ from 'lodash';
+import React from 'react';
+import { connect } from 'react-redux';
+import { ActionCreators } from 'redux-undo';
 import {
-    EnabledToggleButton,
-    EmojiButton
-} from 'components/common/SidebarButton/SidebarButton';
+    selectDrawMode,
+    selectMainMode,
+    setOptionByKey
+} from 'store/drawing/drawingActions';
+import { getCurrentLayerID } from 'store/layer/layerSelectors';
+import { getCurrentOptions } from 'store/options/optionsSelectors';
 import { applyTemplate } from './TemplateUtils';
 
-import TemplateOptions from './TemplateOptions';
-import FillOptions from './FillOptions';
-import SelectOptions from './SelectOptions';
-import TextOptions from './TextOptions';
-import EraserOptions from './EraserOptions';
-import ShrinkCanvasOptions from './ShrinkCanvasOptions';
-import MultiplyCanvasOptions from './MultiplyCanvasOptions';
 import CircleOptions from './CircleOptions';
+import EraserOptions from './EraserOptions';
+import FillOptions from './FillOptions';
+import MultiplyCanvasOptions from './MultiplyCanvasOptions';
+import SelectOptions from './SelectOptions';
+import ShrinkCanvasOptions from './ShrinkCanvasOptions';
+import TemplateOptions from './TemplateOptions';
+import TextOptions from './TextOptions';
 
 const MAIN_MODES = {
     draw: {

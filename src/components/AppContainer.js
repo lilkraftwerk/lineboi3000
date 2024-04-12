@@ -1,29 +1,29 @@
-import React from 'react';
-import _ from 'lodash';
-import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
+import _ from 'lodash';
+import React from 'react';
+import { connect } from 'react-redux';
 
-import { switchMode } from 'store/global/globalActions';
 import { setGifmakerLoading } from 'store/gifmaker/gifmakerActions';
+import { switchMode } from 'store/global/globalActions';
 
 import DrawingContent from './Drawing/DrawingContent/DrawingContent';
 import DrawingSidebar from './Drawing/DrawingSidebar/DrawingSidebar';
-import PlotContent from './PlotContent/PlotContent';
-import PlotHeader from './PlotHeader/PlotHeader';
-import GifmakerContent from './GifmakerContent/GifmakerContent';
-import GifmakerSidebar from './GifmakerContent/GifmakerSidebar';
-import PlotSidebar from './PlotSidebar/PlotSidebar';
-import OptionsSidebar from './OptionsSidebar/OptionsSidebar';
-import OptionsContent from './OptionsContent/OptionsContent';
-import LayerControls from './LayerHeader/LayerHeader';
-import GridContent from './GridContent/GridContent';
 import EfxContent from './EfxContent/EfxContent';
 import EfxSidebar from './EfxSidebar/EfxSidebar';
+import GifmakerContent from './GifmakerContent/GifmakerContent';
+import GifmakerSidebar from './GifmakerContent/GifmakerSidebar';
+import GridContent from './GridContent/GridContent';
+import LayerControls from './LayerHeader/LayerHeader';
+import OptionsContent from './OptionsContent/OptionsContent';
+import OptionsSidebar from './OptionsSidebar/OptionsSidebar';
+import PlotContent from './PlotContent/PlotContent';
+import PlotHeader from './PlotHeader/PlotHeader';
+import PlotSidebar from './PlotSidebar/PlotSidebar';
 
-import PointCounter from './PointCounter/PointCounter';
-import GridControls from './GridControls/GridControls';
 import GifmakerHeader from './GifmakerContent/GifmakerHeader';
+import GridControls from './GridControls/GridControls';
 import Listener from './Listener';
+import PointCounter from './PointCounter/PointCounter';
 
 import styles from './AppContainer.styles.css';
 

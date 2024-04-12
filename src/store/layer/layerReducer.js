@@ -1,24 +1,24 @@
-import _ from 'lodash';
 import arrayMove from 'array-move';
+import _ from 'lodash';
 import id from '../../utils/id';
 
 import {
-    ADD_LAYER,
-    SELECT_CURRENT_LAYER,
-    UPDATE_LAYER_SETTING,
-    SET_VISIBILITY_FOR_ALL_LAYERS,
-    MOVE_LAYER_UP,
-    MOVE_LAYER_DOWN,
-    DELETE_LAYER,
-    DUPLICATE_LAYER,
     // filter stuff
     ADD_FILTER_TO_LAYER_BY_ID,
-    UPDATE_FILTER_BY_LAYER_ID_AND_FILTER_ID,
-    SET_FILTERS_FOR_LAYER_BY_ID,
+    ADD_LAYER,
     DELETE_FILTER_FROM_LAYER,
-    MOVE_FILTER_UP,
+    DELETE_LAYER,
+    DUPLICATE_LAYER,
     MOVE_FILTER_DOWN,
-    SET_FILTERS_FOR_ALL_LAYERS
+    MOVE_FILTER_UP,
+    MOVE_LAYER_DOWN,
+    MOVE_LAYER_UP,
+    SELECT_CURRENT_LAYER,
+    SET_FILTERS_FOR_ALL_LAYERS,
+    SET_FILTERS_FOR_LAYER_BY_ID,
+    SET_VISIBILITY_FOR_ALL_LAYERS,
+    UPDATE_FILTER_BY_LAYER_ID_AND_FILTER_ID,
+    UPDATE_LAYER_SETTING
 } from './layerActions';
 
 const move = (array, oldIndex, newIndex) => {
@@ -230,15 +230,16 @@ const updateFilterSettings = (
     });
 };
 
-const layerReducer = (state = getInitialState(), action) => {
+const layerReducer = (state, action) => {
     switch (action.type) {
-        case ADD_LAYER:
+        case ADD_LAYER: {
             const newLayer = getNewLayerState(state.layers.length); // eslint-disable-line
             return {
                 ...state,
                 layers: [...state.layers, newLayer],
                 currentLayerID: newLayer.id
             };
+        }
         case SELECT_CURRENT_LAYER:
             return {
                 ...state,

@@ -1,10 +1,10 @@
 import {
-    makePercentage,
-    coordsToPercent,
     addPercentageCoordinatesToLine,
-    scaleLine,
+    coordsToPercent,
+    getExtremePointsOfLines,
+    makePercentage,
     moveLine,
-    getExtremePointsOfLines
+    scaleLine
     // centerLines
 } from '../plotUtils';
 

@@ -92,7 +92,7 @@ class AxidrawAPI {
 
     async parkPen() {
         await this.setPenState('state=0');
-        await this.setPenState(`x=0&y=0`);
+        await this.setPenState('x=0&y=0');
     }
 
     setPenHeights({ penDownHeight, penUpHeight }) {

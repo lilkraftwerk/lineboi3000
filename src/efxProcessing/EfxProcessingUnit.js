@@ -1,16 +1,16 @@
-import MoveFilter from '../filters/Move';
-import SimplifyFilter from '../filters/Simplify';
-import ExperimentalFilter from '../filters/Experimental';
 import ConnectLinesFilter from '../filters/ConnectLines';
-import DotsFilter from '../filters/Dots';
-import WiggleFilter from '../filters/Wiggle';
 import DistortFilter from '../filters/Distort';
+import DotsFilter from '../filters/Dots';
+import ExesFilter from '../filters/Exes';
+import ExperimentalFilter from '../filters/Experimental';
+import MoveFilter from '../filters/Move';
 import RemoveLinesFilter from '../filters/RemoveLines';
 import ShortenLinesFilter from '../filters/ShortenLine';
+import SimplifyFilter from '../filters/Simplify';
+import SmoothFilter from '../filters/Smooth';
 import SplitLinesFilter from '../filters/SplitLines';
 import SplitLinesRandomFilter from '../filters/SplitLinesRandom';
-import ExesFilter from '../filters/Exes';
-import SmoothFilter from '../filters/Smooth';
+import WiggleFilter from '../filters/Wiggle';
 
 const FILTERS = [
     MoveFilter,

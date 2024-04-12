@@ -1,8 +1,8 @@
-import React from 'react';
-import { setOptionByKey } from 'store/drawing/drawingActions';
-import { EmojiButton } from 'components/common/SidebarButton/SidebarButton';
 import PercentClicker from 'components/common/PercentClicker/PercentClicker';
+import { EmojiButton } from 'components/common/SidebarButton/SidebarButton';
+import React from 'react';
 import { connect } from 'react-redux';
+import { setOptionByKey } from 'store/drawing/drawingActions';
 
 const TEMPLATE_TYPES = {
     frame: {

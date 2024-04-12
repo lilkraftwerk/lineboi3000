@@ -1,44 +1,44 @@
+import { ipcRenderer } from 'electron';
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { ipcRenderer } from 'electron';
+import { saveTempAsFrame, setTempBlob } from 'store/gifmaker/gifmakerActions';
 import {
     addFilterToLayerByID,
-    updateFilterByLayerIDandFilterID,
-    moveFilterUp,
-    moveFilterDown,
     deleteFilterFromLayer,
-    setFiltersForLayerByID,
+    moveFilterDown,
+    moveFilterUp,
     setFiltersForAllLayers,
+    setFiltersForLayerByID,
+    updateFilterByLayerIDandFilterID,
     updateLayerSetting
 } from 'store/layer/layerActions';
 import { getCurrentLayer, getLayers } from 'store/layer/layerSelectors';
-import { getCurrentOptions } from 'store/options/optionsSelectors';
 import { setLayerEfxLines } from 'store/line/lineActions';
-import { saveTempAsFrame, setTempBlob } from 'store/gifmaker/gifmakerActions';
 import { getOriginalLines } from 'store/line/lineSelectors';
+import { getCurrentOptions } from 'store/options/optionsSelectors';
 import idGenerator from 'utils/id';
 
+import ItemSelector from 'components/common/ItemSelector/ItemSelector';
 import {
     SidebarContainer,
     SidebarItem
 } from 'components/common/SidebarContainer/SidebarContainer';
-import ItemSelector from 'components/common/ItemSelector/ItemSelector';
 
-import FilterWrapper from 'filters/FilterWrapper';
 import ConnectLines from 'filters/ConnectLines';
-import Wiggle from 'filters/Wiggle';
 import Distort from 'filters/Distort';
+import Dots from 'filters/Dots';
+import Exes from 'filters/Exes';
+import Experimental from 'filters/Experimental';
+import FilterWrapper from 'filters/FilterWrapper';
+import Move from 'filters/Move';
 import RemoveLines from 'filters/RemoveLines';
 import ShortenLines from 'filters/ShortenLine';
+import Simplify from 'filters/Simplify';
+import Smooth from 'filters/Smooth';
 import SplitLines from 'filters/SplitLines';
 import SplitLinesRandom from 'filters/SplitLinesRandom';
-import Simplify from 'filters/Simplify';
-import Experimental from 'filters/Experimental';
-import Dots from 'filters/Dots';
-import Move from 'filters/Move';
-import Exes from 'filters/Exes';
-import Smooth from 'filters/Smooth';
+import Wiggle from 'filters/Wiggle';
 
 import {
     createLineFromPointArray,

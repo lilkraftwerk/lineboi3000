@@ -1,28 +1,28 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import Frame from 'canvas-to-buffer';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 
+import {
+    makeHorizontalLinesPointArrays,
+    makeVerticalLinesPointArrays
+} from '../../../tests/LineFixtures';
 import { drawLines } from '../../utils/drawingUtils';
 import { createTestCanvas } from '../../utils/testUtils';
-import {
-    makeVerticalLinesPointArrays,
-    makeHorizontalLinesPointArrays
-} from '../../../tests/LineFixtures';
 
 import 'jest-canvas-mock';
 
-import Wiggle from '../Wiggle';
 import Distort from '../Distort';
+import Dots from '../Dots';
+import Exes from '../Exes';
+import Experimental from '../Experimental';
+import Move from '../Move';
 import RemoveLines from '../RemoveLines';
 import ShortenLines from '../ShortenLine';
+import Simplify from '../Simplify';
+import Smooth from '../Smooth';
 import SplitLines from '../SplitLines';
 import SplitLinesRandom from '../SplitLinesRandom';
-import Simplify from '../Simplify';
-import Experimental from '../Experimental';
-import Dots from '../Dots';
-import Move from '../Move';
-import Exes from '../Exes';
-import Smooth from '../Smooth';
+import Wiggle from '../Wiggle';
 
 const ALL_FILTERS = [
     Wiggle,

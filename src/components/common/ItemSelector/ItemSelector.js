@@ -13,13 +13,13 @@ const ItemSelector = ({
     const [menuOpen, setMenuOpen] = React.useState(false);
 
     let selectedKey = '';
-    if (items && items[selectedIndex]) {
+    if (items?.items[selectedIndex]) {
         selectedKey = items[selectedIndex].key;
     }
 
     useEffect(() => {
         onChange(selectedKey);
-    }, [selectedIndex]);
+    }, []);
 
     const selectLeft = () => {
         if (selectedIndex === 0) {

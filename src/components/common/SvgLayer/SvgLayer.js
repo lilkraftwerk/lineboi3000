@@ -1,8 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
-    prepareLines,
     drawLines,
-    drawPointCircles
+    drawPointCircles,
+    prepareLines
 } from '../../../utils/drawingUtils';
 
 import styles from './SvgLayer.styles.css';
@@ -179,7 +179,7 @@ export const CombinedLayer = ({
         }
     }, [layers, showPoints]);
 
-    if (canvas && canvas.current) {
+    if (canvas?.current) {
         canvas.current.toBlob((blob) => {
             const reader = new FileReader();
             reader.readAsDataURL(blob);

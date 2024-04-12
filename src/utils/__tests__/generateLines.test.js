@@ -1,11 +1,11 @@
-import 'jest-canvas-mock';
 import Frame from 'canvas-to-buffer';
+import 'jest-canvas-mock';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
+import { zShape } from '../../../tests/LineFixtures';
 import { drawLines } from '../drawingUtils';
-import { createTestCanvas } from '../testUtils';
 import { generateLinesAtAngle } from '../lineUtils';
 import { getExtremePointsOfCoords } from '../plotUtils';
-import { zShape } from '../../../tests/LineFixtures';
+import { createTestCanvas } from '../testUtils';
 
 expect.extend({ toMatchImageSnapshot });
 

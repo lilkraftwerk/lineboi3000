@@ -1,5 +1,5 @@
-import _ from 'lodash';
 import { createCanvas } from 'canvas';
+import _ from 'lodash';
 import id from './id';
 
 export const createFakePoint = (

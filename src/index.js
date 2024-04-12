@@ -1,13 +1,13 @@
+import { ipcRenderer } from 'electron';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { ipcRenderer } from 'electron';
 
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 
+import { createLogger } from 'redux-logger';
 import { thunk } from 'redux-thunk';
 import rootReducer from 'store/rootReducer';
-import { createLogger } from 'redux-logger';
 import AppContainer from './components/AppContainer';
 
 import './globalStyles.css';

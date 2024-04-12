@@ -1,11 +1,11 @@
-import React from 'react';
+import { CombinedLayer } from 'components/common/SvgLayer/SvgLayer';
 import _ from 'lodash';
+import React from 'react';
 import { connect } from 'react-redux';
+import { setTempBlob } from 'store/gifmaker/gifmakerActions';
+import { getShowPoints } from 'store/global/globalSelectors';
 import { getVisibleEfxLines } from 'store/line/lineSelectors';
 import { getCurrentOptions } from 'store/options/optionsSelectors';
-import { setTempBlob } from 'store/gifmaker/gifmakerActions';
-import { CombinedLayer } from 'components/common/SvgLayer/SvgLayer';
-import { getShowPoints } from 'store/global/globalSelectors';
 
 import styles from './EfxContent.styles.css';
 
@@ -33,7 +33,7 @@ class EfxContainer extends React.Component {
         }
 
         const hasLines = visibleEfxLines
-            .map((line) => line.efxLines && line.efxLines.length)
+            .map((line) => line.efxLines?.length)
             .reduce((sum, currentValue) => sum + currentValue);
         return hasLines;
     };

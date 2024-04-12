@@ -1,20 +1,20 @@
 import {
-    isPointArrayContainerValid,
-    createFakePointArrayContainer
+    createFakePointArrayContainer,
+    isPointArrayContainerValid
 } from '../../utils/testUtils';
 
-import Wiggle from '../Wiggle';
 import Distort from '../Distort';
+import Dots from '../Dots';
+import Exes from '../Exes';
+import Experimental from '../Experimental';
+import Move from '../Move';
 import RemoveLines from '../RemoveLines';
 import ShortenLines from '../ShortenLine';
+import Simplify from '../Simplify';
+import Smooth from '../Smooth';
 import SplitLines from '../SplitLines';
 import SplitLinesRandom from '../SplitLinesRandom';
-import Simplify from '../Simplify';
-import Experimental from '../Experimental';
-import Dots from '../Dots';
-import Move from '../Move';
-import Exes from '../Exes';
-import Smooth from '../Smooth';
+import Wiggle from '../Wiggle';
 
 const ALL_FILTERS = [
     Wiggle,

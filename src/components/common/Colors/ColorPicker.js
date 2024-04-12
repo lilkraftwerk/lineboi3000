@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import _ from 'lodash';
-import { Popover } from 'react-tiny-popover';
 import Icon from 'components/common/Icon/Icon';
+import _ from 'lodash';
+import React, { useState } from 'react';
+import { Popover } from 'react-tiny-popover';
 import ColorList from './ColorList';
 
 import styles from './ColorPicker.styles.css';

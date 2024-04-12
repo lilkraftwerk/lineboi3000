@@ -9,12 +9,12 @@ import {
 
 import { EnabledToggleButton } from 'components/common/SidebarButton/SidebarButton';
 
-import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 import ColorPicker from 'components/common/Colors/ColorPicker';
 import NumberInput from 'components/common/NumberInput/NumberInput';
+import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 
-import ColorList from '../common/Colors/ColorList';
 import { setGlobalOptionByKey } from '../../store/options/optionsActions';
+import ColorList from '../common/Colors/ColorList';
 import styles from './OptionsSidebar.styles.css';
 
 const initialState = {

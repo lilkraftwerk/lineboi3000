@@ -1,15 +1,15 @@
 import id from '../../utils/id';
 
 import {
-    SAVE_TEMP_AS_FRAME,
-    SET_GIF_OPTION_BY_KEY,
-    SET_TEMP_BLOB,
-    SET_FRAMES,
-    SET_GIFMAKER_LOADING,
     ADD_ACTIVE_FRAME,
     DELETE_ACTIVE_FRAME,
     DELETE_LIBRARY_FRAME,
-    SET_MASTER_GIF
+    SAVE_TEMP_AS_FRAME,
+    SET_FRAMES,
+    SET_GIFMAKER_LOADING,
+    SET_GIF_OPTION_BY_KEY,
+    SET_MASTER_GIF,
+    SET_TEMP_BLOB
 } from './gifmakerActions';
 
 const initialState = {

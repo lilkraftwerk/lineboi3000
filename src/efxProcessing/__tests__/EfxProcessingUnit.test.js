@@ -1,8 +1,8 @@
-import EfxProcessingUnit from '../EfxProcessingUnit';
 import {
     createFakePointArrayContainer,
     isPointArrayContainerValid
 } from '../../utils/testUtils';
+import EfxProcessingUnit from '../EfxProcessingUnit';
 
 const globalSettings = {
     height: 600,

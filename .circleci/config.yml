@@ -28,11 +28,8 @@ jobs:
                   path: tmp/diffs
                   destination: image_snapshot_diff
             - run:
-                  name: ESLint
-                  command: yarn eslint:check
+                  name: Biome
+                  command: yarn biome:check
             - run:
                   name: CSS Files Lint
                   command: yarn style:check
-            - run:
-                  name: Prettier
-                  command: yarn prettier:check

@@ -1,5 +1,5 @@
-import React from 'react';
 import { EmojiButton } from 'components/common/SidebarButton/SidebarButton';
+import React from 'react';
 
 import styles from './AngleChooser.styles.css';
 
