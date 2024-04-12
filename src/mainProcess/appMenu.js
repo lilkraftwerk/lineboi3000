@@ -48,7 +48,9 @@ const appMenu = (window) => {
                     click: () => {
                         window.webContents.send('menu:startSaveProcess');
                     }
-                }
+                },
+                { type: 'separator' },
+                { role: 'quit' }
             ]
         },
         {
