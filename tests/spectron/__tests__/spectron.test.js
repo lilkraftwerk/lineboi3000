@@ -28,7 +28,9 @@ describe('App Tests', () => {
     });
 
     afterEach(() => {
-        return app.stop();
+        if (app?.isRunning()) {
+            return app.stop();
+        }
     });
 
     it('Opens the main window and clicks around', async () => {
