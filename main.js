@@ -1,3 +1,4 @@
+import { log } from "console"; // https://stackoverflow.com/a/70768410
 const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
 const fs = require('fs-jetpack');
 const base64ImageToFile = require('base64image-to-file');
@@ -115,10 +116,10 @@ app.on('ready', () => {
             }
         })
             .then((name) => {
-                console.log(`Added Extension:  ${name}`);
+                log(`Added Extension:  ${name}`);
             })
             .catch((err) => {
-                console.log('An error occurred: ', err);
+                log('An error occurred: ', err);
             });
     }
 });
