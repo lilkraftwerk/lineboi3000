@@ -13,7 +13,8 @@ const ItemSelector = ({
     const [menuOpen, setMenuOpen] = React.useState(false);
 
     let selectedKey = '';
-    if (items?.items[selectedIndex]) {
+    // biome-ignore lint/complexity/useOptionalChain: breaks Efx page
+    if (items && items[selectedIndex]) {
         selectedKey = items[selectedIndex].key;
     }
 

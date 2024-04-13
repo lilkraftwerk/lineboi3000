@@ -57,12 +57,12 @@ describe('App Tests', () => {
             ...imageSnapshotOptions
         });
 
-        // await page.click('#modeButton-efx');
-        // await page.waitForSelector('#efxContent', { visible: true });
-        // const efxPhoto = await page.screenshot();
-        // expect(efxPhoto).toMatchImageSnapshot({
-        //     ...imageSnapshotOptions
-        // });
+        await page.click('#modeButton-efx');
+        await page.waitForSelector('#efxContent', { visible: true });
+        const efxPhoto = await page.screenshot();
+        expect(efxPhoto).toMatchImageSnapshot({
+            ...imageSnapshotOptions
+        });
 
         await page.click('#modeButton-plot');
         await page.waitForSelector('#plotContent', { visible: true });
