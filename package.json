@@ -1,7 +1,9 @@
 {
     "name": "lineboi",
+    "author": "lilkraftwerk",
     "version": "0.0.1",
     "description": "draw lines, plot with a pen, make gifs",
+    "license": "MIT",
     "main": "main.js",
     "scripts": {
         "start": "concurrently \"yarn:webpack:dev\" \"yarn:cncserver\" \"yarn:electron\"",
@@ -61,8 +63,6 @@
     "build": {
         "appId": "com.electron.lineboi"
     },
-    "author": "lilkraftwerk",
-    "license": "ISC",
     "dependencies": {
         "@mathigon/euclid": "^1.1.15",
         "array-move": "^3.0.0",
