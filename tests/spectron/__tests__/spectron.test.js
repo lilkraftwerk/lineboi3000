@@ -8,7 +8,8 @@ expect.extend({ toMatchImageSnapshot });
 
 const app = new Application({
     path: electronPath,
-    args: [path.join(__dirname, '..', '..', '..')]
+    args: [path.join(__dirname, '..', '..', '..')],
+    chromeDriverArgs: ['remote-debugging-port=9222']
 });
 
 const LOAD_DELAY = 1200;
