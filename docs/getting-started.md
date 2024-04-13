@@ -31,11 +31,10 @@ In a terminal window, navigate to the main folder and enter `yarn [command]` or 
 | `webpack:prod`       | Build Webpack files in prod mode                                                |
 | `cncserver`          | Start the server that interfaces with a Pen Plotter                             |
 | `format`             | Run tools to format code style, check for ESLint accuracy, and format CSS files |
-| `test`               | Run test files                                                                  |
+| `test`               | Run unit and e2e tests                                                          |
 | `test:src`           | Just test files in `src` folder                                                 |
 | `test:filters`       | Generate example images for filters                                             |
 | `test:filters:watch` | Watch for changes to filter files and generate examples images                  |
 | `test:update`        | Update screenshots for tests                                                    |
 | `test:update:watch`  | Update screenshots for tests when files are changed                             |
 | `test:watch`         | Run tests on changed files                                                      |
-| `test:main`          | Run Spectron e2e tests for Electron app                                         |
