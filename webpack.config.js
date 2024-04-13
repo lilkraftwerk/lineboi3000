@@ -16,10 +16,13 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: ['babel-loader'],
-                include: path.join(__dirname, 'src')
+                loader: 'esbuild-loader',
+                include: path.join(__dirname, 'src'),
+                options: {
+                    loader: 'jsx',
+                }
             },
             {
                 test: /\.html$/,
