@@ -23,9 +23,8 @@ const imageSnapshotOptions = {
 
 describe('App Tests', () => {
     beforeEach(() => {
-        jest.setTimeout(30000);
         return app.start();
-    });
+    }, 35000); // timeout (ms)
 
     afterEach(() => {
         if (app?.isRunning()) {
