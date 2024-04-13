@@ -37,7 +37,6 @@
         "test:update": "jest --u --colors --verbose",
         "test:update:watch": "jest --u --watch --colors --verbose",
         "test:watch": "jest --colors --verbose --watch",
-        "test:main": "jest ./spectron --runInBand",
         "test:coverage": "jest ./src --colors --verbose --collectCoverage"
     },
     "jest": {
@@ -122,11 +121,11 @@
         "jest-css-modules": "^2.1.0",
         "jest-esbuild": "^0.3.0",
         "jest-image-snapshot": "^6.0.0",
+        "playwright": "^1.43.1",
         "postcss": "^8.4.31",
         "progress-bar-webpack-plugin": "^2.1.0",
         "raw-loader": "^4.0.1",
         "rimraf": "^5.0.0",
-        "spectron": "^19.0.0",
         "style-loader": "^3.0.0",
         "stylelint": "^16.0.0",
         "stylelint-order": "^6.0.4",
