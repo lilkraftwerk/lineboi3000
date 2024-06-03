@@ -112,7 +112,7 @@
         "copy-webpack-plugin": "^12.0.0",
         "css-declaration-sorter": "^7.0.0",
         "css-loader": "^7.0.0",
-        "electron": "^29.0.0",
+        "electron": "^30.0.0",
         "electron-extension-installer": "^1.2.0",
         "html-loader": "^5.0.0",
         "html-webpack-plugin": "^5.0.0",
