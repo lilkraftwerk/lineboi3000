@@ -15,12 +15,12 @@
             "automerge": true
         },
         {
-            "extends": "packages:linters",
+            "extends": ["packages:linters"],
             "groupName": "linters",
             "automerge": true
         },
         {
-            "extends": "packages:jsTest",
+            "extends": ["packages:jsTest"],
             "groupName": "JS test packages",
             "automerge": true
         },
