@@ -79,7 +79,7 @@
         "chaikin-smooth": "^1.0.4",
         "cncserver": "^2.9.0",
         "concurrently": "^8.2.2",
-        "esbuild": "^0.20.2",
+        "esbuild": "^0.23.0",
         "esbuild-loader": "^4.1.0",
         "fs-jetpack": "^5.0.0",
         "gif.js.optimized": "^1.0.1",
