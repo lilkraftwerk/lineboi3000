@@ -73,7 +73,7 @@
     },
     "dependencies": {
         "@mathigon/euclid": "^1.1.15",
-        "array-move": "^3.0.0",
+        "array-move": "^4.0.0",
         "base64image-to-file": "^1.2.0",
         "bresenham-js": "^0.0.0",
         "chaikin-smooth": "^1.0.4",
