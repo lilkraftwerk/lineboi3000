@@ -1,7 +1,7 @@
 import { EmojiButton } from 'components/common/SidebarButton/SidebarButton';
 import React from 'react';
 
-import styles from './AngleChooser.styles.css';
+import * as styles from './AngleChooser.styles.css';
 
 const AngleChooser = ({ currentValue = 50, setValue = () => {} }) => {
     const handleChange = (e) => {

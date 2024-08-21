@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './OptionsContent.styles.css';
+import * as styles from './OptionsContent.styles.css';
 
 const OptionsContent = () => {
     return (

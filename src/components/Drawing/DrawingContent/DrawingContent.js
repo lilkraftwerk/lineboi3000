@@ -22,7 +22,7 @@ import {
 } from '../../../utils/lineUtils';
 import DrawingModes from '../modes';
 
-import styles from './DrawingContent.styles.css';
+import * as styles from './DrawingContent.styles.css';
 
 export class DrawingContent extends React.Component {
     constructor(props) {

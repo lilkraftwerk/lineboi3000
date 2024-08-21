@@ -4,7 +4,7 @@ import React from 'react';
 import { setMultiplyCanvasOptions } from 'store/drawing/drawingActions';
 import { multiplyCanvas } from 'store/line/lineActions';
 
-import styles from './ShrinkCanvasOptions.styles.css';
+import * as styles from './ShrinkCanvasOptions.styles.css';
 
 const MultiplyCanvasOptions = (props) => {
     const { multiplyCanvasOptions, globalHeight, globalWidth, dispatch } =

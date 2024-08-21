@@ -26,7 +26,7 @@ import {
     generatePlotBoundaries
 } from '../../utils/plotUtils';
 
-import styles from './PlotSidebar.styles.css';
+import * as styles from './PlotSidebar.styles.css';
 
 const INIT_STATE = {
     connectionStatus: 'searching',

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './NumberInput.styles.css';
+import * as styles from './NumberInput.styles.css';
 
 const NumberInput = ({
     value,

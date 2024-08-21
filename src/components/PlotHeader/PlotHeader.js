@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import styles from './PlotHeader.styles.css';
+import * as styles from './PlotHeader.styles.css';
 
 export const PlotHeader = ({
     currentPlotPercentage,

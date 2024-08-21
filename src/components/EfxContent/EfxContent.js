@@ -7,7 +7,7 @@ import { getShowPoints } from 'store/global/globalSelectors';
 import { getVisibleEfxLines } from 'store/line/lineSelectors';
 import { getCurrentOptions } from 'store/options/optionsSelectors';
 
-import styles from './EfxContent.styles.css';
+import * as styles from './EfxContent.styles.css';
 
 class EfxContainer extends React.Component {
     shouldComponentUpdate(nextProps) {

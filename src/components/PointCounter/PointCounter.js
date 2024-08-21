@@ -6,7 +6,7 @@ import {
     getVisibleOriginalLines
 } from 'store/line/lineSelectors';
 
-import styles from './PointCounter.styles.css';
+import * as styles from './PointCounter.styles.css';
 
 const PointCounter = ({ visibleEfxLines, visibleOriginalLines, mode }) => {
     let linesToCount;

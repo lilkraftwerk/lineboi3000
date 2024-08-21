@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 
-import styles from './PercentClicker.styles.css';
+import * as styles from './PercentClicker.styles.css';
 
 const PercentClicker = ({
     title,

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Popover } from 'react-tiny-popover';
 import ColorList from './ColorList';
 
-import styles from './ColorPicker.styles.css';
+import * as styles from './ColorPicker.styles.css';
 
 const ColorPicker = ({ colorList, onColorSelect }) => {
     const [shuffledColors] = useState(_.take(_.shuffle(colorList), 32));

@@ -25,7 +25,7 @@ import GridControls from './GridControls/GridControls';
 import Listener from './Listener';
 import PointCounter from './PointCounter/PointCounter';
 
-import styles from './AppContainer.styles.css';
+import * as styles from './AppContainer.styles.css';
 
 const MODES = {
     draw: {

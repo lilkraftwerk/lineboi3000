@@ -46,7 +46,7 @@ import {
 } from '../../utils/lineUtils';
 
 import '../common/SidebarContainer/SidebarStyles.css';
-import styles from './EfxSidebar.styles.css';
+import * as styles from './EfxSidebar.styles.css';
 
 const CONSTANT_FILTERS = [
     Move,

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './SidebarButton.styles.css';
+import * as styles from './SidebarButton.styles.css';
 
 export const SidebarButton = ({
     label,

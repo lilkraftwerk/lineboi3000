@@ -12,7 +12,7 @@ import {
 } from '../../utils/plotUtils';
 import PaperCanvas from './PaperCanvas';
 
-import styles from './PlotContent.styles.css';
+import * as styles from './PlotContent.styles.css';
 
 // to do make configurable
 const PIXELS_PER_INCH = 75;

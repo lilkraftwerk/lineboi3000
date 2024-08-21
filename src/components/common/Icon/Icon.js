@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Icon.styles.css';
+import * as styles from './Icon.styles.css';
 
 const Icon = ({
     disabled = false,

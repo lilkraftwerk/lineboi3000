@@ -5,7 +5,7 @@ import {
     prepareLines
 } from '../../../utils/drawingUtils';
 
-import styles from './SvgLayer.styles.css';
+import * as styles from './SvgLayer.styles.css';
 
 export const CanvasLayer = ({
     lines,
