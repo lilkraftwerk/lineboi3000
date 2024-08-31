@@ -130,7 +130,7 @@
         "style-loader": "^4.0.0",
         "stylelint": "^16.0.0",
         "stylelint-order": "^6.0.4",
-        "webpack": "^5.0.0",
+        "webpack": "^5.94.0",
         "webpack-build-notifier": "^3.0.0",
         "webpack-cli": "^5.0.0",
         "webpack-dev-middleware": "^7.0.0",
