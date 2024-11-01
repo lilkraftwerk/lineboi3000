@@ -2310,9 +2310,9 @@ caniuse-lite@^1.0.30001646:
   integrity sha512-9Cf+Xv1jJNe1xPZLGuUXLNkE1BoDkqRqYyFJ9TDYSqhduqA4hu4oR9HluGoWYQC/aj8WHjsGVV+bwkh0+tegRg==
 
 canvas-to-buffer@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/canvas-to-buffer/-/canvas-to-buffer-3.0.1.tgz#0f31c1bf597ec17831f3f8c9103f11e83be63c48"
-  integrity sha512-36ugYshUz7CvzSDc6imIxDMbGfjwN0EQ+NkbA7CBRJ1DM1dVyNg+kXQLZruEGeg/4TIPHL81U+POVOE6706zbA==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/canvas-to-buffer/-/canvas-to-buffer-3.1.1.tgz#7dd66774b49cc08b4ecd6a5538b2e27d2662ae0b"
+  integrity sha512-9LRJBGVFEe+ihfG7R7w+JgNg5UIU5fzLA2wDqdUXLdS/ZaSiqgOGuWGZiqKcZoTVDMUQ521TvuQU3OQ1jqD23A==
   dependencies:
     atob "2.1.2"
     typedarray-to-buffer "4.0.0"
