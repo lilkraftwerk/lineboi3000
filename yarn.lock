@@ -6017,9 +6017,9 @@ react-redux@^9.0.0:
     use-sync-external-store "^1.0.0"
 
 react-tiny-popover@^8.0.0:
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/react-tiny-popover/-/react-tiny-popover-8.0.4.tgz#bf76f1db8a9b62f4eb10fe0dc770a65c52d59560"
-  integrity sha512-pn0Y/G0gyMdYTBEWSKCCnaZsXAa54PkfnRE4fnMM5633SSClYrXxwXKc6vPYgJ9shLatGginxMjnhXq6guZmng==
+  version "8.1.4"
+  resolved "https://registry.yarnpkg.com/react-tiny-popover/-/react-tiny-popover-8.1.4.tgz#4ca8e5e9dcce62e38fb8cde65165f5a743e36b24"
+  integrity sha512-rHNAosGfUwlkOQeTJ+fCX/lHUOuMmgQZVhtRBnU9DqAONgltSv1QIZHeG1FGvZIGg7y7wbV4H6wriDuiSssIfQ==
 
 react@^18.0.0:
   version "18.3.1"
