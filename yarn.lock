@@ -1056,25 +1056,25 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@mathigon/core@1.1.14":
-  version "1.1.14"
-  resolved "https://registry.yarnpkg.com/@mathigon/core/-/core-1.1.14.tgz#eca0f40f2ae89ffc1dcff625a1a58c983fb7f30f"
-  integrity sha512-x5y8TlR48xi9jMiceoWLEIdH9yCpJRs4MgabRdaDY6F+UY7rrNihyITsdoCsQYF/pQaIkYFtbTeTsnnRX9m3hQ==
+"@mathigon/core@1.1.23":
+  version "1.1.23"
+  resolved "https://registry.yarnpkg.com/@mathigon/core/-/core-1.1.23.tgz#6e9a4ad7aa9fd0e170fe7cb5a86594f6fa659c98"
+  integrity sha512-V7x0bX8EEZtdpyVBs5joac5L9MofbSjE1l1hpEPZhxnfz319tQ9ZHUt/ED7tMxmloD4OyxRbu/H55WZjqEnU7g==
 
 "@mathigon/euclid@^1.1.15":
-  version "1.1.16"
-  resolved "https://registry.yarnpkg.com/@mathigon/euclid/-/euclid-1.1.16.tgz#76968fafccf7d8de84d548fbe1521ee9ad3851cd"
-  integrity sha512-UqhLsR3n+RLhVmETtaScd5tP86BflhVHmnc132DHtDW5dX+03OTGoL5HlVaE9i+kS3iL5L5IXcALq0pOsF2y/A==
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@mathigon/euclid/-/euclid-1.2.4.tgz#52e8df39d63780b17d7f4cafb69950a1b86923a2"
+  integrity sha512-J6ePC0eMzqKf/yNqOqq2N+GJaMvrs+aBAVOktTCI0E55NDj4C96H0ZM/dle3+YlNDjscSoqIr50eiGvo2prQdw==
   dependencies:
-    "@mathigon/core" "1.1.14"
-    "@mathigon/fermat" "1.1.13"
+    "@mathigon/core" "1.1.23"
+    "@mathigon/fermat" "1.1.24"
 
-"@mathigon/fermat@1.1.13":
-  version "1.1.13"
-  resolved "https://registry.yarnpkg.com/@mathigon/fermat/-/fermat-1.1.13.tgz#51b04eada53acd97583e3aada12196ed4affa4e1"
-  integrity sha512-YjQBI+3cgrgD7OaRqOnqk3tffK4zIwHRj1f8oyuYU0rf07UbVa1h6ZFlimqI2FV1N7fDqMkOyx3osQUhPSBYEQ==
+"@mathigon/fermat@1.1.24":
+  version "1.1.24"
+  resolved "https://registry.yarnpkg.com/@mathigon/fermat/-/fermat-1.1.24.tgz#8569526b1b8e62b9501b978b0bbf14af6f90b680"
+  integrity sha512-OV2Zy70BmAXAkGgyW26oAcoWSc35Euc8twnA0E0isiP3zKBC5NnZJ8lJ0WErbVRO41B5LxuyJjLTrv6+Qsph7A==
   dependencies:
-    "@mathigon/core" "1.1.14"
+    "@mathigon/core" "1.1.23"
 
 "@node-ipc/event-pubsub@6.0.2":
   version "6.0.2"
