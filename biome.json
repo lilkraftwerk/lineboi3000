@@ -31,7 +31,7 @@
 			"lineEnding": "lf",
 			"lineWidth": 80,
 			"quoteStyle": "single",
-			"trailingComma": "none"
+			"trailingCommas": "none"
 		}
 	},
 	"files": {
