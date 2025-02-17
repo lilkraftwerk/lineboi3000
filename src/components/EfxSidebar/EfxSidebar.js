@@ -284,14 +284,12 @@ class EfxSidebar extends React.Component {
             <SidebarContainer>
                 <SidebarItem>
                     {isLoading && (
-                        <>
-                            <div className={styles.loadingContainer}>
-                                <div className={styles.loadingText}>
-                                    {loadingMessage}...
-                                </div>
-                                <div className={styles.loadingBackground} />
+                        <div className={styles.loadingContainer}>
+                            <div className={styles.loadingText}>
+                                {loadingMessage}...
                             </div>
-                        </>
+                            <div className={styles.loadingBackground} />
+                        </div>
                     )}
                     {!isLoading && (
                         <>
