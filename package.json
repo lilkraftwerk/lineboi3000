@@ -79,7 +79,7 @@
         "chaikin-smooth": "^1.0.4",
         "cncserver": "^2.9.0",
         "concurrently": "^8.2.2",
-        "esbuild": "^0.20.2",
+        "esbuild": "^0.25.0",
         "esbuild-loader": "^4.1.0",
         "fs-jetpack": "^5.0.0",
         "gif.js.optimized": "^1.0.1",
@@ -108,7 +108,7 @@
         "@testing-library/dom": "^10.4.0",
         "@testing-library/react": "^16.0.0",
         "body-parser": "^1.19.0",
-        "canvas": "^2.11.0",
+        "canvas": "^3.0.0",
         "canvas-to-buffer": "^3.0.0",
         "copy-webpack-plugin": "^12.0.0",
         "css-declaration-sorter": "^7.0.0",
@@ -133,8 +133,6 @@
         "webpack": "^5.94.0",
         "webpack-build-notifier": "^3.0.0",
         "webpack-cli": "^5.0.0",
-        "webpack-dev-middleware": "^7.0.0",
-        "webpack-dev-server": "^5.0.0",
-        "webpack-hot-middleware": "^2.25.0"
+        "webpack-dev-server": "^5.0.0"
     }
 }
