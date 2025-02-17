@@ -97,7 +97,7 @@
         "redux-undo": "1.1.0",
         "reselect": "^5.0.0",
         "run-electron": "^2.0.0",
-        "serialport": "^12.0.0",
+        "serialport": "^13.0.0",
         "simplify-js": "^1.2.3",
         "smooth-polyline": "^1.0.8",
         "svg-path-to-polygons": "^0.1.0",
