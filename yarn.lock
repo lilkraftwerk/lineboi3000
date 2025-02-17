@@ -1888,11 +1888,6 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
-atob@2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
-  integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
-
 aws-sign2@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
@@ -2253,12 +2248,11 @@ caniuse-lite@^1.0.30001688:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001699.tgz#a102cf330d153bf8c92bfb5be3cd44c0a89c8c12"
   integrity sha512-b+uH5BakXZ9Do9iK+CkDmctUSEqZl+SP056vc5usa0PL+ev5OHw003rZXcnjNDv3L8P5j6rwT6C0BPKSikW08w==
 
-canvas-to-buffer@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/canvas-to-buffer/-/canvas-to-buffer-3.0.1.tgz#0f31c1bf597ec17831f3f8c9103f11e83be63c48"
-  integrity sha512-36ugYshUz7CvzSDc6imIxDMbGfjwN0EQ+NkbA7CBRJ1DM1dVyNg+kXQLZruEGeg/4TIPHL81U+POVOE6706zbA==
+canvas-to-buffer@^4.0.0:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/canvas-to-buffer/-/canvas-to-buffer-4.1.2.tgz#43090b2366da44a49d67648d661eae986fbaf6e0"
+  integrity sha512-PH/rHvmMibytIRH0VgKCnM4G87rKSs+Dku0mkLaLCVLBehmPX2Mp4LzCs0S6IwdmwaKEg3QdO3zLsJI8B6zj0A==
   dependencies:
-    atob "2.1.2"
     typedarray-to-buffer "4.0.0"
 
 canvas@^3.0.0:
