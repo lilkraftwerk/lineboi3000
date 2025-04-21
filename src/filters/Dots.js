@@ -43,17 +43,17 @@ export const DotsFilter = ({ filterSettings, pointArrays }) => {
     const { additionalDots, distance } = filterSettings;
 
     // get all points in one array
-    const flatPoints = _.flatten(pointArrays);
+    const flatPoints = pointArrays.flat();
 
     // for each point, create a new point array with
     // x additional points
     const mappedLines = flatPoints.map(([x, y]) => {
         const points = [[x, y]];
-        _.times(additionalDots, () => {
             const randX = _.random(-distance, distance);
             const randY = _.random(-distance, distance);
+        for (let i = 0; i < additionalDots; i++) {
             points.push([x + randX, y + randY]);
-        });
+        };
         return points;
     });
     return mappedLines;

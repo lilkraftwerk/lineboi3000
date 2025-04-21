@@ -46,7 +46,7 @@ class OptionsSidebar extends React.Component {
     saveOptions = () => {
         const { dispatch } = this.props;
         const { state } = this;
-        const changedValues = _.keys(_.omitBy(this.state, _.isNil));
+        const changedValues = Object.keys(_.omitBy(this.state, _.isNil));
         changedValues.forEach((changedKey) => {
             const reducerKey = tempKeyValueMap[changedKey];
             const value = state[changedKey];

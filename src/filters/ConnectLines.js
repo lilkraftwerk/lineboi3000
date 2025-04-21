@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import id from '../utils/id';
 
@@ -23,7 +22,7 @@ export const ConnectLinesFilter = ({ filterSettings, pointArrays }) => {
 
     const sortedLines = sortLinesForPlotter(pointArraysWithId);
     const justPointArrays = sortedLines.map((x) => x.pointArrayContainer);
-    const oneLine = _.flatten(justPointArrays);
+    const oneLine = justPointArrays.flat();
     return [oneLine];
 };
 

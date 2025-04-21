@@ -209,7 +209,7 @@ class PlotSidebar extends React.Component {
         } = this.props;
 
         this.parkPen();
-        let justLines = _.flatten(formattedLayers.map((x) => x.lines));
+        let justLines = formattedLayers.flatMap(x => x.lines);
 
         if (optimizeLineOrder) {
             justLines = sortLinesForPlotter(justLines);

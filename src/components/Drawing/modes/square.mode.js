@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { allPointsBetweenTwoCoords } from '../../../utils/coordUtils';
 import { getFirstAndLastCoordsFromTempCoords } from '../../../utils/drawingUtils';
 
@@ -7,13 +6,13 @@ const formatTempCoords = (coords) => {
         getFirstAndLastCoordsFromTempCoords(coords);
     const [startX, startY] = startCoords;
     const [endX, endY] = endCoords;
-    const fourCorners = _.clone([
+    const fourCorners = [
         [startX, startY],
         [startX, endY],
         [endX, endY],
         [endX, startY],
         [startX, startY]
-    ]);
+    ];
 
     return fourCorners;
 };

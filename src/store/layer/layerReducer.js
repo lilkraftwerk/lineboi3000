@@ -74,7 +74,7 @@ const updateLayerSetting = (layers, { layerID, settingKey, settingValue }) => {
 const moveLayer = (layers, layerID, up = true) => {
     const down = !up;
 
-    const currentIndex = _.findIndex(layers, (layer) => layer.id === layerID);
+    const currentIndex = layers.findIndex((layer) => layer.id === layerID);
     const atBeginning = Boolean(currentIndex === 0);
     const atEnd = Boolean(currentIndex === layers.length - 1);
 
@@ -98,7 +98,7 @@ const deleteLayer = ({ layers, currentLayerID }, layerToDeleteId) => {
     if (currentLayerID === layerToDeleteId) {
         return {
             layers: filteredLayers,
-            currentLayerID: _.first(filteredLayers).id
+            currentLayerID: filteredLayers[0].id
         };
     }
 
@@ -159,10 +159,7 @@ const moveFilter = (layers, { layerID, filterID }, up = true) => {
 
         const { filters } = layer;
 
-        const currentIndex = _.findIndex(
-            filters,
-            (filter) => filter.id === filterID
-        );
+        const currentIndex = filters.findIndex((filter) => filter.id === filterID);
 
         const atBeginning = Boolean(currentIndex === 0);
         const atEnd = Boolean(currentIndex === filters.length - 1);

@@ -113,7 +113,7 @@ export const ExesFilter = ({ filterSettings, pointArrays }) => {
         return [rotatedFirst, rotatedSecond];
     };
 
-    const flatPoints = _.flatten(pointArrays);
+    const flatPoints = pointArrays.flat();
     const exes = [];
     flatPoints.forEach((coords) => {
         if (_.random(0, 100) < percentToAffect) {

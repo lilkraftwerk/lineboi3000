@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { createSelector } from 'reselect';
 import {
     getLayers,
@@ -12,7 +11,7 @@ export const getEfxLines = (state) => state.efxLinesReducer;
 export const getVisibleOriginalLines = createSelector(
     [getVisibleLayerIDs, getOriginalLines],
     (visibleLayerIDs, originalLines) => {
-        return _.pick(originalLines, visibleLayerIDs);
+        return { originalLines, visibleLayerIDs };
     }
 );
 

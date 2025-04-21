@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { pathDataToPolys } from 'svg-path-to-polygons';
 import TextToSVG from 'text-to-svg';
 import { getFirstAndLastCoordsFromTempCoords } from '../../../utils/drawingUtils';
@@ -11,10 +10,10 @@ import { getExtremePointsOfCoords } from '../../../utils/plotUtils';
 const getMinMaxValues = (polygon) => {
     const xValues = polygon.map((arr) => arr[0]);
     const yValues = polygon.map((arr) => arr[1]);
-    const minX = _.min(xValues);
-    const maxX = _.max(xValues);
-    const minY = _.min(yValues);
-    const maxY = _.max(yValues);
+    const minX = Math.min(...xValues);
+    const maxX = Math.max(...xValues);
+    const minY = Math.min(...yValues);
+    const maxY = Math.max(...yValues);
 
     return {
         minX,
@@ -54,7 +53,7 @@ const createTextCoords = (coords, textContent, options) => {
 
     const polygons = pathDataToPolys(commands);
 
-    const justCoords = _.flatten(polygons);
+    const justCoords = polygons.flat();
 
     // const combinedOptions = {
     // ...getMinMaxValues(justCoords),
@@ -106,13 +105,13 @@ const generateTextCoords = (tempCoords, options) => {
             options
         );
 
-        const newMaxX = getMinMaxValues(_.flatten(letterPolygons)).maxX;
+        const newMaxX = getMinMaxValues(letterPolygons.flat()).maxX;
         currentX = newMaxX + textDistanceBetweenLetters;
 
         return letterPolygons;
     });
 
-    return _.flatten(letterCoords);
+    return letterCoords.flat();
 };
 
 export default {

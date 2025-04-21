@@ -115,7 +115,7 @@ class DrawingSidebar extends React.Component {
         return (
             <SidebarContainer>
                 <SidebarItem title="drawing mode" height={2}>
-                    {_.keys(MAIN_MODES).map((modeKey) => {
+                    {Object.keys(MAIN_MODES).map((modeKey) => {
                         const { displayName, emoji } = MAIN_MODES[modeKey];
                         return (
                             <EmojiButton
@@ -138,7 +138,7 @@ class DrawingSidebar extends React.Component {
                     height={2}
                 >
                     {mainMode === 'draw' &&
-                        _.keys(DRAWING_MODES).map((modeKey) => {
+                        Object.keys(DRAWING_MODES).map((modeKey) => {
                             const { displayName, emoji } =
                                 DRAWING_MODES[modeKey];
                             return (

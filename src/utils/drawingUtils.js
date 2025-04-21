@@ -1,6 +1,3 @@
-/* eslint-disable no-param-reassign */
-const _ = require('lodash');
-
 export const prepareLines = (lines = []) => {
     if (lines.length <= 0) {
         return null;
@@ -96,7 +93,7 @@ export const drawPointCircles = ({
 }) => {
     context.fillStyle = 'white';
     context.strokeStyle = color;
-    const flatPoints = _.flatten(pointArrays);
+    const flatPoints = (pointArrays || []).flat();
     flatPoints.forEach(([pointX, pointY]) => {
         context.beginPath();
         context.arc(pointX, pointY, radius, 0, Math.PI + Math.PI * 360);
@@ -119,7 +116,7 @@ export const getStartCoordsFromFirstTempLines = (tempLines) => {
         return false;
     }
 
-    return _.clone([tempLines[0][0][0], tempLines[0][0][1]]);
+    return [tempLines[0][0][0], tempLines[0][0][1]];
 };
 
 export const getFirstLineFromTempLines = (tempLines) => {
@@ -127,7 +124,7 @@ export const getFirstLineFromTempLines = (tempLines) => {
         return false;
     }
 
-    return _.clone(tempLines[0]);
+    return [...tempLines[0]];
 };
 
 export const getFirstAndLastCoordsFromTempCoords = (coords) => {

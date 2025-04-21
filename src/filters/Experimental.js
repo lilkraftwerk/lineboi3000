@@ -42,12 +42,12 @@ export const ExperimentalFilter = ({ filterSettings, pointArrays }) => {
 
     const { chunkMin, chunkMax } = filterSettings;
 
-    const chunkedLines = pointArrays.map((line) => {
+    const chunkedLines = pointArrays.flatMap((line) => {
         const toChunkBy = _.random(chunkMin, chunkMax);
         return _.chunk(line, toChunkBy);
     });
 
-    return _.flatten(chunkedLines);
+    return chunkedLines;
 };
 
 const initSettings = () => ({

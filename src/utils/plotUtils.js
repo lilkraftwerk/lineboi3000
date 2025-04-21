@@ -55,21 +55,19 @@ export const moveLine = (line, { xOffset = 0, yOffset = 0 } = {}) => {
 };
 
 export const getExtremePointsOfLines = (lines) => {
-    const flatLines = _.flatten(lines);
-    const flatScaledPointArrayContainers = flatLines.map(
+    const flatLines = lines.flat();
+    const flatScaledPointArrayContainers = flatLines.flatMap(
         (line) => line.pointArrayContainer
     );
 
-    const trulyFlattened = _.flatten(flatScaledPointArrayContainers);
+    const allXValues = flatScaledPointArrayContainers.map((pointArray) => pointArray[0]);
+    const allYValues = flatScaledPointArrayContainers.map((pointArray) => pointArray[1]);
 
-    const allXValues = trulyFlattened.map((pointArray) => pointArray[0]);
-    const allYValues = trulyFlattened.map((pointArray) => pointArray[1]);
+    const minX = Math.min(...allXValues);
+    const maxX = Math.max(...allXValues);
 
-    const minX = _.min(allXValues);
-    const maxX = _.max(allXValues);
-
-    const minY = _.min(allYValues);
-    const maxY = _.max(allYValues);
+    const minY = Math.min(...allYValues);
+    const maxY = Math.max(...allYValues);
 
     const totalLinesWidth = maxX - minX;
     const totalLinesHeight = maxY - minY;
@@ -88,11 +86,11 @@ export const getExtremePointsOfCoords = (flattenedCoords, radius = 0) => {
     const allXValues = flattenedCoords.map((pointArray) => pointArray[0]);
     const allYValues = flattenedCoords.map((pointArray) => pointArray[1]);
 
-    const minX = _.min(allXValues) - radius;
-    const maxX = _.max(allXValues) + radius;
+    const minX = Math.min(...allXValues) - radius;
+    const maxX = Math.max(...allXValues) + radius;
 
-    const minY = _.min(allYValues) - radius;
-    const maxY = _.max(allYValues) + radius;
+    const minY = Math.min(...allYValues) - radius;
+    const maxY = Math.max(...allYValues) + radius;
 
     return {
         minX,

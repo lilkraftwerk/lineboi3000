@@ -1,5 +1,4 @@
 import { ipcRenderer } from 'electron';
-import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -92,7 +91,7 @@ class AppContainer extends React.Component {
                 </div>
                 <div className={styles.sidebar}>
                     <div className={styles.sidebarHeader}>
-                        {_.keys(MODES).map((modeName) => {
+                        {Object.keys(MODES).map((modeName) => {
                             const { displayName, emoji } = MODES[modeName];
                             return (
                                 <button

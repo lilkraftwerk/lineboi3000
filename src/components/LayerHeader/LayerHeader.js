@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -21,8 +20,8 @@ import SingleLayer from './SingleLayer';
 import * as styles from './LayerHeader.styles.css';
 
 export const LayerControls = ({ layers, currentLayerID, dispatch }) => {
-    const firstLayerId = _.first(layers).id;
-    const finalLayerId = _.last(layers).id;
+    const firstLayerId = layers[0].id;
+    const finalLayerId = layers[layers.length - 1].id;
 
     const [showAll, toggleShowAll] = useState(true);
 

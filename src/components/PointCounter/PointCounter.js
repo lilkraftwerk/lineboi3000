@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import {
@@ -19,11 +18,11 @@ const PointCounter = ({ visibleEfxLines, visibleOriginalLines, mode }) => {
         );
     }
 
-    const lineCount = _.flatten(Object.values(linesToCount)).length;
-    const pointCount = _.sum(
-        _.flatten(Object.values(linesToCount)).map((x) =>
-            x.pointArrayContainer ? x.pointArrayContainer.length : 0
-        )
+    const flattenedLines = Object.values(linesToCount).flat();
+    const lineCount = flattenedLines.length;
+
+    const pointCount = flattenedLines.reduce((sum, x) =>
+        sum + (x.pointArrayContainer ? x.pointArrayContainer.length : 0), 0
     );
 
     return (

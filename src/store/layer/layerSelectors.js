@@ -16,7 +16,7 @@ export const getCurrentLayer = createSelector(
 
 export const getRenderLines = createSelector([getLayers], (layers) => {
     const visibleLayers = layers.filter((layer) => layer.visible === true);
-    return _.flatten(visibleLayers.map(({ lines }) => lines));
+    return visibleLayers.flatMap(({ lines }) => lines);
 });
 
 export const getVisibleAndInvisibleLayers = createSelector(

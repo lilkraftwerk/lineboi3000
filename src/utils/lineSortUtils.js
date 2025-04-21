@@ -21,7 +21,7 @@ export const findNearestLine = (currentLine, remainingLines) => {
         const startDistance = distanceBetweenTwoCoords(currentLineEnd, start);
         const endDistance = distanceBetweenTwoCoords(currentLineEnd, end);
 
-        const smallestDistance = _.min([startDistance, endDistance]);
+        const smallestDistance = Math.min(startDistance, endDistance);
 
         if (smallestDistance === endDistance) {
             results.push({
@@ -38,8 +38,9 @@ export const findNearestLine = (currentLine, remainingLines) => {
         }
     });
 
-    const { id, end } = _.minBy(results, 'distance');
-
+    const min = results.reduce((a, b) => (a.distance < b.distance ? a : b));
+    const { id, end } = min;
+    
     return {
         id,
         reverse: end
@@ -57,7 +58,7 @@ export const sortLinesForPlotter = (lines) => {
 
         const { id, reverse } = findNearestLine(lastLine, clonedLines);
 
-        const foundLine = _.find(clonedLines, (clonedLine) => {
+        const foundLine = clonedLines.find((clonedLine) => {
             return clonedLine.id === id;
         });
 

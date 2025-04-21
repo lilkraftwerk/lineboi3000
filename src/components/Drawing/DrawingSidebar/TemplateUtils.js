@@ -78,7 +78,7 @@ const rain = (options) => {
 
     const xValues = _.shuffle(Array.from(Array(globalWidth).keys()));
     const doneXValues = [];
-    const slicedXValues = _.slice(xValues, 0, lineCount);
+    const slicedXValues = xValues.slice(0, lineCount);
 
     slicedXValues.forEach((xValue) => {
         const tooClose = _.findIndex(doneXValues, (usedValue) => {
@@ -134,7 +134,7 @@ const circleFrame = (options) => {
         circleFrameTemplatePointsOnCircle
     } = options;
 
-    const maxRadius = _.min([globalHeight / 2, globalWidth / 2]) - 10;
+    const maxRadius = Math.min(globalHeight / 2, globalWidth / 2) - 10;
 
     const centerX = globalWidth / 2;
     const centerY = globalHeight / 2;
@@ -162,7 +162,7 @@ const manyCircles = (options) => {
         manyCirclesTemplatePoints
     } = options;
 
-    const maxRadius = _.min([globalHeight / 2, globalWidth / 2]) - 10;
+    const maxRadius = Math.min(globalHeight / 2, globalWidth / 2) - 10;
     const radiusOffset = maxRadius / manyCirclesTemplateCount;
     let currentRadius = maxRadius;
 
