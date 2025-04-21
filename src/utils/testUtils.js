@@ -1,5 +1,5 @@
 import { createCanvas } from 'canvas';
-import _ from 'lodash';
+import { random as _random } from 'es-toolkit';
 import id from './id';
 
 export const createFakePoint = (
@@ -7,8 +7,8 @@ export const createFakePoint = (
     maxWidth = 800,
     offset = 100
 ) => {
-    const x = _.random(0, maxHeight) + offset;
-    const y = _.random(0, maxWidth) + offset;
+    const x = _random(0, maxHeight) + offset;
+    const y = _random(0, maxWidth) + offset;
     return [x, y];
 };
 

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { random } from 'es-toolkit';
 import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
@@ -47,7 +47,7 @@ export const ShortenLineFilter = ({ filterSettings, pointArrays }) => {
             currentLine.length * (lineLength * 0.01)
         );
         const maxStartIndex = currentLine.length - numberOfPoints;
-        const startIndex = startAtBeginning ? 0 : _.random(0, maxStartIndex);
+        const startIndex = startAtBeginning ? 0 : random(0, maxStartIndex);
 
         for (let i = startIndex; i < numberOfPoints + startIndex; i += 1) {
             thisLine.push(currentLine[i]);

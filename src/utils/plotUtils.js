@@ -1,8 +1,8 @@
-import _ from 'lodash';
+import { round as _round } from 'es-toolkit';
 
 export const makePercentage = (part, whole) => {
     const result = (part / whole) * 100;
-    return _.round(result, 4);
+    return _round(result, 4);
 };
 
 export const coordsToPercent = ([x, y], height, width) => [

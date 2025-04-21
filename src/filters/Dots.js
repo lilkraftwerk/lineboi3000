@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { random as _random } from 'es-toolkit';
 import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
@@ -49,9 +49,9 @@ export const DotsFilter = ({ filterSettings, pointArrays }) => {
     // x additional points
     const mappedLines = flatPoints.map(([x, y]) => {
         const points = [[x, y]];
-            const randX = _.random(-distance, distance);
-            const randY = _.random(-distance, distance);
         for (let i = 0; i < additionalDots; i++) {
+            const randX = _random(-distance, distance);
+            const randY = _random(-distance, distance);
             points.push([x + randX, y + randY]);
         };
         return points;

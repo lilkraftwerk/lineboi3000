@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { clone as _clone } from 'es-toolkit';
 
 export const getPointsAroundCoord = ([centerX, centerY], options) => {
     const { radius } = options;
@@ -18,7 +18,7 @@ export const getPointsAroundCoord = ([centerX, centerY], options) => {
 };
 
 const onEnd = (coords, selectCoords) => {
-    const newSelectCoords = _.clone(selectCoords);
+    const newSelectCoords = _clone(selectCoords);
     const pointsAroundCoord = getPointsAroundCoord(coords, {
         radius: 8
     }).map((theseCoords) => JSON.stringify(theseCoords));

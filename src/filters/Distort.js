@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { random as _random } from 'es-toolkit';
 import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
@@ -74,14 +74,14 @@ export const DistortFilter = ({ filterSettings, pointArrays }) => {
             const flooredX = Math.floor(x);
 
             if (yValueMap[flooredY.toString()] == null) {
-                yValueMap[flooredY.toString()] = _.random(
+                yValueMap[flooredY.toString()] = _random(
                     -distortionAmount,
                     distortionAmount
                 );
             }
 
             if (xValueMap[flooredX.toString()] == null) {
-                xValueMap[flooredX.toString()] = _.random(
+                xValueMap[flooredX.toString()] = _random(
                     -distortionAmount,
                     distortionAmount
                 );
@@ -94,12 +94,12 @@ export const DistortFilter = ({ filterSettings, pointArrays }) => {
             let newX = x;
             let newY = y;
 
-            if (horizontal && _.random(0, 100) < percentToAffect) {
+            if (horizontal && _random(0, 100) < percentToAffect) {
                 const flooredY = Math.floor(y);
                 newX = x + yValueMap[flooredY.toString()];
             }
 
-            if (vertical && _.random(0, 100) < percentToAffect) {
+            if (vertical && _random(0, 100) < percentToAffect) {
                 const flooredX = Math.floor(x);
                 newY = y + xValueMap[flooredX.toString()];
             }

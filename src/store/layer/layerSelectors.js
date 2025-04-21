@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { partition as _partition } from 'es-toolkit';
 import { createSelector } from 'reselect';
 
 export const getLayers = (state) => {
@@ -22,7 +22,7 @@ export const getRenderLines = createSelector([getLayers], (layers) => {
 export const getVisibleAndInvisibleLayers = createSelector(
     [getLayers],
     (layers) => {
-        const [visibleLayers, invisibleLayers] = _.partition(
+        const [visibleLayers, invisibleLayers] = _partition(
             layers,
             (layer) => layer.visible
         );

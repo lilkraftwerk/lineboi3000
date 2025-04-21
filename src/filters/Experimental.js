@@ -1,3 +1,4 @@
+import { chunk as _chunk, random as _random } from 'es-toolkit';
 import _ from 'lodash';
 import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
@@ -43,7 +44,7 @@ export const ExperimentalFilter = ({ filterSettings, pointArrays }) => {
     const { chunkMin, chunkMax } = filterSettings;
 
     const chunkedLines = pointArrays.flatMap((line) => {
-        const toChunkBy = _.random(chunkMin, chunkMax);
+        const toChunkBy = _random(chunkMin, chunkMax);
         return _.chunk(line, toChunkBy);
     });
 

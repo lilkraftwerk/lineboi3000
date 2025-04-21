@@ -8,7 +8,7 @@ import {
     SidebarItem
 } from 'components/common/SidebarContainer/SidebarContainer';
 import { ipcRenderer } from 'electron';
-import _ from 'lodash';
+import { lowerCase as _lowerCase } from 'es-toolkit';
 import React from 'react';
 import { connect } from 'react-redux';
 import { ActionCreators } from 'redux-undo';
@@ -132,7 +132,7 @@ class DrawingSidebar extends React.Component {
                     })}
                 </SidebarItem>
                 <SidebarItem
-                    title={`${_.lowerCase(
+                    title={`${_lowerCase(
                         MAIN_MODES[mainMode].displayName
                     )} options`}
                     height={2}

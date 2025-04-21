@@ -1,5 +1,5 @@
 import arrayMove from 'array-move';
-import _ from 'lodash';
+import { sample as _sample } from 'es-toolkit';
 import id from '../../utils/id';
 
 import {
@@ -28,7 +28,7 @@ const move = (array, oldIndex, newIndex) => {
 const getNewLayerState = (count = 0) => ({
     id: id(),
     filters: [],
-    color: _.sample([
+    color: _sample([
         'black',
         'red',
         'pink',

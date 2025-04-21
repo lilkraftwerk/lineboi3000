@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { random as _random , shuffle as _shuffle, sortBy as _sortBy } from 'es-toolkit';
 import { addMultipleLinesToLayerByID } from 'store/line/lineActions';
 import { allPointsBetweenTwoCoords } from '../../../utils/coordUtils';
 
@@ -76,12 +76,12 @@ const rain = (options) => {
     const lineCount = Math.floor(globalWidth * rainTemplateLineCount * 0.01);
     const rainLines = [];
 
-    const xValues = _.shuffle(Array.from(Array(globalWidth).keys()));
+    const xValues = _shuffle(Array.from(Array(globalWidth).keys()));
     const doneXValues = [];
     const slicedXValues = xValues.slice(0, lineCount);
 
     slicedXValues.forEach((xValue) => {
-        const tooClose = _.findIndex(doneXValues, (usedValue) => {
+        const tooClose = doneXValues.findIndex((usedValue) => {
             const distance = Math.abs(usedValue - xValue);
             return distance < rainTemplateMinDistanceBetweenLines;
         });
@@ -93,7 +93,7 @@ const rain = (options) => {
 
         if (rainTemplateStartFromTop) {
             const line = [[xValue, 0]];
-            const heightOfLine = _.random(
+            const heightOfLine = _random(
                 Math.floor(rainTemplateMinPercent * 0.01 * globalHeight),
                 Math.floor(rainTemplateMaxPercent * 0.01 * globalHeight)
             );
@@ -109,7 +109,7 @@ const rain = (options) => {
         }
 
         const line = [[xValue, globalHeight]];
-        const heightOfLine = _.random(
+        const heightOfLine = _random(
             Math.floor(rainTemplateMinPercent * 0.01 * globalHeight),
             Math.floor(rainTemplateMaxPercent * 0.01 * globalHeight)
         );
@@ -123,7 +123,7 @@ const rain = (options) => {
         }
         rainLines.push(line);
     });
-    return _.sortBy(rainLines, (coords) => coords[0]);
+    return _sortBy(rainLines, (coords) => coords[0]);
 };
 
 const circleFrame = (options) => {
@@ -176,7 +176,7 @@ const manyCircles = (options) => {
         const pointsOnCircle = currentRadius * manyCirclesTemplatePoints;
         const line = [];
 
-        const startOffset = _.random(0, pointsOnCircle);
+        const startOffset = _random(0, pointsOnCircle);
 
         for (
             let i = startOffset;

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { clone as _clone, omit as _omit } from 'es-toolkit';
 import undoable, { includeAction } from 'redux-undo';
 import idGenerator from '../../utils/id';
 import {
@@ -64,7 +64,7 @@ const multiplyCanvasHelper = (
     state,
     { currentWidth, currentHeight, timesX, timesY }
 ) => {
-    const layers = Object.entries(_.clone(state));
+    const layers = Object.entries(_clone(state));
     const multiplyLayer = ([layerID, lines]) => {
         const originalPointArrayContainers = [
             ...lines.map((line) => line.pointArrayContainer)
@@ -103,7 +103,7 @@ const multiplyCanvasHelper = (
 };
 
 const shrinkCanvasHelper = (state, { factor }) => {
-    const layers = Object.entries(_.clone(state));
+    const layers = Object.entries(_clone(state));
 
     const scaleLine = (line, scale = 1) => {
         const { pointArrayContainer } = line;
@@ -153,7 +153,7 @@ export const originalLinesReducer = (state = {}, action) => {
                 )
             };
         case CLEAR_LAYER:
-            return _.omit(state, [action.value.layerID]);
+            return _omit(state, [action.value.layerID]);
         case DELETE_FILL_LINES_FROM_LAYER_BY_ID:
             return {
                 ...state,
@@ -208,7 +208,7 @@ export const efxLinesReducer = (state = {}, action) => {
                 }
             };
         case CLEAR_LAYER:
-            return _.omit(state, [action.value.layerID]);
+            return _omit(state, [action.value.layerID]);
         default:
             return state;
     }
