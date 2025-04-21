@@ -11,12 +11,7 @@ npm-debug.log*
 ./userfiles/presets/*
 ./userfiles
 
-#yarn error
-yarn-error.log
-
 **/**/__diff_output__
 
 # keep diff folder for CI but don't check diffs in locally
 tmp/diffs/*.png
-
-package-lock.json
