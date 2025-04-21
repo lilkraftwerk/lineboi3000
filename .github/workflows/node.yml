@@ -24,15 +24,15 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: 'npm'
             - name: Install Dependencies
-              run: npm install
+              run: npm ci
             - name: Creating Dummy Artifacts
               run: mkdir /tmp/diffs;
             - name: Run Tests
-              run: npm test:src
+              run: npm run test:src
             # - store_artifacts:
             #       path: tmp/diffs
             #       destination: image_snapshot_diff
             - name: Biome linting and formatting
-              run: npm biome:check
+              run: npm run biome:check
             - name: CSS Files Lint
-              run: npm style:check
+              run: npm run style:check
