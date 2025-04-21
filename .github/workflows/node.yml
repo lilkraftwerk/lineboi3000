@@ -22,21 +22,17 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: ${{ matrix.node-version }}
-                  # cache: 'yarn'
+                  cache: 'npm'
             - name: Install Dependencies
-              run: yarn install
-            # - name: Save Yarn Package Cache
-            #         key: yarn-packages-{{ checksum "yarn.lock" }}
-            #         paths:
-            #             - ~/.cache/yarn
+              run: npm ci
             - name: Creating Dummy Artifacts
               run: mkdir /tmp/diffs;
             - name: Run Tests
-              run: yarn test:src
+              run: npm run test:src
             # - store_artifacts:
             #       path: tmp/diffs
             #       destination: image_snapshot_diff
             - name: Biome linting and formatting
-              run: yarn biome:check
+              run: npm run biome:check
             - name: CSS Files Lint
-              run: yarn style:check
+              run: npm run style:check
