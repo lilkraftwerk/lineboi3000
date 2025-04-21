@@ -9,7 +9,7 @@ import * as styles from './SvgLayer.styles.css';
 
 export const CanvasLayer = ({
     lines,
-    color,
+    color = black,
     width = 800,
     height = 600,
     strokeWidth,
@@ -277,8 +277,4 @@ export const SelectLayer = ({
             style={style}
         />
     );
-};
-
-CanvasLayer.defaultProps = {
-    color: 'black'
 };
