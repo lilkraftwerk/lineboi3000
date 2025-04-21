@@ -6,30 +6,21 @@ jobs:
             - image: cimg/node:22.14.0
         steps:
             - checkout
-            - restore_cache:
-                  name: Restore Yarn Package Cache
-                  keys:
-                      - yarn-packages-{{ checksum "yarn.lock" }}
             - run:
                   name: Install Dependencies
-                  command: yarn install --frozen-lockfile
-            - save_cache:
-                  name: Save Yarn Package Cache
-                  key: yarn-packages-{{ checksum "yarn.lock" }}
-                  paths:
-                      - ~/.cache/yarn
+                  command: npm ci
             - run:
                   name: Creating Dummy Artifacts
                   command: mkdir /tmp/diffs;
             - run:
                   name: Run Tests
-                  command: yarn test:src
+                  command: npm run test:src
             - store_artifacts:
                   path: tmp/diffs
                   destination: image_snapshot_diff
             - run:
                   name: Biome
-                  command: yarn biome:check
+                  command: npm run biome:check
             - run:
                   name: CSS Files Lint
-                  command: yarn style:check
+                  command: npm run style:check
