@@ -107,7 +107,7 @@
         "@biomejs/biome": "^1.6.4",
         "@testing-library/dom": "^10.4.0",
         "@testing-library/react": "^16.0.0",
-        "body-parser": "^1.20.3",
+        "body-parser": "^2.0.0",
         "canvas": "^3.0.0",
         "canvas-to-buffer": "^3.0.0",
         "copy-webpack-plugin": "^13.0.0",
