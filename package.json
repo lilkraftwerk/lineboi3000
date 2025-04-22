@@ -133,5 +133,8 @@
         "webpack-build-notifier": "^3.0.0",
         "webpack-cli": "^6.0.0",
         "webpack-dev-server": "^5.0.0"
+    },
+    "overrides": {
+        "esbuild": "^0.25.0"
     }
 }
