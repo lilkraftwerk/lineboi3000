@@ -103,7 +103,7 @@
         "text-to-svg": "^3.1.5"
     },
     "devDependencies": {
-        "@biomejs/biome": "^1.6.4",
+        "@biomejs/biome": "^2.0.0",
         "@testing-library/dom": "^10.4.0",
         "@testing-library/react": "^16.0.0",
         "body-parser": "^2.0.0",
