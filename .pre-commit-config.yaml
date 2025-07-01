@@ -21,6 +21,6 @@ repos:
             types: [text]
             files: "\\.(jsx?|tsx?|c(js|ts)|m(js|ts)|d\\.(ts|cts|mts)|jsonc?)$"
     - repo: https://github.com/renovatebot/pre-commit-hooks
-      rev: 40.36.8
+      rev: 40.62.1
       hooks:
           - id: renovate-config-validator
