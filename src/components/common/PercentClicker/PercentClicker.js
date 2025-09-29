@@ -22,11 +22,11 @@ const PercentClicker = ({
     };
 
     const titleDisplay =
-        title || showValue ? (
-            <div className={styles.title}>
-                {title} {currentValue && `=> ${currentValue}`}
-            </div>
-        ) : null;
+        title || showValue
+            ? <div className={styles.title}>
+                  {title} {currentValue && `=> ${currentValue}`}
+              </div>
+            : null;
 
     const rangeContainerClass = title
         ? styles.rangeContainerWithTitle

@@ -315,15 +315,13 @@ class PlotSidebar extends React.Component {
                 </SidebarItem>
 
                 <SidebarItem title="plot control" cols={4}>
-                    {!plotting ? (
-                        <button type="button" onClick={this.plotCoords}>
-                            plot
-                        </button>
-                    ) : (
-                        <button type="button" onClick={this.abort}>
-                            abort
-                        </button>
-                    )}
+                    {!plotting
+                        ? <button type="button" onClick={this.plotCoords}>
+                              plot
+                          </button>
+                        : <button type="button" onClick={this.abort}>
+                              abort
+                          </button>}
                 </SidebarItem>
                 {/* <SidebarItem title="utils" cols={4}>
                 // testing utils - don't show for now
