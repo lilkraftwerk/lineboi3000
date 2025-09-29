@@ -1,5 +1,5 @@
 {
-	"organizeImports": { "enabled": true },
+	"assist": { "actions": { "source": { "organizeImports": "on" } } },
 	"linter": {
 		"enabled": true,
 		"rules": {
@@ -8,9 +8,19 @@
 				"noAssignInExpressions": "off"
 			},
 			"style": {
-				"useDefaultParameterLast": "warn"
+				"useDefaultParameterLast": "warn",
+				"noParameterAssign": "error",
+				"useAsConstAssertion": "error",
+				"useEnumInitializers": "error",
+				"useSelfClosingElements": "error",
+				"useSingleVarDeclarator": "error",
+				"noUnusedTemplateLiteral": "error",
+				"useNumberNamespace": "error",
+				"noInferrableTypes": "error",
+				"noUselessElse": "error"
 			},
 			"a11y": {
+				"noStaticElementInteractions": "off",
 				"useAltText": "off",
 				"useKeyWithClickEvents": "warn"
 			},
@@ -35,6 +45,6 @@
 		}
 	},
 	"files": {
-		"include": ["src/**/*.js", "tests/**/*.js"]
+		"includes": ["**/src/**/*.js", "**/tests/**/*.js"]
 	}
 }
