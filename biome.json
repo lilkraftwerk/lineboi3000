@@ -28,7 +28,8 @@
 				"noForEach": "off"
 			},
 			"correctness": {
-				"useExhaustiveDependencies": "warn"
+				"useExhaustiveDependencies": "warn",
+				"useUniqueElementIds": "off"
 			}
 		}
 	},
