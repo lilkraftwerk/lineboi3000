@@ -68,7 +68,7 @@ export const DistortFilter = ({ filterSettings, pointArrays }) => {
     const yValueMap = {};
     const xValueMap = {};
 
-    pointArrays.forEach((pointArray) =>
+    pointArrays.forEach((pointArray) => {
         pointArray.forEach(([x, y]) => {
             const flooredY = Math.floor(y);
             const flooredX = Math.floor(x);
@@ -87,7 +87,7 @@ export const DistortFilter = ({ filterSettings, pointArrays }) => {
                 );
             }
         })
-    );
+    });
 
     const distortLine = (pointArray) => {
         return pointArray.map(([x, y]) => {
