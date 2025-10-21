@@ -84,7 +84,8 @@ const ColorPickerWrapper = ({
         onColorSelect(hexColor);
     };
 
-    const IconToggle = React.forwardRef(() => (
+    // biome-ignore lint/correctness/noNestedComponentDefinitions: re-render is fine
+    const IconToggle = () => (
         <Icon
             height={24}
             width={24}
@@ -93,9 +94,10 @@ const ColorPickerWrapper = ({
             }}
             bgColor={selectedColor}
         />
-    ));
+    );
 
-    const ButtonToggle = React.forwardRef(() => (
+    // biome-ignore lint/correctness/noNestedComponentDefinitions: re-render is fine
+    const ButtonToggle = () => (
         <button
             style={{ gridColumn: 'span 3' }}
             type="button"
@@ -105,32 +107,25 @@ const ColorPickerWrapper = ({
         >
             {title}
         </button>
-    ));
+    );
     return (
-        <>
-            <Popover
-                isOpen={visible}
-                positions={['bottom', 'right', 'left', 'top']}
-                padding={25}
-                onClickOutside={() => {
-                    toggleVisible(true);
-                }}
-                containerStyle={{ zIndex: 100, boxShadow: 'black 3px 3px 1px' }}
-                transitionDuration={0.001}
-                content={() => {
-                    return (
-                        <>
-                            <ColorPicker
-                                onColorSelect={selectAndClose}
-                                colorList={ColorList}
-                            />
-                        </>
-                    );
-                }}
-            >
-                {type === 'icon' ? <IconToggle /> : <ButtonToggle />}
-            </Popover>
-        </>
+        <Popover
+            isOpen={visible}
+            positions={['bottom', 'right', 'left', 'top']}
+            padding={25}
+            containerStyle={{ zIndex: 100, boxShadow: 'black 3px 3px 1px' }}
+            transitionDuration={0.001}
+            content={() => {
+                return (
+                    <ColorPicker
+                        onColorSelect={selectAndClose}
+                        colorList={ColorList}
+                    />
+                );
+            }}
+        >
+            {type === 'icon' ? <IconToggle /> : <ButtonToggle />}
+        </Popover>
     );
 };
 
