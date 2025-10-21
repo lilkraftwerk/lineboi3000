@@ -86,7 +86,7 @@ export const DistortFilter = ({ filterSettings, pointArrays }) => {
                     distortionAmount
                 );
             }
-        })
+        });
     });
 
     const distortLine = (pointArray) => {

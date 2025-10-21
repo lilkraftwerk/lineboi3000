@@ -20,45 +20,49 @@ const SingleLayer = ({
 }) => {
     const [isNameEditable, toggleNameEdit] = useState(false);
 
-    const selectLayerIcon = isSelected
-        ? <Icon height={24} width={24} emoji="greencheck" disabled />
-        : <Icon
-              height={24}
-              width={24}
-              emoji="check"
-              onClick={() => {
-                  onSelectLayer(layer.id);
-              }}
-          />;
+    const selectLayerIcon = isSelected ? (
+        <Icon height={24} width={24} emoji="greencheck" disabled />
+    ) : (
+        <Icon
+            height={24}
+            width={24}
+            emoji="check"
+            onClick={() => {
+                onSelectLayer(layer.id);
+            }}
+        />
+    );
 
-    const nameContent = isNameEditable
-        ? <>
-              <input
-                  type="text"
-                  maxLength="20"
-                  className={styles.nameInput}
-                  value={layer.name}
-                  onChange={(e) => {
-                      onUpdateLayerSetting(layer.id, 'name', e.target.value);
-                  }}
-              />
-              <Icon
-                  height={24}
-                  width={24}
-                  onClick={() => {
-                      toggleNameEdit(!isNameEditable);
-                  }}
-                  emoji="floppy"
-              />
-          </>
-        : <div
-              onClick={() => {
-                  toggleNameEdit(!isNameEditable);
-              }}
-              className={styles.name}
-          >
-              {layer.name}
-          </div>;
+    const nameContent = isNameEditable ? (
+        <>
+            <input
+                type="text"
+                maxLength="20"
+                className={styles.nameInput}
+                value={layer.name}
+                onChange={(e) => {
+                    onUpdateLayerSetting(layer.id, 'name', e.target.value);
+                }}
+            />
+            <Icon
+                height={24}
+                width={24}
+                onClick={() => {
+                    toggleNameEdit(!isNameEditable);
+                }}
+                emoji="floppy"
+            />
+        </>
+    ) : (
+        <div
+            onClick={() => {
+                toggleNameEdit(!isNameEditable);
+            }}
+            className={styles.name}
+        >
+            {layer.name}
+        </div>
+    );
 
     const classNames = `${
         isSelected ? styles.singleLayerSelected : styles.singleLayer
