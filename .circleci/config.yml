@@ -3,7 +3,7 @@ jobs:
     build:
         working_directory: ~/lineboi3000
         docker:
-            - image: cimg/node:22.20.0
+            - image: cimg/node:22.21.1
         steps:
             - checkout
             - run:
