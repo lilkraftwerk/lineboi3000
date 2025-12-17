@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import {
     findNearestLine,
     getStartAndEndPointsOfCoords,
@@ -37,9 +35,9 @@ describe('sortLinesForPlotter', () => {
 
         const getSortedCoords = (lines) => {
             const justPointArrays = lines.map((x) => x.pointArrayContainer);
-            const flat = _.flatten(justPointArrays);
+            const flat = justPointArrays.flat();
             const strings = flat.map((y) => y.toString());
-            return _.flatten(strings).sort();
+            return strings.flat().sort();
         };
 
         const sortedOriginal = getSortedCoords(drawnRandomLines);
@@ -72,7 +70,7 @@ describe('sortLines with percentages', () => {
         );
 
         const justPercentages = (line) =>
-            _.flatten(line.map((x) => x.percentageCoordinates));
+            line.flatMap((x) => x.percentageCoordinates);
 
         const sortedCoords = justPercentages(mappedSorted)
             .map((y) => y.toString())

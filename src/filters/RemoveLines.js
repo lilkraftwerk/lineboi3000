@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { random } from 'es-toolkit';
 import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
@@ -36,7 +36,7 @@ export const RemoveLinesFilter = ({ filterSettings, pointArrays }) => {
     const difference = pointArrays.length - totalNewLines;
 
     for (let i = 0; i < difference; i += 1) {
-        const index = _.random(0, pointArrays.length - 1);
+        const index = random(0, pointArrays.length - 1);
         pointArrays.splice(index, 1); // Remove the item from the array
     }
 

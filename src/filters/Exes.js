@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { random as _random } from 'es-toolkit';
 import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 import { allPointsBetweenTwoCoords } from '../utils/coordUtils';
@@ -100,7 +100,7 @@ export const ExesFilter = ({ filterSettings, pointArrays }) => {
         const first = allPointsBetweenTwoCoords(topLeft, bottomRight);
         const second = allPointsBetweenTwoCoords(bottomLeft, topRight);
 
-        const rotation = _.random(0, 360);
+        const rotation = _random(0, 360);
 
         const rotatedFirst = first.map((coords) => {
             return rotateCoords(coords, centerCoords, rotation);
@@ -113,10 +113,10 @@ export const ExesFilter = ({ filterSettings, pointArrays }) => {
         return [rotatedFirst, rotatedSecond];
     };
 
-    const flatPoints = _.flatten(pointArrays);
+    const flatPoints = pointArrays.flat();
     const exes = [];
     flatPoints.forEach((coords) => {
-        if (_.random(0, 100) < percentToAffect) {
+        if (_random(0, 100) < percentToAffect) {
             if (shape === 'circle') {
                 const circle = makeCircles(coords);
                 exes.push(circle);

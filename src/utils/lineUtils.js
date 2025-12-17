@@ -1,5 +1,4 @@
 import { Circle, Line, Point, intersections } from '@mathigon/euclid';
-import _ from 'lodash';
 import isPointInPolygon from 'point-in-polygon';
 import id from './id';
 import { getExtremePointsOfCoords } from './plotUtils';
@@ -228,9 +227,9 @@ export const addIntermediatePointsToLine = (line, passes = 1) => {
         return tempLine;
     };
 
-    _.times(passes, () => {
+    for (let i = 0; i < passes; i++) {
         copiedLine = onePass(copiedLine);
-    });
+    }
     return copiedLine;
 };
 
@@ -288,11 +287,11 @@ export const splitLinesViaEraserCoords = ({
     }
 
     if (smoothOriginalLines) {
-        _.times(smoothPasses, () => {
+        for (let i = 0; i < smoothPasses; i++) {
             tempPointArrays = tempPointArrays.map((pointArray) =>
                 addIntermediatePointsToLine(pointArray, smoothPasses)
             );
-        });
+        }
     }
 
     tempPointArrays.forEach((line) => {

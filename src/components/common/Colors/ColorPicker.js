@@ -1,5 +1,5 @@
 import Icon from 'components/common/Icon/Icon';
-import _ from 'lodash';
+import { take as _take, shuffle as _shuffle } from 'es-toolkit';
 import React, { useState } from 'react';
 import { Popover } from 'react-tiny-popover';
 import ColorList from './ColorList';
@@ -7,7 +7,7 @@ import ColorList from './ColorList';
 import * as styles from './ColorPicker.styles.css';
 
 const ColorPicker = ({ colorList, onColorSelect }) => {
-    const [shuffledColors] = useState(_.take(_.shuffle(colorList), 32));
+    const [shuffledColors] = useState(_take(_shuffle(colorList), 32));
     const [lightTheme, toggleTheme] = useState(true);
     const [bordersEnabled, toggleBorder] = useState(false);
     const [hoveredColor, updateHoverColor] = useState(null);

@@ -1,5 +1,4 @@
 import chaikinSmooth from 'chaikin-smooth';
-import _ from 'lodash';
 import React from 'react';
 import smoothPolyline from 'smooth-polyline';
 
@@ -57,11 +56,11 @@ export const SmoothFilter = ({ filterSettings, pointArrays }) => {
         return result;
     };
 
-    _.times(passes, () => {
+    for (let i = 0; i < passes; i++) {
         tempPointArrays = tempPointArrays.map((pointArray) =>
             smoothPointArray(pointArray)
         );
-    });
+    }
 
     return tempPointArrays;
 };

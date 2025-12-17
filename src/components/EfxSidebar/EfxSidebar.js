@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron';
-import _ from 'lodash';
+import { sample as _sample } from 'es-toolkit';
 import React from 'react';
 import { connect } from 'react-redux';
 import { saveTempAsFrame, setTempBlob } from 'store/gifmaker/gifmakerActions';
@@ -87,7 +87,7 @@ class EfxSidebar extends React.Component {
         super(props);
         this.state = INIT_STATE;
 
-        this.state.loadingMessage = _.sample(LOADING_MESSAGES);
+        this.state.loadingMessage = _sample(LOADING_MESSAGES);
 
         this.listAllPresets();
         ipcRenderer.on('preset:list:reply', (event, receivedPresets) => {
@@ -110,7 +110,7 @@ class EfxSidebar extends React.Component {
 
     updateLoadingMessage = () => {
         this.setState({
-            loadingMessage: _.sample(LOADING_MESSAGES)
+            loadingMessage: _sample(LOADING_MESSAGES)
         });
     };
 

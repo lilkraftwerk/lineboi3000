@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { random } from 'es-toolkit';
 import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
@@ -43,8 +43,8 @@ export const SplitLinesRandomFilter = ({ filterSettings, pointArrays }) => {
     const newLines = [];
 
     pointArrays.forEach((pointArray) => {
-        const pointsOn = () => _.random(2, maxOn);
-        const pointsOff = () => _.random(1, maxOff);
+        const pointsOn = () => random(2, maxOn);
+        const pointsOff = () => random(1, maxOff);
         let currentPointsOn = pointsOn();
         let currentPointsOff = pointsOff();
         let onCount = 0;

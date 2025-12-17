@@ -1,6 +1,6 @@
 import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 import { EnabledToggleButton } from 'components/common/SidebarButton/SidebarButton';
-import _ from 'lodash';
+import { random as _random, round as _round } from 'es-toolkit';
 import Plotter from 'plotting/Plotter';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -163,8 +163,8 @@ class PlotSidebar extends React.Component {
         for (let i = 0; i < 10; i += 1) {
             const points = [];
             for (let p = 0; p < 5; p += 1) {
-                const randoX = _.random(300, 350);
-                const randoY = _.random(250, 300);
+                const randoX = _random(300, 350);
+                const randoY = _random(250, 300);
                 points.push([randoX, randoY]);
             }
             const formattedLine = {
@@ -209,7 +209,7 @@ class PlotSidebar extends React.Component {
         } = this.props;
 
         this.parkPen();
-        let justLines = _.flatten(formattedLayers.map((x) => x.lines));
+        let justLines = formattedLayers.flatMap((x) => x.lines);
 
         if (optimizeLineOrder) {
             justLines = sortLinesForPlotter(justLines);
@@ -410,7 +410,7 @@ class PlotSidebar extends React.Component {
                             dispatch(
                                 setPlotSettingByKey(
                                     'penUpHeight',
-                                    _.round(value, 2)
+                                    _round(value, 2)
                                 )
                             );
                         }}
@@ -427,7 +427,7 @@ class PlotSidebar extends React.Component {
                             dispatch(
                                 setPlotSettingByKey(
                                     'penDownHeight',
-                                    _.round(value, 2)
+                                    _round(value, 2)
                                 )
                             );
                         }}

@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import {
     createFakePoint,
     createFakePointArray,
@@ -41,10 +39,8 @@ describe('Test Utils', () => {
     describe('createFakePointArrayContainer()', () => {
         it('creates an array with valid point arrays', () => {
             const fakePointArrayContainer = createFakePointArrayContainer();
-            const allAreValid = _.every(
-                fakePointArrayContainer,
-                isPointArrayValid
-            );
+            const allAreValid =
+                fakePointArrayContainer.every(isPointArrayValid);
             expect(allAreValid).toEqual(true);
         });
     });

@@ -1,5 +1,5 @@
 import { CombinedLayer } from 'components/common/SvgLayer/SvgLayer';
-import _ from 'lodash';
+import { isEqual as _isEqual } from 'es-toolkit';
 import React from 'react';
 import { connect } from 'react-redux';
 import { setTempBlob } from 'store/gifmaker/gifmakerActions';
@@ -13,15 +13,15 @@ class EfxContainer extends React.Component {
     shouldComponentUpdate(nextProps) {
         const { height, width, visibleEfxLines, showPoints } = this.props;
         const areNotEqual = (a, b) => {
-            return !_.isEqual(a, b);
+            return !_isEqual(a, b);
         };
 
-        const shouldUpdate = _.some([
+        const shouldUpdate = [
             areNotEqual(height, nextProps.height),
             areNotEqual(width, nextProps.width),
             areNotEqual(visibleEfxLines, nextProps.visibleEfxLines),
             areNotEqual(showPoints, nextProps.showPoints)
-        ]);
+        ].some(Boolean);
         return shouldUpdate;
     }
 

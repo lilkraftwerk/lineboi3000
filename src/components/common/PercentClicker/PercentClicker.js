@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { round as _round } from 'es-toolkit';
 import React from 'react';
 
 import * as styles from './PercentClicker.styles.css';
@@ -40,10 +40,10 @@ const PercentClicker = ({
         const valueWithinRange = percentToValueWithinRange(clickValueInPercent);
 
         if (!float) {
-            setValue(_.round(valueWithinRange));
+            setValue(_round(valueWithinRange));
             return;
         }
-        setValue(_.round(valueWithinRange, 4));
+        setValue(_round(valueWithinRange, 4));
     };
 
     return (

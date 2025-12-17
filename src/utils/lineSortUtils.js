@@ -1,10 +1,10 @@
-import _ from 'lodash';
+import { clone as _clone, last as _last } from 'es-toolkit';
 import { distanceBetweenTwoCoords } from './coordUtils';
 
 export const getStartAndEndPointsOfCoords = (coords) => {
     return {
-        start: _.first(coords),
-        end: _.last(coords)
+        start: coords[0],
+        end: _last(coords)
     };
 };
 
@@ -21,7 +21,7 @@ export const findNearestLine = (currentLine, remainingLines) => {
         const startDistance = distanceBetweenTwoCoords(currentLineEnd, start);
         const endDistance = distanceBetweenTwoCoords(currentLineEnd, end);
 
-        const smallestDistance = _.min([startDistance, endDistance]);
+        const smallestDistance = Math.min(startDistance, endDistance);
 
         if (smallestDistance === endDistance) {
             results.push({
@@ -38,7 +38,8 @@ export const findNearestLine = (currentLine, remainingLines) => {
         }
     });
 
-    const { id, end } = _.minBy(results, 'distance');
+    const min = results.reduce((a, b) => (a.distance < b.distance ? a : b));
+    const { id, end } = min;
 
     return {
         id,
@@ -48,16 +49,16 @@ export const findNearestLine = (currentLine, remainingLines) => {
 
 export const sortLinesForPlotter = (lines) => {
     // to do add option that doesn't reverse line direction
-    let clonedLines = _.clone(lines);
+    let clonedLines = _clone(lines);
     const firstLine = clonedLines.shift();
     const sortedLines = [firstLine];
 
     while (sortedLines.length < lines.length) {
-        const lastLine = _.last(sortedLines);
+        const lastLine = _last(sortedLines);
 
         const { id, reverse } = findNearestLine(lastLine, clonedLines);
 
-        const foundLine = _.find(clonedLines, (clonedLine) => {
+        const foundLine = clonedLines.find((clonedLine) => {
             return clonedLine.id === id;
         });
 

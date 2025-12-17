@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { random } from 'es-toolkit';
 import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
@@ -45,12 +45,12 @@ export const WiggleFilter = ({ filterSettings, pointArrays }) => {
         pointArray.map(([x, y]) => {
             let xOffset = 0;
             let yOffset = 0;
-            if (_.random(0, 100) < percentAffect) {
-                xOffset = _.random(-pixelOffset, pixelOffset);
+            if (random(0, 100) < percentAffect) {
+                xOffset = random(-pixelOffset, pixelOffset);
             }
 
-            if (_.random(0, 100) < percentAffect) {
-                yOffset = _.random(-pixelOffset, pixelOffset);
+            if (random(0, 100) < percentAffect) {
+                yOffset = random(-pixelOffset, pixelOffset);
             }
 
             return [x + xOffset, y + yOffset];

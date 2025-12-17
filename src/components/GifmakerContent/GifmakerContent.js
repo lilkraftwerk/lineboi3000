@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron';
 import GIF from 'gif.js.optimized';
-import _ from 'lodash';
+import { isEqual as _isEqual } from 'es-toolkit';
 import React from 'react';
 import { connect } from 'react-redux';
 import {
@@ -35,12 +35,12 @@ class GifmakerContent extends React.Component {
         const currentIds = justIds(activeFrames);
 
         if (
-            !_.isEqual(prevIds, currentIds) ||
-            !_.isEqual(gifBackgroundColor, prevProps.gifBackgroundColor) ||
-            !_.isEqual(gifHeight, prevProps.gifHeight) ||
-            !_.isEqual(gifWidth, prevProps.gifWidth) ||
-            !_.isEqual(gifQuality, prevProps.gifQuality) ||
-            !_.isEqual(gifFrameDelay, prevProps.gifFrameDelay)
+            !_isEqual(prevIds, currentIds) ||
+            !_isEqual(gifBackgroundColor, prevProps.gifBackgroundColor) ||
+            !_isEqual(gifHeight, prevProps.gifHeight) ||
+            !_isEqual(gifWidth, prevProps.gifWidth) ||
+            !_isEqual(gifQuality, prevProps.gifQuality) ||
+            !_isEqual(gifFrameDelay, prevProps.gifFrameDelay)
         ) {
             this.startGifUpdate();
         }

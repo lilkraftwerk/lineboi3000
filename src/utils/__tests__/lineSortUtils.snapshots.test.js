@@ -1,5 +1,4 @@
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
-import _ from 'lodash';
 import { drawLines } from '../drawingUtils';
 import { createTestCanvas } from '../testUtils';
 
@@ -93,7 +92,7 @@ describe('Connect Lines Into One', () => {
         const { canvas, context } = createTestCanvas();
         const sortedLines = sortLinesForPlotter(drawnRandomLines);
         const pointArrays = sortedLines.map((x) => x.pointArrayContainer);
-        const oneLine = _.flatten(pointArrays);
+        const oneLine = pointArrays.flat();
         drawLines({
             context,
             pointArrays: [oneLine],

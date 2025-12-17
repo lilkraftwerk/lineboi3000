@@ -8,7 +8,7 @@ import {
     SidebarItem
 } from 'components/common/SidebarContainer/SidebarContainer';
 import { ipcRenderer } from 'electron';
-import _ from 'lodash';
+import { lowerCase as _lowerCase } from 'es-toolkit';
 import React from 'react';
 import { connect } from 'react-redux';
 import { ActionCreators } from 'redux-undo';
@@ -115,7 +115,7 @@ class DrawingSidebar extends React.Component {
         return (
             <SidebarContainer>
                 <SidebarItem title="drawing mode" height={2}>
-                    {_.keys(MAIN_MODES).map((modeKey) => {
+                    {Object.keys(MAIN_MODES).map((modeKey) => {
                         const { displayName, emoji } = MAIN_MODES[modeKey];
                         return (
                             <EmojiButton
@@ -132,13 +132,13 @@ class DrawingSidebar extends React.Component {
                     })}
                 </SidebarItem>
                 <SidebarItem
-                    title={`${_.lowerCase(
+                    title={`${_lowerCase(
                         MAIN_MODES[mainMode].displayName
                     )} options`}
                     height={2}
                 >
                     {mainMode === 'draw' &&
-                        _.keys(DRAWING_MODES).map((modeKey) => {
+                        Object.keys(DRAWING_MODES).map((modeKey) => {
                             const { displayName, emoji } =
                                 DRAWING_MODES[modeKey];
                             return (

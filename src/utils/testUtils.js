@@ -1,5 +1,5 @@
 import { createCanvas } from 'canvas';
-import _ from 'lodash';
+import { random as _random } from 'es-toolkit';
 import id from './id';
 
 export const createFakePoint = (
@@ -7,24 +7,24 @@ export const createFakePoint = (
     maxWidth = 800,
     offset = 100
 ) => {
-    const x = _.random(0, maxHeight) + offset;
-    const y = _.random(0, maxWidth) + offset;
+    const x = _random(0, maxHeight) + offset;
+    const y = _random(0, maxWidth) + offset;
     return [x, y];
 };
 
 export const createFakePointArray = (pointCount = 10) => {
     const pointArray = [];
-    _.times(pointCount, () => {
+    for (let i = 0; i < pointCount; i++) {
         pointArray.push(createFakePoint());
-    });
+    }
     return pointArray;
 };
 
 export const createFakePointArrayContainer = (count = 10, pointsPer = 10) => {
     const pointArrayContainer = [];
-    _.times(count, () => {
+    for (let i = 0; i < count; i++) {
         pointArrayContainer.push(createFakePointArray(pointsPer));
-    });
+    }
     return pointArrayContainer;
 };
 
@@ -37,16 +37,16 @@ export const createFakeLine = () => {
 
 export const createFakeLineArray = (count = 10) => {
     const lines = [];
-    _.times(count, () => {
+    for (let i = 0; i < count; i++) {
         lines.push(createFakeLine());
-    });
+    }
     return lines;
 };
 
 export const isPointArrayValid = (pointArray) => {
     const invalidReasons = [];
 
-    if (!_.isArray(pointArray)) {
+    if (!Array.isArray(pointArray)) {
         invalidReasons.push('not array');
         return invalidReasons;
     }
@@ -72,14 +72,14 @@ export const isPointArrayValid = (pointArray) => {
     if (invalidReasons.length === 0) {
         return true;
     }
-    return _.uniq(invalidReasons);
+    return [...new Set(invalidReasons)];
 };
 
 export const isPointArrayContainerValid = (pointArrayContainer) => {
-    if (!_.isArray(pointArrayContainer)) {
+    if (!Array.isArray(pointArrayContainer)) {
         return false;
     }
-    const allAreValid = _.every(pointArrayContainer, (pointArray) => {
+    const allAreValid = pointArrayContainer.every((pointArray) => {
         return isPointArrayValid(pointArray) === true;
     });
 
@@ -93,11 +93,11 @@ export const isLineValid = (line) => {
         return invalidReasons;
     }
 
-    if (!line.id || !_.isString(line.id)) {
+    if (!line.id || typeof line.id !== 'string') {
         invalidReasons.push('no id or id is not a string');
     }
 
-    if (!_.isArray(line.pointArrayContainer)) {
+    if (!Array.isArray(line.pointArrayContainer)) {
         invalidReasons.push('pointArrayContainer is not an array');
     }
 
@@ -108,7 +108,7 @@ export const isLineValid = (line) => {
     if (invalidReasons.length === 0) {
         return true;
     }
-    return _.uniq(invalidReasons);
+    return [...new Set(invalidReasons)];
 };
 
 export const createTestCanvas = () => {

@@ -1,4 +1,8 @@
-import _ from 'lodash';
+import {
+    omitBy as _omitBy,
+    isEqual as _isEqual,
+    isNil as _isNil
+} from 'es-toolkit';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -46,7 +50,7 @@ class OptionsSidebar extends React.Component {
     saveOptions = () => {
         const { dispatch } = this.props;
         const { state } = this;
-        const changedValues = _.keys(_.omitBy(this.state, _.isNil));
+        const changedValues = Object.keys(_omitBy(this.state, _isNil));
         changedValues.forEach((changedKey) => {
             const reducerKey = tempKeyValueMap[changedKey];
             const value = state[changedKey];
@@ -72,14 +76,13 @@ class OptionsSidebar extends React.Component {
         } = this.state;
 
         if (
-            (tempHeight && !_.isEqual(height, tempHeight)) ||
-            (tempWidth && !_.isEqual(width, tempWidth)) ||
+            (tempHeight && !_isEqual(height, tempHeight)) ||
+            (tempWidth && !_isEqual(width, tempWidth)) ||
             (tempPointShowRadius &&
-                !_.isEqual(pointShowRadius, tempPointShowRadius)) ||
+                !_isEqual(pointShowRadius, tempPointShowRadius)) ||
             (tempPointShowColor &&
-                !_.isEqual(pointShowColor, tempPointShowColor)) ||
-            (tempShiftToDraw != null &&
-                !_.isEqual(shiftToDraw, tempShiftToDraw))
+                !_isEqual(pointShowColor, tempPointShowColor)) ||
+            (tempShiftToDraw != null && !_isEqual(shiftToDraw, tempShiftToDraw))
         ) {
             return true;
         }

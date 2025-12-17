@@ -1,6 +1,5 @@
 import 'jest-canvas-mock';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
-import _ from 'lodash';
 import { makeVerticalLinesPointArrays } from '../../../tests/LineFixtures';
 import { allPointsBetweenTwoCoords } from '../coordUtils';
 import { drawCircles, drawLines, drawPoints } from '../drawingUtils';
@@ -93,18 +92,15 @@ describe('isPointWithinCircle', () => {
         const finalPoints = [];
 
         allPoints.forEach(([currentX, currentY]) => {
-            const isInAnyCircle = _.some(
-                circleLocations,
-                ([circleX, circleY]) => {
-                    return isPointWithinCircle(
-                        circleX,
-                        circleY,
-                        radius,
-                        currentX,
-                        currentY,
-                        true
-                    );
-                }
+            const isInAnyCircle = circleLocations.some(([circleX, circleY]) =>
+                isPointWithinCircle(
+                    circleX,
+                    circleY,
+                    radius,
+                    currentX,
+                    currentY,
+                    true
+                )
             );
             if (!isInAnyCircle) {
                 finalPoints.push([currentX, currentY]);
@@ -139,18 +135,15 @@ describe('isPointWithinCircle', () => {
         const finalPoints = [];
 
         allPoints.forEach(([currentX, currentY]) => {
-            const isInAnyCircle = _.some(
-                circleLocations,
-                ([circleX, circleY]) => {
-                    return isPointWithinCircle(
-                        circleX,
-                        circleY,
-                        radius,
-                        currentX,
-                        currentY,
-                        false
-                    );
-                }
+            const isInAnyCircle = circleLocations.some(([circleX, circleY]) =>
+                isPointWithinCircle(
+                    circleX,
+                    circleY,
+                    radius,
+                    currentX,
+                    currentY,
+                    false
+                )
             );
             if (!isInAnyCircle) {
                 finalPoints.push([currentX, currentY]);
