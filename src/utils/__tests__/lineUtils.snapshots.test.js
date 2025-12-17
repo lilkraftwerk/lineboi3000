@@ -92,8 +92,8 @@ describe('isPointWithinCircle', () => {
         const finalPoints = [];
 
         allPoints.forEach(([currentX, currentY]) => {
-            const isInAnyCircle = circleLocations.some(
-                ([circleX, circleY]) => isPointWithinCircle(
+            const isInAnyCircle = circleLocations.some(([circleX, circleY]) =>
+                isPointWithinCircle(
                     circleX,
                     circleY,
                     radius,
@@ -135,8 +135,8 @@ describe('isPointWithinCircle', () => {
         const finalPoints = [];
 
         allPoints.forEach(([currentX, currentY]) => {
-            const isInAnyCircle = circleLocations.some(
-                ([circleX, circleY]) => isPointWithinCircle(
+            const isInAnyCircle = circleLocations.some(([circleX, circleY]) =>
+                isPointWithinCircle(
                     circleX,
                     circleY,
                     radius,

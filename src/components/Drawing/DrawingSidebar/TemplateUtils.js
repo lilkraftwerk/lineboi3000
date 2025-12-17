@@ -1,4 +1,8 @@
-import { random as _random , shuffle as _shuffle, sortBy as _sortBy } from 'es-toolkit';
+import {
+    random as _random,
+    shuffle as _shuffle,
+    sortBy as _sortBy
+} from 'es-toolkit';
 import { addMultipleLinesToLayerByID } from 'store/line/lineActions';
 import { allPointsBetweenTwoCoords } from '../../../utils/coordUtils';
 

@@ -229,7 +229,7 @@ export const addIntermediatePointsToLine = (line, passes = 1) => {
 
     for (let i = 0; i < passes; i++) {
         copiedLine = onePass(copiedLine);
-    };
+    }
     return copiedLine;
 };
 
@@ -287,11 +287,11 @@ export const splitLinesViaEraserCoords = ({
     }
 
     if (smoothOriginalLines) {
-        for(let i = 0; i < smoothPasses; i++) {
+        for (let i = 0; i < smoothPasses; i++) {
             tempPointArrays = tempPointArrays.map((pointArray) =>
                 addIntermediatePointsToLine(pointArray, smoothPasses)
             );
-        };
+        }
     }
 
     tempPointArrays.forEach((line) => {

@@ -60,7 +60,7 @@ export const SmoothFilter = ({ filterSettings, pointArrays }) => {
         tempPointArrays = tempPointArrays.map((pointArray) =>
             smoothPointArray(pointArray)
         );
-    }    
+    }
 
     return tempPointArrays;
 };

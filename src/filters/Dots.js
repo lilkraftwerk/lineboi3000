@@ -53,7 +53,7 @@ export const DotsFilter = ({ filterSettings, pointArrays }) => {
             const randX = _random(-distance, distance);
             const randY = _random(-distance, distance);
             points.push([x + randX, y + randY]);
-        };
+        }
         return points;
     });
     return mappedLines;

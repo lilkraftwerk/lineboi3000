@@ -39,7 +39,8 @@ describe('Test Utils', () => {
     describe('createFakePointArrayContainer()', () => {
         it('creates an array with valid point arrays', () => {
             const fakePointArrayContainer = createFakePointArrayContainer();
-            const allAreValid = fakePointArrayContainer.every(isPointArrayValid);
+            const allAreValid =
+                fakePointArrayContainer.every(isPointArrayValid);
             expect(allAreValid).toEqual(true);
         });
     });

@@ -40,7 +40,7 @@ export const findNearestLine = (currentLine, remainingLines) => {
 
     const min = results.reduce((a, b) => (a.distance < b.distance ? a : b));
     const { id, end } = min;
-    
+
     return {
         id,
         reverse: end

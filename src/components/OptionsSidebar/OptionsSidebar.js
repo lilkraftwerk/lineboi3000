@@ -1,4 +1,8 @@
-import { omitBy as _omitBy, isEqual as _isEqual, isNil as _isNil } from 'es-toolkit';
+import {
+    omitBy as _omitBy,
+    isEqual as _isEqual,
+    isNil as _isNil
+} from 'es-toolkit';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -78,8 +82,7 @@ class OptionsSidebar extends React.Component {
                 !_isEqual(pointShowRadius, tempPointShowRadius)) ||
             (tempPointShowColor &&
                 !_isEqual(pointShowColor, tempPointShowColor)) ||
-            (tempShiftToDraw != null &&
-                !_isEqual(shiftToDraw, tempShiftToDraw))
+            (tempShiftToDraw != null && !_isEqual(shiftToDraw, tempShiftToDraw))
         ) {
             return true;
         }

@@ -70,7 +70,7 @@ export const allPointsBetweenTwoCoords = (
         const newX = _round(startX + index * xInterval, 4);
         const newY = _round(startY + index * yInterval, 4);
         points.push([newX, newY]);
-    };
+    }
 
     if (includeStartCoords === false) {
         return points.slice(1);

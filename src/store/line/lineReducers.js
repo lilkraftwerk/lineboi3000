@@ -71,7 +71,7 @@ const multiplyCanvasHelper = (
         ];
         const newPointArrayContainers = [];
         for (xIndex = 0; xIndex < timesX; xIndex++) {
-            for (yIndex = 0; yIndex < timesY; yIndex ++) {
+            for (yIndex = 0; yIndex < timesY; yIndex++) {
                 originalPointArrayContainers.forEach((pAC) => {
                     const mapped = pAC.map(([x, y]) => {
                         return [
@@ -81,8 +81,8 @@ const multiplyCanvasHelper = (
                     });
                     newPointArrayContainers.push(mapped);
                 });
-            };
-        };
+            }
+        }
 
         const withId = newPointArrayContainers.map((x) => {
             return {

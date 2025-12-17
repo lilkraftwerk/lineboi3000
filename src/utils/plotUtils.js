@@ -60,8 +60,12 @@ export const getExtremePointsOfLines = (lines) => {
         (line) => line.pointArrayContainer
     );
 
-    const allXValues = flatScaledPointArrayContainers.map((pointArray) => pointArray[0]);
-    const allYValues = flatScaledPointArrayContainers.map((pointArray) => pointArray[1]);
+    const allXValues = flatScaledPointArrayContainers.map(
+        (pointArray) => pointArray[0]
+    );
+    const allYValues = flatScaledPointArrayContainers.map(
+        (pointArray) => pointArray[1]
+    );
 
     const minX = Math.min(...allXValues);
     const maxX = Math.max(...allXValues);

@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron';
 import GIF from 'gif.js.optimized';
-import { isEqual as _isEqual} from 'es-toolkit';
+import { isEqual as _isEqual } from 'es-toolkit';
 import React from 'react';
 import { connect } from 'react-redux';
 import {

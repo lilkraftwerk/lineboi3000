@@ -159,7 +159,9 @@ const moveFilter = (layers, { layerID, filterID }, up = true) => {
 
         const { filters } = layer;
 
-        const currentIndex = filters.findIndex((filter) => filter.id === filterID);
+        const currentIndex = filters.findIndex(
+            (filter) => filter.id === filterID
+        );
 
         const atBeginning = Boolean(currentIndex === 0);
         const atEnd = Boolean(currentIndex === filters.length - 1);

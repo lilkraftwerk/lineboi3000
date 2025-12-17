@@ -21,8 +21,10 @@ const PointCounter = ({ visibleEfxLines, visibleOriginalLines, mode }) => {
     const flattenedLines = Object.values(linesToCount).flat();
     const lineCount = flattenedLines.length;
 
-    const pointCount = flattenedLines.reduce((sum, x) =>
-        sum + (x.pointArrayContainer ? x.pointArrayContainer.length : 0), 0
+    const pointCount = flattenedLines.reduce(
+        (sum, x) =>
+            sum + (x.pointArrayContainer ? x.pointArrayContainer.length : 0),
+        0
     );
 
     return (
