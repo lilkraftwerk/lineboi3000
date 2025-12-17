@@ -1,4 +1,3 @@
-import Frame from 'canvas-to-buffer';
 import 'jest-canvas-mock';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 import { zShape } from '../../../tests/LineFixtures';
@@ -25,8 +24,7 @@ describe('drawing utils', () => {
         it('should draw lines properly', () => {
             const { canvas, context } = createTestCanvas();
             drawLines({ context, pointArrays: [zShape] });
-            const frame = new Frame(canvas);
-            const buffer = frame.toBuffer();
+            const buffer = canvas.toBuffer('image/png');
             expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
         });
     });
@@ -35,8 +33,7 @@ describe('drawing utils', () => {
         it('should draw circles properly', () => {
             const { canvas, context } = createTestCanvas();
             drawCircles({ context, coords: zShape, radius: 5 });
-            const frame = new Frame(canvas);
-            const buffer = frame.toBuffer();
+            const buffer = canvas.toBuffer('image/png');
             expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
         });
     });
@@ -45,8 +42,7 @@ describe('drawing utils', () => {
         it('should draw points properly', () => {
             const { canvas, context } = createTestCanvas();
             drawPoints({ context, coords: [zShape] });
-            const frame = new Frame(canvas);
-            const buffer = frame.toBuffer();
+            const buffer = canvas.toBuffer('image/png');
             expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
         });
     });
@@ -54,8 +50,7 @@ describe('drawing utils', () => {
         it('should draw squares properly', () => {
             const { canvas, context } = createTestCanvas();
             drawSquares({ context, coords: [zShape] });
-            const frame = new Frame(canvas);
-            const buffer = frame.toBuffer();
+            const buffer = canvas.toBuffer('image/png');
             expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
         });
     });
@@ -64,8 +59,7 @@ describe('drawing utils', () => {
         it('should draw point circles properly', () => {
             const { canvas, context } = createTestCanvas();
             drawPointCircles({ context, coords: [zShape] });
-            const frame = new Frame(canvas);
-            const buffer = frame.toBuffer();
+            const buffer = canvas.toBuffer('image/png');
             expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
         });
     });

@@ -1,4 +1,3 @@
-import Frame from 'canvas-to-buffer';
 import 'jest-canvas-mock';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 import { zShape } from '../../../tests/LineFixtures';
@@ -49,64 +48,55 @@ const testAngle = (angle) => {
 describe('GenerateLinesAtAngle', () => {
     it('should generate lines at angle 0', () => {
         const canvas = testAngle(0);
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should generate lines at angle 37', () => {
         const canvas = testAngle(37);
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should generate lines at angle 45', () => {
         const canvas = testAngle(45);
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should generate lines at angle 67', () => {
         const canvas = testAngle(67);
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should generate lines at angle 90', () => {
         const canvas = testAngle(90);
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should generate lines at angle 110', () => {
         const canvas = testAngle(110);
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should generate lines at angle 130', () => {
         const canvas = testAngle(130);
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should generate lines at angle 160', () => {
         const canvas = testAngle(160);
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
     it('should generate lines at angle 180', () => {
         const canvas = testAngle(180);
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 });

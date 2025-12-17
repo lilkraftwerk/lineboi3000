@@ -1,4 +1,3 @@
-import Frame from 'canvas-to-buffer';
 import 'jest-canvas-mock';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 import _ from 'lodash';
@@ -67,8 +66,7 @@ describe('Split Lines', () => {
         });
 
         drawLines({ context, pointArrays: splitLines });
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 });
@@ -116,8 +114,7 @@ describe('isPointWithinCircle', () => {
         drawCircles({ context, coords: circleLocations, radius, color: 'red' });
         drawPoints({ context, coords: finalPoints });
 
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
@@ -162,8 +159,7 @@ describe('isPointWithinCircle', () => {
         drawCircles({ context, coords: circleLocations, radius, color: 'red' });
         drawPoints({ context, coords: finalPoints });
 
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 });

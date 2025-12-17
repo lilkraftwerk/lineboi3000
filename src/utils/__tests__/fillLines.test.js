@@ -1,4 +1,3 @@
-import Frame from 'canvas-to-buffer';
 import 'jest-canvas-mock';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 import { circleLine, zShape } from '../../../tests/LineFixtures';
@@ -41,8 +40,7 @@ describe('Fill Lines', () => {
             strokeWidth: 1,
             color: 'black'
         });
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
@@ -65,8 +63,7 @@ describe('Fill Lines', () => {
             strokeWidth: 1,
             color: 'black'
         });
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
@@ -89,8 +86,7 @@ describe('Fill Lines', () => {
             strokeWidth: 1,
             color: 'black'
         });
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
@@ -113,8 +109,7 @@ describe('Fill Lines', () => {
             strokeWidth: 1,
             color: 'black'
         });
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 });
@@ -151,8 +146,7 @@ describe('Draw Lines At Angle', () => {
         it(`should draw lines at angle ${angle}`, () => {
             const { canvas, context } = createTestCanvas();
             testLinesAtAngle(context, angle);
-            const frame = new Frame(canvas);
-            const buffer = frame.toBuffer();
+            const buffer = canvas.toBuffer('image/png');
             expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
         });
     });
@@ -182,8 +176,7 @@ describe('printFillLinesForCircle', () => {
                 pointArrays: lines,
                 ...lineOptions
             });
-            const frame = new Frame(canvas);
-            const buffer = frame.toBuffer();
+            const buffer = canvas.toBuffer('image/png');
             expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
         });
     });

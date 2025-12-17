@@ -1,5 +1,4 @@
 import fs from 'node:fs';
-import Frame from 'canvas-to-buffer';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 
 import {
@@ -60,8 +59,7 @@ ALL_FILTERS.forEach(({ name, filter, initSettings }) => {
                 color: 'black'
             });
 
-            const frame = new Frame(canvas);
-            const buffer = frame.toBuffer();
+            const buffer = canvas.toBuffer('image/png');
             const filename = `./tests/filterExamples/${name}-horizontal.png`;
             fs.writeFile(filename, buffer, (err) => {
                 if (err) throw err;
@@ -87,8 +85,7 @@ ALL_FILTERS.forEach(({ name, filter, initSettings }) => {
                 color: 'black'
             });
 
-            const frame = new Frame(canvas);
-            const buffer = frame.toBuffer();
+            const buffer = canvas.toBuffer('image/png');
             const filename = `./tests/filterExamples/${name}-vertical.png`;
             fs.writeFile(filename, buffer, (err) => {
                 if (err) throw err;
@@ -115,8 +112,7 @@ ALL_FILTERS.forEach(({ name, filter, initSettings }) => {
             color: 'black'
         });
 
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         const filename = `./tests/filterExamples/${name}-squares.png`;
         fs.writeFile(filename, buffer, (err) => {
             if (err) throw err;

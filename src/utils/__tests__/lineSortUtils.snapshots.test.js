@@ -1,4 +1,3 @@
-import Frame from 'canvas-to-buffer';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 import _ from 'lodash';
 import { drawLines } from '../drawingUtils';
@@ -38,8 +37,7 @@ describe('Sort Lines For Plotter', () => {
             counter += 1;
         });
 
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
@@ -62,8 +60,7 @@ describe('Sort Lines For Plotter', () => {
             counter += 1;
         });
 
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 
@@ -86,8 +83,7 @@ describe('Sort Lines For Plotter', () => {
             color: 'black'
         });
 
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 });
@@ -104,8 +100,7 @@ describe('Connect Lines Into One', () => {
             strokeWidth: 4,
             color: 'black'
         });
-        const frame = new Frame(canvas);
-        const buffer = frame.toBuffer();
+        const buffer = canvas.toBuffer('image/png');
         expect(buffer).toMatchImageSnapshot(imageSnapshotOptions);
     });
 });
