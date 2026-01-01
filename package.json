@@ -79,7 +79,7 @@
         "chaikin-smooth": "^1.0.4",
         "cncserver": "^2.9.0",
         "concurrently": "^9.0.0",
-        "esbuild": "^0.25.0",
+        "esbuild": "^0.27.0",
         "esbuild-loader": "^4.1.0",
         "fs-jetpack": "^5.0.0",
         "gif.js.optimized": "^1.0.1",
@@ -134,6 +134,6 @@
         "webpack-dev-server": "^5.2.1"
     },
     "overrides": {
-        "esbuild": "^0.25.0"
+        "esbuild": "^0.27.0"
     }
 }
