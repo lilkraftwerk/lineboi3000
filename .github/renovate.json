@@ -38,7 +38,9 @@
         {
             "automerge": true,
             "matchPackageNames": [
-                "/pre-commit/"
+                "/pre-commit/",
+                "/check-jsonschme/",
+                "/biome/"
             ]
         },
         {
