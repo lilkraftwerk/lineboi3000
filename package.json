@@ -77,7 +77,7 @@
         "base64image-to-file": "^1.2.0",
         "bresenham-js": "^0.0.0",
         "chaikin-smooth": "^1.0.4",
-        "cncserver": "^2.9.0",
+        "cncserver": "git+https://github.com/alexrudd2/cncserver.git",
         "concurrently": "^9.0.0",
         "esbuild": "^0.27.0",
         "esbuild-loader": "^4.1.0",
