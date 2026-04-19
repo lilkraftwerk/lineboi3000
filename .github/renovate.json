@@ -40,7 +40,8 @@
             "matchPackageNames": [
                 "/pre-commit/",
                 "/check-jsonschme/",
-                "/biome/"
+                "/biome/",
+                "/playwright/"
             ]
         },
         {
