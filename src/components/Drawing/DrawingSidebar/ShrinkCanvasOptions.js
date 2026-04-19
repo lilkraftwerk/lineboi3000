@@ -1,6 +1,6 @@
 import { EmojiButton } from 'components/common/SidebarButton/SidebarButton';
 import { SidebarItem } from 'components/common/SidebarContainer/SidebarContainer';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { shrinkCanvas } from 'store/line/lineActions';
 
 import * as styles from './ShrinkCanvasOptions.styles.css';

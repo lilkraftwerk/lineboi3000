@@ -1,4 +1,4 @@
-import React from 'react';
+
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'split linez';

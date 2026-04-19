@@ -1,4 +1,4 @@
-import React from 'react';
+
 import simplify from 'simplify-js';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 

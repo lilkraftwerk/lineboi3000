@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Popover from 'react-tiny-popover';
 
 import * as styles from './SidebarContainer.styles.css';

@@ -1,5 +1,4 @@
 import { random as _random } from 'es-toolkit';
-import React from 'react';
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'distort';

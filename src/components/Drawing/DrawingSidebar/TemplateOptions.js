@@ -1,6 +1,5 @@
 import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 import { EmojiButton } from 'components/common/SidebarButton/SidebarButton';
-import React from 'react';
 import { connect } from 'react-redux';
 import { setOptionByKey } from 'store/drawing/drawingActions';
 

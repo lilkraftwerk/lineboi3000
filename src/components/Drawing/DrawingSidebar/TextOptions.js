@@ -1,7 +1,6 @@
 import ItemSelector from 'components/common/ItemSelector/ItemSelector';
 import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 import { SidebarItem } from 'components/common/SidebarContainer/SidebarContainer';
-import React from 'react';
 import {
     setFontName,
     setOptionByKey,

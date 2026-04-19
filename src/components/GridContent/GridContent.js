@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { connect } from 'react-redux';
 import { getCurrentOptions } from 'store/options/optionsSelectors';
 import { CanvasLayer } from '../common/SvgLayer/SvgLayer';

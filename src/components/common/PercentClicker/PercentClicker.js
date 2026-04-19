@@ -1,5 +1,4 @@
 import { round as _round } from 'es-toolkit';
-import React from 'react';
 
 import * as styles from './PercentClicker.styles.css';
 

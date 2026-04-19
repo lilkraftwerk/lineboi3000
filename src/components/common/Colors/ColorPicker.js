@@ -1,6 +1,6 @@
 import Icon from 'components/common/Icon/Icon';
 import { take as _take, shuffle as _shuffle } from 'es-toolkit';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Popover } from 'react-tiny-popover';
 import ColorList from './ColorList';
 

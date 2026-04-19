@@ -1,6 +1,5 @@
 import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 import { SidebarItem } from 'components/common/SidebarContainer/SidebarContainer';
-import React from 'react';
 import { setMultiplyCanvasOptions } from 'store/drawing/drawingActions';
 import { multiplyCanvas } from 'store/line/lineActions';
 

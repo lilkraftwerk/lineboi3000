@@ -1,6 +1,6 @@
 import ColorPicker from 'components/common/Colors/ColorPicker';
 import Icon from 'components/common/Icon/Icon';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import * as styles from './SingleLayer.styles.css';
 

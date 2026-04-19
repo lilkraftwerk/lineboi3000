@@ -1,5 +1,4 @@
 import chaikinSmooth from 'chaikin-smooth';
-import React from 'react';
 import smoothPolyline from 'smooth-polyline';
 
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';

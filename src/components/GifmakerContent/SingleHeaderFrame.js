@@ -1,5 +1,4 @@
 import Icon from 'components/common/Icon/Icon';
-import React from 'react';
 import * as styles from './SingleHeaderFrame.styles.css';
 
 const SingleHeaderFrame = ({
