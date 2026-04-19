@@ -1,4 +1,3 @@
-
 import * as styles from './Icon.styles.css';
 
 const Icon = ({

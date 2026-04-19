@@ -1,5 +1,3 @@
-
-
 import * as styles from './PaperCanvas.styles.css';
 
 const PaperCanvas = ({ width, height }) => {

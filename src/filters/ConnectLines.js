@@ -1,4 +1,3 @@
-
 import id from '../utils/id';
 
 import { sortLinesForPlotter } from '../utils/lineSortUtils';

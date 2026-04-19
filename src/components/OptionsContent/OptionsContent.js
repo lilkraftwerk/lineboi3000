@@ -1,5 +1,3 @@
-
-
 import * as styles from './OptionsContent.styles.css';
 
 const OptionsContent = () => {

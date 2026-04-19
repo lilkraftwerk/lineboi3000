@@ -1,4 +1,3 @@
-
 import PercentClicker from '../components/common/PercentClicker/PercentClicker';
 
 const filterName = 'move';

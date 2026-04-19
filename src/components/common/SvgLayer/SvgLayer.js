@@ -59,7 +59,16 @@ export const CanvasLayer = ({
             console.error(lines);
             console.error('***** line error *****');
         }
-    }, [lines, showPoints, color, height, pointShowColor, pointShowRadius, strokeWidth, width]);
+    }, [
+        lines,
+        showPoints,
+        color,
+        height,
+        pointShowColor,
+        pointShowRadius,
+        strokeWidth,
+        width
+    ]);
 
     const dw = Math.floor(pixelRatio * width);
     const dh = Math.floor(pixelRatio * height);

@@ -1,5 +1,3 @@
-
-
 import * as styles from './SidebarButton.styles.css';
 
 export const SidebarButton = ({
