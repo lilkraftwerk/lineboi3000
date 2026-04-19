@@ -20,7 +20,7 @@ const ItemSelector = ({
 
     useEffect(() => {
         onChange(selectedKey);
-    }, []);
+    }, [onChange, selectedKey]);
 
     const selectLeft = () => {
         if (selectedIndex === 0) {

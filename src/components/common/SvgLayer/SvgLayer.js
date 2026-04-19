@@ -59,7 +59,7 @@ export const CanvasLayer = ({
             console.error(lines);
             console.error('***** line error *****');
         }
-    }, [lines, showPoints, color]);
+    }, [lines, showPoints, color, height, pointShowColor, pointShowRadius, strokeWidth, width]);
 
     const dw = Math.floor(pixelRatio * width);
     const dh = Math.floor(pixelRatio * height);
@@ -108,7 +108,7 @@ export const PenPositionLayer = ({
             console.error('***** line error *****');
             console.error('***** line error *****');
         }
-    }, [penX, penY]);
+    }, [penX, penY, height, width]);
 
     const dw = Math.floor(pixelRatio * width);
     const dh = Math.floor(pixelRatio * height);
@@ -177,7 +177,7 @@ export const CombinedLayer = ({
             console.error(layers);
             console.error('***** layer error *****');
         }
-    }, [layers, showPoints]);
+    }, [layers, showPoints, height, pointShowColor, pointShowRadius, width]);
 
     if (canvas?.current) {
         canvas.current.toBlob((blob) => {
@@ -262,7 +262,7 @@ export const SelectLayer = ({
             console.error('***** line error *****');
         }
         // split this into two
-    }, [selectCoords, fillLines]);
+    }, [selectCoords, fillLines, height, hullCoords, width]);
 
     const dw = Math.floor(pixelRatio * width);
     const dh = Math.floor(pixelRatio * height);

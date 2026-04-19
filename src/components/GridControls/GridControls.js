@@ -40,7 +40,7 @@ const GridControls = ({
                 width: widthFactor
             })
         );
-    }, [globalHeight, globalWidth, gridLineCountIndex]);
+    }, [globalHeight, globalWidth, currentLineCount, dispatch]);
 
     return (
         <SidebarContainer>
