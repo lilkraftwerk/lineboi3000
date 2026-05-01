@@ -121,7 +121,7 @@
         "jest-esbuild": "^0.4.0",
         "jest-image-snapshot": "^6.5.2",
         "playwright": "^1.43.1",
-        "postcss": "^8.4.31",
+        "postcss": "^8.5.13",
         "progress-bar-webpack-plugin": "^2.1.0",
         "raw-loader": "^4.0.1",
         "rimraf": "^6.0.0",
