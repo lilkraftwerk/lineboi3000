@@ -135,5 +135,11 @@
     },
     "overrides": {
         "esbuild": "^0.28.0"
+    },
+    "allowScripts": {
+        "@serialport/bindings-cpp@13.0.0": true,
+        "canvas@3.2.0": true,
+        "esbuild@0.28.0": true,
+        "unrs-resolver@1.12.2": true
     }
 }
