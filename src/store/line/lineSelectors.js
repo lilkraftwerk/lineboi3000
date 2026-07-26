@@ -9,9 +9,13 @@ export const getOriginalLines = (state) => state.originalLinesReducer.present;
 export const getEfxLines = (state) => state.efxLinesReducer;
 
 export const getVisibleOriginalLines = createSelector(
-    [getVisibleLayerIDs, getOriginalLines],
-    (visibleLayerIDs, originalLines) => {
-        return { originalLines, visibleLayerIDs };
+    [getVisibleLayers, getOriginalLines],
+    (visibleLayers, originalLines) => {
+        return visibleLayers.map((layer) => ({
+            id: layer.id,
+            color: layer.color,
+            lines: originalLines[layer.id] || []
+        }));
     }
 );
 

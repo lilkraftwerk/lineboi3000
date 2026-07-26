@@ -463,27 +463,20 @@ export class DrawingContent extends React.Component {
                     />
                 )}
 
-                {Object.entries(visibleOriginalLines).map(
-                    ([layerID, layerLines]) => {
-                        const { color } = visibleLayers.find(
-                            (layer) => layer.id === layerID
-                        );
-                        return (
-                            <CanvasLayer
-                                key={layerID}
-                                id={layerID}
-                                width={width}
-                                height={height}
-                                lines={layerLines}
-                                color={color}
-                                strokeWidth={3}
-                                showPoints={showPoints}
-                                pointShowColor={pointShowColor}
-                                pointShowRadius={pointShowRadius}
-                            />
-                        );
-                    }
-                )}
+                {visibleOriginalLines.map(({ id, color, lines }) => (
+                    <CanvasLayer
+                        key={id}
+                        id={id}
+                        width={width}
+                        height={height}
+                        lines={lines}
+                        color={color}
+                        strokeWidth={3}
+                        showPoints={showPoints}
+                        pointShowColor={pointShowColor}
+                        pointShowRadius={pointShowRadius}
+                    />
+                ))}
             </div>
         );
     }
