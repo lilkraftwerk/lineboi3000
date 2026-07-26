@@ -22,6 +22,7 @@ module.exports = {
                 include: path.join(__dirname, 'src'),
                 options: {
                     loader: 'jsx',
+                    jsx: 'automatic',
                 }
             },
             {

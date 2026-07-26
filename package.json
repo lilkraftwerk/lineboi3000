@@ -63,7 +63,8 @@
                 "jest-esbuild",
                 {
                     "platform": "node",
-                    "loader": "jsx"
+                    "loader": "jsx",
+                    "jsx": "automatic"
                 }
             ]
         }
