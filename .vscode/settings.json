@@ -1,5 +1,14 @@
 {
-    "css.lint.unknownAtRules": "ignore",
-    "css.lint.unknownProperties": "ignore",
-    "javascript.suggest.enabled": false
+  "css.lint.unknownAtRules": "ignore",
+  "css.lint.unknownProperties": "ignore",
+  "js/ts.suggest.enabled": false,
+  "editor.defaultFormatter": "biomejs.biome",
+  "[javascript][typescript][typescriptreact][css][json]": {
+    "editor.formatOnSave": true
+  },
+  "editor.codeActionsOnSave": {
+    "quickfix.biome": "explicit",
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll.biome": "explicit"
+  }
 }
