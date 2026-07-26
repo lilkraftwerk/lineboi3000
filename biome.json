@@ -22,14 +22,16 @@
 			"a11y": {
 				"noStaticElementInteractions": "off",
 				"useAltText": "off",
-				"useKeyWithClickEvents": "warn"
+				"useKeyWithClickEvents": "warn",
+				"useGenericFontNames": "warn"
 			},
 			"complexity": {
 				"noForEach": "off"
 			},
 			"correctness": {
 				"useExhaustiveDependencies": "warn",
-				"useUniqueElementIds": "off"
+				"useUniqueElementIds": "off",
+				"noUnknownProperty": "warn"
 			}
 		}
 	},
@@ -45,7 +47,14 @@
 			"trailingCommas": "none"
 		}
 	},
+	"css": {
+		"formatter": {
+			"indentStyle": "space",
+			"indentWidth": 4,
+			"quoteStyle": "single"
+		}
+	},
 	"files": {
-		"includes": ["**/src/**/*.js", "**/tests/**/*.js"]
+		"includes": ["**/src/**/*.js", "**/tests/**/*.js", "**/src/**/*.css"]
 	}
 }

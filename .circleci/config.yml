@@ -21,6 +21,3 @@ jobs:
             - run:
                   name: Biome
                   command: npm run biome:check
-            - run:
-                  name: CSS Files Lint
-                  command: npm run style:check

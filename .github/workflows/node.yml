@@ -36,5 +36,3 @@ jobs:
             #       destination: image_snapshot_diff
             - name: Biome linting and formatting
               run: npm run biome:check
-            - name: CSS Files Lint
-              run: npm run style:check

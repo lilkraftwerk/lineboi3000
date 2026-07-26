@@ -3,7 +3,6 @@
 
 .wrapper {
     border: 2px dashed black;
-    box-shadow: #000 5px 5px 1px;
     box-shadow: 1px 1px 1px;
     display: grid;
     grid-auto-rows: auto;
