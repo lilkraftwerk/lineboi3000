@@ -77,7 +77,7 @@
         "bresenham-js": "^0.0.0",
         "chaikin-smooth": "^1.0.4",
         "cncserver": "git+https://github.com/alexrudd2/cncserver.git",
-        "concurrently": "^9.2.4",
+        "concurrently": "^10.0.0",
         "esbuild": "^0.28.0",
         "esbuild-loader": "^4.1.0",
         "fs-jetpack": "^5.0.0",
