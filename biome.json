@@ -23,7 +23,7 @@
 				"noStaticElementInteractions": "off",
 				"useAltText": "off",
 				"useKeyWithClickEvents": "warn",
-				"useGenericFontNames": "warn"
+				"useGenericFontNames": "off"
 			},
 			"complexity": {
 				"noForEach": "off"

@@ -36,7 +36,7 @@
     height: 120px;
     justify-content: center;
     width: 350px;
-    zindex: 100;
+    z-index: 100;
 }
 
 .helpButton {

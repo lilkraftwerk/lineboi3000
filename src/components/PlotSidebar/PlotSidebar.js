@@ -243,7 +243,7 @@ class PlotSidebar extends React.Component {
         this.plotter.parkPen();
     };
 
-    parkPen = () => {
+    returnToStart = () => {
         this.plotter.returnToStart();
     };
 

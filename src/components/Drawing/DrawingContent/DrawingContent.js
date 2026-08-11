@@ -60,27 +60,6 @@ export class DrawingContent extends React.Component {
         this.startCoords = startCoords;
     };
 
-    handleKeyDown = () => {
-        const { shiftToDraw } = this.props;
-        this.shiftDown = true;
-        if (!shiftToDraw) {
-            return;
-        }
-        this.setTempCoords([]);
-    };
-
-    handleKeyUp = () => {
-        const { tempCoords } = this;
-        const { shiftToDraw } = this.props;
-        this.shiftDown = false;
-        if (!shiftToDraw) {
-            return;
-        }
-
-        this.processFinalCoords(tempCoords);
-        this.setTempCoords(null);
-    };
-
     startDrawing = (event) => {
         const coordsAtEvent = this.getCoordsFromMouseEvent(event);
         this.setTempCoords([coordsAtEvent]);
@@ -427,7 +406,6 @@ export class DrawingContent extends React.Component {
             height,
             width,
             visibleOriginalLines,
-            visibleLayers,
             fillLines,
             mainMode,
             showPoints,
