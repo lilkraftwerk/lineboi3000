@@ -117,7 +117,6 @@
         "rimraf": "^6.0.0"
     },
     "overrides": {
-        "esbuild": "^0.28.0"
     },
     "allowScripts": {
         "@serialport/bindings-cpp@13.0.0": true,
