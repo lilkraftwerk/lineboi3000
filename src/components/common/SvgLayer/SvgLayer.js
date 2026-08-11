@@ -5,7 +5,7 @@ import {
     prepareLines
 } from '../../../utils/drawingUtils';
 
-import * as styles from './SvgLayer.styles.css';
+import styles from './SvgLayer.styles.css';
 
 export const CanvasLayer = ({
     lines,
@@ -54,7 +54,7 @@ export const CanvasLayer = ({
             offScreenContext.restore();
             const offscreenBitmap = offScreenCanvas.transferToImageBitmap();
             context.transferFromImageBitmap(offscreenBitmap);
-        } catch (e) {
+        } catch (_e) {
             console.error('***** line error *****');
             console.error(lines);
             console.error('***** line error *****');
@@ -113,7 +113,7 @@ export const PenPositionLayer = ({
             offScreenContext.restore();
             const offscreenBitmap = offScreenCanvas.transferToImageBitmap();
             context.transferFromImageBitmap(offscreenBitmap);
-        } catch (e) {
+        } catch (_e) {
             console.error('***** line error *****');
             console.error('***** line error *****');
         }
@@ -181,7 +181,7 @@ export const CombinedLayer = ({
             offScreenContext.restore();
             const offscreenBitmap = offScreenCanvas.transferToImageBitmap();
             context.transferFromImageBitmap(offscreenBitmap);
-        } catch (e) {
+        } catch (_e) {
             console.error('***** layer error *****');
             console.error(layers);
             console.error('***** layer error *****');
@@ -265,7 +265,7 @@ export const SelectLayer = ({
             offScreenContext.restore();
             const offscreenBitmap = offScreenCanvas.transferToImageBitmap();
             context.transferFromImageBitmap(offscreenBitmap);
-        } catch (e) {
+        } catch (_e) {
             console.error('***** line error *****');
             console.error(selectCoords);
             console.error('***** line error *****');

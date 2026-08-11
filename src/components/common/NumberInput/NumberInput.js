@@ -1,4 +1,4 @@
-import * as styles from './NumberInput.styles.css';
+import styles from './NumberInput.styles.css';
 
 const NumberInput = ({
     value,

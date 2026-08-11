@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { getCurrentOptions } from 'store/options/optionsSelectors';
 import { CanvasLayer } from '../common/SvgLayer/SvgLayer';
 
-import * as styles from './GridContent.styles.css';
+import styles from './GridContent.styles.css';
 
 const GridContent = ({
     gridHeight,

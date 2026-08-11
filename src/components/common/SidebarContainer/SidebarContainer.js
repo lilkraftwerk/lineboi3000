@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Popover from 'react-tiny-popover';
 
-import * as styles from './SidebarContainer.styles.css';
+import styles from './SidebarContainer.styles.css';
 
 export const SidebarContainer = (props) => {
     const { children } = props;

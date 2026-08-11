@@ -46,7 +46,7 @@ import {
 } from '../../utils/lineUtils';
 
 import '../common/SidebarContainer/SidebarStyles.css';
-import * as styles from './EfxSidebar.styles.css';
+import styles from './EfxSidebar.styles.css';
 
 const CONSTANT_FILTERS = [
     Move,
@@ -90,13 +90,13 @@ class EfxSidebar extends React.Component {
         this.state.loadingMessage = _sample(LOADING_MESSAGES);
 
         this.listAllPresets();
-        ipcRenderer.on('preset:list:reply', (event, receivedPresets) => {
+        ipcRenderer.on('preset:list:reply', (_event, receivedPresets) => {
             this.setState({ presets: receivedPresets });
         });
     }
 
     componentDidMount() {
-        ipcRenderer.on('renderer:efxLines', (event, arg) => {
+        ipcRenderer.on('renderer:efxLines', (_event, arg) => {
             this.onReceiveWorkerResults(arg);
         });
     }

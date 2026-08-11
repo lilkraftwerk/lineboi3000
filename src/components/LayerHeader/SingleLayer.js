@@ -2,7 +2,7 @@ import ColorPicker from 'components/common/Colors/ColorPicker';
 import Icon from 'components/common/Icon/Icon';
 import { useState } from 'react';
 
-import * as styles from './SingleLayer.styles.css';
+import styles from './SingleLayer.styles.css';
 
 const SingleLayer = ({
     layer,

@@ -1,4 +1,4 @@
-@value colors: "~components/common/Colors/colorVariables.css";
+@value colors: "../common/Colors/colorVariables.css";
 @value color-teal-light from colors;
 
 .plotHeaderContainer {

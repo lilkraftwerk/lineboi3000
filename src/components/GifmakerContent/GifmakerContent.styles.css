@@ -6,7 +6,7 @@
 }
 
 .loadingContainer::before {
-    background-image: url('~assets/loading.gif');
+    background-image: url('../../assets/loading.gif');
     background-size: 200px;
     content: '';
     height: 200%;

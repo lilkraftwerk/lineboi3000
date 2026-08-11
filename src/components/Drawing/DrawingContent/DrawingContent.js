@@ -22,7 +22,7 @@ import {
 } from '../../../utils/lineUtils';
 import DrawingModes from '../modes';
 
-import * as styles from './DrawingContent.styles.css';
+import styles from './DrawingContent.styles.css';
 
 export class DrawingContent extends React.Component {
     constructor(props) {
@@ -281,7 +281,7 @@ export class DrawingContent extends React.Component {
             fillRadius,
             fillCircle
         } = this.props;
-        if (!tempLinesRef || !tempLinesRef.current) {
+        if (!tempLinesRef?.current) {
             return;
         }
 

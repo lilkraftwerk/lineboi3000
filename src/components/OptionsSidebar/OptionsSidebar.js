@@ -19,7 +19,7 @@ import PercentClicker from 'components/common/PercentClicker/PercentClicker';
 
 import { setGlobalOptionByKey } from '../../store/options/optionsActions';
 import ColorList from '../common/Colors/ColorList';
-import * as styles from './OptionsSidebar.styles.css';
+import styles from './OptionsSidebar.styles.css';
 
 const initialState = {
     tempHeight: null,

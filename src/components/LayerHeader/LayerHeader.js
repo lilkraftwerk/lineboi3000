@@ -17,7 +17,7 @@ import { clearLayer } from 'store/line/lineActions';
 import Icon from 'components/common/Icon/Icon';
 import SingleLayer from './SingleLayer';
 
-import * as styles from './LayerHeader.styles.css';
+import styles from './LayerHeader.styles.css';
 
 export const LayerControls = ({ layers, currentLayerID, dispatch }) => {
     const firstLayerId = layers[0].id;

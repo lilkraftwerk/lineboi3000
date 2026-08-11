@@ -9,7 +9,7 @@ import {
     setMasterGif
 } from 'store/gifmaker/gifmakerActions';
 
-import * as styles from './GifmakerContent.styles.css';
+import styles from './GifmakerContent.styles.css';
 
 class GifmakerContent extends React.Component {
     constructor(props) {

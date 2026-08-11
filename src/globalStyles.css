@@ -65,8 +65,8 @@ button:disabled {
 }
 
 button:focus {
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 html,

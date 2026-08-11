@@ -3,7 +3,7 @@ import { SidebarItem } from 'components/common/SidebarContainer/SidebarContainer
 import { useState } from 'react';
 import { shrinkCanvas } from 'store/line/lineActions';
 
-import * as styles from './ShrinkCanvasOptions.styles.css';
+import styles from './ShrinkCanvasOptions.styles.css';
 
 const ShrinkCanvasOptions = (props) => {
     const { globalHeight, globalWidth, dispatch } = props;

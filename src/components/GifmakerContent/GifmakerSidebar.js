@@ -20,7 +20,7 @@ import {
 } from 'components/common/SidebarContainer/SidebarContainer';
 import ColorList from '../common/Colors/ColorList';
 
-import * as styles from './GifmakerSidebar.styles.css';
+import styles from './GifmakerSidebar.styles.css';
 
 class GifmakerSidebar extends React.Component {
     componentDidMount = async () => {

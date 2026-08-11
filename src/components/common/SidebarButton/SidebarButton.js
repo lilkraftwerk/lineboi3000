@@ -1,4 +1,4 @@
-import * as styles from './SidebarButton.styles.css';
+import styles from './SidebarButton.styles.css';
 
 export const SidebarButton = ({
     label,

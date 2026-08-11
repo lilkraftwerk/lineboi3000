@@ -3,7 +3,7 @@ import { SidebarItem } from 'components/common/SidebarContainer/SidebarContainer
 import { setMultiplyCanvasOptions } from 'store/drawing/drawingActions';
 import { multiplyCanvas } from 'store/line/lineActions';
 
-import * as styles from './ShrinkCanvasOptions.styles.css';
+import styles from './ShrinkCanvasOptions.styles.css';
 
 const MultiplyCanvasOptions = (props) => {
     const { multiplyCanvasOptions, globalHeight, globalWidth, dispatch } =

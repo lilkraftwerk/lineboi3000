@@ -1,8 +1,19 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "es2016",
-        "jsx": "preserve"
+        "module": "esnext",
+        "target": "es2025",
+        "jsx": "react-jsx",
+        "moduleResolution": "bundler",
+        "allowJs": true,
+        "paths": {
+            "components/*": ["./src/components/*"],
+            "mainProcess/*": ["./src/mainProcess/*"],
+            "store/*": ["./src/store/*"],
+            "utils/*": ["./src/utils/*"],
+            "assets/*": ["./src/assets/*"],
+            "plotting/*": ["./src/plotting/*"],
+            "filters/*": ["./src/filters/*"]
+        }
     },
     "exclude": ["node_modules", "**/node_modules/*"]
 }

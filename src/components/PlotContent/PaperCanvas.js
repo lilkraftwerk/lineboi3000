@@ -1,4 +1,4 @@
-import * as styles from './PaperCanvas.styles.css';
+import styles from './PaperCanvas.styles.css';
 
 const PaperCanvas = ({ width, height }) => {
     return (

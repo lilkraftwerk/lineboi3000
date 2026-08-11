@@ -1,6 +1,6 @@
 import { round as _round } from 'es-toolkit';
 
-import * as styles from './PercentClicker.styles.css';
+import styles from './PercentClicker.styles.css';
 
 const PercentClicker = ({
     title,

@@ -1,11 +1,7 @@
-import * as styles from './OptionsContent.styles.css';
+import styles from './OptionsContent.styles.css';
 
 const OptionsContent = () => {
-    return (
-        <>
-            <div id="optionsContent" className={styles.container} />
-        </>
-    );
+    return <div id="optionsContent" className={styles.container} />;
 };
 
 export default OptionsContent;

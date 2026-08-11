@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import * as styles from './ItemSelector.styles.css';
+import styles from './ItemSelector.styles.css';
 
 const ItemSelector = ({
     onSelect = () => {},
