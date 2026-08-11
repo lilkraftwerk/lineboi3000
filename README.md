@@ -14,7 +14,7 @@ Clone the repo, CD to the dir, and then `yarn` or `npm i` to install all depende
 
 ### Run The App
 
-`yarn dev` or `npm dev` to run the dev server (devtools open, and Webpack rebuilds on changes to files)
+`yarn dev` or `npm dev` to run the dev server (devtools open, and esbuild rebuilds on changes to files)
 
 ## Questions, Comments, Etc.
 
