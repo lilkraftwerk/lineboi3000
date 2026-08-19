@@ -41,7 +41,7 @@
             "automerge": true,
             "matchPackageNames": [
                 "/pre-commit/",
-                "/check-jsonschme/",
+                "/check-jsonschema/",
                 "/biome/",
                 "/playwright/"
             ]
