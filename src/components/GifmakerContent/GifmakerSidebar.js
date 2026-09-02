@@ -26,6 +26,9 @@ class GifmakerSidebar extends React.Component {
     componentDidMount = async () => {
         const { frames, dispatch, globalHeight, globalWidth } = this.props;
         const promises = frames.map(({ data }) => {
+            if (typeof data !== 'string' || !data.startsWith('data:')) {
+                throw new Error('Invalid frame data: only data URLs are allowed');
+            }
             return fetch(data);
         });
 
