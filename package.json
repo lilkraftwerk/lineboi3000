@@ -105,7 +105,7 @@
         "body-parser": "^2.0.0",
         "canvas": "^3.0.0",
         "css-declaration-sorter": "^7.0.0",
-        "electron": "^43.0.0",
+        "electron": "^44.0.0",
         "electron-extension-installer": "^2.0.0",
         "es-toolkit": "^1.35.0",
         "jest": "^30.0.0",
