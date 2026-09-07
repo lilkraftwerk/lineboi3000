@@ -10,7 +10,7 @@
 
 ### Install
 
-Clone the repo, CD to the dir, and then `yarn` or `npm i` to install all dependencies
+Clone the repo, CD to the dir, and then `yarn` or `npm i --allow-git=root` to install all dependencies
 
 ### Run The App
 
