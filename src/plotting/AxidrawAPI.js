@@ -1,12 +1,18 @@
 const API_URL = 'http://localhost:4242/v1';
 
+// Shared secret used to authenticate with the local plotter server. Configure
+// the server to require this token so unauthenticated local processes cannot
+// control the device.
+const API_TOKEN = typeof process !== 'undefined' && process.env && process.env.AXIDRAW_API_TOKEN;
+
 const headers = {
     Accept: '*/*',
     'Cache-Control': 'no-cache',
     'Accept-Encoding': 'gzip, deflate',
     Referer: 'http://localhost:4242/v1/pen',
     Connection: 'keep-alive',
-    'cache-control': 'no-cache'
+    'cache-control': 'no-cache',
+    ...(API_TOKEN ? { Authorization: `Bearer ${API_TOKEN}` } : {})
 };
 
 const PLOTTER_CONNECTION_STATES = {
@@ -74,6 +80,7 @@ class AxidrawAPI {
         const result = await fetch(`${API_URL}/pen`, {
             method: 'PUT',
             headers: {
+                ...headers,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: state
@@ -83,11 +90,11 @@ class AxidrawAPI {
     }
 
     async resetMotor() {
-        await fetch(`${API_URL}/motors`, { method: 'DELETE' });
+        await fetch(`${API_URL}/motors`, { method: 'DELETE', headers });
     }
 
     async returnToStart() {
-        await fetch(`${API_URL}/pen`, { method: 'DELETE' });
+        await fetch(`${API_URL}/pen`, { method: 'DELETE', headers });
     }
 
     async parkPen() {
