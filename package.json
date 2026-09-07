@@ -116,12 +116,13 @@
         "playwright": "^1.43.1",
         "rimraf": "^6.0.0"
     },
-    "overrides": {
-    },
+    "overrides": {},
     "allowScripts": {
         "@serialport/bindings-cpp@13.0.0": true,
-        "canvas@3.2.0": true,
-        "esbuild@0.28.0": true,
-        "unrs-resolver@1.12.2": true
+        "unrs-resolver@1.12.2": true,
+        "esbuild@0.28.2": true,
+        "esbuild@0.25.12": true,
+        "canvas@3.2.3": true,
+        "@parcel/watcher@2.6.0": true
     }
 }
