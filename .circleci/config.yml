@@ -8,7 +8,7 @@ jobs:
             - checkout
             - run:
                   name: Install Dependencies
-                  command: npm ci --allow-git=root
+                  command: npm ci --allow-git=all
             - run:
                   name: Creating Dummy Artifacts
                   command: mkdir /tmp/diffs;
