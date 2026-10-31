@@ -102,7 +102,7 @@
         "@biomejs/biome": "^2.0.0",
         "@testing-library/dom": "^10.4.0",
         "@testing-library/react": "^16.0.0",
-        "body-parser": "^2.0.0",
+        "body-parser": "^2.4.0",
         "canvas": "^3.0.0",
         "css-declaration-sorter": "^7.0.0",
         "electron": "^44.0.0",
